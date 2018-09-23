@@ -17,7 +17,7 @@
   color: #ffffff;
   font-family: cursive;
   font-weight: bold;
-  background: linear-gradient(right, #C4A100, #FFD200);
+  background: linear-gradient(to right, #C4A100, #FFD200);
   border-radius: 10px 10px 10px 10px;
 }
 
@@ -27,7 +27,7 @@
 
 .contenidoEvento{
   margin-top: 2px;
-  background: linear-gradient(right, #E9E9E9, #ffffff);
+  background: linear-gradient(to right, #E9E9E9, #ffffff);
   border-radius: 10px 10px 10px 10px;
 }
 
@@ -69,5 +69,5 @@
 
   .alert-md .alert-wrapper {
     border-radius: 10px;
-    background: linear-gradient(right, rgb(197, 196, 196), #ffffff);
+    background: linear-gradient(to left, rgb(197, 196, 196), #ffffff);
   }

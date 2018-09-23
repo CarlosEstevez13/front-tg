@@ -19,6 +19,7 @@ import { EventosPage } from '../pages/eventos/eventos';
 import { SalidasEPage } from '../pages/salidas-e/salidas-e';
 import { TorneosProvider } from '../providers/torneos/torneos';
 import { HttpModule } from '@angular/http';
+import { EquipoProvider } from '../providers/equipo/equipo';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,9 @@ import { HttpModule } from '@angular/http';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    TorneosProvider
+    TorneosProvider,
+    EquipoProvider,
+    EquipoProvider
   ]
 })
 export class AppModule {}
