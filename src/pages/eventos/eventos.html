@@ -15,17 +15,17 @@
 
 <ion-content class="card-background-page" padding>
 
-        <ion-card>
+        <ion-card (click)='getTorneos()'>
           <img src="assets/imgs/torneo.jpg"/>
-          <div class="card-title">Torneo</div>
+          <div class="card-title">Torneos</div>
         </ion-card>
       
-        <ion-card>
+        <ion-card (click)='getSalidasI()'>
           <img src="assets/imgs/pista.jpg"/>
           <div class="card-title">Salidas Individuales</div>
         </ion-card>
       
-        <ion-card>
+        <ion-card (click)='getSalidasE()'>
           <img src="assets/imgs/encuentro.jpg"/>
           <div class="card-title">Salidas por Equipos</div>
         </ion-card>
