@@ -25,12 +25,22 @@
         </div>
       </ion-item>
 
-      <ion-card-content class="contenidoEvento">
+      <ion-card-content class="">
 
         <ion-item class="fondoNone">
           <h2><i class="fas fa-align-justify margenSup"></i> {{equipo.descripcion}}</h2>
         </ion-item>
       </ion-card-content>
+
+      <ion-row>
+          <ion-col>
+            <button (click)="showPrompt()" ion-button icon-start clear small>
+              <ion-icon name="person-add"></ion-icon>
+              <div>Enviar Solicitud</div>
+            </button>
+          </ion-col>
+
+        </ion-row>
 
     </ion-card>
 

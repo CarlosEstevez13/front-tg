@@ -2,6 +2,7 @@ import { EquipoProvider } from './../../providers/equipo/equipo';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { AlertController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -19,7 +20,8 @@ export class EquipoPage {
   constructor(
       public navCtrl: NavController,
       public navParams: NavParams,
-      public _equipoService: EquipoProvider) {
+      public _equipoService: EquipoProvider,
+      public alertCtrl: AlertController) {
         
       if(this.tiene ==false){
         this.getNroInt();
@@ -88,5 +90,35 @@ export class EquipoPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad EquipoPage');
   }
+
+  showPrompt() {
+    const prompt = this.alertCtrl.create({
+      title: 'Solicitud de ingreso',
+      message: "Escriba una descripcion de su solicitud",
+      inputs: [
+        {
+          name: 'title',
+          placeholder: 'Escriba aqui'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Enviar',
+          handler: data => {
+            console.log(data);
+            console.log('Saved clicked');
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+
 
 }
