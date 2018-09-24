@@ -38,4 +38,25 @@ export class EquipoProvider {
     return this._http.get(this.url + `solUsuario/${idUsuario}` ).map((res:any) => res.json());
   }
 
+  getMensajesEquipo(idEquipo:any) {
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `mensajeE/${idEquipo}` ).map((res:any) => res.json());
+  }
+
+  addMensaje(mensaje){
+    const json = JSON.stringify(mensaje);
+    const params = json;
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    console.log('agregando solicitud');
+    console.log(params);
+    return this._http.post(this.url + 'mensaje', params, {headers:this.headers})
+            .map(res => res.json());
+  }
+
+  getInfoEquipo(idEquipo:any) {
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `equipo/${idEquipo}` ).map((res:any) => res.json());
+  }
+
+
 }

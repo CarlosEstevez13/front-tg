@@ -57,20 +57,17 @@
   <div *ngIf="tiene!=0">
 
     <ion-list>
-      <ion-item class="messages-u">
+      <ion-item 
+      *ngFor="let m of mensajes"
+      [ngClass]="{
+        'messages-u': m.idUsuario == idUsuario,
+        'messages-c': m.idUsuario != idUsuario
+      }" >
         <div class="tituloMensaje">
-          nombre
+          {{m.remitente}}
         </div>
         <hr class="hr1"/>
-        Hola
-      </ion-item>
-
-      <ion-item class="messages-c">
-          <div class="tituloMensaje">
-              nombre
-            </div>
-          <hr class="hr1"/>
-        Hola!
+        {{m.frase}}
       </ion-item>
 
     </ion-list>

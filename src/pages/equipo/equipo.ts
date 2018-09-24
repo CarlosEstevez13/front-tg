@@ -15,12 +15,15 @@ export class EquipoPage {
   capitan:any = 0;
 
   enviarInput:any = '';
+
+  nombre = 'Lionel Messi'
   idUsuario = 5;
   idRol = 1;
   idEquipo = 1;
   idDeporte = 1;
   nroInt:any = [];
   equipos:any;
+  mensajes:any;
   solicitud:{
     'idEquipo':any,
     'idUsuario':any,
@@ -39,7 +42,16 @@ export class EquipoPage {
     'idDeporte':any,
     'frase':any,
     'fecha':any,
-    'idEquipo':any
+    'idEquipo':any,
+    'remitente':any
+  } = {
+    'idUsuario':'',
+    'idRol':'',
+    'idDeporte':'',
+    'frase':'',
+    'fecha':'',
+    'idEquipo':'',
+    'remitente':''
   }
 
   constructor(
@@ -48,21 +60,25 @@ export class EquipoPage {
       public _equipoService: EquipoProvider,
       public alertCtrl: AlertController) {
         
-      if(this.tiene ==false){
+      if(this.tiene ==0){
         this.getNroInt();
         this.getEquipos();
         this.getSolUsuario();
-      } 
-      /* this.getEquipos(); */
+      } else{
+        this.getMensajes();
+      }
+
+      this.getAll();
   }
 
   iniciarMensaje(){
     this.mensaje.idUsuario = this.idUsuario;
     this.mensaje.idRol = this.idRol;
     this.mensaje.idDeporte = this.idDeporte;
-    this.mensaje.frase = '';
-    this.mensaje.fecha = '0000-00-00';
+    this.mensaje.frase = this.enviarInput;
+    this.mensaje.fecha = '2018-09-01';
     this.mensaje.idEquipo = this.idEquipo;
+    this.mensaje.remitente = this.nombre;
   }
 
   getEquipos(){
@@ -87,6 +103,7 @@ export class EquipoPage {
         e=>{
           console.log('ocurrio un error');
         });
+
   }
 
   getNroInt(){
@@ -189,9 +206,48 @@ export class EquipoPage {
       );
   }
 
-  enviar(){
-    this.enviarInput = '';
-    console.log('enviar!');
+  getMensajes(){
+    this._equipoService.getMensajesEquipo(this.idEquipo)
+    .subscribe(
+      res => {
+        this.mensajes = res.result;
+      }, e => {
+        console.log(e);
+      }
+    );
   }
 
+  enviar(){
+    this.iniciarMensaje();
+    this._equipoService.addMensaje(this.mensaje)
+      .subscribe(
+        res => {
+          console.log(res);
+        }, e => {
+          console.log(e);
+        }
+      );
+
+    this.enviarInput = '';
+    
+  }
+
+  getAll() {
+    var me =this;
+    setTimeout(function(){
+    me.getMensajes();
+    me.getAll();
+    },5000);
+  }
+
+  getEquipo(){
+    this._equipoService.getInfoEquipo(this.idEquipo)
+    .subscribe(
+      res => {
+        console.log(res.result);
+      }, e => {
+        console.log(e);
+      }
+    );
+  }
 }
