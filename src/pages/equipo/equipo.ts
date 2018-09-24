@@ -14,7 +14,9 @@ export class EquipoPage {
   tiene:any = 1;
   capitan:any = 0;
 
+  enviarInput:any = '';
   idUsuario = 5;
+  idRol = 1;
   idEquipo = 1;
   idDeporte = 1;
   nroInt:any = [];
@@ -31,6 +33,15 @@ export class EquipoPage {
     'estado': 2
   };
 
+  mensaje:{
+    'idUsuario':any,
+    'idRol':any,
+    'idDeporte':any,
+    'frase':any,
+    'fecha':any,
+    'idEquipo':any
+  }
+
   constructor(
       public navCtrl: NavController,
       public navParams: NavParams,
@@ -43,6 +54,15 @@ export class EquipoPage {
         this.getSolUsuario();
       } 
       /* this.getEquipos(); */
+  }
+
+  iniciarMensaje(){
+    this.mensaje.idUsuario = this.idUsuario;
+    this.mensaje.idRol = this.idRol;
+    this.mensaje.idDeporte = this.idDeporte;
+    this.mensaje.frase = '';
+    this.mensaje.fecha = '0000-00-00';
+    this.mensaje.idEquipo = this.idEquipo;
   }
 
   getEquipos(){
@@ -167,6 +187,11 @@ export class EquipoPage {
           console.log(e);
         }
       );
+  }
+
+  enviar(){
+    this.enviarInput = '';
+    console.log('enviar!');
   }
 
 }

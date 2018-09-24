@@ -76,3 +76,41 @@ ion-title{
     border-radius: 10px;
     background: linear-gradient(to left, rgb(197, 196, 196), #ffffff);
   }
+
+  .messages-u {
+    margin-top: 15px;
+    margin-right: 5px;
+    float: right;
+    color: #000;
+    text-align: right;
+    background: #DDE4E8;
+    width: 60%;
+    border-radius: 10px 10px 0 10px;
+    
+  }
+  .messages-c {
+    margin-top: 15px;
+    margin-left: 5px;
+    float: left;
+    color: #000;
+    text-align: left;
+    background: #DDE4E8;
+    width: 60%;
+    border-radius: 10px 10px 10px 0px;
+    
+  }
+
+  .tituloMensaje{
+    margin-top: 0px;
+    padding-top: 0px;
+    font-size: 11px;
+    color: rgb(17, 53, 97);
+  }
+  .label-md{
+    margin-top: 5px
+  }
+
+  .hr1{
+    margin-top:0px;
+    background-color: rgb(173, 168, 168) !important;
+  }
