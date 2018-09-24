@@ -11,11 +11,25 @@ import { AlertController } from 'ionic-angular';
 })
 export class EquipoPage {
 
-  tiene:boolean = false;
+  tiene:any = 1;
+  capitan:any = 0;
+
+  idUsuario = 5;
   idEquipo = 1;
   idDeporte = 1;
   nroInt:any = [];
   equipos:any;
+  solicitud:{
+    'idEquipo':any,
+    'idUsuario':any,
+    'descripcion':any,
+    'estado':any
+  } = {
+    'idEquipo':'',
+    'idUsuario':'',
+    'descripcion':'',
+    'estado': 2
+  };
 
   constructor(
       public navCtrl: NavController,
@@ -26,7 +40,7 @@ export class EquipoPage {
       if(this.tiene ==false){
         this.getNroInt();
         this.getEquipos();
-        
+        this.getSolUsuario();
       } 
       /* this.getEquipos(); */
   }
@@ -91,7 +105,7 @@ export class EquipoPage {
     console.log('ionViewDidLoad EquipoPage');
   }
 
-  showPrompt() {
+  showPrompt(idEquipo) {
     const prompt = this.alertCtrl.create({
       title: 'Solicitud de ingreso',
       message: "Escriba una descripcion de su solicitud",
@@ -111,8 +125,7 @@ export class EquipoPage {
         {
           text: 'Enviar',
           handler: data => {
-            console.log(data);
-            console.log('Saved clicked');
+            this.enviarSolicitud(idEquipo,data.title)
           }
         }
       ]
@@ -120,5 +133,40 @@ export class EquipoPage {
     prompt.present();
   }
 
+  enviarSolicitud(idEquipo, descripcion){
+    this.solicitud.idUsuario = this.idUsuario;
+    this.solicitud.idEquipo = idEquipo;
+    this.solicitud.descripcion = descripcion;
+
+    console.log(this.solicitud);
+
+    this._equipoService.addSolicitud(this.solicitud).subscribe(
+      res => {
+        console.log(res);
+      }, e => {
+        console.log(e);
+      }
+    );
+  }
+
+  getSolUsuario(){
+    this._equipoService.getSolicitudesUsuario(this.idUsuario)
+      .subscribe(
+        res => {
+          for (let i in this.equipos){
+            for (let j in res.result){
+               if (this.equipos[i].idEquipo == res.result[j].idEquipo){
+                 this.equipos[i].estado = 2;
+                 break;
+               }else{
+                 this.equipos[i].estado = 3;
+               }
+            }
+          } 
+        }, e => {
+          console.log(e);
+        }
+      );
+  }
 
 }

@@ -63,7 +63,6 @@ import { EquipoProvider } from '../providers/equipo/equipo';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     TorneosProvider,
-    EquipoProvider,
     EquipoProvider
   ]
 })

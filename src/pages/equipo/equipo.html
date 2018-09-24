@@ -9,14 +9,14 @@
 
 <ion-content padding>
 
-  <div *ngIf="tiene==false">
+  <div *ngIf="tiene==0">
 
     <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
 
     <ion-card class="fondo" *ngFor="let equipo of equipos; index as i">
 
       <ion-item class="tituloEvento">
-        <h2><i class="fas fa-star-half-alt margenSup"></i> {{ equipo.nombre}}</h2>
+        <h2><i class="fas fa-star-half-alt margenSup"></i> {{ equipo.nombre | uppercase}}</h2>
         <div item-end> 
             <b> <i class="fas fa-users"></i>
                 {{equipo.nroInt}}
@@ -33,16 +33,30 @@
       </ion-card-content>
 
       <ion-row>
-          <ion-col>
-            <button (click)="showPrompt()" ion-button icon-start clear small>
+          <ion-col *ngIf="equipo.estado !=2">
+            <button (click)="showPrompt(equipo.idEquipo)" ion-button icon-start clear small>
               <ion-icon name="person-add"></ion-icon>
               <div>Enviar Solicitud</div>
             </button>
           </ion-col>
 
+          <ion-col *ngIf="equipo.estado ==2">
+              <button color="danger" ion-button icon-start clear small>
+                <ion-icon name="md-hand"></ion-icon>
+                <div>Solicitud Enviada</div>
+              </button>
+            </ion-col>
+
         </ion-row>
 
     </ion-card>
+
+  </div>
+
+
+  <div *ngIf="tiene!=0">
+
+
 
   </div>
 

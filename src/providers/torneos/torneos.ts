@@ -17,7 +17,7 @@ export class TorneosProvider {
 
   constructor(public _http: Http) {
     console.log('Hello TorneosProvider Provider');
-    this.url = 'http://localhost:3001/api/';
+    this.url = 'http://localhost:3002/api/';
   }
 
   getTorneos() {

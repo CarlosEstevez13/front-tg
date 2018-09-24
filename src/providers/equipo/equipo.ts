@@ -1,4 +1,4 @@
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import { Injectable } from '@angular/core';
 
 
@@ -10,7 +10,7 @@ export class EquipoProvider {
 
   constructor(public _http: Http) {
     console.log('Hello EquipoProvider Provider');
-    this.url = 'http://localhost:3001/api/';
+    this.url = 'http://localhost:3002/api/';
   }
 
   getEquipos(idDeporte:any) {
@@ -21,6 +21,21 @@ export class EquipoProvider {
   getNroIntEquipos(idDeporte:any) {
     this.headers = new Headers({'Content-Type': 'application/json'});
     return this._http.get(this.url + `nroIntEquiposDeporte/${idDeporte}` ).map((res:any) => res.json());
+  }
+
+  addSolicitud(solicitud){
+    const json = JSON.stringify(solicitud);
+    const params = json;
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    console.log('agregando solicitud');
+    console.log(params);
+    return this._http.post(this.url + 'solicitud', params, {headers:this.headers})
+            .map(res => res.json());
+  }
+
+  getSolicitudesUsuario(idUsuario:any) {
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `solUsuario/${idUsuario}` ).map((res:any) => res.json());
   }
 
 }
