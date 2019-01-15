@@ -1,11 +1,11 @@
-import { TorneosPage } from './../torneos/torneos';
+import { SalidasEMenuPage } from './../salidas-e-menu/salidas-e-menu';
+import { SalidasIMenuPage } from './../salidas-i-menu/salidas-i-menu';
+import { TorneosMenuPage } from './../torneos-menu/torneos-menu';
 import { CrearEventoPage } from './../crear-evento/crear-evento';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { ModalController } from 'ionic-angular';
-import { SalidasIPage } from '../salidas-i/salidas-i';
-import { SalidasEPage } from '../salidas-e/salidas-e';
 
 /**
  * Generated class for the EventosPage page.
@@ -31,15 +31,15 @@ export class EventosPage {
   }
 
   getTorneos(){
-    this.navCtrl.push(TorneosPage);
+    this.navCtrl.push(TorneosMenuPage);
   }
 
   getSalidasI(){
-    this.navCtrl.push(SalidasIPage);
+    this.navCtrl.push(SalidasIMenuPage);
   }
 
   getSalidasE(){
-    this.navCtrl.push(SalidasEPage);
+    this.navCtrl.push(SalidasEMenuPage);
   }
 
   ionViewDidLoad() {

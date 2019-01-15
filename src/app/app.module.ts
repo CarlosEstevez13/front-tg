@@ -1,3 +1,6 @@
+import { SalidasIMenuPage } from './../pages/salidas-i-menu/salidas-i-menu';
+import { SalidasEMenuPage } from './../pages/salidas-e-menu/salidas-e-menu';
+import { TorneosMenuPage } from './../pages/torneos-menu/torneos-menu';
 import { EditarEquipoPage } from './../pages/editar-equipo/editar-equipo';
 import { EquipoPage } from './../pages/equipo/equipo';
 import { HttpClientModule } from '@angular/common/http';
@@ -38,7 +41,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SalidasEPage,
     EquipoPage,
     EditarEquipoPage,
-    AgregarIntegrantePage
+    AgregarIntegrantePage,
+    TorneosMenuPage,
+    SalidasEMenuPage,
+    SalidasIMenuPage
   ],
   imports: [
     BrowserModule,
@@ -65,7 +71,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SalidasEPage,
     EquipoPage,
     EditarEquipoPage,
-    AgregarIntegrantePage
+    AgregarIntegrantePage,
+    TorneosMenuPage,
+    SalidasEMenuPage,
+    SalidasIMenuPage
   ],
   providers: [
     StatusBar,
