@@ -4,6 +4,16 @@
     width: 70px;
 }
 
+.badgeSolicitud{
+  margin-left: 93%;
+  margin-top: -12%;
+}
+.badge{
+  font-size: 1rem !important;
+  border-radius: 10px !important;
+}
+
+
 .fondo{
   //background-image: url('/assets/imgs/fondo1.jpg');
   border-radius: 10px 10px 10px 10px;
@@ -11,6 +21,13 @@
 
 .fondoNone{
   background: none;
+}
+.left2{
+  margin-left: 2px;
+}
+.right2{
+  margin-right: 10px;
+  margin-left: -10px;
 }
 
 .tituloEvento{
@@ -113,4 +130,8 @@ ion-title{
   .hr1{
     margin-top:0px;
     background-color: rgb(173, 168, 168) !important;
+  }
+
+  .confEquipo{
+    padding-left: 40%;
   }

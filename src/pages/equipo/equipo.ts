@@ -1,8 +1,10 @@
+import { EditarEquipoPage } from './../editar-equipo/editar-equipo';
 import { EquipoProvider } from './../../providers/equipo/equipo';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { AlertController } from 'ionic-angular';
+import { AgregarIntegrantePage } from '../agregar-integrante/agregar-integrante';
 
 @IonicPage()
 @Component({
@@ -11,19 +13,18 @@ import { AlertController } from 'ionic-angular';
 })
 export class EquipoPage {
 
-  tiene:any = 1;
-  capitan:any = 0;
+  tiene:any = sessionStorage.getItem('idEquipo');
+  capitan:any = 1;
 
   enviarInput:any = '';
 
+  infoEquipo:any = [];
   nombre = 'Lionel Messi'
-  idUsuario = 5;
-  idRol = 1;
-  idEquipo = 1;
-  idDeporte = 1;
+  
   nroInt:any = [];
   equipos:any;
   mensajes:any;
+  solicitudesEquipo: any = [];
   solicitud:{
     'idEquipo':any,
     'idUsuario':any,
@@ -54,21 +55,22 @@ export class EquipoPage {
     'remitente':''
   }
 
+  idUsuario;
+  idRol;
+  idEquipo;
+  idDeporte;
   constructor(
       public navCtrl: NavController,
       public navParams: NavParams,
       public _equipoService: EquipoProvider,
       public alertCtrl: AlertController) {
         
-      if(this.tiene ==0){
-        this.getNroInt();
-        this.getEquipos();
-        this.getSolUsuario();
-      } else{
-        this.getMensajes();
-      }
+        this.idUsuario = sessionStorage.getItem('idUsuario');
+        this.idRol = sessionStorage.getItem('idRol');
+        this.idEquipo = sessionStorage.getItem('idEquipo');
+        this.idDeporte = sessionStorage.getItem('idDeporte');
 
-      this.getAll();
+     
   }
 
   iniciarMensaje(){
@@ -81,8 +83,23 @@ export class EquipoPage {
     this.mensaje.remitente = this.nombre;
   }
 
+  getSolicitudes(){
+    this._equipoService.getSolicitudesEquipo(this.idEquipo)
+        .subscribe(
+          res=>{
+            this.solicitudesEquipo = res.result;
+            console.log(this.solicitudesEquipo);
+          },
+          e=>{
+            console.log(e);
+            this.solicitudesEquipo = [];
+          }
+        )
+  }
+
   getEquipos(){
     console.log('ingreso');
+    
     this._equipoService.getEquipos(this.idDeporte)
         .subscribe(res=> {
           this.equipos = res.result;
@@ -142,6 +159,21 @@ export class EquipoPage {
     console.log('ionViewDidLoad EquipoPage');
   }
 
+  ionViewDidEnter(){
+    if(this.tiene ==0){
+      this.getNroInt();
+      this.getEquipos();
+      this.getSolUsuario();
+    } else{
+      this.getInfoEquipo();
+      this.getMensajes();
+      this.getSolicitudes();
+      this.getAll();
+    }
+
+    
+  }
+
   showPrompt(idEquipo) {
     const prompt = this.alertCtrl.create({
       title: 'Solicitud de ingreso',
@@ -162,7 +194,9 @@ export class EquipoPage {
         {
           text: 'Enviar',
           handler: data => {
-            this.enviarSolicitud(idEquipo,data.title)
+            
+            this.enviarSolicitud(idEquipo,data.title);
+            
           }
         }
       ]
@@ -179,7 +213,7 @@ export class EquipoPage {
 
     this._equipoService.addSolicitud(this.solicitud).subscribe(
       res => {
-        console.log(res);
+        this.getSolUsuario();
       }, e => {
         console.log(e);
       }
@@ -190,6 +224,7 @@ export class EquipoPage {
     this._equipoService.getSolicitudesUsuario(this.idUsuario)
       .subscribe(
         res => {
+          console.log(res);
           for (let i in this.equipos){
             for (let j in res.result){
                if (this.equipos[i].idEquipo == res.result[j].idEquipo){
@@ -240,14 +275,29 @@ export class EquipoPage {
     },5000);
   }
 
-  getEquipo(){
+  getInfoEquipo(){
     this._equipoService.getInfoEquipo(this.idEquipo)
     .subscribe(
       res => {
-        console.log(res.result);
+        this.infoEquipo = res.result[0];
+        console.log(this.infoEquipo);
       }, e => {
         console.log(e);
       }
     );
+  }
+
+  editarEquipo(){
+    this._equipoService.cacheEquipo(this.infoEquipo);
+    this.navCtrl.push(EditarEquipoPage);
+  }
+
+  agregarIntegrante(){
+    this._equipoService.cacheSolicitudesEquipo(this.solicitudesEquipo);
+    this.navCtrl.push(AgregarIntegrantePage);
+  }
+
+  salirDelEquipo(){
+    console.log('salir del equipo');
   }
 }

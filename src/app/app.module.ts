@@ -1,3 +1,4 @@
+import { EditarEquipoPage } from './../pages/editar-equipo/editar-equipo';
 import { EquipoPage } from './../pages/equipo/equipo';
 import { HttpClientModule } from '@angular/common/http';
 import { SalidasIPage } from './../pages/salidas-i/salidas-i';
@@ -20,6 +21,8 @@ import { SalidasEPage } from '../pages/salidas-e/salidas-e';
 import { TorneosProvider } from '../providers/torneos/torneos';
 import { HttpModule } from '@angular/http';
 import { EquipoProvider } from '../providers/equipo/equipo';
+import { AgregarIntegrantePage } from '../pages/agregar-integrante/agregar-integrante';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -33,12 +36,16 @@ import { EquipoProvider } from '../providers/equipo/equipo';
     TorneosPage,
     SalidasIPage,
     SalidasEPage,
-    EquipoPage
+    EquipoPage,
+    EditarEquipoPage,
+    AgregarIntegrantePage
   ],
   imports: [
     BrowserModule,
     HttpModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     /* IonicModule.forRoot(MyApp), */
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages:false
@@ -56,7 +63,9 @@ import { EquipoProvider } from '../providers/equipo/equipo';
     TorneosPage,
     SalidasIPage,
     SalidasEPage,
-    EquipoPage
+    EquipoPage,
+    EditarEquipoPage,
+    AgregarIntegrantePage
   ],
   providers: [
     StatusBar,

@@ -24,11 +24,21 @@ export class TorneosProvider {
     this.headers = new Headers({'Content-Type': 'application/json'});
     return this._http.get(this.url + 'torneos' ).map((res:any) => res.json());
   }
+
+  getTorneosDeporte(idDeporte) {
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `torneoDeporte/${idDeporte}` ).map((res:any) => res.json());
+  }
+
   getNroEquiposTorneo() {
     this.headers = new Headers({'Content-Type': 'application/json'});
     return this._http.get(this.url + 'nroEquiposTorneo' ).map((res:any) => res.json());
   }
   
+  getNroEquiposTorneoDeporte(idDeporte) {
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `nroEquiposTorneoDeporte/${idDeporte}` ).map((res:any) => res.json());
+  }
 
 
 }

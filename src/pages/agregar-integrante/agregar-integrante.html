@@ -1,0 +1,34 @@
+<!--
+  Generated template for the AgregarIntegrantePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Solicitudes</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div *ngIf="solicitudes.length!=0">
+    <ion-card *ngFor="let sol of solicitudes; index as i">
+        <ion-card-content>
+          <h2>
+            <b>{{sol.nombre}}</b>
+          </h2>
+          <p>
+            Descripcion: {{sol.descripcion}}
+          </p>
+          <p>
+              <button ion-button color="primary" outline small (click)="aceptar(sol,i)">Aceptar</button>
+              <button ion-button color="danger" small (click)="rechazar(sol,i)">Rechazar</button>
+          </p>
+          
+        </ion-card-content>
+      </ion-card>
+    </div>
+</ion-content>

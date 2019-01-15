@@ -16,6 +16,8 @@ export class TorneosPage {
   torneos: any;
   nroEquipos:any = [];
 
+  idDeporte= 1;
+
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -27,7 +29,7 @@ export class TorneosPage {
 
   initializeItems() {
     console.log('entro a la funcion')
-    this.torneoProvider.getTorneos()
+    this.torneoProvider.getTorneosDeporte(this.idDeporte)
         .subscribe(res=> {
           this.torneos = res.result;
 
@@ -50,7 +52,7 @@ export class TorneosPage {
   }
 
   getNroEquipos(){
-    this.torneoProvider.getNroEquiposTorneo()
+    this.torneoProvider.getNroEquiposTorneoDeporte(this.idDeporte)
         .subscribe(res=> {
           this.nroEquipos = res.result;
           console.log(this.nroEquipos);

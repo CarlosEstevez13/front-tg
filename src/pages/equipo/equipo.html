@@ -56,6 +56,25 @@
 
   <div *ngIf="tiene!=0">
 
+      <ion-card>
+          <ion-card-header>
+            {{infoEquipo.nombre | uppercase}}
+            <i
+              *ngIf="capitan==1" 
+              class="fas fa-sliders-h confEquipo right2"
+              (click)='editarEquipo()'></i>
+              
+              <i class="fas fa-user-plus left5"
+              (click)='agregarIntegrante()'></i>
+              <div *ngIf="solicitudesEquipo.length!=0" class="badgeSolicitud"> <ion-badge class="badge" >{{solicitudesEquipo.length}}</ion-badge></div>
+             
+              <i
+                *ngIf="capitan==0" 
+                class="fas fa-sign-out-alt confEquipo"
+                (click)='salirDelEquipo()'></i>  
+          </ion-card-header>
+        </ion-card>
+
     <ion-list>
       <ion-item 
       *ngFor="let m of mensajes"
@@ -77,7 +96,7 @@
 </ion-content>
 
 <ion-footer>
-    <ion-item>  
+    <ion-item *ngIf="tiene!=0">  
       <ion-input [(ngModel)]="enviarInput" type="text" placeholder="Escriba un mensaje"></ion-input>
           <ion-icon style="color:black;" name="send" (click)='enviar()' item-end></ion-icon>
     </ion-item>

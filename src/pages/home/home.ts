@@ -7,8 +7,12 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
 
+  constructor(public navCtrl: NavController) {
+    sessionStorage.setItem('idUsuario','5');
+    sessionStorage.setItem('idRol','1');
+    sessionStorage.setItem('idEquipo','1');
+    sessionStorage.setItem('idDeporte','1');
   }
 
 }

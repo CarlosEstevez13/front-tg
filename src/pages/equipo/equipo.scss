@@ -1,3 +1,10 @@
 page-equipo {
-
+    ion-card-header{
+        background: linear-gradient(left, #C4A100, rgb(223, 182, 4));
+        text-align: center;
+        border: 3px rgb(156, 141, 1) groove;
+        border-radius: 8px;
+        font-weight: bold;
+        color: rgb(243, 243, 219) !important;
+    }
 }
