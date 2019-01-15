@@ -17,14 +17,19 @@ export class TorneosPage {
   nroEquipos:any = [];
 
   idDeporte= 1;
+  idEquipo:any;
+  equipo:any;
+  torneosInscritos:any;
 
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public torneoProvider: TorneosProvider,
               public alertCtrl: AlertController) {
+    this.idEquipo = sessionStorage.getItem('idEquipo');
     this.getNroEquipos();
     this.initializeItems();
+    this.getTorneosDeEquipo();
   }
 
   initializeItems() {
@@ -50,6 +55,8 @@ export class TorneosPage {
           console.log('ocurrio un error');
         });
   }
+  
+ 
 
   getNroEquipos(){
     this.torneoProvider.getNroEquiposTorneoDeporte(this.idDeporte)
@@ -61,6 +68,20 @@ export class TorneosPage {
           console.log('ocurrio un error');
         });
      
+  }
+
+  getTorneosDeEquipo(){
+    
+    this.torneoProvider.getTorneosDeEquipo(this.idEquipo)
+      .subscribe(res=>{
+        if (res.result){
+          this.torneosInscritos = res.result;
+        }else{
+          this.torneosInscritos = [];
+        }
+        
+        console.log(this.torneosInscritos);
+      })
   }
 
   getItems(ev: any) {
@@ -83,29 +104,72 @@ export class TorneosPage {
     
   }
 
-  unirse(nombre:any, nroEquipos:any, maxEquipos?:any) {
-    var confirm;
-
-    if( nroEquipos < maxEquipos){
-
-     confirm = this.alertCtrl.create({
-      title: `${nombre}`,
-      message: 'Te gustaria unirte a este torneo?',
-      buttons: [
-        {
-          text: 'Cancelar',
-          handler: () => {
-            console.log('Disagree clicked');
-          }
-        },
-        {
-          text: 'Unirse',
-          handler: () => {
-            console.log('Agree clicked');
-          }
+  unirse(nombre:any, nroEquipos:any, maxEquipos:any, idTor:any) {
+    let inscrito =0;
+    if(this.torneosInscritos != []){
+      for(let i of this.torneosInscritos){
+        if(i.idTorneo==idTor){
+          inscrito =1;
         }
-      ]
-    });
+      }
+    }
+
+    var confirm;
+    let equipo = {
+                  idTorneo:idTor,
+                  idEquipo: this.idEquipo,
+                  parJugados:0,
+                  parGanados:0,
+                  parEmpatados:0,
+                  parPerdidos:0,
+                  posicion:0,
+                  amarillas:0,
+                  rojas:0
+                 };
+
+    if( nroEquipos < maxEquipos  ){
+      if(inscrito ==0){
+        confirm = this.alertCtrl.create({
+          title: `${nombre}`,
+          message: 'Te gustaria unirte a este torneo?',
+          buttons: [
+            {
+              text: 'Cancelar',
+              handler: () => {
+                console.log('Disagree clicked');
+              }
+            },
+            {
+              text: 'Unirse',
+              handler: () => {
+                console.log('Agree clicked');
+                this.torneoProvider.addEquipoTorneo(equipo)
+                  .subscribe(
+                    res=>{
+                      console.log(res);
+                    },
+                    e=>{
+                      console.log(e);
+                    }
+                    )
+              }
+            }
+          ]
+        }); 
+      }if(inscrito ==1){
+        confirm = this.alertCtrl.create({
+          title: `${nombre}`,
+          message: 'Ya te has unido a este torneo',
+          buttons: [
+            {
+              text: 'Aceptar',
+              handler: () => {
+                console.log('Aceptar');
+              }
+            }
+          ]
+        }); 
+      }
     }else{
 
         confirm = this.alertCtrl.create({

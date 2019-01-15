@@ -1,4 +1,4 @@
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import { Injectable } from '@angular/core';
 
 import 'rxjs/add/operator/map';
@@ -38,6 +38,21 @@ export class TorneosProvider {
   getNroEquiposTorneoDeporte(idDeporte) {
     this.headers = new Headers({'Content-Type': 'application/json'});
     return this._http.get(this.url + `nroEquiposTorneoDeporte/${idDeporte}` ).map((res:any) => res.json());
+  }
+
+  addEquipoTorneo(equipo){
+    const json = JSON.stringify(equipo);
+    const params = json;
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    console.log('agregando equipo al torneo');
+    console.log(params);
+    return this._http.post(this.url + 'torneo_Equipo', params, {headers:this.headers})
+            .map(res => res.json());
+  }
+
+  getTorneosDeEquipo(idEquipo) {
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `torneosDeEquipo/${idEquipo}` ).map((res:any) => res.json());
   }
 
 
