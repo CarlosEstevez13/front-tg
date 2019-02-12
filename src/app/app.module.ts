@@ -26,6 +26,7 @@ import { HttpModule } from '@angular/http';
 import { EquipoProvider } from '../providers/equipo/equipo';
 import { AgregarIntegrantePage } from '../pages/agregar-integrante/agregar-integrante';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UsuarioProvider } from '../providers/usuario/usuario';
 
 @NgModule({
   declarations: [
@@ -81,7 +82,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     TorneosProvider,
-    EquipoProvider
+    EquipoProvider,
+    UsuarioProvider
   ]
 })
 export class AppModule {}

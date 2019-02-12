@@ -1,0 +1,14 @@
+Esquema de colores de Parchemos en hexadecimal: 
+
+Fondo en degradado 
+Azul claro: 63A5f6
+Azul oscuro: 4587D8
+
+Letras en degradado 
+Amarillo claro: FFD200
+Amarillo oscuro: C4A100
+Cafe Borde: 332008
+
+Degradado del blanco 
+Claro: FFFFFF
+Oscuro: E9E9E9
