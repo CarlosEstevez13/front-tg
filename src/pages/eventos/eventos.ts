@@ -1,7 +1,6 @@
 import { SalidasEMenuPage } from './../salidas-e-menu/salidas-e-menu';
 import { SalidasIMenuPage } from './../salidas-i-menu/salidas-i-menu';
 import { TorneosMenuPage } from './../torneos-menu/torneos-menu';
-import { CrearEventoPage } from './../crear-evento/crear-evento';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -25,10 +24,6 @@ export class EventosPage {
 
   }
 
-  crearEvento() {
-    const modal = this.modalCtrl.create(CrearEventoPage);
-    modal.present();
-  }
 
   getTorneos(){
     this.navCtrl.push(TorneosMenuPage);

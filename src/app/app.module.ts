@@ -1,3 +1,8 @@
+import { InscritoTorneoPage } from './../pages/inscrito-torneo/inscrito-torneo';
+import { InscritoSalidaEPage } from './../pages/inscrito-salida-e/inscrito-salida-e';
+import { CrearSalidaIPage } from './../pages/crear-salida-i/crear-salida-i';
+import { CrearSalidaEPage } from './../pages/crear-salida-e/crear-salida-e';
+import { CrearTorneoPage } from './../pages/crear-torneo/crear-torneo';
 import { SalidasIMenuPage } from './../pages/salidas-i-menu/salidas-i-menu';
 import { SalidasEMenuPage } from './../pages/salidas-e-menu/salidas-e-menu';
 import { TorneosMenuPage } from './../pages/torneos-menu/torneos-menu';
@@ -27,6 +32,9 @@ import { EquipoProvider } from '../providers/equipo/equipo';
 import { AgregarIntegrantePage } from '../pages/agregar-integrante/agregar-integrante';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsuarioProvider } from '../providers/usuario/usuario';
+import { InscritoSalidaIPage } from '../pages/inscrito-salida-i/inscrito-salida-i';
+import { LoginPage } from '../pages/login/login';
+import { LoginProvider } from '../providers/login/login';
 
 @NgModule({
   declarations: [
@@ -45,7 +53,15 @@ import { UsuarioProvider } from '../providers/usuario/usuario';
     AgregarIntegrantePage,
     TorneosMenuPage,
     SalidasEMenuPage,
-    SalidasIMenuPage
+    SalidasIMenuPage,
+    CrearTorneoPage,
+    CrearSalidaEPage,
+    CrearSalidaIPage,
+    InscritoSalidaEPage,
+    InscritoTorneoPage,
+    InscritoSalidaIPage,
+    LoginPage
+
   ],
   imports: [
     BrowserModule,
@@ -75,7 +91,14 @@ import { UsuarioProvider } from '../providers/usuario/usuario';
     AgregarIntegrantePage,
     TorneosMenuPage,
     SalidasEMenuPage,
-    SalidasIMenuPage
+    SalidasIMenuPage,
+    CrearTorneoPage,
+    CrearSalidaEPage,
+    CrearSalidaIPage,
+    InscritoSalidaEPage,
+    InscritoTorneoPage,
+    InscritoSalidaIPage,
+    LoginPage
   ],
   providers: [
     StatusBar,
@@ -83,7 +106,8 @@ import { UsuarioProvider } from '../providers/usuario/usuario';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     TorneosProvider,
     EquipoProvider,
-    UsuarioProvider
+    UsuarioProvider,
+    LoginProvider
   ]
 })
 export class AppModule {}
