@@ -1,3 +1,6 @@
+import { CrearTorneoPage } from './../crear-torneo/crear-torneo';
+import { InscritoTorneoPage } from './../inscrito-torneo/inscrito-torneo';
+import { TorneosPage } from './../torneos/torneos';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -20,6 +23,18 @@ export class TorneosMenuPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TorneosMenuPage');
+  }
+
+  getBuscarTorneo(){
+    this.navCtrl.push(TorneosPage);
+  }
+
+  getTorneosInscritos(){
+    this.navCtrl.push(InscritoTorneoPage);
+  }
+  
+  getCrearTorneo(){
+    this.navCtrl.push(CrearTorneoPage);
   }
 
 }
