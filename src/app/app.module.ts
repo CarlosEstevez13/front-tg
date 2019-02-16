@@ -31,10 +31,13 @@ import { HttpModule } from '@angular/http';
 import { EquipoProvider } from '../providers/equipo/equipo';
 import { AgregarIntegrantePage } from '../pages/agregar-integrante/agregar-integrante';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UsuarioProvider } from '../providers/usuario/usuario';
 import { InscritoSalidaIPage } from '../pages/inscrito-salida-i/inscrito-salida-i';
 import { LoginPage } from '../pages/login/login';
 import { LoginProvider } from '../providers/login/login';
 import { RegistroPage } from '../pages/registro/registro';
+import { PerfilComponent } from '../components/perfil/perfil';
+import { PerfilPage } from '../pages/perfil/perfil';
 
 @NgModule({
   declarations: [
@@ -61,7 +64,9 @@ import { RegistroPage } from '../pages/registro/registro';
     InscritoTorneoPage,
     InscritoSalidaIPage,
     LoginPage,
-    RegistroPage
+    RegistroPage,
+    PerfilComponent,
+    PerfilPage
 
   ],
   imports: [
@@ -100,7 +105,8 @@ import { RegistroPage } from '../pages/registro/registro';
     InscritoTorneoPage,
     InscritoSalidaIPage,
     LoginPage,
-    RegistroPage
+    RegistroPage,
+    PerfilPage
   ],
   providers: [
     StatusBar,
@@ -108,6 +114,7 @@ import { RegistroPage } from '../pages/registro/registro';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     TorneosProvider,
     EquipoProvider,
+    UsuarioProvider,
     LoginProvider
   ]
 })

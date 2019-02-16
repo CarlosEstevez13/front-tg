@@ -1,17 +1,33 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title> <img src="../../assets/imgs/parchemosSinFondo.png" alt="..." style="width: 60%;"> </ion-title>
+    </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content padding style=" text-align: center;position: relative; background-image:url('../../assets/imgs/circularconfondo.png');background-size: cover;background-position: center;">
+    <ion-grid>
+        <ion-row>
+            <ion-col col-3>
+                <button ion-button clear round>
+                <ion-chip #chip2 style="font-size: 15px; background-color: #fffafac9">
+                  <ion-icon name="star-half" style="color:white;" color="primary"></ion-icon>
+                  <ion-label >Eventos</ion-label>
+                </ion-chip>
+                </button>
+            </ion-col>
+            <ion-col col-3 offset-4>
+                <button ion-button clear round (click)="perfil();">
+                    <ion-chip #chip2 style="font-size: 15px; background-color: #fffafac9" >
+                      <ion-icon name="person" style="color:white;" ></ion-icon>
+                      <ion-label>Perfil</ion-label>
+                    </ion-chip>
+                    </button>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>
