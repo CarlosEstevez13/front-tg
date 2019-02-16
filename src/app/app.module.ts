@@ -34,6 +34,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InscritoSalidaIPage } from '../pages/inscrito-salida-i/inscrito-salida-i';
 import { LoginPage } from '../pages/login/login';
 import { LoginProvider } from '../providers/login/login';
+import { RegistroPage } from '../pages/registro/registro';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { LoginProvider } from '../providers/login/login';
     InscritoSalidaEPage,
     InscritoTorneoPage,
     InscritoSalidaIPage,
-    LoginPage
+    LoginPage,
+    RegistroPage
 
   ],
   imports: [
@@ -97,7 +99,8 @@ import { LoginProvider } from '../providers/login/login';
     InscritoSalidaEPage,
     InscritoTorneoPage,
     InscritoSalidaIPage,
-    LoginPage
+    LoginPage,
+    RegistroPage
   ],
   providers: [
     StatusBar,

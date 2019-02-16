@@ -1,3 +1,4 @@
+import { RegistroPage } from './../registro/registro';
 import { LoginProvider } from './../../providers/login/login';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -53,6 +54,10 @@ export class LoginPage {
         console.log(e);
       }
     )
+  }
+
+  registrarse(){
+    this.navCtrl.push(RegistroPage);
   }
 
 
