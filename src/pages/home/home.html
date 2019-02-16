@@ -1,6 +1,6 @@
 <ion-header>
     <ion-navbar>
-        <ion-title style="background-color: 0093e6;"> <img src="../../assets/imgs/parchemosSinFondo.png" alt="..." style="width: 60%;"> </ion-title>
+        <ion-title> <img src="../../assets/imgs/parchemosSinFondo.png" alt="..." style="width: 60%;"> </ion-title>
     </ion-navbar>
 </ion-header>
 
@@ -16,7 +16,7 @@
                 </button>
             </ion-col>
             <ion-col col-3 offset-4>
-                <button ion-button clear round>
+                <button ion-button clear round (click)="perfil();">
                     <ion-chip #chip2 style="font-size: 15px; background-color: #fffafac9" >
                       <ion-icon name="person" style="color:white;" ></ion-icon>
                       <ion-label>Perfil</ion-label>

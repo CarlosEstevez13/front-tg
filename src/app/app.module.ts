@@ -35,6 +35,8 @@ import { UsuarioProvider } from '../providers/usuario/usuario';
 import { InscritoSalidaIPage } from '../pages/inscrito-salida-i/inscrito-salida-i';
 import { LoginPage } from '../pages/login/login';
 import { LoginProvider } from '../providers/login/login';
+import { PerfilComponent } from '../components/perfil/perfil';
+import { PerfilPage } from '../pages/perfil/perfil';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ import { LoginProvider } from '../providers/login/login';
     InscritoSalidaEPage,
     InscritoTorneoPage,
     InscritoSalidaIPage,
-    LoginPage
+    LoginPage,
+    PerfilComponent,
+    PerfilPage
 
   ],
   imports: [
@@ -98,7 +102,8 @@ import { LoginProvider } from '../providers/login/login';
     InscritoSalidaEPage,
     InscritoTorneoPage,
     InscritoSalidaIPage,
-    LoginPage
+    LoginPage,
+    PerfilPage
   ],
   providers: [
     StatusBar,
