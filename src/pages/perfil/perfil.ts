@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { UsuarioProvider } from '../../providers/usuario/usuario';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
-import { formArrayNameProvider } from '@angular/forms/src/directives/reactive_directives/form_group_name';
 
 /**
  * Generated class for the PerfilPage page.

@@ -1,3 +1,23 @@
+import { AgregarIntegrantePageModule } from './../pages/agregar-integrante/agregar-integrante.module';
+import { TorneosMenuPageModule } from './../pages/torneos-menu/torneos-menu.module';
+import { TorneosPageModule } from './../pages/torneos/torneos.module';
+import { SalidasIMenuPageModule } from './../pages/salidas-i-menu/salidas-i-menu.module';
+import { SalidasEMenuPageModule } from './../pages/salidas-e-menu/salidas-e-menu.module';
+import { SalidasIPageModule } from './../pages/salidas-i/salidas-i.module';
+import { SalidasEPageModule } from './../pages/salidas-e/salidas-e.module';
+import { RegistroPageModule } from './../pages/registro/registro.module';
+import { PerfilPageModule } from './../pages/perfil/perfil.module';
+import { LoginPageModule } from './../pages/login/login.module';
+import { InscritoTorneoPageModule } from './../pages/inscrito-torneo/inscrito-torneo.module';
+import { InscritoSalidaIPageModule } from './../pages/inscrito-salida-i/inscrito-salida-i.module';
+import { InscritoSalidaEPageModule } from './../pages/inscrito-salida-e/inscrito-salida-e.module';
+import { EventosPageModule } from './../pages/eventos/eventos.module';
+import { EquipoPageModule } from './../pages/equipo/equipo.module';
+import { EditarEquipoPageModule } from './../pages/editar-equipo/editar-equipo.module';
+import { CrearTorneoPageModule } from './../pages/crear-torneo/crear-torneo.module';
+import { CrearSalidaIPageModule } from './../pages/crear-salida-i/crear-salida-i.module';
+import { CrearSalidaEPageModule } from './../pages/crear-salida-e/crear-salida-e.module';
+import { CrearEventoPageModule } from './../pages/crear-evento/crear-evento.module';
 import { InscritoTorneoPage } from './../pages/inscrito-torneo/inscrito-torneo';
 import { InscritoSalidaEPage } from './../pages/inscrito-salida-e/inscrito-salida-e';
 import { CrearSalidaIPage } from './../pages/crear-salida-i/crear-salida-i';
@@ -36,7 +56,6 @@ import { InscritoSalidaIPage } from '../pages/inscrito-salida-i/inscrito-salida-
 import { LoginPage } from '../pages/login/login';
 import { LoginProvider } from '../providers/login/login';
 import { RegistroPage } from '../pages/registro/registro';
-import { PerfilComponent } from '../components/perfil/perfil';
 import { PerfilPage } from '../pages/perfil/perfil';
 
 @NgModule({
@@ -45,8 +64,8 @@ import { PerfilPage } from '../pages/perfil/perfil';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage,
-    EventosPage,
+    TabsPage
+    /* EventosPage,
     CrearEventoPage,
     TorneosPage,
     SalidasIPage,
@@ -66,7 +85,7 @@ import { PerfilPage } from '../pages/perfil/perfil';
     LoginPage,
     RegistroPage,
     PerfilComponent,
-    PerfilPage
+    PerfilPage */
 
   ],
   imports: [
@@ -75,6 +94,26 @@ import { PerfilPage } from '../pages/perfil/perfil';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    AgregarIntegrantePageModule,
+    CrearEventoPageModule,
+    CrearSalidaEPageModule,
+    CrearSalidaIPageModule,
+    CrearTorneoPageModule,
+    EditarEquipoPageModule,
+    EquipoPageModule,
+    EventosPageModule,
+    InscritoSalidaEPageModule,
+    InscritoSalidaIPageModule,
+    InscritoTorneoPageModule,
+    LoginPageModule,
+    PerfilPageModule,
+    RegistroPageModule,
+    SalidasEPageModule,
+    SalidasIPageModule,
+    SalidasEMenuPageModule,
+    SalidasIMenuPageModule,
+    TorneosPageModule,
+    TorneosMenuPageModule,
     /* IonicModule.forRoot(MyApp), */
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages:false
