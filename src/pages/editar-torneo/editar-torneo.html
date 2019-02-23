@@ -1,0 +1,60 @@
+<!--
+  Generated template for the EditarTorneoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>editarTorneo</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <form [formGroup]="form">
+      <!-- <img src="assets/imgs/parchemos.png"/> -->
+  
+      <ion-list>
+  
+          <ion-item>
+            <ion-label floating>Nombre</ion-label>
+            <ion-input formControlName="nombre" type="text"></ion-input>
+          </ion-item>
+  
+          <ion-item>
+              <ion-label fixed>Deporte</ion-label>
+              <ion-input formControlName="deporte" type="text"></ion-input>
+            </ion-item>
+  
+          <ion-item>
+            <ion-label fixed>Descripcion</ion-label>
+            <ion-textarea rows="3" formControlName="descripcion" type="text"></ion-textarea>
+          </ion-item>
+  
+  <!--         <ion-item>
+            <ion-label fixed>Reglamento</ion-label>
+            <ion-textarea rows="5" formControlName="reglamento" type="date"></ion-textarea>
+          </ion-item> -->
+  
+          <ion-item>
+            <ion-label floating>Numero Equipos</ion-label>
+            <ion-input formControlName="maxEquipos" type="number"></ion-input>
+          </ion-item>
+  
+          <ion-item>
+            <ion-label fixed>Fecha Inicio</ion-label>
+            <ion-input formControlName="fechaInicio" type="date"></ion-input>
+          </ion-item>
+  
+  
+        
+        </ion-list>
+  
+        <button ion-button (click)="editar()" round full>Guardar</button>
+        <br>
+      </form>
+  
+  </ion-content>

@@ -26,11 +26,6 @@
         </ion-item>
 
         <ion-item>
-          <ion-label floating>Documento identificacion</ion-label>
-          <ion-input formControlName="idUsuario" type="number"></ion-input>
-        </ion-item>
-
-        <ion-item>
           <ion-label>Genero</ion-label>
           <ion-select formControlName="genero" >
             <ion-option value="0">Masculino</ion-option>
@@ -57,7 +52,7 @@
           <ion-label>Roles</ion-label>
           <ion-select formControlName="roles" multiple="true" cancelText="Cancelar" okText="Listo!">
             
-            <ion-option value="1" selected="true">Deportista</ion-option>
+            <ion-option value="1">Deportista</ion-option>
             <ion-option value="2">Organizador de eventos</ion-option>
               <ion-option value="3">Jurado</ion-option>
               <ion-option value="4">Patrocinador</ion-option>
@@ -67,12 +62,12 @@
       
         <ion-item>
           <ion-label floating>Contraseña</ion-label>
-          <ion-input formControlName="password" type="password"></ion-input>
+          <ion-input formControlName="pass" type="password"></ion-input>
         </ion-item>
 
         <ion-item>
           <ion-label floating>Repetir Contraseña</ion-label>
-          <ion-input formControlName="password2" type="password"></ion-input>
+          <ion-input formControlName="pass2" type="password"></ion-input>
         </ion-item>
 
     

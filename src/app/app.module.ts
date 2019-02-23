@@ -1,3 +1,8 @@
+import { MisSalidasEPageModule } from './../pages/mis-salidas-e/mis-salidas-e.module';
+import { MisSalidasEPage } from './../pages/mis-salidas-e/mis-salidas-e';
+import { VerTorneoPage } from './../pages/ver-torneo/ver-torneo';
+import { EditarTorneoPage } from './../pages/editar-torneo/editar-torneo';
+import { MisTorneosPageModule } from './../pages/mis-torneos/mis-torneos.module';
 import { AgregarIntegrantePageModule } from './../pages/agregar-integrante/agregar-integrante.module';
 import { TorneosMenuPageModule } from './../pages/torneos-menu/torneos-menu.module';
 import { TorneosPageModule } from './../pages/torneos/torneos.module';
@@ -57,6 +62,12 @@ import { LoginPage } from '../pages/login/login';
 import { LoginProvider } from '../providers/login/login';
 import { RegistroPage } from '../pages/registro/registro';
 import { PerfilPage } from '../pages/perfil/perfil';
+import { MisTorneosPage } from '../pages/mis-torneos/mis-torneos';
+import { EditarTorneoPageModule } from '../pages/editar-torneo/editar-torneo.module';
+import { EquiposInscritosPage } from '../pages/equipos-inscritos/equipos-inscritos';
+import { EquiposInscritosPageModule } from '../pages/equipos-inscritos/equipos-inscritos.module';
+import { VerTorneoPageModule } from '../pages/ver-torneo/ver-torneo.module';
+import { SalidaEProvider } from '../providers/salida-e/salida-e';
 
 @NgModule({
   declarations: [
@@ -114,6 +125,11 @@ import { PerfilPage } from '../pages/perfil/perfil';
     SalidasIMenuPageModule,
     TorneosPageModule,
     TorneosMenuPageModule,
+    MisTorneosPageModule,
+    EditarTorneoPageModule,
+    EquiposInscritosPageModule,
+    VerTorneoPageModule,
+    MisSalidasEPageModule,
     /* IonicModule.forRoot(MyApp), */
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages:false
@@ -145,7 +161,12 @@ import { PerfilPage } from '../pages/perfil/perfil';
     InscritoSalidaIPage,
     LoginPage,
     RegistroPage,
-    PerfilPage
+    PerfilPage,
+    MisTorneosPage,
+    EditarTorneoPage,
+    EquiposInscritosPage,
+    VerTorneoPage,
+    MisSalidasEPage  
   ],
   providers: [
     StatusBar,
@@ -154,7 +175,8 @@ import { PerfilPage } from '../pages/perfil/perfil';
     TorneosProvider,
     EquipoProvider,
     UsuarioProvider,
-    LoginProvider
+    LoginProvider,
+    SalidaEProvider
   ]
 })
 export class AppModule {}

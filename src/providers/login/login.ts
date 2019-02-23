@@ -28,6 +28,16 @@ export class LoginProvider {
     this.headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
     return this._http.post(this.url + 'urol', { idUsuario,rol }).map(res => res.json());
   }
+  registroURD(data:any){
+    console.log(data);
+    this.headers = new Headers({ 'Content-Type': 'application/json' });
+    return this._http.post(this.url + 'urdeporte',  data ,{headers:this.headers}).map(res => res.json());
+  }
+
+  getDeportes(){
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + 'deportes' ).map((res:any) => res.json());
+  }
 
   private getDatos(data: any) {
     let datos = data.json();

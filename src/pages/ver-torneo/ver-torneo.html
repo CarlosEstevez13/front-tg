@@ -1,0 +1,40 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Torneo: {{torneo.nombre}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <button ion-item>
+      Descripcion: {{torneo.descripcion}}
+    </button>  
+
+    <button ion-item>
+      Reglamento: {{torneo.reglamento}}
+    </button>
+
+    <button ion-item>
+      MaxEquipos: {{torneo.maxEquipos}}
+    </button>  
+
+    <button ion-item>
+      Fecha de Inicio: {{torneo.fechaInicio}}
+    </button>  
+
+    <button (click)="unirse()" ion-button>Unirse</button>
+    <button (click)="salir()" ion-button color="danger">Atras</button>
+
+   <!--  <button ion-item>
+      Latitud: {{toneo.latitud}}
+    </button>  
+
+    <button ion-item>
+      Longitud: {{toneo.longitud}}
+    </button>  --> 
+  </ion-list>
+</ion-content>

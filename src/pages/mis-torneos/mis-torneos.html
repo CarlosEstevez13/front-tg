@@ -1,0 +1,45 @@
+<!--
+  Generated template for the MisTorneosPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Mis Torneos</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <ion-card class="fondo" *ngFor="let torneo of torneos; index as i">
+
+        <ion-item class="tituloEvento">
+          <h2><i class="fas fa-cube margenSup"></i> {{ torneo.nombre}}</h2>
+          <div item-end> <i class="far fa-clock"></i> {{ torneo.fechaInicio}}</div>
+        </ion-item>
+    
+        <ion-card-content class="contenidoEvento">
+          <ion-item class="fondoNone">
+            <h2><i class="fas fa-passport"></i> Deporte: {{torneo.deporte}}</h2>
+          </ion-item>
+
+          <ion-item class="fondoNone" (click)="participantes(torneo.idTorneo)">
+              <h2><i class="fas fa-users"></i>Max Participantes: {{torneo.maxEquipos}}</h2>
+            </ion-item>
+          
+          <ion-item class="fondoNone">
+            <h2>Descripcion:</h2>
+            <p>{{torneo.descripcion}}</p>
+          </ion-item>
+
+          <button (click)="editar(torneo.idTorneo)" ion-button>Editar</button>
+          <button (click)="showAlert(torneo.idTorneo, i)" ion-button color="danger" outline>Eliminar</button>
+        </ion-card-content>
+    
+      </ion-card>
+
+</ion-content>

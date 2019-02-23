@@ -1,0 +1,28 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{torneo.nombre}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-header>
+     <b> Equipos Inscritos</b>
+    </ion-card-header>
+  
+    <ion-list>
+      <button ion-item *ngFor="let equipo of equipos">
+        <ion-icon name="pricetag"></ion-icon>
+        {{equipo.nombre}}
+      </button>
+
+  
+  
+    </ion-list>
+  </ion-card>
+
+</ion-content>

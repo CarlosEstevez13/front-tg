@@ -7,12 +7,56 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>crearTorneo</ion-title>
+    <ion-title>Crear Torneo</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <form [formGroup]="form">
+    <!-- <img src="assets/imgs/parchemos.png"/> -->
+
+    <ion-list>
+
+        <ion-item>
+          <ion-label floating>Nombre</ion-label>
+          <ion-input formControlName="nombre" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Deporte</ion-label>
+            <ion-select formControlName="idDeporte">
+              <ion-option *ngFor="let deporte of deportes" value="{{deporte.idDeporte}}">{{deporte.nombre}}</ion-option>
+            </ion-select>
+          </ion-item>
+
+        <ion-item>
+          <ion-label fixed>Descripcion</ion-label>
+          <ion-textarea rows="3" formControlName="descripcion" type="text"></ion-textarea>
+        </ion-item>
+
+<!--         <ion-item>
+          <ion-label fixed>Reglamento</ion-label>
+          <ion-textarea rows="5" formControlName="reglamento" type="date"></ion-textarea>
+        </ion-item> -->
+
+        <ion-item>
+          <ion-label floating>Numero Equipos</ion-label>
+          <ion-input formControlName="maxEquipos" type="number"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label fixed>Fecha Inicio</ion-label>
+          <ion-input formControlName="fechaInicio" type="date"></ion-input>
+        </ion-item>
+
+
+      
+      </ion-list>
+
+      <button ion-button (click)="crear()" round full>Guardar</button>
+      <br>
+    </form>
 
 </ion-content>

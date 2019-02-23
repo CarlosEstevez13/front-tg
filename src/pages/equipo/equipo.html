@@ -9,7 +9,7 @@
 
 <ion-content padding>
 
-  <div *ngIf="tiene==0">
+  <div *ngIf="tiene=='null'">
 
     <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
 
@@ -54,7 +54,7 @@
   </div>
 
 
-  <div *ngIf="tiene!=0">
+  <div *ngIf="tiene!='null'">
 
       <ion-card>
           <ion-card-header>

@@ -1,3 +1,4 @@
+import { VerTorneoPage } from './../ver-torneo/ver-torneo';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TorneosProvider } from '../../providers/torneos/torneos';
@@ -16,7 +17,7 @@ export class TorneosPage {
   torneos: any;
   nroEquipos:any = [];
 
-  idDeporte= 1;
+  idDeporte= sessionStorage.getItem('idDeporte');
   idEquipo:any;
   equipo:any;
   torneosInscritos:any;
@@ -27,29 +28,23 @@ export class TorneosPage {
               public torneoProvider: TorneosProvider,
               public alertCtrl: AlertController) {
     this.idEquipo = sessionStorage.getItem('idEquipo');
+    //this.getTorneosDeEquipo();
+  }
+  
+  ionViewWillEnter() {
+    console.log('ionViewDidLoad TorneosPage');
     this.getNroEquipos();
     this.initializeItems();
-    this.getTorneosDeEquipo();
   }
 
   initializeItems() {
     console.log('entro a la funcion')
     this.torneoProvider.getTorneosDeporte(this.idDeporte)
         .subscribe(res=> {
-          this.torneos = res.result;
-
-          for (let i in this.torneos){
-            for (let j in this.nroEquipos){
-               if (this.torneos[i].idTorneo == this.nroEquipos[j].idTorneo){
-                 this.torneos[i].nroEquipos = this.nroEquipos[j].nroEquipos;
-                 break;
-               }else{
-                 this.torneos[i].nroEquipos = 0;
-               }
-            }
-          } 
+          //this.torneos = res.result;
+          console.log(this.nroEquipos);
+          this.getTorneosDeEquipo(res.result);
           
-          console.log(this.torneos);
         },
         e=>{
           console.log('ocurrio un error');
@@ -66,22 +61,60 @@ export class TorneosPage {
         },
         e=>{
           console.log('ocurrio un error');
+          this.nroEquipos = [];
         });
      
   }
 
-  getTorneosDeEquipo(){
+  getTorneosDeEquipo(torneos){
     
     this.torneoProvider.getTorneosDeEquipo(this.idEquipo)
-      .subscribe(res=>{
-        if (res.result){
-          this.torneosInscritos = res.result;
-        }else{
-          this.torneosInscritos = [];
-        }
-        
-        console.log(this.torneosInscritos);
-      })
+      .subscribe(
+        res=>{
+              if (res.result){
+              this.torneosInscritos = res.result;
+              let torneosFinal= torneos;
+              for (let i in torneos){
+                for (let k in this.torneosInscritos){
+                  if (torneos[i]['idTorneo'] == this.torneosInscritos[k]['idTorneo']){
+                    console.log('entro');
+                    torneosFinal.splice(i,1);
+                  }
+                }                
+              } 
+              this.torneos = torneosFinal;
+              console.log(torneosFinal);
+
+              for (let i in this.torneos){
+                if (this.nroEquipos.length == 0){
+                  this.torneos[i].nroEquipos = 0;
+                  console.log('entro al if');
+                }else{
+                  console.log('entro al else');
+                  for (let j in this.nroEquipos){
+                     if (this.torneos[i].idTorneo == this.nroEquipos[j].idTorneo){
+                       this.torneos[i].nroEquipos = this.nroEquipos[j].nroEquipos;
+                       break;
+                     }else{
+                       this.torneos[i].nroEquipos = 0;
+                     }
+                  }
+                }
+              }
+
+              
+
+
+            }else{
+              this.torneosInscritos = [];
+            }
+            
+            console.log(this.torneosInscritos);
+            },
+            e=>{
+              this.torneosInscritos = [];
+            }
+      )
   }
 
   getItems(ev: any) {
@@ -104,72 +137,13 @@ export class TorneosPage {
     
   }
 
-  unirse(nombre:any, nroEquipos:any, maxEquipos:any, idTor:any) {
-    let inscrito =0;
-    if(this.torneosInscritos != []){
-      for(let i of this.torneosInscritos){
-        if(i.idTorneo==idTor){
-          inscrito =1;
-        }
-      }
-    }
+  unirse( nroEquipos:any, maxEquipos:any, idTor:any) {
 
     var confirm;
-    let equipo = {
-                  idTorneo:idTor,
-                  idEquipo: this.idEquipo,
-                  parJugados:0,
-                  parGanados:0,
-                  parEmpatados:0,
-                  parPerdidos:0,
-                  posicion:0,
-                  amarillas:0,
-                  rojas:0
-                 };
 
     if( nroEquipos < maxEquipos  ){
-      if(inscrito ==0){
-        confirm = this.alertCtrl.create({
-          title: `${nombre}`,
-          message: 'Te gustaria unirte a este torneo?',
-          buttons: [
-            {
-              text: 'Cancelar',
-              handler: () => {
-                console.log('Disagree clicked');
-              }
-            },
-            {
-              text: 'Unirse',
-              handler: () => {
-                console.log('Agree clicked');
-                this.torneoProvider.addEquipoTorneo(equipo)
-                  .subscribe(
-                    res=>{
-                      console.log(res);
-                    },
-                    e=>{
-                      console.log(e);
-                    }
-                    )
-              }
-            }
-          ]
-        }); 
-      }if(inscrito ==1){
-        confirm = this.alertCtrl.create({
-          title: `${nombre}`,
-          message: 'Ya te has unido a este torneo',
-          buttons: [
-            {
-              text: 'Aceptar',
-              handler: () => {
-                console.log('Aceptar');
-              }
-            }
-          ]
-        }); 
-      }
+      this.torneoProvider.setIdTorneo(idTor);
+      this.navCtrl.push(VerTorneoPage)
     }else{
 
         confirm = this.alertCtrl.create({
@@ -177,9 +151,9 @@ export class TorneosPage {
           subTitle: 'Lo sentimos el torneo se encuentra lleno',
           buttons: ['Aceptar']
         });
-      
+        
+        confirm.present();
     }
-    confirm.present();
   }
 
 
