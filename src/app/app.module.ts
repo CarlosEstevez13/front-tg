@@ -1,3 +1,4 @@
+import { HistorialPageModule } from './../pages/historial/historial.module';
 import { InscritoTorneoPage } from './../pages/inscrito-torneo/inscrito-torneo';
 import { InscritoSalidaEPage } from './../pages/inscrito-salida-e/inscrito-salida-e';
 import { CrearSalidaIPage } from './../pages/crear-salida-i/crear-salida-i';
@@ -37,6 +38,8 @@ import { LoginPage } from '../pages/login/login';
 import { LoginProvider } from '../providers/login/login';
 import { PerfilComponent } from '../components/perfil/perfil';
 import { PerfilPage } from '../pages/perfil/perfil';
+import { HistorialPage } from "../pages/historial/historial";
+import { HistorialProvider } from '../providers/historial/historial';
 
 @NgModule({
   declarations: [
@@ -73,6 +76,7 @@ import { PerfilPage } from '../pages/perfil/perfil';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    HistorialPageModule,
     /* IonicModule.forRoot(MyApp), */
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages:false
@@ -103,7 +107,8 @@ import { PerfilPage } from '../pages/perfil/perfil';
     InscritoTorneoPage,
     InscritoSalidaIPage,
     LoginPage,
-    PerfilPage
+    PerfilPage,
+    HistorialPage
   ],
   providers: [
     StatusBar,
@@ -112,7 +117,8 @@ import { PerfilPage } from '../pages/perfil/perfil';
     TorneosProvider,
     EquipoProvider,
     UsuarioProvider,
-    LoginProvider
+    LoginProvider,
+    HistorialProvider
   ]
 })
 export class AppModule {}
