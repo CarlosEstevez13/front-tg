@@ -15,7 +15,7 @@
 
 <ion-content padding>
   <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
-  <ion-card class="fondo" *ngFor="let torneo of torneos; index as i" (click)='unirse(torneo.nombre, torneo.nroEquipos, torneo.maxEquipos, torneo.idTorneo)'>
+  <ion-card class="fondo" *ngFor="let torneo of torneos; index as i" (click)='unirse(torneo.nroEquipos, torneo.maxEquipos, torneo.idTorneo)'>
 
     <ion-item class="tituloEvento">
       <h2><i class="fas fa-cube margenSup"></i> {{ torneo.nombre}}</h2>

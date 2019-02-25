@@ -160,7 +160,9 @@ export class EquipoPage {
   }
 
   ionViewDidEnter(){
-    if(this.tiene ==0){
+    
+    if(this.tiene == 'null'){
+      console.log(this.tiene);  
       this.getNroInt();
       this.getEquipos();
       this.getSolUsuario();

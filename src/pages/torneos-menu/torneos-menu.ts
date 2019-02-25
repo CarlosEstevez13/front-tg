@@ -1,3 +1,4 @@
+import { MisTorneosPage } from './../mis-torneos/mis-torneos';
 import { CrearTorneoPage } from './../crear-torneo/crear-torneo';
 import { InscritoTorneoPage } from './../inscrito-torneo/inscrito-torneo';
 import { TorneosPage } from './../torneos/torneos';
@@ -35,6 +36,10 @@ export class TorneosMenuPage {
   
   getCrearTorneo(){
     this.navCtrl.push(CrearTorneoPage);
+  }
+
+  getMisTorneos(){
+    this.navCtrl.push(MisTorneosPage);
   }
 
 }

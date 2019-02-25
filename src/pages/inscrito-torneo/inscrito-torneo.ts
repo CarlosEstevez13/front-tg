@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { TorneosProvider } from '../../providers/torneos/torneos';
 
 /**
  * Generated class for the InscritoTorneoPage page.
@@ -15,11 +16,26 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class InscritoTorneoPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  idEquipo = sessionStorage.getItem('idEquipo');
+  torneos:any;
+
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              public torneoService: TorneosProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad InscritoTorneoPage');
+    this.torneoService.getTorneosDeEquipo(this.idEquipo)
+      .subscribe(
+        res=>{
+          this.torneos = res.result;
+          console.log(this.torneos);
+        },
+        e=>{
+          console.log(e);
+        }
+      )
   }
 
 }

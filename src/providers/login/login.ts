@@ -10,13 +10,33 @@ export class LoginProvider {
   public headers: Headers;
 
   constructor(public _http: Http) {
-    console.log('Hello LoginProvider Provider');
+    console.log('Hello LoginProvider');
     this.url = 'http://localhost:3002/api/';
   }
 
   login(usuario: string, password: string) {
     this.headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
     return this._http.post(this.url + 'login', { usuario, password }).map(res => this.getDatos(res));
+  }
+
+  registro(usuario:any){
+    this.headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    return this._http.post(this.url + 'usuario', { usuario }).map(res => res.json());
+  }
+
+  registroRol(idUsuario,rol){
+    this.headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    return this._http.post(this.url + 'urol', { idUsuario,rol }).map(res => res.json());
+  }
+  registroURD(data:any){
+    console.log(data);
+    this.headers = new Headers({ 'Content-Type': 'application/json' });
+    return this._http.post(this.url + 'urdeporte',  data ,{headers:this.headers}).map(res => res.json());
+  }
+
+  getDeportes(){
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + 'deportes' ).map((res:any) => res.json());
   }
 
   private getDatos(data: any) {
@@ -39,6 +59,8 @@ export class LoginProvider {
     sessionStorage.removeItem('idRol');
     console.log('logout!');
   }
+
+  
 
 
 }

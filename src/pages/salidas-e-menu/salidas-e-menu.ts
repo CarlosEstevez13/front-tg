@@ -1,12 +1,9 @@
+import { MisSalidasEPage } from './../mis-salidas-e/mis-salidas-e';
+import { CrearSalidaEPage } from './../crear-salida-e/crear-salida-e';
+import { SalidasEPage } from './../salidas-e/salidas-e';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the SalidasEMenuPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { InscritoSalidaEPage } from '../inscrito-salida-e/inscrito-salida-e';
 
 @IonicPage()
 @Component({
@@ -20,6 +17,22 @@ export class SalidasEMenuPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SalidasEMenuPage');
+  }
+
+  getBuscarSalidasE(){
+    this.navCtrl.push(SalidasEPage);
+  }
+
+  getSalidasEInscritos(){
+    this.navCtrl.push(InscritoSalidaEPage);
+  }
+  
+  getCrearSalidasE(){
+    this.navCtrl.push(CrearSalidaEPage);
+  }
+
+  getMisSalidasE(){
+    this.navCtrl.push(MisSalidasEPage);
   }
 
 }
