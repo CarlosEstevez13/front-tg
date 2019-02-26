@@ -7,12 +7,27 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>salidasE</ion-title>
+    <ion-title>Salidas E</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <!-- <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar> -->
+  <ion-card class="fondo" *ngFor="let salida of salidas; index as i" (click)='ver(salida.idSalidaE)'>
 
+    <ion-item class="tituloEvento">
+      <h2><i class="fas fa-cube margenSup"></i> {{ salida.nombre}}</h2>
+      <div item-end><ion-icon name="calendar"></ion-icon> {{ salida.fecha}}</div>
+    </ion-item>
+
+    <ion-card-content class="contenidoEvento">
+      <ion-item class="fondoNone">
+        <h2><ion-icon name="time"></ion-icon> Hora: {{salida.hora}}</h2>
+      </ion-item>
+
+    </ion-card-content>
+
+  </ion-card>
 </ion-content>

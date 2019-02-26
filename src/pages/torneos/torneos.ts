@@ -42,7 +42,7 @@ export class TorneosPage {
     this.torneoProvider.getTorneosDeporte(this.idDeporte)
         .subscribe(res=> {
           //this.torneos = res.result;
-          console.log(this.nroEquipos);
+          console.log(res.result);
           this.getTorneosDeEquipo(res.result);
           
         },
@@ -73,6 +73,7 @@ export class TorneosPage {
         res=>{
               if (res.result){
               this.torneosInscritos = res.result;
+              console.log(this.torneosInscritos);
               let torneosFinal= torneos;
               for (let i in torneos){
                 for (let k in this.torneosInscritos){
@@ -102,9 +103,6 @@ export class TorneosPage {
                 }
               }
 
-              
-
-
             }else{
               this.torneosInscritos = [];
             }
@@ -113,6 +111,24 @@ export class TorneosPage {
             },
             e=>{
               this.torneosInscritos = [];
+              console.log(this.torneosInscritos);
+              this.torneos = torneos;
+              for (let i in this.torneos){
+                if (this.nroEquipos.length == 0){
+                  this.torneos[i].nroEquipos = 0;
+                  console.log('entro al if');
+                }else{
+                  console.log('entro al else');
+                  for (let j in this.nroEquipos){
+                     if (this.torneos[i].idTorneo == this.nroEquipos[j].idTorneo){
+                       this.torneos[i].nroEquipos = this.nroEquipos[j].nroEquipos;
+                       break;
+                     }else{
+                       this.torneos[i].nroEquipos = 0;
+                     }
+                  }
+                }
+              }
             }
       )
   }
@@ -143,7 +159,8 @@ export class TorneosPage {
 
     if( nroEquipos < maxEquipos  ){
       this.torneoProvider.setIdTorneo(idTor);
-      this.navCtrl.push(VerTorneoPage)
+      this.torneoProvider.setIdVer(0);
+      this.navCtrl.push(VerTorneoPage);
     }else{
 
         confirm = this.alertCtrl.create({

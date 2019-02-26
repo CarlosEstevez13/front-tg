@@ -3,12 +3,7 @@ import { Injectable } from '@angular/core';
 
 import 'rxjs/add/operator/map';
 
-/*
-  Generated class for the TorneosProvider provider.
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class TorneosProvider {
 
@@ -16,6 +11,8 @@ export class TorneosProvider {
   public headers: Headers;
 
   public idTorneo:any;
+
+  public idVer:any;
 
   constructor(public _http: Http) {
     console.log('Hello TorneosProvider Provider');
@@ -70,6 +67,17 @@ export class TorneosProvider {
     return this.idTorneo;
   }
 
+  //Este metodo es para diferenciar de torneos y torneos a jugar
+  // 0 desde torneos
+  // 1 desde torneos a jugar 
+  getIdVer(){
+    return this.idVer;
+  }
+
+  setIdVer(id){
+    this.idVer = id;
+  }
+
   putTorneo(torneo){
     console.log(torneo);
     const json = JSON.stringify(torneo);
@@ -96,6 +104,11 @@ export class TorneosProvider {
   deleteTorneoEquipos(idTorneo) {
     this.headers = new Headers({'Content-Type': 'application/json'});
     return this._http.delete(this.url + `torneo_Equipo/${idTorneo}` ).map((res:any) => res.json());
+  }
+
+  deleteTorneoEquipo(idTorneo,idEquipo) {
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.delete(this.url + `torneo_Equipo_1/${idTorneo}/${idEquipo}` ).map((res:any) => res.json());
   }
 
   deleteTorneo(idTorneo) {

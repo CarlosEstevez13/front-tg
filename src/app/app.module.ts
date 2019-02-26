@@ -1,3 +1,5 @@
+import { VerSalidaEPageModule } from './../pages/ver-salida-e/ver-salida-e.module';
+import { VerSalidaEPage } from './../pages/ver-salida-e/ver-salida-e';
 import { MisSalidasEPageModule } from './../pages/mis-salidas-e/mis-salidas-e.module';
 import { MisSalidasEPage } from './../pages/mis-salidas-e/mis-salidas-e';
 import { VerTorneoPage } from './../pages/ver-torneo/ver-torneo';
@@ -68,6 +70,8 @@ import { EquiposInscritosPage } from '../pages/equipos-inscritos/equipos-inscrit
 import { EquiposInscritosPageModule } from '../pages/equipos-inscritos/equipos-inscritos.module';
 import { VerTorneoPageModule } from '../pages/ver-torneo/ver-torneo.module';
 import { SalidaEProvider } from '../providers/salida-e/salida-e';
+import { EditarSalidaEPage } from '../pages/editar-salida-e/editar-salida-e';
+import { EditarSalidaEPageModule } from '../pages/editar-salida-e/editar-salida-e.module';
 
 @NgModule({
   declarations: [
@@ -130,6 +134,8 @@ import { SalidaEProvider } from '../providers/salida-e/salida-e';
     EquiposInscritosPageModule,
     VerTorneoPageModule,
     MisSalidasEPageModule,
+    VerSalidaEPageModule,
+    EditarSalidaEPageModule,
     /* IonicModule.forRoot(MyApp), */
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages:false
@@ -166,7 +172,9 @@ import { SalidaEProvider } from '../providers/salida-e/salida-e';
     EditarTorneoPage,
     EquiposInscritosPage,
     VerTorneoPage,
-    MisSalidasEPage  
+    MisSalidasEPage,
+    VerSalidaEPage,
+    EditarSalidaEPage
   ],
   providers: [
     StatusBar,

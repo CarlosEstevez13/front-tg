@@ -26,7 +26,7 @@
       Fecha de Inicio: {{torneo.fechaInicio}}
     </button>  
 
-    <button (click)="unirse()" ion-button>Unirse</button>
+    <button *ngIf="idVer == 0" (click)="unirse()" ion-button>Unirse</button>
     <button (click)="salir()" ion-button color="danger">Atras</button>
 
    <!--  <button ion-item>

@@ -24,6 +24,8 @@ export class VerTorneoPage {
     fechaInicio: ''
   };
   idEquipo:any;
+
+  idVer:any;
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private torneoProvider: TorneosProvider) {
@@ -42,6 +44,10 @@ export class VerTorneoPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad VerTorneoPage');
+  }
+
+  ionViewWillEnter(){
+    this.idVer = this.torneoProvider.getIdVer();
   }
 
   salir(){
