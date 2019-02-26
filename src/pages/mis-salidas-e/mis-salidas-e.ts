@@ -1,3 +1,4 @@
+import { MarcadorSalidaEPage } from './../marcador-salida-e/marcador-salida-e';
 import { EditarSalidaEPage } from './../editar-salida-e/editar-salida-e';
 import { SalidaEProvider } from './../../providers/salida-e/salida-e';
 import { Component } from '@angular/core';
@@ -11,6 +12,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 })
 export class MisSalidasEPage {
 
+  aviso = 0;
   salidas:any = [];
   data:any;
   constructor(public navCtrl: NavController, 
@@ -29,11 +31,32 @@ export class MisSalidasEPage {
       .subscribe(
         res=>{
           this.salidas = res.result;
+          console.log(this.salidas);
+          this.SalidasSinRival();
         },
         e=>{
           console.log(e);
+          this.SalidasSinRival();
         }
       );
+  }
+
+  marcador(idSalida){
+    this.salidaProvider.setSalidaE(idSalida);
+    this.navCtrl.push(MarcadorSalidaEPage);
+  }
+
+  SalidasSinRival(){
+    this.salidaProvider.getMisSalidas_1(this.data)
+      .subscribe(
+        res=>{
+          this.salidas = this.salidas.concat(res.result);
+          console.log(this.salidas);
+        },
+        e=>{
+          this.aviso = 1;
+        }
+      )
   }
 
   ionViewDidLoad() {

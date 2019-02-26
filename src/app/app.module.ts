@@ -1,3 +1,4 @@
+import { MarcadorSalidaEPageModule } from './../pages/marcador-salida-e/marcador-salida-e.module';
 import { VerSalidaEPageModule } from './../pages/ver-salida-e/ver-salida-e.module';
 import { VerSalidaEPage } from './../pages/ver-salida-e/ver-salida-e';
 import { HistorialPageModule } from './../pages/historial/historial.module';
@@ -75,6 +76,7 @@ import { VerTorneoPageModule } from '../pages/ver-torneo/ver-torneo.module';
 import { SalidaEProvider } from '../providers/salida-e/salida-e';
 import { EditarSalidaEPage } from '../pages/editar-salida-e/editar-salida-e';
 import { EditarSalidaEPageModule } from '../pages/editar-salida-e/editar-salida-e.module';
+import { MarcadorSalidaEPage } from '../pages/marcador-salida-e/marcador-salida-e';
 
 @NgModule({
   declarations: [
@@ -140,6 +142,7 @@ import { EditarSalidaEPageModule } from '../pages/editar-salida-e/editar-salida-
     MisSalidasEPageModule,
     VerSalidaEPageModule,
     EditarSalidaEPageModule,
+    MarcadorSalidaEPageModule,
     /* IonicModule.forRoot(MyApp), */
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages:false
@@ -179,7 +182,8 @@ import { EditarSalidaEPageModule } from '../pages/editar-salida-e/editar-salida-
     VerTorneoPage,
     MisSalidasEPage,
     VerSalidaEPage,
-    EditarSalidaEPage
+    EditarSalidaEPage,
+    MarcadorSalidaEPage
   ],
   providers: [
     StatusBar,
