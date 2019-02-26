@@ -1,5 +1,6 @@
 import { VerSalidaEPageModule } from './../pages/ver-salida-e/ver-salida-e.module';
 import { VerSalidaEPage } from './../pages/ver-salida-e/ver-salida-e';
+import { HistorialPageModule } from './../pages/historial/historial.module';
 import { MisSalidasEPageModule } from './../pages/mis-salidas-e/mis-salidas-e.module';
 import { MisSalidasEPage } from './../pages/mis-salidas-e/mis-salidas-e';
 import { VerTorneoPage } from './../pages/ver-torneo/ver-torneo';
@@ -64,6 +65,8 @@ import { LoginPage } from '../pages/login/login';
 import { LoginProvider } from '../providers/login/login';
 import { RegistroPage } from '../pages/registro/registro';
 import { PerfilPage } from '../pages/perfil/perfil';
+import { HistorialPage } from "../pages/historial/historial";
+import { HistorialProvider } from '../providers/historial/historial';
 import { MisTorneosPage } from '../pages/mis-torneos/mis-torneos';
 import { EditarTorneoPageModule } from '../pages/editar-torneo/editar-torneo.module';
 import { EquiposInscritosPage } from '../pages/equipos-inscritos/equipos-inscritos';
@@ -109,6 +112,7 @@ import { EditarSalidaEPageModule } from '../pages/editar-salida-e/editar-salida-
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    HistorialPageModule,
     AgregarIntegrantePageModule,
     CrearEventoPageModule,
     CrearSalidaEPageModule,
@@ -166,8 +170,9 @@ import { EditarSalidaEPageModule } from '../pages/editar-salida-e/editar-salida-
     InscritoTorneoPage,
     InscritoSalidaIPage,
     LoginPage,
-    RegistroPage,
     PerfilPage,
+    HistorialPage,
+    RegistroPage,
     MisTorneosPage,
     EditarTorneoPage,
     EquiposInscritosPage,
@@ -184,6 +189,7 @@ import { EditarSalidaEPageModule } from '../pages/editar-salida-e/editar-salida-
     EquipoProvider,
     UsuarioProvider,
     LoginProvider,
+    HistorialProvider,
     SalidaEProvider
   ]
 })

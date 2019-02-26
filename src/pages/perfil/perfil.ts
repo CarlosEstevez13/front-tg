@@ -35,36 +35,6 @@ export class PerfilPage {
 
       this.crearFormu();
       this.id = sessionStorage.getItem('idUsuario');
-      _usuarioProvider.getUsuario(this.id).subscribe(res=> {
-        
-        console.log(res.result[0]);
-        this.usuario = res.result[0];
-        console.log(this.usuario);
-        this.edad = this.calcularEdad(this.usuario.fechaNacimiento);
-        
-        this.form.setValue({
-          nombre: this.usuario.nombre,
-          estatura: this.usuario.estatura,
-          peso: this.usuario.peso,
-          fechaNacimiento: this.usuario.fechaNacimiento,
-          telefono: this.usuario.telefono,          
-          email: this.usuario.email,
-          descripcion: this.usuario.descripcion,
-          fechaRegistro: this.usuario.fechaRegistro,
-          pass: '',
-          pass2: '',
-          genero:'1'
-          
-        });
-
-    },
-    e=>{
-      console.log(e);
-
-    });
-    
-  
-  
 
   }
 
@@ -117,6 +87,39 @@ editarUsuario(){
     console.log('ionViewDidLoad PerfilPage');
   }
 
+  ionViewDidEnter(){
+    console.log('entro');
+    this._usuarioProvider.getUsuario(this.id).subscribe(res=> {
+        
+      console.log(res.result[0]);
+      this.usuario = res.result[0];
+      console.log(this.usuario);
+      this.edad = this.calcularEdad(this.usuario.fechaNacimiento);
+      
+      this.form.setValue({
+        nombre: this.usuario.nombre,
+        estatura: this.usuario.estatura,
+        peso: this.usuario.peso,
+        fechaNacimiento: this.usuario.fechaNacimiento,
+        telefono: this.usuario.telefono,          
+        email: this.usuario.email,
+        descripcion: this.usuario.descripcion,
+        fechaRegistro: this.usuario.fechaRegistro,
+        pass: '',
+        pass2: '',
+        genero:'1'
+        
+      });
 
+  },
+  e=>{
+    console.log(e);
+
+  });
+  }
+
+recargar(){
+  this.navCtrl.resize();
+}
 
 }
