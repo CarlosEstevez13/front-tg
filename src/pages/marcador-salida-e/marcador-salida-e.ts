@@ -121,11 +121,12 @@ export class MarcadorSalidaEPage{
       .subscribe(
         res=>{
           console.log(res);
+          this.navCtrl.pop();
         },
         e=>{
           console.log(e);
         }
-      )
+      );
   }
 
   

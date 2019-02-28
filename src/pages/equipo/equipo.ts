@@ -1,3 +1,4 @@
+import { VerEquipoPage } from './../ver-equipo/ver-equipo';
 import { EditarEquipoPage } from './../editar-equipo/editar-equipo';
 import { EquipoProvider } from './../../providers/equipo/equipo';
 import { Component } from '@angular/core';
@@ -302,4 +303,9 @@ export class EquipoPage {
   salirDelEquipo(){
     console.log('salir del equipo');
   }
+
+  descripcion(){
+    this.navCtrl.push(VerEquipoPage);
+  }
+  
 }

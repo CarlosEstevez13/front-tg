@@ -20,17 +20,12 @@
       <ion-card-content class="contenidoEvento">
         <ion-item class="fondoNone">
           <h2><ion-icon name="time"></ion-icon> Hora inicio: {{salida.hora}}</h2>
-          <h2><ion-icon name="time"></ion-icon> Hora Fin: {{salida.horaFin}}</h2>
         </ion-item>
 
-        <ion-item class="fondoNone" (click)="participantes(salida.idSalidaE)">
-            <h2><i class="fas fa-users"></i>Versus:</h2>
+       <!--  <ion-item class="fondoNone" (click)="participantes(salida.idSalidaE)">
+            <h2><i class="fas fa-users"></i>Versus: {{salida.rival}}</h2>
           </ion-item>
-        
-        <ion-item class="fondoNone">
-          <h2>Descripcion:</h2>
-          <p>{{salida.descripcion}}</p>
-        </ion-item>
+         -->
 
         <button (click)="ver(salida.idSalidaE)" ion-button round>Ver</button>
         <button (click)="showAlert(salida.idSalidaE, i)" ion-button color="danger" round outline>Salir</button>

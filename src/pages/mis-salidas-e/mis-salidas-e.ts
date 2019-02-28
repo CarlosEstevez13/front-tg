@@ -13,6 +13,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 export class MisSalidasEPage {
 
   aviso = 0;
+  error = 0;
   salidas:any = [];
   data:any;
   constructor(public navCtrl: NavController, 
@@ -36,6 +37,7 @@ export class MisSalidasEPage {
         },
         e=>{
           console.log(e);
+          this.error = 1;
           this.SalidasSinRival();
         }
       );
@@ -54,7 +56,10 @@ export class MisSalidasEPage {
           console.log(this.salidas);
         },
         e=>{
-          this.aviso = 1;
+          if(this.error == 1){
+
+            this.aviso = 1;
+          }
         }
       )
   }

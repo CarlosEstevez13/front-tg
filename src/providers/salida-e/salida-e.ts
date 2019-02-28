@@ -101,6 +101,11 @@ export class SalidaEProvider {
     this.headers = new Headers({'Content-Type': 'application/json'});
     return this._http.get(this.url + `salidasE_EquipoJugar/${data.idEquipo}/${data.idDeporte}` ).map((res:any) => res.json());
   }
+
+  getSalidasHistorial(data) {
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `salidasE_EquipoHistorial/${data.idEquipo}/${data.idDeporte}` ).map((res:any) => res.json());
+  }
   
   deleteSalidaEquipos(idSalida) {
     this.headers = new Headers({'Content-Type': 'application/json'});
@@ -119,6 +124,7 @@ export class SalidaEProvider {
 
   putSalida(salida){
     console.log(salida);
+    console.log(this.idSalidaE);
     const json = JSON.stringify(salida);
     const params = json;
     return this._http.put(this.url + `salidaE/${this.idSalidaE}`, params , { headers: this.headers } ).map(res => res.json());

@@ -1,3 +1,6 @@
+import { HistorialEquipoPage } from './../pages/historial-equipo/historial-equipo';
+import { VerEquipoPageModule } from './../pages/ver-equipo/ver-equipo.module';
+import { VerEquipoPage } from './../pages/ver-equipo/ver-equipo';
 import { MarcadorSalidaEPageModule } from './../pages/marcador-salida-e/marcador-salida-e.module';
 import { VerSalidaEPageModule } from './../pages/ver-salida-e/ver-salida-e.module';
 import { VerSalidaEPage } from './../pages/ver-salida-e/ver-salida-e';
@@ -77,6 +80,7 @@ import { SalidaEProvider } from '../providers/salida-e/salida-e';
 import { EditarSalidaEPage } from '../pages/editar-salida-e/editar-salida-e';
 import { EditarSalidaEPageModule } from '../pages/editar-salida-e/editar-salida-e.module';
 import { MarcadorSalidaEPage } from '../pages/marcador-salida-e/marcador-salida-e';
+import { HistorialEquipoPageModule } from '../pages/historial-equipo/historial-equipo.module';
 
 @NgModule({
   declarations: [
@@ -143,6 +147,8 @@ import { MarcadorSalidaEPage } from '../pages/marcador-salida-e/marcador-salida-
     VerSalidaEPageModule,
     EditarSalidaEPageModule,
     MarcadorSalidaEPageModule,
+    VerEquipoPageModule,
+    HistorialEquipoPageModule,
     /* IonicModule.forRoot(MyApp), */
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages:false
@@ -183,7 +189,9 @@ import { MarcadorSalidaEPage } from '../pages/marcador-salida-e/marcador-salida-
     MisSalidasEPage,
     VerSalidaEPage,
     EditarSalidaEPage,
-    MarcadorSalidaEPage
+    MarcadorSalidaEPage,
+    VerEquipoPage,
+    HistorialEquipoPage
   ],
   providers: [
     StatusBar,

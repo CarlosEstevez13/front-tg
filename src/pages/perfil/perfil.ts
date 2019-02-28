@@ -1,3 +1,5 @@
+import { MyApp } from './../../app/app.component';
+import { LoginPage } from './../login/login';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { UsuarioProvider } from '../../providers/usuario/usuario';
@@ -120,6 +122,14 @@ editarUsuario(){
 
 recargar(){
   this.navCtrl.resize();
+}
+
+logout(){
+  sessionStorage.removeItem('idDeporte');
+  sessionStorage.removeItem('idEquipo');
+  sessionStorage.removeItem('idRol');
+  sessionStorage.removeItem('idUsuario');
+  this.navCtrl.setRoot(MyApp);
 }
 
 }

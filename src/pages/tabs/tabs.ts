@@ -16,4 +16,8 @@ export class TabsPage {
   constructor() {
 
   }
+
+  ionViewWillEnter(){
+    console.log('entro a tabs');
+  }
 }

@@ -58,7 +58,7 @@
 
       <ion-card>
           <ion-card-header>
-            {{infoEquipo.nombre | uppercase}}
+            <a class='nombreEquipo' (click)='descripcion()'>{{infoEquipo.nombre | uppercase}}</a>
             <i
               *ngIf="capitan==1" 
               class="fas fa-sliders-h confEquipo right2"
@@ -71,7 +71,8 @@
               <i
                 *ngIf="capitan==0" 
                 class="fas fa-sign-out-alt confEquipo"
-                (click)='salirDelEquipo()'></i>  
+                (click)='salirDelEquipo()'></i> 
+              
           </ion-card-header>
         </ion-card>
 
@@ -96,9 +97,12 @@
 </ion-content>
 
 <ion-footer>
-    <ion-item *ngIf="tiene!=0">  
+    <ion-item *ngIf="tiene!='null'">  
       <ion-input [(ngModel)]="enviarInput" type="text" placeholder="Escriba un mensaje"></ion-input>
-          <ion-icon style="color:black;" name="send" (click)='enviar()' item-end></ion-icon>
+      <button (click)='enviar()' item-end >
+        
+        <ion-icon style="color:black;" name="send"></ion-icon>
+      </button>    
     </ion-item>
     
   </ion-footer>

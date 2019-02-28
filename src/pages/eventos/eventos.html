@@ -25,7 +25,7 @@
           <div class="card-title">Salidas Individuales</div>
         </ion-card>
       
-        <ion-card class="opcion" (click)='getSalidasE()'>
+        <ion-card class="opcion" (click)='getSalidasE()' *ngIf="idEquipo != 'null'">
           <img src="assets/imgs/encuentro.jpg"/>
           <div class="card-title">Salidas por Equipos</div>
         </ion-card>

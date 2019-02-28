@@ -75,6 +75,11 @@ export class EquipoProvider {
     this.headers = new Headers({'Content-Type': 'application/json'});
     return this._http.get(this.url + `equipo/${idEquipo}` ).map((res:any) => res.json());
   }
+  //obtiene la info con el numero de integrantes
+  getInfoEquipo_1(idEquipo:any) {
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `equipo_1/${idEquipo}` ).map((res:any) => res.json());
+  }
 
   cacheEquipo(equipo){
     this.equipo = equipo;
