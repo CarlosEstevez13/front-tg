@@ -10,12 +10,28 @@
 
 <ion-content padding>
 
-  <h2 *ngIf="aviso == 1" class="centrado">No tienes salidas creadas</h2>
+  
+  <form [formGroup]="form">
+    <ion-item>
+        <ion-label>Deporte</ion-label>
+        <ion-select formControlName="idDeporte">
+          <ion-option value="0">Todos</ion-option>
+          <ion-option *ngFor="let deporte of deportes" value="{{deporte.idDeporte}}">{{deporte.nombre}}</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <button (click)="buscar()" ion-button>Buscar</button>
+
+    </form>
+
+    <h2 *ngIf="aviso == 1" class="centrado">No tienes salidas creadas</h2>
 
   <ion-card class="fondo" *ngFor="let salida of salidas; index as i">
 
+      <br>
+
       <ion-item class="tituloEvento">
-        <h2><i class="fas fa-cube margenSup"></i> {{ salida.nombre}}</h2>
+        <h2><i class="fas fa-cube margenSup"></i> {{salida.deporte + ' : ' + salida.nombre}}</h2>
         <div item-end> <ion-icon name="calendar"></ion-icon> {{ salida.fecha}}</div>
       </ion-item>
   

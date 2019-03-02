@@ -51,13 +51,13 @@ export class AgregarIntegrantePage {
     let integrante = {
       idUsuario:solicitud.idUsuario,
       idRol: 1, //deportista,
-      idEquipo: sessionStorage.getItem('idEquipo'),
-      idDeporte: sessionStorage.getItem('idDeporte')
+      idEquipo: sessionStorage.getItem('idEquipo')
     };
     this._equipoService.addIntegrante(integrante, solicitud.idUsuario)
         .subscribe(
           res=>{
             console.log(res);
+            this.solicitudes.splice(i,1);
           },
           e=>{
             console.log(e);

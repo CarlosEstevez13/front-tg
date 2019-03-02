@@ -16,12 +16,17 @@
       <p class="descripcion">{{equipo.descripcion}}</p>
     </ion-item> 
 
-    <button ion-item >
-      <b>Numero de Integrantes:</b> {{equipo.integrantes}} de {{equipo.nroIntegrantes}}
+    <button ion-item  (click)='integrantes()'>
+      <b>Numero de Integrantes:</b> {{equipo.integrantes}} de {{equipo.nroIntegrantes}} 
+      <button class="gente" ion-button icon-only >
+          <ion-icon name="people"></ion-icon>
+        </button>
     </button> 
 
     <ion-item >
       <b>Historial:</b>
+
+      <h2 *ngIf="aviso == 1" class="centrado">No hay historial</h2>
       
           <ion-card class="fondo" *ngFor="let registro of historial; index as i">
 

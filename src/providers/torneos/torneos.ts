@@ -95,6 +95,11 @@ export class TorneosProvider {
     return this._http.get(this.url + `torneosDeEquipo/${idEquipo}` ).map((res:any) => res.json());
   }
 
+  getTorneosDeEquipoD(data) {
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `torneosDeEquipoD/${data.idEquipo}/${data.idDeporte}` ).map((res:any) => res.json());
+  }
+
   getEquiposEnTorneo() {
 
     this.headers = new Headers({'Content-Type': 'application/json'});
@@ -119,6 +124,11 @@ export class TorneosProvider {
   getTorneosDueno(id) {
     this.headers = new Headers({'Content-Type': 'application/json'});
     return this._http.get(this.url + `torneosd/${id}` ).map((res:any) => res.json());
+  }
+
+  getTorneosDuenoD(data) {
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `torneosdDeporte/${data.idUsuario}/${data.idDeporte}` ).map((res:any) => res.json());
   }
 
   getDeportes() {

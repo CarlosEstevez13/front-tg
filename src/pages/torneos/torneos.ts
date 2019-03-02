@@ -1,3 +1,4 @@
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { VerTorneoPage } from './../ver-torneo/ver-torneo';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -21,25 +22,55 @@ export class TorneosPage {
   idEquipo:any;
   equipo:any;
   torneosInscritos:any;
-
+  deportes:any = [];
+  aviso = 0;
+  form: FormGroup;
+  data:any;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
+              private fb: FormBuilder,
               public torneoProvider: TorneosProvider,
               public alertCtrl: AlertController) {
     this.idEquipo = sessionStorage.getItem('idEquipo');
+
+    this.form = this.fb.group({
+      idDeporte: new FormControl()
+    });
     //this.getTorneosDeEquipo();
   }
   
   ionViewWillEnter() {
     console.log('ionViewDidLoad TorneosPage');
+    this.torneoProvider.getDeportes()
+      .subscribe(
+        res=>{
+          this.deportes = res.result;
+        },
+        e=>{
+          console.log(e);
+          this.deportes = [];
+        }
+      );
+
     this.getNroEquipos();
-    this.initializeItems();
+    this.getTorneos();
   }
 
-  initializeItems() {
+  buscar(){
+    this.aviso = 0;
+    if(this.form.value.idDeporte!=0){
+      this.getNroEquiposD();
+      this.getTorneosD();
+    }else{
+      this.getNroEquipos();
+      this.getTorneos();
+    }
+  }
+
+  getTorneosD() {
     console.log('entro a la funcion')
-    this.torneoProvider.getTorneosDeporte(this.idDeporte)
+    this.torneoProvider.getTorneosDeporte(this.form.value.idDeporte)
         .subscribe(res=> {
           //this.torneos = res.result;
           console.log(res.result);
@@ -47,6 +78,22 @@ export class TorneosPage {
           
         },
         e=>{
+          this.aviso =1;
+          console.log('ocurrio un error');
+        });
+  }
+
+  getTorneos(){
+    this.aviso =0;
+    this.torneoProvider.getTorneos()
+        .subscribe(res=> {
+          //this.torneos = res.result;
+          console.log(res.result);
+          this.getTorneosDeEquipo(res.result);
+          
+        },
+        e=>{
+          this.aviso =1;
           console.log('ocurrio un error');
         });
   }
@@ -54,7 +101,20 @@ export class TorneosPage {
  
 
   getNroEquipos(){
-    this.torneoProvider.getNroEquiposTorneoDeporte(this.idDeporte)
+    this.torneoProvider.getNroEquiposTorneo()
+        .subscribe(res=> {
+          this.nroEquipos = res.result;
+          console.log(this.nroEquipos);
+        },
+        e=>{
+          console.log('ocurrio un error');
+          this.nroEquipos = [];
+        });
+     
+  }
+
+  getNroEquiposD(){
+    this.torneoProvider.getNroEquiposTorneoDeporte(this.form.value.idDeporte)
         .subscribe(res=> {
           this.nroEquipos = res.result;
           console.log(this.nroEquipos);
@@ -133,7 +193,7 @@ export class TorneosPage {
       )
   }
 
-  getItems(ev: any) {
+ /*  getItems(ev: any) {
     // Reset items back to all of the items
     this.initializeItems();
 
@@ -151,7 +211,7 @@ export class TorneosPage {
       },150
     );
     
-  }
+  } */
 
   unirse( nroEquipos:any, maxEquipos:any, idTor:any) {
 

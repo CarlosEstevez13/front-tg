@@ -10,6 +10,21 @@
 
 <ion-content padding>
 
+    <form [formGroup]="form">
+        <ion-item>
+            <ion-label>Deporte</ion-label>
+            <ion-select formControlName="idDeporte">
+              <ion-option value="0">Todos</ion-option>
+              <ion-option *ngFor="let deporte of deportes" value="{{deporte.idDeporte}}">{{deporte.nombre}}</ion-option>
+            </ion-select>
+          </ion-item>
+    
+          <button (click)="buscar()" ion-button>Buscar</button>
+    
+        </form>
+    
+        <h2 *ngIf="aviso == 1" class="centrado">No tienes salidas inscritas</h2>
+
   <ion-card class="fondo" *ngFor="let salida of salidas; index as i">
 
       <ion-item class="tituloEvento">

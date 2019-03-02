@@ -1,3 +1,7 @@
+import { CrearEquipoPageModule } from './../pages/crear-equipo/crear-equipo.module';
+import { CrearEquipoPage } from './../pages/crear-equipo/crear-equipo';
+import { IntegrantesPageModule } from './../pages/integrantes/integrantes.module';
+import { EditarPerfilPage } from './../pages/editar-perfil/editar-perfil';
 import { HistorialEquipoPage } from './../pages/historial-equipo/historial-equipo';
 import { VerEquipoPageModule } from './../pages/ver-equipo/ver-equipo.module';
 import { VerEquipoPage } from './../pages/ver-equipo/ver-equipo';
@@ -81,6 +85,8 @@ import { EditarSalidaEPage } from '../pages/editar-salida-e/editar-salida-e';
 import { EditarSalidaEPageModule } from '../pages/editar-salida-e/editar-salida-e.module';
 import { MarcadorSalidaEPage } from '../pages/marcador-salida-e/marcador-salida-e';
 import { HistorialEquipoPageModule } from '../pages/historial-equipo/historial-equipo.module';
+import { EditarPerfilPageModule } from '../pages/editar-perfil/editar-perfil.module';
+import { IntegrantesPage } from '../pages/integrantes/integrantes';
 
 @NgModule({
   declarations: [
@@ -149,6 +155,9 @@ import { HistorialEquipoPageModule } from '../pages/historial-equipo/historial-e
     MarcadorSalidaEPageModule,
     VerEquipoPageModule,
     HistorialEquipoPageModule,
+    EditarPerfilPageModule,
+    IntegrantesPageModule,
+    CrearEquipoPageModule,
     /* IonicModule.forRoot(MyApp), */
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages:false
@@ -191,7 +200,10 @@ import { HistorialEquipoPageModule } from '../pages/historial-equipo/historial-e
     EditarSalidaEPage,
     MarcadorSalidaEPage,
     VerEquipoPage,
-    HistorialEquipoPage
+    HistorialEquipoPage,
+    EditarPerfilPage,
+    IntegrantesPage,
+    CrearEquipoPage
   ],
   providers: [
     StatusBar,

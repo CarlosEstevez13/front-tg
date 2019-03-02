@@ -1,9 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { MyApp } from './../../app/app.component';
 import { LoginPage } from './../login/login';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { UsuarioProvider } from '../../providers/usuario/usuario';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { EditarPerfilPage } from '../editar-perfil/editar-perfil';
 
 /**
  * Generated class for the PerfilPage page.
@@ -19,44 +21,33 @@ import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 })
 export class PerfilPage {
 
+  @ViewChild("imagen") imagenElement;
+
   text: string;
   id:any;
   edad:any;
-  form: FormGroup;
   edit:boolean = false;
   contra:boolean = false;
+  rutaImagen = '';
+  selectedFile: File = null;
 
   public usuario: any = {
     
     };
 
   constructor(public navCtrl: NavController,
-     public navParams: NavParams,
-     public _usuarioProvider: UsuarioProvider,
-      private fb: FormBuilder, ) {
+              public navParams: NavParams,
+              private http: HttpClient,
+              public _usuarioProvider: UsuarioProvider ) {
 
-      this.crearFormu();
       this.id = sessionStorage.getItem('idUsuario');
 
   }
 
-  crearFormu(){
-    this.form = this.fb.group({
-      nombre: new FormControl(),
-      estatura: new FormControl(),
-      peso: new FormControl(),
-      fechaNacimiento: new FormControl(),
-      telefono: new FormControl(),
-      email: new FormControl(),
-      descripcion: new FormControl(),
-      fechaRegistro: new FormControl(),
-      pass: new FormControl(),
-      pass2: new FormControl(),
-      genero: new FormControl()
-    });
-   
-
+  editar(){
+    this.navCtrl.push(EditarPerfilPage);
   }
+
 
   calcularEdad(fecha:any) {
     var hoy = new Date();
@@ -69,21 +60,8 @@ export class PerfilPage {
     }
 
     return edad;
-}
+  }
 
-editarUsuario(){
-  if(!this.contra){
-    this.form.controls['pass2'].setValue(this.form.controls['pass'].value);
-    }
-  this._usuarioProvider.putUsuario(this.id,this.form.value).subscribe(
-    res=>{
-      console.log(res);
-    },
-    e=>{
-      console.log(e);
-    }
-  );
-}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PerfilPage');
@@ -91,33 +69,59 @@ editarUsuario(){
 
   ionViewDidEnter(){
     console.log('entro');
-    this._usuarioProvider.getUsuario(this.id).subscribe(res=> {
-        
-      console.log(res.result[0]);
-      this.usuario = res.result[0];
-      console.log(this.usuario);
-      this.edad = this.calcularEdad(this.usuario.fechaNacimiento);
-      
-      this.form.setValue({
-        nombre: this.usuario.nombre,
-        estatura: this.usuario.estatura,
-        peso: this.usuario.peso,
-        fechaNacimiento: this.usuario.fechaNacimiento,
-        telefono: this.usuario.telefono,          
-        email: this.usuario.email,
-        descripcion: this.usuario.descripcion,
-        fechaRegistro: this.usuario.fechaRegistro,
-        pass: '',
-        pass2: '',
-        genero:'1'
-        
+    this._usuarioProvider.getUsuario(this.id).subscribe(
+      res=> {
+          this.usuario = res.result[0];
+          console.log(this.usuario);
+          this.edad = this.calcularEdad(this.usuario.fechaNacimiento);
+          if(this.usuario.imagen != null){
+            this.rutaImagen = `http://localhost:3002/profile/${this.usuario.imagen}.png`;
+            //this.rutaImagen = `http://localhost:3002/profile/defecto.png`;
+            console.log(this.rutaImagen);
+          } else{
+            this.rutaImagen = 'http://localhost:3002/profile/defecto.png';
+          }
+
+      },
+      e=>{
+        console.log(e);
+
       });
+  }
 
-  },
-  e=>{
-    console.log(e);
+  onFileSelected(event) {
+    console.log(event);
+    this.selectedFile = event.target.files[0];
+    this.agregarFoto();
+  }
 
-  });
+  agregarFoto(){
+    let aleatorio =Math.trunc(Math.random() * (10000));
+    console.log(aleatorio);
+    const fd  = new FormData();
+    fd.append('image', this.selectedFile, `${aleatorio}-${this.id}`);
+    this.http.post('http://localhost:3002/api/upload', fd)
+      .subscribe(
+        res=>{
+          console.log(res)
+          let data = {
+            imagen: `${aleatorio}-${this.id}`
+          }
+          this._usuarioProvider.putFotoUsuario(this.id,data)
+            .subscribe(
+              res=>{
+                console.log(res);
+                this.rutaImagen = `http://localhost:3002/profile/${aleatorio}-${this.id}.png`;
+              },
+              e=>{
+                console.log(e);
+              }
+            )
+        },
+        e=>{
+          console.log(e)
+        }
+      )
   }
 
 recargar(){

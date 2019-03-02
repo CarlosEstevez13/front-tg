@@ -1,0 +1,47 @@
+<!--
+  Generated template for the EditarPerfilPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>editarPerfil</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="form">
+
+      <ion-item>
+          <ion-label floating>Peso</ion-label>
+          <ion-input formControlName="peso" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+          <ion-label floating>Telefono</ion-label>
+          <ion-input formControlName="telefono" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label floating>Descripcion</ion-label>
+          <ion-input formControlName="descripcion" type="text"></ion-input>
+      </ion-item>
+      <br>
+      <ion-item *ngIf="contra==true;">
+          <ion-label floating>Nueva contraseña</ion-label>
+          <ion-input formControlName="pass2" type="password"></ion-input>
+      </ion-item>
+      <button ion-button (click)="contra=!contra;" round full>Nueva contraseña</button>
+      <ion-item>
+          <ion-label floating>Contraseña</ion-label>
+          <ion-input formControlName="pass" type="password"></ion-input>
+      </ion-item>
+
+      <button ion-button (click)="editarUsuario();" round full>Guardar cambios</button>
+      <br>
+  </form>
+
+</ion-content>

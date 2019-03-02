@@ -94,6 +94,10 @@
 
   </div>
 
+  <ion-fab *ngIf="tiene == 'null'" bottom right (click)='addEquipo()'>
+    <button ion-fab mini><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+
 </ion-content>
 
 <ion-footer>

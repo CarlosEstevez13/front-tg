@@ -32,6 +32,11 @@ export class SalidaEProvider {
     return this.idVer;
   }
 
+  getDeportes(){
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `deportes` ).map((res:any) => res.json());
+  }
+
   setIdVer(id){
     this.idVer = id;
   }
@@ -97,9 +102,24 @@ export class SalidaEProvider {
     return this._http.get(this.url + `salidasE_EquipoMisSalidas_1/${data.idEquipo}/${data.idDeporte}` ).map((res:any) => res.json());
   }
 
+  getMisSalidasD(data) {
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `salidasE_EquipoMisSalidasD/${data.idEquipo}/${data.idDeporte}` ).map((res:any) => res.json());
+  }
+  //obtiene las salidas que aun no tienen rival
+  getMisSalidasD_1(data) {
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `salidasE_EquipoMisSalidasD_1/${data.idEquipo}/${data.idDeporte}` ).map((res:any) => res.json());
+  }
+
   getSalidasJugar(data) {
     this.headers = new Headers({'Content-Type': 'application/json'});
     return this._http.get(this.url + `salidasE_EquipoJugar/${data.idEquipo}/${data.idDeporte}` ).map((res:any) => res.json());
+  }
+
+  getSalidasJugarD(data) {
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `salidasE_EquipoJugarD/${data.idEquipo}/${data.idDeporte}` ).map((res:any) => res.json());
   }
 
   getSalidasHistorial(data) {

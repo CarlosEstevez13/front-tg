@@ -1,54 +1,28 @@
-<!--
-  Generated template for the PerfilPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
     <ion-navbar>
-        <ion-title>perfil</ion-title>
+        <ion-title>Perfil</ion-title>
     </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding *ngIf="edit==true;">
-    <form [formGroup]="form">
-
-        <ion-item>
-            <ion-label floating>Peso</ion-label>
-            <ion-input formControlName="peso" type="text"></ion-input>
+<ion-content padding >
+    
+    <ion-item class="centrado foto">
+            <img #imagen id="imagen" src="{{rutaImagen}}" class="fotoPerfil">
+            
         </ion-item>
-
-        <ion-item>
-            <ion-label floating>Telefono</ion-label>
-            <ion-input formControlName="telefono" type="text"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label floating>Descripcion</ion-label>
-            <ion-input formControlName="descripcion" type="text"></ion-input>
-        </ion-item>
-        <br>
-        <ion-item *ngIf="contra==true;">
-            <ion-label floating>Nueva contraseña</ion-label>
-            <ion-input formControlName="pass2" type="password"></ion-input>
-        </ion-item>
-        <button ion-button (click)="contra=!contra;" round full>Nueva contraseña</button>
-        <ion-item>
-            <ion-label floating>Contraseña</ion-label>
-            <ion-input formControlName="pass" type="password"></ion-input>
-        </ion-item>
-
-        <button ion-button (click)="editarUsuario(); edit=!edit; recargar();" round full>Guardar cambios</button>
-        <br>
-    </form>
-
-</ion-content>
-<ion-content padding *ngIf="edit==false;">
+        <div class='editar'>
+                
+                <input (change)="onFileSelected($event)" type="file" name="file" id="file" class="inputfile" />
+                <label for="file"> <ion-icon name="create"></ion-icon></label>      
+            </div>
+    <br>
 
     <ion-item>
-        <ion-label><small> Username : </small> {{usuario.nombre}}</ion-label>
+        <ion-label><small> Nombre : </small> {{usuario.nombre}}</ion-label>
 
     </ion-item>
 
@@ -72,7 +46,7 @@
         <ion-label><small> Edad : </small> {{edad}} años.</ion-label>
 
     </ion-item>
-    <button ion-button (click)="edit=!edit;" round full>Editar perfil</button>
+    <button ion-button (click)="editar()" round full>Editar perfil</button>
 
     <button ion-button (click)="logout()" color='danger' round full>Cerrar Sesion</button>
 

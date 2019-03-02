@@ -2,6 +2,7 @@ import { SalidaEProvider } from './../../providers/salida-e/salida-e';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { EquipoProvider } from '../../providers/equipo/equipo';
+import { IntegrantesPage } from '../integrantes/integrantes';
 
 
 @IonicPage()
@@ -20,6 +21,7 @@ export class VerEquipoPage {
     nroIntegrantes: '',
     idDeporte: 0,
   }
+  aviso =0;
 
   historial:any = [];
 
@@ -31,6 +33,10 @@ export class VerEquipoPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad VerEquipoPage');
+  }
+
+  integrantes(){
+    this.navCtrl.push(IntegrantesPage);
   }
 
   ionViewWillEnter(){
@@ -52,6 +58,7 @@ export class VerEquipoPage {
       idDeporte: this.idDeporte
     }
 
+    this.aviso=0;
     this.salidaService.getSalidasHistorial(data)
       .subscribe(
         res=>{
@@ -60,6 +67,7 @@ export class VerEquipoPage {
         },
         e=>{
           console.log(e);
+          this.aviso = 1;
         }
       );
   }

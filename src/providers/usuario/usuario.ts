@@ -32,4 +32,14 @@ export class UsuarioProvider {
     return this._http.put(this.url + `/usuario/${index}`, params, {headers:this.headers})
             .map(res => res.json());
   }
+
+  putFotoUsuario(index:number, imagen:any){
+    const json = JSON.stringify(imagen);
+    const params = json;
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    console.log('agregando integrante');
+    console.log(params);
+    return this._http.put(this.url + `/usuarioFoto/${index}`, params, {headers:this.headers})
+            .map(res => res.json());
+  }
 }

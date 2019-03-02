@@ -1,3 +1,4 @@
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { VerTorneoPage } from './../ver-torneo/ver-torneo';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
@@ -18,16 +19,39 @@ import { TorneosProvider } from '../../providers/torneos/torneos';
 export class InscritoTorneoPage {
 
   idEquipo = sessionStorage.getItem('idEquipo');
-  torneos:any;
+  torneos:any = [];
+  deportes:any = [];
+  aviso = 0;
+  form: FormGroup;
+  data:any;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
+              private fb: FormBuilder,
               public torneoService: TorneosProvider,
               public alertCtrl: AlertController) {
+                this.form = this.fb.group({
+                  idDeporte: new FormControl()
+                });
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad InscritoTorneoPage');
+    this.torneoService.getDeportes()
+      .subscribe(
+        res=>{
+          this.deportes = res.result;
+        },
+        e=>{
+          console.log(e);
+          this.deportes = [];
+        }
+      );
+    this.getTorneos();
+  }
+
+  getTorneos(){
+    this.aviso =0;
     this.torneoService.getTorneosDeEquipo(this.idEquipo)
       .subscribe(
         res=>{
@@ -36,8 +60,35 @@ export class InscritoTorneoPage {
         },
         e=>{
           console.log(e);
+          this.aviso =1
         }
       )
+  }
+
+  buscar(){
+    this.aviso = 0;
+    this.data = {
+      idDeporte : this.form.value.idDeporte,
+      idEquipo : sessionStorage.getItem('idEquipo')
+    };
+    console.log(this.data);
+    if (this.form.value.idDeporte !=0){
+
+      this.torneoService.getTorneosDeEquipoD(this.data)
+        .subscribe(
+          res=>{
+            this.torneos = res.result;
+            console.log(this.torneos);
+          },
+          e=>{
+            console.log(e);
+            this.aviso = 1;
+            this.torneos = [];
+          }
+        );
+    }else{
+      this.getTorneos();
+    }
   }
 
   showAlert(idTorneo:any, i:any) {

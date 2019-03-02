@@ -41,6 +41,11 @@ export class EquipoProvider {
     return this._http.get(this.url + `solUsuario/${idUsuario}` ).map((res:any) => res.json());
   }
 
+  getIntegrantes(idEquipo:any) {
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `integrantes/${idEquipo}` ).map((res:any) => res.json());
+  }
+
   getMensajesEquipo(idEquipo:any) {
     this.headers = new Headers({'Content-Type': 'application/json'});
     return this._http.get(this.url + `mensajeE/${idEquipo}` ).map((res:any) => res.json());
@@ -55,11 +60,22 @@ export class EquipoProvider {
     const json = JSON.stringify(mensaje);
     const params = json;
     this.headers = new Headers({'Content-Type': 'application/json'});
-    console.log('agregando solicitud');
+    console.log('agregando mensaje');
     console.log(params);
     return this._http.post(this.url + 'mensaje', params, {headers:this.headers})
             .map(res => res.json());
   }
+
+  addEquipo(equipo){
+    const json = JSON.stringify(equipo);
+    const params = json;
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    console.log('agregando equipo');
+    console.log(params);
+    return this._http.post(this.url + 'equipo', params, {headers:this.headers})
+            .map(res => res.json());
+  }
+
 
   addIntegrante(integrante, idUsuario){
     const json = JSON.stringify(integrante);

@@ -78,29 +78,29 @@ export class RegistroPage {
               .subscribe(
                 res=>{
                   console.log(res);
-                  for(let j in this.Deportes){
-                    let data = {
-                      idUsuario: id,
-                      idRol: this.form.value.roles[i],
-                      idDeporte: this.Deportes[j].idDeporte,
-                      activo:0
-                    }
-                    if(i=='0' && j == '0'){
-                        console.log(i);
-                        data.activo = 1;
-                        console.log('entro');
-                    }
-                    
-                    this._loginService.registroURD(data)
-                      .subscribe(
-                        res=>{
-                          console.log(res);
-                        },
-                        e=>{
-                          console.log(e);
-                        }
-                      );
+
+                  let data = {
+                    idUsuario: id,
+                    idRol: this.form.value.roles[i],
+                    idDeporte: this.Deportes[0].idDeporte,
+                    activo:0
                   }
+                  if(i=='0' ){
+                      console.log(i);
+                      data.activo = 1;
+                      console.log('entro');
+                  }
+                  
+                  this._loginService.registroURD(data)
+                    .subscribe(
+                      res=>{
+                        console.log(res);
+                       
+                      },
+                      e=>{
+                        console.log(e);
+                      }
+                    );
                 },
                 e=>{
                   console.log(e);
@@ -112,7 +112,7 @@ export class RegistroPage {
         console.log(e);
       }
     );
-    
+    this.navCtrl.pop();
     
   }
 
