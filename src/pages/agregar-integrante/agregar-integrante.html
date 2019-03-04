@@ -17,16 +17,26 @@
   <div *ngIf="solicitudes.length!=0">
     <ion-card *ngFor="let sol of solicitudes; index as i">
         <ion-card-content>
-          <h2>
-            <b>{{sol.nombre}}</b>
-          </h2>
-          <p>
-            Descripcion: {{sol.descripcion}}
-          </p>
-          <p>
-              <button ion-button color="primary" outline small (click)="aceptar(sol,i)">Aceptar</button>
-              <button ion-button color="danger" small (click)="rechazar(sol,i)">Rechazar</button>
-          </p>
+            <ion-list>
+                <ion-item>
+                  <ion-avatar item-start>
+                      <img src="http://192.168.1.6:3002/profile/{{sol.imagen}}.png">
+                    </ion-avatar>
+                    <h2>
+                      <b>{{sol.nombre}}</b>
+                    </h2>
+                    <p>
+                      Descripcion: {{sol.descripcion}}
+                    </p>
+                    <button (click)='verUsuario(sol.idUsuario)' ion-button>ver</button>
+                </ion-item>
+                <ion-item>
+
+                      <button ion-button color="primary" outline small (click)="aceptar(sol,i)">Aceptar</button>
+                      <button ion-button color="danger" small (click)="rechazar(sol,i)">Rechazar</button>
+
+                </ion-item>
+              </ion-list>
           
         </ion-card-content>
       </ion-card>

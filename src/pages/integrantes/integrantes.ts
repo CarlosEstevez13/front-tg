@@ -1,3 +1,4 @@
+import { PerfilPage } from './../perfil/perfil';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -34,6 +35,13 @@ export class IntegrantesPage {
           console.log(e);
         }
       )
+  }
+
+  verUsuario(idUsuario){
+    this.equipoProvider.setIdUsuario(sessionStorage.getItem('idUsuario'));
+    sessionStorage.setItem('idUsuario',idUsuario);
+    sessionStorage.setItem('temp0','1');
+    this.navCtrl.push(PerfilPage);
   }
 
 }

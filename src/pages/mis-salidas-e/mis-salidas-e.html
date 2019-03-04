@@ -41,7 +41,7 @@
           <h2><ion-icon name="time"></ion-icon> Hora Fin: {{salida.horaFin}}</h2>
         </ion-item>
 
-        <ion-item *ngIf="salida.rival !=0" class="fondoNone" (click)="participantes(salida.idEquipo)">
+        <ion-item *ngIf="salida.rival !=0" class="fondoNone" (click)="verEquipo(salida.idEquipo)">
             <h2><i class="fas fa-users"></i>Versus: {{salida.rival}}</h2>
           </ion-item>
 

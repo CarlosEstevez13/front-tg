@@ -35,7 +35,7 @@ export class TorneosPage {
     this.idEquipo = sessionStorage.getItem('idEquipo');
 
     this.form = this.fb.group({
-      idDeporte: new FormControl()
+      idDeporte: new FormControl(0)
     });
     //this.getTorneosDeEquipo();
   }

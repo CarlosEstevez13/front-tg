@@ -16,7 +16,7 @@ import { AgregarIntegrantePage } from '../agregar-integrante/agregar-integrante'
 })
 export class EquipoPage {
 
-  tiene:any = sessionStorage.getItem('idEquipo');
+  tiene:any;
   capitan:any = 1;
 
   enviarInput:any = '';
@@ -62,6 +62,8 @@ export class EquipoPage {
   idRol;
   idEquipo;
   idDeporte;
+
+  soloVer:any;
   constructor(
       public navCtrl: NavController,
       public navParams: NavParams,
@@ -161,14 +163,21 @@ export class EquipoPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EquipoPage');
+    this.getEquipos();
   }
 
   ionViewWillEnter(){
+    
 
     this.usuarioProvider.getUsuario(this.idUsuario)
       .subscribe(
         res=>{
           this.nombre = res.result[0].nombre
+          this.idEquipo = res.result[0].idEquipo;
+          console.log(this.idEquipo);
+          sessionStorage.setItem('idEquipo',this.idEquipo);
+          this._equipoService.setIdEquipo(sessionStorage.getItem('idEquipo'));
+          this.tiene = sessionStorage.getItem('idEquipo')
         },
         e=>{
           console.log(e);
@@ -188,6 +197,12 @@ export class EquipoPage {
     }
 
     
+  }
+
+  verEquipo(idEquipo:any){
+    sessionStorage.setItem('idEquipo',idEquipo);
+    sessionStorage.setItem('temp','1');
+    this.navCtrl.push(VerEquipoPage);
   }
 
   addEquipo(){
@@ -244,11 +259,11 @@ export class EquipoPage {
     this._equipoService.getSolicitudesUsuario(this.idUsuario)
       .subscribe(
         res => {
-          console.log(res);
+          console.log(res.result);
           for (let i in this.equipos){
             for (let j in res.result){
                if (this.equipos[i].idEquipo == res.result[j].idEquipo){
-                 this.equipos[i].estado = 2;
+                this.equipos[i].estado = 2;
                  break;
                }else{
                  this.equipos[i].estado = 3;

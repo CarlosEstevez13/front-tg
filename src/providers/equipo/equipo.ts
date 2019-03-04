@@ -11,10 +11,12 @@ export class EquipoProvider {
 
   public equipo:any;
   public solEquipo:any;
+  public idEquipo:any;
+  public idUsuario:any;
 
   constructor(public _http: Http) {
     console.log('Hello EquipoProvider Provider');
-    this.url = 'http://localhost:3002/api/';
+    this.url = 'http://192.168.1.6:3002/api/';
   }
 
   getEquipos(idDeporte:any) {
@@ -76,6 +78,24 @@ export class EquipoProvider {
             .map(res => res.json());
   }
 
+  getIdEquipo(){
+    return this.idEquipo;
+  }
+
+  setIdEquipo(id){
+    this.idEquipo = id;
+    console.log('se guardo idEquipo ' + this.idEquipo);
+  }
+
+  getIdUsuario(){
+    return this.idUsuario;
+  }
+
+  setIdUsuario(id){
+    this.idUsuario = id;
+    console.log('se guardo idUsuario ' + this.idUsuario);
+  }
+
 
   addIntegrante(integrante, idUsuario){
     const json = JSON.stringify(integrante);
@@ -95,6 +115,11 @@ export class EquipoProvider {
   getInfoEquipo_1(idEquipo:any) {
     this.headers = new Headers({'Content-Type': 'application/json'});
     return this._http.get(this.url + `equipo_1/${idEquipo}` ).map((res:any) => res.json());
+  }
+
+  getEquipoUsuario(idUsuario){
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `usuarioGetEquipo/${idUsuario}` ).map((res:any) => res.json());
   }
 
   cacheEquipo(equipo){

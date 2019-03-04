@@ -15,7 +15,7 @@ export class HistorialProvider {
 
   constructor(public _http: Http) {
     console.log('Hello HistorialProvider Provider');
-    this.url = 'http://localhost:3002/api/';
+    this.url = 'http://192.168.1.6:3002/api/';
   }
 
   getHistorial(index:number){

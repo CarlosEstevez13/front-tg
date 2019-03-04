@@ -14,7 +14,7 @@
             <img #imagen id="imagen" src="{{rutaImagen}}" class="fotoPerfil">
             
         </ion-item>
-        <div class='editar'>
+        <div *ngIf="soloVer == 0 " class='editar'>
                 
                 <input (change)="onFileSelected($event)" type="file" name="file" id="file" class="inputfile" />
                 <label for="file"> <ion-icon name="create"></ion-icon></label>      
@@ -30,11 +30,11 @@
         <ion-label><small> Email : </small> {{usuario.email}}</ion-label>
 
     </ion-item>
-    <ion-item>
+    <ion-item *ngIf="soloVer == 0">
         <ion-label><small> Peso : </small> {{usuario.peso}}</ion-label>
 
     </ion-item>
-    <ion-item>
+    <ion-item *ngIf="soloVer == 0">
         <ion-label><small> Telefono : </small> {{usuario.telefono}}</ion-label>
 
     </ion-item>
@@ -46,8 +46,8 @@
         <ion-label><small> Edad : </small> {{edad}} años.</ion-label>
 
     </ion-item>
-    <button ion-button (click)="editar()" round full>Editar perfil</button>
+    <button *ngIf="soloVer == 0 " ion-button (click)="editar()" round full>Editar perfil</button>
 
-    <button ion-button (click)="logout()" color='danger' round full>Cerrar Sesion</button>
+    <button *ngIf="soloVer == 0 " ion-button (click)="logout()" color='danger' round full>Cerrar Sesion</button>
 
 </ion-content>

@@ -28,7 +28,7 @@ export class InscritoSalidaEPage {
               public alertCtrl: AlertController) {
 
                 this.form = this.fb.group({
-                  idDeporte: new FormControl()
+                  idDeporte: new FormControl(0)
                 });
   }
 
@@ -61,6 +61,7 @@ export class InscritoSalidaEPage {
       .subscribe(
         res=>{
           this.salidas = res.result;
+          console.log(this.salidas);
         },
         e=>{
           console.log(e);

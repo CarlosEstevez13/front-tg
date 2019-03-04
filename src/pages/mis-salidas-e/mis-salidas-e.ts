@@ -1,3 +1,4 @@
+import { VerEquipoPage } from './../ver-equipo/ver-equipo';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { MarcadorSalidaEPage } from './../marcador-salida-e/marcador-salida-e';
 import { EditarSalidaEPage } from './../editar-salida-e/editar-salida-e';
@@ -39,6 +40,8 @@ export class MisSalidasEPage {
       idEquipo : sessionStorage.getItem('idEquipo')
     };
 
+    console.log(this.data);
+
     this.salidaProvider.getDeportes()
       .subscribe(
         res=>{
@@ -52,6 +55,15 @@ export class MisSalidasEPage {
 
         this.misSalidas();
   }
+
+
+  verEquipo(idEquipo:any){
+    sessionStorage.setItem('idEquipo',idEquipo);
+    sessionStorage.setItem('temp','1');
+    this.navCtrl.push(VerEquipoPage);
+  }
+
+
   misSalidas(){
     this.salidas = [];
     this.salidaProvider.getMisSalidas(this.data)

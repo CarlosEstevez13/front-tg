@@ -1,3 +1,4 @@
+import { ParticipantesTorneoPageModule } from './../pages/participantes-torneo/participantes-torneo.module';
 import { CrearEquipoPageModule } from './../pages/crear-equipo/crear-equipo.module';
 import { CrearEquipoPage } from './../pages/crear-equipo/crear-equipo';
 import { IntegrantesPageModule } from './../pages/integrantes/integrantes.module';
@@ -87,6 +88,8 @@ import { MarcadorSalidaEPage } from '../pages/marcador-salida-e/marcador-salida-
 import { HistorialEquipoPageModule } from '../pages/historial-equipo/historial-equipo.module';
 import { EditarPerfilPageModule } from '../pages/editar-perfil/editar-perfil.module';
 import { IntegrantesPage } from '../pages/integrantes/integrantes';
+import { ParticipantesTorneoPage } from '../pages/participantes-torneo/participantes-torneo';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @NgModule({
   declarations: [
@@ -158,6 +161,7 @@ import { IntegrantesPage } from '../pages/integrantes/integrantes';
     EditarPerfilPageModule,
     IntegrantesPageModule,
     CrearEquipoPageModule,
+    ParticipantesTorneoPageModule,
     /* IonicModule.forRoot(MyApp), */
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages:false
@@ -203,7 +207,8 @@ import { IntegrantesPage } from '../pages/integrantes/integrantes';
     HistorialEquipoPage,
     EditarPerfilPage,
     IntegrantesPage,
-    CrearEquipoPage
+    CrearEquipoPage,
+    ParticipantesTorneoPage
   ],
   providers: [
     StatusBar,
@@ -214,7 +219,8 @@ import { IntegrantesPage } from '../pages/integrantes/integrantes';
     UsuarioProvider,
     LoginProvider,
     HistorialProvider,
-    SalidaEProvider
+    SalidaEProvider,
+    InAppBrowser
   ]
 })
 export class AppModule {}

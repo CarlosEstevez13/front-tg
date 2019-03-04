@@ -40,6 +40,11 @@
           <ion-label fixed>Reglamento</ion-label>
           <ion-textarea rows="5" formControlName="reglamento" type="date"></ion-textarea>
         </ion-item> -->
+        <ion-label class="reglamento" fixed>Reglamento</ion-label> 
+        <div class='editar'>
+          <input (change)="onFileSelected($event)" type="file" name="file" id="file" class="inputfile" />
+          <label for="file"> Seleccionar pdf</label>      
+        </div>
 
         <ion-item>
           <ion-label floating>Numero Equipos</ion-label>
@@ -55,7 +60,7 @@
       
       </ion-list>
 
-      <button ion-button (click)="crear()" round full>Guardar</button>
+      <button ion-button (click)="crear()"  full>Guardar</button>
       <br>
     </form>
 

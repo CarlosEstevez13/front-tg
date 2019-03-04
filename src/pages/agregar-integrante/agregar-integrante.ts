@@ -1,3 +1,4 @@
+import { PerfilPage } from './../perfil/perfil';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { EquipoProvider } from '../../providers/equipo/equipo';
@@ -77,6 +78,13 @@ export class AgregarIntegrantePage {
       }
     );
     this.solicitudes.splice(i,1);
+  }
+
+  verUsuario(idUsuario){
+    this._equipoService.setIdUsuario(sessionStorage.getItem('idUsuario'));
+    sessionStorage.setItem('idUsuario',idUsuario);
+    sessionStorage.setItem('temp0','1');
+    this.navCtrl.push(PerfilPage);
   }
 
 }

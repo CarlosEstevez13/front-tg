@@ -39,6 +39,15 @@ export class VerEquipoPage {
     this.navCtrl.push(IntegrantesPage);
   }
 
+  ionViewWillLeave(){
+    if(sessionStorage.getItem('temp') == '1'){
+      console.log('entro')
+      sessionStorage.setItem('idEquipo',this.equipoService.getIdEquipo());
+      sessionStorage.removeItem('temp');
+    }
+    console.log('salio!')
+  }
+
   ionViewWillEnter(){
     this.idEquipo = sessionStorage.getItem('idEquipo');
     this.idDeporte = sessionStorage.getItem('idDeporte');
