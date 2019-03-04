@@ -1,100 +1,93 @@
-
-
 .ancho1 {
     width: 70px;
 }
 
-.badgeSolicitud{
-  margin-left: 93%;
-  margin-top: -12%;
-}
-.badge{
-  font-size: 1rem !important;
-  border-radius: 10px !important;
+.badgeSolicitud {
+    margin-left: 93%;
+    margin-top: -12%;
 }
 
-
-.fondo{
-  //background-image: url('/assets/imgs/fondo1.jpg');
-  border-radius: 10px 10px 10px 10px;
+.badge {
+    font-size: 1rem !important;
+    border-radius: 10px !important;
 }
 
-.fondoNone{
-  background: none;
-}
-.left2{
-  margin-left: 2px;
-}
-.right2{
-  margin-right: 10px;
-  margin-left: -10px;
+.fondo {
+    //background-image: url('/assets/imgs/fondo1.jpg');
+    border-radius: 10px 10px 10px 10px;
 }
 
-.tituloEvento{
-  color: #ffffff;
-  font-family: cursive;
-  font-weight: bold;
-  background: linear-gradient(to right, #C4A100, #C4A100);
-  border-radius: 10px 10px 10px 10px;
+.fondoNone {
+    background: none;
 }
 
-.margenSup{
-  padding-top:5px;
+.left2 {
+    margin-left: 2px;
 }
 
-.contenidoEvento{
-  margin-top: 2px;
-  background: linear-gradient(to right, #E9E9E9, #ffffff);
-  border-radius: 10px 10px 10px 10px;
+.right2 {
+    margin-right: 10px;
+    margin-left: -10px;
 }
 
-ion-title{
-  text-align: center;
+.tituloEvento {
+    color: #ffffff;
+    background: linear-gradient(to right, #C4A100, #C4A100);
+    border-radius: 10px 10px 10px 10px;
+}
+
+.margenSup {
+    padding-top: 5px;
+}
+
+.contenidoEvento {
+    margin-top: 2px;
+    background: linear-gradient(to right, #E9E9E9, #ffffff);
+    border-radius: 10px 10px 10px 10px;
+}
+
+ion-title {
+    text-align: center;
 }
 
 .card-background-page {
-
     ion-card {
-      position: relative;
-      text-align: center;
-      border-radius: 10px;
+        position: relative;
+        text-align: center;
+        border-radius: 10px;
     }
-  
     .card-title {
-      position: absolute;
-      top: 36%;
-      font-size: 2.0em;
-      width: 100%;
-      font-weight: bold;
-      color: #fff;
+        position: absolute;
+        top: 36%;
+        font-size: 2.0em;
+        width: 100%;
+        font-weight: bold;
+        color: #fff;
     }
-  
     .card-subtitle {
-      font-size: 1.0em;
-      position: absolute;
-      top: 52%;
-      width: 100%;
-      color: #fff;
+        font-size: 1.0em;
+        position: absolute;
+        top: 52%;
+        width: 100%;
+        color: #fff;
     }
-  
-  }
+}
 
-
-  .toolbar-background{
+.toolbar-background {
     /* background-color: #4587D8; */
     background: linear-gradient(left, #4587D8, #63A5f6);
-  }
+}
 
-  .title{
-      color: #FFD200;
-  }
+.title {
+    color: #FFD200;
+}
 
-  .alert-md .alert-wrapper {
+.alert-md .alert-wrapper {
     border-radius: 10px;
     background: linear-gradient(to left, rgb(197, 196, 196), #ffffff);
-  }
+}
 
-  .messages-u {
+.messages-u {
     margin-top: 15px;
     margin-right: 5px;
     float: right;
@@ -103,9 +96,9 @@ ion-title{
     background: #DDE4E8;
     width: 60%;
     border-radius: 10px 10px 0 10px;
-    
-  }
-  .messages-c {
+}
+
+.messages-c {
     margin-top: 15px;
     margin-left: 5px;
     float: left;
@@ -114,28 +107,28 @@ ion-title{
     background: #DDE4E8;
     width: 60%;
     border-radius: 10px 10px 10px 0px;
-    
-  }
+}
 
-  .tituloMensaje{
+.tituloMensaje {
     margin-top: 0px;
     padding-top: 0px;
     font-size: 11px;
     color: rgb(17, 53, 97);
-  }
-  .label-md{
+}
+
+.label-md {
     margin-top: 5px
-  }
+}
 
-  .hr1{
-    margin-top:0px;
+.hr1 {
+    margin-top: 0px;
     background-color: rgb(173, 168, 168) !important;
-  }
+}
 
-  .confEquipo{
+.confEquipo {
     padding-left: 40%;
-  }
+}
 
-  .opcion{
+.opcion {
     height: 120px;
-  }
+}

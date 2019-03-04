@@ -1,0 +1,40 @@
+<!--
+  Generated template for the VerSalidaIPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title> {{salida.nombre}} </ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <button ion-item>
+          <b>Nombre : </b>{{salida.nombre}} 
+        </button>
+
+    <button ion-item>
+          Descripcion : {{salida.descripcion}} 
+        </button>
+
+    <button ion-item>
+          Fecha : {{salida.fecha}} 
+        </button>
+
+    <button ion-item>
+          Hora inicio : {{salida.hora}} 
+        </button>
+
+    <button ion-item>
+          Hora fin : {{salida.horaFin}} 
+        </button>
+
+    <button *ngIf="unir==0" (click)="unirse()" ion-button>Unirse</button>
+    <button (click)="volver()" ion-button color="danger">Atras</button>
+    <button *ngIf="unir==1" ion-button color="danger" outline (click)="showAlert();">Abandonar Salida</button>
+</ion-content>

@@ -1,3 +1,7 @@
+
+import { EditarSalidasIPageModule } from '../pages/editar-salidas-i/editar-salidas-i.module';
+import { MisSalidasIPageModule } from '../pages/mis-salidas-i/mis-salidas-i.module';
+import { VerSalidaIPageModule } from '../pages/ver-salida-i/ver-salida-i.module';
 import { VerSalidaEPageModule } from './../pages/ver-salida-e/ver-salida-e.module';
 import { VerSalidaEPage } from './../pages/ver-salida-e/ver-salida-e';
 import { HistorialPageModule } from './../pages/historial/historial.module';
@@ -75,6 +79,10 @@ import { VerTorneoPageModule } from '../pages/ver-torneo/ver-torneo.module';
 import { SalidaEProvider } from '../providers/salida-e/salida-e';
 import { EditarSalidaEPage } from '../pages/editar-salida-e/editar-salida-e';
 import { EditarSalidaEPageModule } from '../pages/editar-salida-e/editar-salida-e.module';
+import { SalidaIProvider } from '../providers/salida-i/salida-i';
+import { VerSalidaIPage } from '../pages/ver-salida-i/ver-salida-i';
+import { MisSalidasIPage } from '../pages/mis-salidas-i/mis-salidas-i';
+import { EditarSalidasIPage } from '../pages/editar-salidas-i/editar-salidas-i';
 
 @NgModule({
   declarations: [
@@ -139,7 +147,10 @@ import { EditarSalidaEPageModule } from '../pages/editar-salida-e/editar-salida-
     VerTorneoPageModule,
     MisSalidasEPageModule,
     VerSalidaEPageModule,
+    VerSalidaIPageModule,
     EditarSalidaEPageModule,
+    MisSalidasIPageModule,
+    EditarSalidasIPageModule,
     /* IonicModule.forRoot(MyApp), */
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages:false
@@ -179,7 +190,10 @@ import { EditarSalidaEPageModule } from '../pages/editar-salida-e/editar-salida-
     VerTorneoPage,
     MisSalidasEPage,
     VerSalidaEPage,
-    EditarSalidaEPage
+    EditarSalidaEPage,
+    VerSalidaIPage,
+    MisSalidasIPage,
+    EditarSalidasIPage
   ],
   providers: [
     StatusBar,
@@ -190,7 +204,8 @@ import { EditarSalidaEPageModule } from '../pages/editar-salida-e/editar-salida-
     UsuarioProvider,
     LoginProvider,
     HistorialProvider,
-    SalidaEProvider
+    SalidaEProvider,
+    SalidaIProvider
   ]
 })
 export class AppModule {}

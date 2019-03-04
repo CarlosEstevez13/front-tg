@@ -20,7 +20,7 @@ export class HistorialProvider {
 
   getHistorial(index:number){
     this.headers = new Headers({'Content-Type': 'application/json'});
-    return this._http.get(this.url + `salidasIDUU/${index}` ).map((res:any) => res.json());
+    return this._http.get(this.url + `salidaiHistorial/${index}` ).map((res:any) => res.json());
   }
 
   getSalida(index:number){
