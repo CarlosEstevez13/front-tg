@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { TorneosProvider } from './../../providers/torneos/torneos';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
@@ -24,9 +25,11 @@ export class CrearTorneoPage {
   idDeporte = sessionStorage.getItem('idDeporte');
 
   deportes:any;
+  selectedFile: File = null;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
+              private http: HttpClient,
               private fb: FormBuilder,
               private torneoService: TorneosProvider,
               public alertCtrl: AlertController) {
@@ -48,6 +51,41 @@ export class CrearTorneoPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad CrearTorneoPage');
     this.getDeportes();
+  }
+
+  onFileSelected(event) {
+    console.log(event);
+    this.selectedFile = event.target.files[0];
+    this.agregarPdf();
+  }
+
+  agregarPdf(){
+    let aleatorio =Math.trunc(Math.random() * (10000));
+    console.log(aleatorio);
+    const fd  = new FormData();
+    fd.append('pdf', this.selectedFile, `${aleatorio}-${this.idUsuario}`);
+    this.http.post('http://10.14.21.84:3002/api/uploadPdf', fd)
+      .subscribe(
+        res=>{
+          console.log(res)
+          this.form.setValue({
+                 idUsuario: this.form.value.idUsuario,
+                  idRol: this.form.value.idRol ,
+                  idDeporte: this.form.value.idDeporte ,
+                  descripcion: this.form.value.descripcion ,
+                  reglamento: `${aleatorio}-${this.idUsuario}`,
+                  maxEquipos: this.form.value.maxEquipos ,
+                  nombre: this.form.value.nombre,
+                  fechaInicio: this.form.value.fechaInicio ,
+                  longitud: this.form.value.longitud,
+                  latitud: this.form.value.latitud
+          })
+          
+        },
+        e=>{
+          console.log(e)
+        }
+      )
   }
 
   getDeportes(){

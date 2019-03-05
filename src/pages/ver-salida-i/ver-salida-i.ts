@@ -89,6 +89,7 @@ export class VerSalidaIPage {
       buttons: [{
         text: 'Si',
         handler: () => {
+          console.log('entro');
           this.eliminar();
           this.navCtrl.pop();
         }
@@ -96,6 +97,7 @@ export class VerSalidaIPage {
         {
           text: 'No',
           handler: () => {
+          console.log('error');
             //this.navCtrl.pop();
           } 
           }

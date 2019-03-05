@@ -10,10 +10,28 @@
 
 <ion-content padding>
 
+  
+  <form [formGroup]="form">
+    <ion-item>
+        <ion-label>Deporte</ion-label>
+        <ion-select formControlName="idDeporte">
+          <ion-option value="0">Todos</ion-option>
+          <ion-option *ngFor="let deporte of deportes" value="{{deporte.idDeporte}}">{{deporte.nombre}}</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <button (click)="buscar()" ion-button>Buscar</button>
+
+    </form>
+
+    <h2 *ngIf="aviso == 1" class="centrado">No tienes salidas creadas</h2>
+
   <ion-card class="fondo" *ngFor="let salida of salidas; index as i">
 
+      <br>
+
       <ion-item class="tituloEvento">
-        <h2><i class="fas fa-cube margenSup"></i> {{ salida.nombre}}</h2>
+        <h2><i class="fas fa-cube margenSup"></i> {{salida.deporte + ' : ' + salida.nombre}}</h2>
         <div item-end> <ion-icon name="calendar"></ion-icon> {{ salida.fecha}}</div>
       </ion-item>
   
@@ -23,9 +41,13 @@
           <h2><ion-icon name="time"></ion-icon> Hora Fin: {{salida.horaFin}}</h2>
         </ion-item>
 
-        <ion-item class="fondoNone" (click)="participantes(salida.idSalidaE)">
-            <h2><i class="fas fa-users"></i>Versus:</h2>
+        <ion-item *ngIf="salida.rival !=0" class="fondoNone" (click)="verEquipo(salida.idEquipo)">
+            <h2><i class="fas fa-users"></i>Versus: {{salida.rival}}</h2>
           </ion-item>
+
+          <ion-item *ngIf="salida.rival ==0" class="fondoNone">
+              <h2><i class="fas fa-users"></i>Versus: No tienes rival</h2>
+            </ion-item>
         
         <ion-item class="fondoNone">
           <h2>Descripcion:</h2>
@@ -33,7 +55,7 @@
         </ion-item>
 
         <button (click)="editar(salida.idSalidaE)" ion-button>Editar</button>
-        <button (click)="editar(salida.idSalidaE)" ion-button color="dark" outline>Marcador</button>
+        <button *ngIf="salida.rival !=0" (click)="marcador(salida.idSalidaE)" ion-button color="dark" outline>Marcador</button>
         <button (click)="showAlert(salida.idSalidaE, i)" ion-button color="danger">Eliminar</button>
       </ion-card-content>
   

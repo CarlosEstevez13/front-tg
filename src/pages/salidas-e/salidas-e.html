@@ -15,10 +15,25 @@
 
 <ion-content padding>
   <!-- <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar> -->
+  <form [formGroup]="form">
+      <ion-item>
+          <ion-label>Deporte</ion-label>
+          <ion-select formControlName="idDeporte">
+            <ion-option value="0">Todos</ion-option>
+            <ion-option *ngFor="let deporte of deportes" value="{{deporte.idDeporte}}">{{deporte.nombre}}</ion-option>
+          </ion-select>
+        </ion-item>
+  
+        <button (click)="buscar()" ion-button>Buscar</button>
+  
+      </form>
+
+      <h2 *ngIf="aviso == 1" class="centrado">No hay salidas</h2>
+
   <ion-card class="fondo" *ngFor="let salida of salidas; index as i" (click)='ver(salida.idSalidaE)'>
 
     <ion-item class="tituloEvento">
-      <h2><i class="fas fa-cube margenSup"></i> {{ salida.nombre}}</h2>
+      <h2><i class="fas fa-cube margenSup"></i> {{salida.deporte + ' : ' + salida.nombre}}</h2>
       <div item-end><ion-icon name="calendar"></ion-icon> {{ salida.fecha}}</div>
     </ion-item>
 

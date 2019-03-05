@@ -1,0 +1,31 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Crear Equipo</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="form">
+    <ion-list>
+  
+      <ion-item>
+        <ion-label floating>Nombre</ion-label>
+        <ion-input formControlName="nombre" type="text"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label floating>Descripcion</ion-label>
+        <ion-input formControlName="descripcion" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Numero Integrantes</ion-label>
+        <ion-input formControlName="nroIntegrantes" type="number"></ion-input>
+      </ion-item>
+    </ion-list>
+    <button ion-button type='button' (click)="agregarEquipo()">Guardar</button>
+  </form>
+</ion-content>

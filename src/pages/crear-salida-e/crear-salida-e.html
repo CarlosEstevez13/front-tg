@@ -19,6 +19,13 @@
         </ion-item>
 
         <ion-item>
+            <ion-label>Deporte</ion-label>
+            <ion-select formControlName="idDeporte">
+              <ion-option *ngFor="let deporte of deportes" value="{{deporte.idDeporte}}">{{deporte.nombre}}</ion-option>
+            </ion-select>
+          </ion-item>
+
+        <ion-item>
           <ion-label fixed>Descripcion</ion-label>
           <ion-textarea rows="3" formControlName="descripcion" type="text"></ion-textarea>
         </ion-item>

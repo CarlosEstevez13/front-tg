@@ -13,6 +13,7 @@ export class CrearSalidaEPage {
 
   form: FormGroup;
   idEquipo = sessionStorage.getItem('idEquipo');
+  deportes:any = [];
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -28,12 +29,23 @@ export class CrearSalidaEPage {
                   hora: new FormControl(),
                   horaFin: new FormControl(),
                   latitud: new FormControl(1),
-                  longitud: new FormControl(1)
+                  longitud: new FormControl(1),
+                  idDeporte: new FormControl()
                 });
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     console.log('ionViewDidLoad CrearSalidaEPage');
+    this.salidaService.getDeportes()
+      .subscribe(
+        res=>{
+          this.deportes = res.result;
+        },
+        e=>{
+          console.log(e);
+          this.deportes = [];
+        }
+      )
   }
 
   crear(){

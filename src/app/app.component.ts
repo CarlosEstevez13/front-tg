@@ -5,6 +5,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
+import { not } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   templateUrl: 'app.html'
@@ -16,7 +17,6 @@ export class MyApp {
   rootPage:any;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
-    
     if (sessionStorage.getItem('idUsuario')){
       this.rootPage = TabsPage;
     } else{
@@ -28,5 +28,13 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
     });
+  }
+  ionViewWillEnter(){
+    console.log('my app');
+    if (sessionStorage.getItem('idUsuario')){
+      this.rootPage = TabsPage;
+    } else{
+      this.rootPage = LoginPage;
+    }
   }
 }

@@ -1,3 +1,4 @@
+import { TabsPage } from './../tabs/tabs';
 import { LoginProvider } from './../../providers/login/login';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -29,6 +30,10 @@ export class RegistroPage {
   };
 
   Deportes:any;
+
+  dataUsuario:any;
+
+  temp:any = 0;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -78,29 +83,40 @@ export class RegistroPage {
               .subscribe(
                 res=>{
                   console.log(res);
-                  for(let j in this.Deportes){
-                    let data = {
-                      idUsuario: id,
-                      idRol: this.form.value.roles[i],
-                      idDeporte: this.Deportes[j].idDeporte,
-                      activo:0
-                    }
-                    if(i=='0' && j == '0'){
-                        console.log(i);
-                        data.activo = 1;
-                        console.log('entro');
-                    }
-                    
-                    this._loginService.registroURD(data)
-                      .subscribe(
-                        res=>{
-                          console.log(res);
-                        },
-                        e=>{
-                          console.log(e);
-                        }
-                      );
+
+                  let data = {
+                    idUsuario: id,
+                    idRol: this.form.value.roles[i],
+                    idDeporte: this.Deportes[0].idDeporte,
+                    activo:0
                   }
+                  if(i=='0' ){
+                      console.log(i);
+                      data.activo = 1;
+                      console.log('entro');
+                      this.dataUsuario = {
+                        idUsuario: id,
+                        idDeporte: 1,
+                        idRol: this.form.value.roles[0],
+                        idEquipo: 'null'
+                      };
+                  }
+                  
+                  this._loginService.registroURD(data)
+                    .subscribe(
+                      res=>{
+                        console.log(res);
+                        sessionStorage.setItem('idUsuario',`${this.dataUsuario.idUsuario}`);
+                        sessionStorage.setItem('idEquipo',`${this.dataUsuario.idEquipo}`);
+                        sessionStorage.setItem('idRol',`${this.dataUsuario.idRol}`);
+                        sessionStorage.setItem('idDeporte',`${this.dataUsuario.idDeporte}`);
+                        this.temp =1;
+                        
+                      },
+                      e=>{
+                        console.log(e);
+                      }
+                    );
                 },
                 e=>{
                   console.log(e);
@@ -112,7 +128,16 @@ export class RegistroPage {
         console.log(e);
       }
     );
+    setTimeout(
+      ()=>{
+        console.log(this.temp);
+        if(this.temp ==1){
+          this.navCtrl.setRoot(TabsPage);
+        }
+
+      },2000
     
+    );
     
   }
 

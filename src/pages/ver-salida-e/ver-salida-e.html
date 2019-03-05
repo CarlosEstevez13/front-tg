@@ -17,12 +17,20 @@
 
   <ion-list inset>
     <button ion-item >
-      <b>Nombre : </b>{{salida.nombre}} 
+      Nombre : <b>{{salida.nombre}}</b>
     </button> 
+
+    <button ion-item >
+        Deporte : {{salida.deporte}} 
+      </button> 
 
     <button ion-item >
       Descripcion : {{salida.descripcion}} 
     </button> 
+
+    <button (click)='verEquipo(salida.idEquipo)' ion-item >
+        Versus : {{salida.rival}} <button ion-button> Ver</button>
+      </button> 
 
     <button ion-item >
       Fecha : {{salida.fecha}} 

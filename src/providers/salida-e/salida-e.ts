@@ -22,7 +22,7 @@ export class SalidaEProvider {
 
   constructor(public _http: Http) {
     console.log('Hello SalidaEProvider Provider');
-    this.url = 'http://localhost:3002/api/';
+    this.url = 'http://10.14.21.84:3002/api/';
   }
 
   //Este metodo es para diferenciar de salidasE y salidasE a jugar
@@ -30,6 +30,11 @@ export class SalidaEProvider {
   // 1 desde salidasE a jugar 
   getIdVer(){
     return this.idVer;
+  }
+
+  getDeportes(){
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `deportes` ).map((res:any) => res.json());
   }
 
   setIdVer(id){
@@ -80,14 +85,46 @@ export class SalidaEProvider {
     return this._http.get(this.url + `salidaE/${this.idSalidaE}` ).map((res:any) => res.json());
   }
 
+  getEquiposSalida() {
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `salidasE_EquipoMarcador/${this.idSalidaE}` ).map((res:any) => res.json());
+  }
+
+  
+
   getMisSalidas(data) {
     this.headers = new Headers({'Content-Type': 'application/json'});
     return this._http.get(this.url + `salidasE_EquipoMisSalidas/${data.idEquipo}/${data.idDeporte}` ).map((res:any) => res.json());
+  }
+  //obtiene las salidas que aun no tienen rival
+  getMisSalidas_1(data) {
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `salidasE_EquipoMisSalidas_1/${data.idEquipo}/${data.idDeporte}` ).map((res:any) => res.json());
+  }
+
+  getMisSalidasD(data) {
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `salidasE_EquipoMisSalidasD/${data.idEquipo}/${data.idDeporte}` ).map((res:any) => res.json());
+  }
+  //obtiene las salidas que aun no tienen rival
+  getMisSalidasD_1(data) {
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `salidasE_EquipoMisSalidasD_1/${data.idEquipo}/${data.idDeporte}` ).map((res:any) => res.json());
   }
 
   getSalidasJugar(data) {
     this.headers = new Headers({'Content-Type': 'application/json'});
     return this._http.get(this.url + `salidasE_EquipoJugar/${data.idEquipo}/${data.idDeporte}` ).map((res:any) => res.json());
+  }
+
+  getSalidasJugarD(data) {
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `salidasE_EquipoJugarD/${data.idEquipo}/${data.idDeporte}` ).map((res:any) => res.json());
+  }
+
+  getSalidasHistorial(data) {
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `salidasE_EquipoHistorial/${data.idEquipo}/${data.idDeporte}` ).map((res:any) => res.json());
   }
   
   deleteSalidaEquipos(idSalida) {
@@ -107,9 +144,16 @@ export class SalidaEProvider {
 
   putSalida(salida){
     console.log(salida);
+    console.log(this.idSalidaE);
     const json = JSON.stringify(salida);
     const params = json;
     return this._http.put(this.url + `salidaE/${this.idSalidaE}`, params , { headers: this.headers } ).map(res => res.json());
   }
 
+  putMarcador(data){
+    console.log(data);
+    const json = JSON.stringify(data);
+    const params = json;
+    return this._http.put(this.url + `salidaEMarcador/${this.idSalidaE}`, params , { headers: this.headers } ).map(res => res.json());
+  }
 }

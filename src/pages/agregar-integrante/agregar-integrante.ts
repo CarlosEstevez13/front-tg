@@ -1,3 +1,4 @@
+import { PerfilPage } from './../perfil/perfil';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { EquipoProvider } from '../../providers/equipo/equipo';
@@ -51,13 +52,13 @@ export class AgregarIntegrantePage {
     let integrante = {
       idUsuario:solicitud.idUsuario,
       idRol: 1, //deportista,
-      idEquipo: sessionStorage.getItem('idEquipo'),
-      idDeporte: sessionStorage.getItem('idDeporte')
+      idEquipo: sessionStorage.getItem('idEquipo')
     };
     this._equipoService.addIntegrante(integrante, solicitud.idUsuario)
         .subscribe(
           res=>{
             console.log(res);
+            this.solicitudes.splice(i,1);
           },
           e=>{
             console.log(e);
@@ -77,6 +78,13 @@ export class AgregarIntegrantePage {
       }
     );
     this.solicitudes.splice(i,1);
+  }
+
+  verUsuario(idUsuario){
+    this._equipoService.setIdUsuario(sessionStorage.getItem('idUsuario'));
+    sessionStorage.setItem('idUsuario',idUsuario);
+    sessionStorage.setItem('temp0','1');
+    this.navCtrl.push(PerfilPage);
   }
 
 }

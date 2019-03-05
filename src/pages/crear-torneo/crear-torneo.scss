@@ -1,3 +1,46 @@
 page-crear-torneo {
+    .inputfile {
+        width: 0.1px !important;
+        height: 0.1px !important;
+        opacity: 0 !important;
+        overflow: hidden !important;
+        position: absolute !important;
+        z-index: -1 !important;
+    }
+
+    .inputfile + label {
+        font-size: 1.40em !important;
+        font-weight: 700 !important;
+        color: white !important;
+        background-color: #488aff !important;
+        display: inline-block !important;
+    }
+
+    label{
+        padding: 5px !important;
+        
+    }
+    
+    .editar{
+        position: relative;
+        margin-left: 50% ;
+        margin-top: -10%;
+    }
+    .reglamento{
+        position: relative;
+        color: #9c9999;
+        margin-left: 5%;
+        font-size: 16px;
+    }
+
+
+    .inputfile + label {
+        cursor: pointer !important; /* "hand" cursor */
+    }
+
+    .inputfile:focus + label {
+        outline: 1px dotted #000 !important;
+        outline: -webkit-focus-ring-color auto 5px !important;
+    }
 
 }

@@ -1,3 +1,6 @@
+import { VerEquipoPage } from './../ver-equipo/ver-equipo';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { MarcadorSalidaEPage } from './../marcador-salida-e/marcador-salida-e';
 import { EditarSalidaEPage } from './../editar-salida-e/editar-salida-e';
 import { SalidaEProvider } from './../../providers/salida-e/salida-e';
 import { Component } from '@angular/core';
@@ -11,29 +14,138 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 })
 export class MisSalidasEPage {
 
+  aviso = 0;
+  error = 0;
   salidas:any = [];
   data:any;
+  deportes:any = [];
+  form: FormGroup;
+
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
+              private fb: FormBuilder,
               private salidaProvider: SalidaEProvider,
               public alertCtrl: AlertController) {
+
+                this.form = this.fb.group({
+                  idDeporte: new FormControl()
+                });
                 
   }
 
   ionViewWillEnter(){
+    this.salidas = [];
     this.data = {
       idDeporte : sessionStorage.getItem('idDeporte'),
       idEquipo : sessionStorage.getItem('idEquipo')
     };
-    this.salidaProvider.getMisSalidas(this.data)
+
+    console.log(this.data);
+
+    this.salidaProvider.getDeportes()
       .subscribe(
         res=>{
-          this.salidas = res.result;
+          this.deportes = res.result;
         },
         e=>{
           console.log(e);
+          this.deportes = [];
         }
       );
+
+        this.misSalidas();
+  }
+
+
+  verEquipo(idEquipo:any){
+    sessionStorage.setItem('idEquipo',idEquipo);
+    sessionStorage.setItem('temp','1');
+    this.navCtrl.push(VerEquipoPage);
+  }
+
+
+  misSalidas(){
+    this.salidas = [];
+    this.salidaProvider.getMisSalidas(this.data)
+    .subscribe(
+      res=>{
+        this.salidas = res.result;
+        console.log(this.salidas);
+        this.SalidasSinRival();
+      },
+      e=>{
+        console.log(e);
+        this.error = 1;
+        this.SalidasSinRival();
+      }
+    );
+  }
+
+  buscar(){
+    this.aviso = 0;
+    this.data = {
+      idDeporte : this.form.value.idDeporte,
+      idEquipo : sessionStorage.getItem('idEquipo')
+    };
+    console.log(this.data);
+    if (this.form.value.idDeporte !=0){
+
+      this.salidaProvider.getMisSalidasD(this.data)
+        .subscribe(
+          res=>{
+            this.salidas = res.result;
+            console.log(this.salidas);
+            this.SalidasSinRivalD();
+          },
+          e=>{
+            console.log(e);
+            this.error = 1;
+            this.salidas = [];
+            this.SalidasSinRivalD();
+          }
+        );
+    }else{
+      this.misSalidas();
+    }
+  }
+
+  marcador(idSalida){
+    this.salidaProvider.setSalidaE(idSalida);
+    this.navCtrl.push(MarcadorSalidaEPage);
+  }
+
+  SalidasSinRival(){
+    this.salidaProvider.getMisSalidas_1(this.data)
+      .subscribe(
+        res=>{
+          this.salidas = this.salidas.concat(res.result);
+          console.log(this.salidas);
+        },
+        e=>{
+          if(this.error == 1){
+
+            this.aviso = 1;
+          }
+        }
+      )
+  }
+
+  SalidasSinRivalD(){
+    console.log(this.data);
+    this.salidaProvider.getMisSalidasD_1(this.data)
+    .subscribe(
+      res=>{
+        console.log(res.result);
+          this.salidas = this.salidas.concat(res.result);
+          console.log(this.salidas);
+        },
+        e=>{
+          if(this.error == 1){
+            this.salidas = [];
+            this.aviso = 1;
+          }
+        }
+      )
   }
 
   ionViewDidLoad() {

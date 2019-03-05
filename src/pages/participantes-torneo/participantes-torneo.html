@@ -1,0 +1,30 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Participantes</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card class="fondo" *ngFor="let equipo of participantes; index as i">
+    <div (click)='verEquipo(equipo.idEquipo)'>
+    <ion-item class="tituloEvento">
+      <h2><i class="fas fa-star-half-alt margenSup"></i> {{ equipo.nombre | uppercase}}</h2>
+    </ion-item>
+
+    <ion-card-content class="">
+
+      <ion-item class="fondoNone">
+        <h2><i class="fas fa-align-justify margenSup"></i> {{equipo.descripcion}}</h2>
+      </ion-item>
+    </ion-card-content>
+
+  </div>
+
+
+  </ion-card>
+
+</ion-content>

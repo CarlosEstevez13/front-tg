@@ -17,12 +17,20 @@
     border-radius: 10px 10px 10px 10px;
 }
 
+.centrado {
+    text-align: center;
+}
+
 .fondoNone {
     background: none;
 }
 
 .left2 {
     margin-left: 2px;
+}
+
+.left10 {
+    margin-left: 8px;
 }
 
 .right2 {
@@ -126,9 +134,19 @@ ion-title {
 }
 
 .confEquipo {
-    padding-left: 40%;
+    /* padding-left: 40%; */
 }
 
 .opcion {
     height: 120px;
+}
+
+.toolbar-title-md {
+    color: white !important;
+}
+
+.nombreEquipo {
+    padding-right: 50%;
+    text-decoration: none;
+    color: white;
 }

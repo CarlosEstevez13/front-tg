@@ -19,6 +19,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class TorneosMenuPage {
 
+  idRol =sessionStorage.getItem('idRol');
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 

@@ -6,12 +6,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { ModalController } from 'ionic-angular';
 
-/**
- * Generated class for the EventosPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({
@@ -20,8 +15,11 @@ import { ModalController } from 'ionic-angular';
 })
 export class EventosPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
+  idRol =sessionStorage.getItem('idRol');
+  idEquipo =sessionStorage.getItem('idEquipo');
 
+  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
+    console.log(this.idEquipo);
   }
 
 

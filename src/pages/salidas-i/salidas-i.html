@@ -14,6 +14,15 @@
 
 
 <ion-content padding>
+    <ion-item>
+        <ion-label>Deporte</ion-label>
+        <ion-select [(ngModel)]="idDeporte">
+            <ion-option value='0'>Todos</ion-option>
+            <ion-option *ngFor="let deporte of deportes" value='{{deporte.idDeporte}}'>{{deporte.nombre}}</ion-option>
+        </ion-select>
+    </ion-item>
+
+    <button (click)="buscar();" ion-button outline>Buscar</button>
     <ion-card class="fondo" *ngFor="let salida of disponibles" (click)="ver(salida.idSalidaI);">
 
         <ion-item class="tituloEvento">

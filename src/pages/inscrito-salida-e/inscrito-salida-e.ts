@@ -1,3 +1,4 @@
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { VerSalidaEPage } from './../ver-salida-e/ver-salida-e';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
@@ -14,11 +15,21 @@ export class InscritoSalidaEPage {
   salidas:any = [];
   data:any;
   idEquipo:any;
+  deportes:any = [];
+
+  aviso:any = 0;
+
+  form: FormGroup;
 
   constructor(public navCtrl: NavController, 
               private salidaProvider: SalidaEProvider,
               public navParams: NavParams,
+              private fb: FormBuilder,
               public alertCtrl: AlertController) {
+
+                this.form = this.fb.group({
+                  idDeporte: new FormControl(0)
+                });
   }
 
   ionViewWillEnter(){
@@ -27,15 +38,62 @@ export class InscritoSalidaEPage {
       idDeporte : sessionStorage.getItem('idDeporte'),
       idEquipo : this.idEquipo
     };
+
+    this.salidaProvider.getDeportes()
+      .subscribe(
+        res=>{
+          this.deportes = res.result;
+        },
+        e=>{
+          console.log(e);
+          this.deportes = [];
+        }
+      );
+
+      this.getSalidas();
+    
+  }
+
+  getSalidas(){
+    this.aviso = 0;
+    this.salidas =[];
     this.salidaProvider.getSalidasJugar(this.data)
       .subscribe(
         res=>{
           this.salidas = res.result;
+          console.log(this.salidas);
         },
         e=>{
           console.log(e);
+          this.aviso = 1;
         }
       );
+  }
+
+  buscar(){
+    this.aviso = 0;
+    this.data = {
+      idDeporte : this.form.value.idDeporte,
+      idEquipo : sessionStorage.getItem('idEquipo')
+    };
+    console.log(this.data);
+    if (this.form.value.idDeporte !=0){
+
+      this.salidaProvider.getSalidasJugarD(this.data)
+        .subscribe(
+          res=>{
+            this.salidas = res.result;
+            console.log(this.salidas);
+          },
+          e=>{
+            console.log(e);
+            this.aviso = 1;
+            this.salidas = [];
+          }
+        );
+    }else{
+      this.getSalidas();
+    }
   }
 
   ver(idSalida){

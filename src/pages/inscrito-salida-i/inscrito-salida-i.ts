@@ -25,8 +25,8 @@ export class InscritoSalidaIPage {
             this.id = sessionStorage.getItem('idUsuario')
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad InscritoSalidaIPage');
+  ionViewWillEnter() {
+    console.log('ionViewDidLoaaad InscritoSalidaIPage');
     this._salidaIProvider.getSalidasIAJugar(this.id).subscribe(
       res=>{
           

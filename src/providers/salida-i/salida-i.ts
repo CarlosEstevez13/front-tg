@@ -16,12 +16,22 @@ export class SalidaIProvider {
 
   constructor(public _http: Http) {
     console.log('Hello SalidaIProvider Provider');
-    this.url = 'http://localhost:3002/api/';
+    this.url = 'http://10.14.21.84:3002/api/';
   }
 
   getSalidasDisponibles(index:number){
     this.headers = new Headers({'Content-Type': 'application/json'});
     return this._http.get(this.url + `salidasIQueNoEsta/${index}` ).map((res:any) => res.json());
+  }
+
+  getSalidasDisponiblesDeport(index:number,idDeporte:number){
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `SalidasIQueNoEstaDeport/${index}/${idDeporte}` ).map((res:any) => res.json());
+  }
+
+  getDeporte(){
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `deportes` ).map((res:any) => res.json());
   }
   
   getverSalidaI(idSalidai:any){

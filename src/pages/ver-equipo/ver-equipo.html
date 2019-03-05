@@ -1,0 +1,65 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{equipo.nombre}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list no-lines>
+    <ion-item >
+      <b>Descripcion:</b> 
+      <br>
+      <p class="descripcion">{{equipo.descripcion}}</p>
+    </ion-item> 
+
+    <button ion-item  (click)='integrantes()'>
+      <b>Numero de Integrantes:</b> {{equipo.integrantes}} de {{equipo.nroIntegrantes}} 
+      <button class="gente" ion-button icon-only >
+          <ion-icon name="people"></ion-icon>
+        </button>
+    </button> 
+
+    <ion-item >
+      <b>Historial:</b>
+
+      <h2 *ngIf="aviso == 1" class="centrado">No hay historial</h2>
+      
+          <ion-card class="fondo" *ngFor="let registro of historial; index as i">
+
+              <ion-item class="tituloEvento">
+                  <h2><i class="fas fa-cube margenSup"></i> {{registro.nombre}} </h2>
+                  <div item-end>
+                      <ion-icon name="calendar"></ion-icon> {{registro.fecha}} </div>
+              </ion-item>
+      
+              <ion-card-content class="contenidoEvento">
+
+                  <ion-item class="fondoNone" >
+                      <h2>
+                         Versus : <b> {{registro.rival}}</b>
+                        </h2>
+                  </ion-item>
+      
+                  <ion-item class="fondoNone" *ngIf="registro.ganador == registro.idEquipo">
+                      <h2>
+                      
+                          Marcador : <b> {{registro.anotacionesGanador}} - {{registro.anotacionesPerdedor}} </b>
+                        </h2>
+                  </ion-item>
+                  <ion-item class="fondoNone"  *ngIf="registro.ganador != registro.idEquipo">
+                      <h2>
+                         
+                          Marcador : <b> {{registro.anotacionesPerdedor}} - {{registro.anotacionesGanador}} </b>
+                        </h2>
+                  </ion-item>
+              </ion-card-content>
+      
+          </ion-card>
+     
+    </ion-item> 
+  </ion-list>
+</ion-content>

@@ -2,6 +2,15 @@
 import { EditarSalidasIPageModule } from '../pages/editar-salidas-i/editar-salidas-i.module';
 import { MisSalidasIPageModule } from '../pages/mis-salidas-i/mis-salidas-i.module';
 import { VerSalidaIPageModule } from '../pages/ver-salida-i/ver-salida-i.module';
+import { ParticipantesTorneoPageModule } from './../pages/participantes-torneo/participantes-torneo.module';
+import { CrearEquipoPageModule } from './../pages/crear-equipo/crear-equipo.module';
+import { CrearEquipoPage } from './../pages/crear-equipo/crear-equipo';
+import { IntegrantesPageModule } from './../pages/integrantes/integrantes.module';
+import { EditarPerfilPage } from './../pages/editar-perfil/editar-perfil';
+import { HistorialEquipoPage } from './../pages/historial-equipo/historial-equipo';
+import { VerEquipoPageModule } from './../pages/ver-equipo/ver-equipo.module';
+import { VerEquipoPage } from './../pages/ver-equipo/ver-equipo';
+import { MarcadorSalidaEPageModule } from './../pages/marcador-salida-e/marcador-salida-e.module';
 import { VerSalidaEPageModule } from './../pages/ver-salida-e/ver-salida-e.module';
 import { VerSalidaEPage } from './../pages/ver-salida-e/ver-salida-e';
 import { HistorialPageModule } from './../pages/historial/historial.module';
@@ -83,6 +92,12 @@ import { SalidaIProvider } from '../providers/salida-i/salida-i';
 import { VerSalidaIPage } from '../pages/ver-salida-i/ver-salida-i';
 import { MisSalidasIPage } from '../pages/mis-salidas-i/mis-salidas-i';
 import { EditarSalidasIPage } from '../pages/editar-salidas-i/editar-salidas-i';
+import { MarcadorSalidaEPage } from '../pages/marcador-salida-e/marcador-salida-e';
+import { HistorialEquipoPageModule } from '../pages/historial-equipo/historial-equipo.module';
+import { EditarPerfilPageModule } from '../pages/editar-perfil/editar-perfil.module';
+import { IntegrantesPage } from '../pages/integrantes/integrantes';
+import { ParticipantesTorneoPage } from '../pages/participantes-torneo/participantes-torneo';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @NgModule({
   declarations: [
@@ -151,6 +166,13 @@ import { EditarSalidasIPage } from '../pages/editar-salidas-i/editar-salidas-i';
     EditarSalidaEPageModule,
     MisSalidasIPageModule,
     EditarSalidasIPageModule,
+    MarcadorSalidaEPageModule,
+    VerEquipoPageModule,
+    HistorialEquipoPageModule,
+    EditarPerfilPageModule,
+    IntegrantesPageModule,
+    CrearEquipoPageModule,
+    ParticipantesTorneoPageModule,
     /* IonicModule.forRoot(MyApp), */
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages:false
@@ -193,7 +215,14 @@ import { EditarSalidasIPage } from '../pages/editar-salidas-i/editar-salidas-i';
     EditarSalidaEPage,
     VerSalidaIPage,
     MisSalidasIPage,
-    EditarSalidasIPage
+    EditarSalidasIPage,
+    MarcadorSalidaEPage,
+    VerEquipoPage,
+    HistorialEquipoPage,
+    EditarPerfilPage,
+    IntegrantesPage,
+    CrearEquipoPage,
+    ParticipantesTorneoPage
   ],
   providers: [
     StatusBar,
@@ -205,7 +234,8 @@ import { EditarSalidasIPage } from '../pages/editar-salidas-i/editar-salidas-i';
     LoginProvider,
     HistorialProvider,
     SalidaEProvider,
-    SalidaIProvider
+    SalidaIProvider,
+    InAppBrowser
   ]
 })
 export class AppModule {}

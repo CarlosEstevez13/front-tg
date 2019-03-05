@@ -9,6 +9,21 @@
 
 <ion-content padding>
 
+    <form [formGroup]="form">
+        <ion-item>
+            <ion-label>Deporte</ion-label>
+            <ion-select formControlName="idDeporte">
+                <ion-option value="0">Todos</ion-option>
+                <ion-option *ngFor="let deporte of deportes" value="{{deporte.idDeporte}}">{{deporte.nombre}}</ion-option>
+            </ion-select>
+        </ion-item>
+
+        <button (click)="buscar()" ion-button>Buscar</button>
+
+    </form>
+
+    <h2 *ngIf="aviso == 1" class="centrado">No tienes salidas inscritas</h2>
+
     <ion-card class="fondo" *ngFor="let salida of salidas; index as i">
 
         <ion-item class="tituloEvento">
@@ -20,20 +35,17 @@
         <ion-card-content class="contenidoEvento">
             <ion-item class="fondoNone">
                 <h2>
-                    <ion-icon name="time"></ion-icon> Hora inicio: {{salida.hora}}</h2>
+                    <ion-icon name="people"></ion-icon> Versus: {{salida.rival}}</h2>
+            </ion-item>
+            <ion-item class="fondoNone">
                 <h2>
-                    <ion-icon name="time"></ion-icon> Hora Fin: {{salida.horaFin}}</h2>
+                    <ion-icon name="time"></ion-icon> Hora inicio: {{salida.hora}}</h2>
             </ion-item>
 
-            <ion-item class="fondoNone">
-                <h2><i class="fas fa-users"></i>Versus:</h2>
-            </ion-item>
-
-            <ion-item class="fondoNone">
-                <h2>Descripcion:</h2>
-                <p>{{salida.descripcion}}</p>
-            </ion-item>
-
+            <!--  <ion-item class="fondoNone" (click)="participantes(salida.idSalidaE)">
+            <h2><i class="fas fa-users"></i>Versus: {{salida.rival}}</h2>
+          </ion-item>
+         -->
             <button (click)="ver(salida.idSalidaE)" ion-button round>Ver</button>
             <button (click)="showAlert(salida.idSalidaE, i)" ion-button color="danger" round outline>Salir</button>
 

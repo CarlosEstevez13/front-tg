@@ -1,3 +1,4 @@
+import { VerEquipoPage } from './../ver-equipo/ver-equipo';
 import { SalidaEProvider } from './../../providers/salida-e/salida-e';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -55,6 +56,12 @@ export class VerSalidaEPage {
 
   volver(){
     this.navCtrl.pop()
+  }
+
+  verEquipo(idEquipo:any){
+    sessionStorage.setItem('idEquipo',idEquipo);
+    sessionStorage.setItem('temp','1');
+    this.navCtrl.push(VerEquipoPage);
   }
 
   unirse(){
