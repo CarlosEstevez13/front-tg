@@ -1,0 +1,56 @@
+<!--
+  Generated template for the MisSalidasIPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>mis-salidas</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-card class="fondo" *ngFor="let sali of salida">
+
+        <ion-item class="tituloEvento">
+            <h2><i class="fas fa-cube margenSup"></i> {{sali.nombre}} </h2>
+            <div item-end>
+                <ion-icon name="calendar"></ion-icon> {{sali.fecha}}</div>
+        </ion-item>
+
+        <ion-card-content class="contenidoEvento">
+            <ion-item class="fondoNone">
+                <br>
+                <h2> Deporte : {{sali.deporte}} </h2>
+                <h2>
+                    {{sali.descripcion}}</h2>
+                <hr>
+                <h3>
+                    <ion-icon name="time"></ion-icon> Hora de encuentro: {{sali.hora}}</h3>
+
+                <h3>
+                    <ion-icon name="time"></ion-icon> Hora de finalizacion: {{sali.horaFin}}</h3>
+                <hr>
+                <h3 style="color: red;" *ngIf="sali.finalizado==1">
+                    Finalizado
+                </h3>
+                <h3 style="color: blue;" *ngIf="sali.finalizado==0">
+                    En curso
+                </h3>
+                <br>
+                <button ion-button *ngIf="sali.finalizado==0" (click)=" editar(sali.idSalidaI);">Editar</button>
+                <button ion-button color="danger" *ngIf="sali.finalizado==0" (click)="showAlert(sali.idSalidaI);">Eliminar</button>
+
+
+
+
+            </ion-item>
+
+        </ion-card-content>
+
+    </ion-card>
+</ion-content>

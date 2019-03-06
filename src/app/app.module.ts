@@ -1,6 +1,10 @@
 import { UbicacionPageModule } from './../pages/ubicacion/ubicacion.module';
 import { GoogleMapComponent } from './../components/google-map/google-map';
 import { JuradoPageModule } from './../pages/jurado/jurado.module';
+
+import { EditarSalidasIPageModule } from '../pages/editar-salidas-i/editar-salidas-i.module';
+import { MisSalidasIPageModule } from '../pages/mis-salidas-i/mis-salidas-i.module';
+import { VerSalidaIPageModule } from '../pages/ver-salida-i/ver-salida-i.module';
 import { ParticipantesTorneoPageModule } from './../pages/participantes-torneo/participantes-torneo.module';
 import { CrearEquipoPageModule } from './../pages/crear-equipo/crear-equipo.module';
 import { CrearEquipoPage } from './../pages/crear-equipo/crear-equipo';
@@ -87,6 +91,10 @@ import { VerTorneoPageModule } from '../pages/ver-torneo/ver-torneo.module';
 import { SalidaEProvider } from '../providers/salida-e/salida-e';
 import { EditarSalidaEPage } from '../pages/editar-salida-e/editar-salida-e';
 import { EditarSalidaEPageModule } from '../pages/editar-salida-e/editar-salida-e.module';
+import { SalidaIProvider } from '../providers/salida-i/salida-i';
+import { VerSalidaIPage } from '../pages/ver-salida-i/ver-salida-i';
+import { MisSalidasIPage } from '../pages/mis-salidas-i/mis-salidas-i';
+import { EditarSalidasIPage } from '../pages/editar-salidas-i/editar-salidas-i';
 import { MarcadorSalidaEPage } from '../pages/marcador-salida-e/marcador-salida-e';
 import { HistorialEquipoPageModule } from '../pages/historial-equipo/historial-equipo.module';
 import { EditarPerfilPageModule } from '../pages/editar-perfil/editar-perfil.module';
@@ -161,7 +169,10 @@ import { UbicacionPage } from '../pages/ubicacion/ubicacion';
     VerTorneoPageModule,
     MisSalidasEPageModule,
     VerSalidaEPageModule,
+    VerSalidaIPageModule,
     EditarSalidaEPageModule,
+    MisSalidasIPageModule,
+    EditarSalidasIPageModule,
     MarcadorSalidaEPageModule,
     VerEquipoPageModule,
     HistorialEquipoPageModule,
@@ -211,6 +222,9 @@ import { UbicacionPage } from '../pages/ubicacion/ubicacion';
     MisSalidasEPage,
     VerSalidaEPage,
     EditarSalidaEPage,
+    VerSalidaIPage,
+    MisSalidasIPage,
+    EditarSalidasIPage,
     MarcadorSalidaEPage,
     VerEquipoPage,
     HistorialEquipoPage,
@@ -233,7 +247,8 @@ import { UbicacionPage } from '../pages/ubicacion/ubicacion';
     HistorialProvider,
     SalidaEProvider,
     InAppBrowser,
-    MapaProvider
+    MapaProvider,
+    SalidaIProvider
   ]
 })
 export class AppModule {}

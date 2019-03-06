@@ -1,9 +1,8 @@
-
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Salidas a Jugar</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Salidas a Jugar</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
@@ -14,8 +13,8 @@
         <ion-item>
             <ion-label>Deporte</ion-label>
             <ion-select formControlName="idDeporte">
-              <ion-option value="0">Todos</ion-option>
-              <ion-option *ngFor="let deporte of deportes" value="{{deporte.idDeporte}}">{{deporte.nombre}}</ion-option>
+                <ion-option value="0">Todos</ion-option>
+                <ion-option *ngFor="let deporte of deportes" value="{{deporte.idDeporte}}">{{deporte.nombre}}</ion-option>
             </ion-select>
           </ion-item>
 
@@ -36,31 +35,35 @@
     
         <h2 *ngIf="aviso == 1" class="centrado">No tienes salidas inscritas</h2>
 
-  <ion-card class="fondo" *ngFor="let salida of salidas; index as i">
 
-      <ion-item class="tituloEvento">
-        <h2><i class="fas fa-cube margenSup"></i> {{ salida.nombre}}</h2>
-        <div item-end> <ion-icon name="calendar"></ion-icon> {{ salida.fecha}}</div>
-      </ion-item>
-  
-      <ion-card-content class="contenidoEvento">
-          <ion-item class="fondoNone">
-              <h2><ion-icon name="people"></ion-icon> Versus: {{salida.rival}}</h2>
-            </ion-item>
-        <ion-item class="fondoNone">
-          <h2><ion-icon name="time"></ion-icon> Hora inicio: {{salida.hora}}</h2>
+    
+    <ion-card class="fondo" *ngFor="let salida of salidas; index as i">
+
+        <ion-item class="tituloEvento">
+            <h2><i class="fas fa-cube margenSup"></i> {{ salida.nombre}}</h2>
+            <div item-end>
+                <ion-icon name="calendar"></ion-icon> {{ salida.fecha}}</div>
         </ion-item>
 
-       <!--  <ion-item class="fondoNone" (click)="participantes(salida.idSalidaE)">
+        <ion-card-content class="contenidoEvento">
+            <ion-item class="fondoNone">
+                <h2>
+                    <ion-icon name="people"></ion-icon> Versus: {{salida.rival}}</h2>
+            </ion-item>
+            <ion-item class="fondoNone">
+                <h2>
+                    <ion-icon name="time"></ion-icon> Hora inicio: {{salida.hora}}</h2>
+            </ion-item>
+
+            <!--  <ion-item class="fondoNone" (click)="participantes(salida.idSalidaE)">
             <h2><i class="fas fa-users"></i>Versus: {{salida.rival}}</h2>
           </ion-item>
          -->
+            <button (click)="ver(salida.idSalidaE)" ion-button round>Ver</button>
+            <button (click)="showAlert(salida.idSalidaE, i)" ion-button color="danger" round outline>Salir</button>
 
-        <button (click)="ver(salida.idSalidaE)" ion-button round>Ver</button>
-        <button (click)="showAlert(salida.idSalidaE, i)" ion-button color="danger" round outline>Salir</button>
+        </ion-card-content>
 
-      </ion-card-content>
-  
     </ion-card>
 
 </ion-content>

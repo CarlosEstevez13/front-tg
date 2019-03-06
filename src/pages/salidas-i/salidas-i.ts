@@ -1,5 +1,7 @@
+import { VerSalidaIPage } from './../ver-salida-i/ver-salida-i';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { SalidaIProvider } from '../../providers/salida-i/salida-i';
 
 /**
  * Generated class for the SalidasIPage page.
@@ -15,11 +17,73 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SalidasIPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  id:any;
+  disponibles: any =[];
+  idDeporte:any;
+  deportes:any = [];
+  
+  
+
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public _salidaIProvider : SalidaIProvider) {
+
+            this.id = sessionStorage.getItem('idUsuario');
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     console.log('ionViewDidLoad SalidasIPage');
+    this._salidaIProvider.getDeporte().subscribe(
+      res=>{
+        this.deportes=res.result;
+        console.log(res.result);
+    },e=>{
+      
+      console.log(e);
+
+    });
+    this.salidasDisponibles();
+  }
+
+  ver(id:any){
+    sessionStorage.setItem("idSalidaI", id);
+    sessionStorage.setItem("unir", '0');
+    
+    this.navCtrl.push(VerSalidaIPage);
+
+  }
+
+   salidasDisponibles(){
+    this._salidaIProvider.getSalidasDisponibles(this.id).subscribe(
+      res=>{
+          
+          this.disponibles=res.result;
+          console.log(this.disponibles);
+      },
+      e=>{
+          console.log(e);
+      }
+    );
+  }
+
+  buscar(){
+    console.log(this.idDeporte);
+    if(this.idDeporte==0){
+    this.salidasDisponibles();
+    }
+    else{
+      this._salidaIProvider.getSalidasDisponiblesDeport(this.id,this.idDeporte).subscribe(
+        res=>{
+            
+            this.disponibles=res.result;
+            console.log(this.disponibles);
+        },
+        e=>{
+            console.log(e);
+        }
+      );
+    }
+    
   }
 
 }

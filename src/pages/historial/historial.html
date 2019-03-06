@@ -22,27 +22,21 @@
     <ion-card class="fondo" *ngFor="let registro of historial; index as i">
 
         <ion-item class="tituloEvento">
-            <h2><i class="fas fa-cube margenSup"></i> {{registro.descripcion}} </h2>
+            <h2><i class="fas fa-cube margenSup"></i> {{registro.nombre}} </h2>
             <div item-end>
                 <ion-icon name="calendar"></ion-icon> {{registro.fecha}} </div>
         </ion-item>
 
         <ion-card-content class="contenidoEvento">
             <ion-item class="fondoNone">
-                <h2><i class="fas fa-users margenSup"></i> Numero de participantes</h2>
-                <div item-end>
-                    <b>
-                
-              </b> {{registro.nroParticipantes}}</div>
-            </ion-item>
-
-            <ion-item class="fondoNone">
-                <h2>
-                    <ion-icon name="time"></ion-icon> hora de inicio : {{registro.hora}}</h2>
-                <h2>
-                    <ion-icon name="time"></ion-icon> hora de finalizacion : {{registro.horaFin}}</h2>
-                <h2>
-                    <ion-icon name="time"></ion-icon> anotaciones : {{registro.rendimiento}}</h2>
+                <h2><i class="fas fa-users margenSup"></i> Numero de participantes : {{registro.nroParticipantes}}</h2>
+                <hr>
+                <h3>
+                    <ion-icon name="time"></ion-icon> hora de inicio : {{registro.hora}}</h3>
+                <h3>
+                    <ion-icon name="time"></ion-icon> hora de finalizacion : {{registro.horaFin}}</h3>
+                <hr>
+                <h2> {{registro.descripcion}} </h2>
             </ion-item>
         </ion-card-content>
 

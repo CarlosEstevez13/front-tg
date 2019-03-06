@@ -30,7 +30,6 @@ export class EditarTorneoPage {
     deporte,
     latitud,
     longitud,
-    idGenero,
     nombreGenero,
     individual,
     tipo

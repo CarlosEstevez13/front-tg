@@ -28,7 +28,7 @@ export class MisSalidasEPage {
               public alertCtrl: AlertController) {
 
                 this.form = this.fb.group({
-                  idDeporte: new FormControl(),
+                  idDeporte: new FormControl(0),
                   genero: new FormControl(3)
                 });
                 

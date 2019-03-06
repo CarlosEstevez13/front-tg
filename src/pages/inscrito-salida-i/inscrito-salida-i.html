@@ -1,13 +1,33 @@
-
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>inscritoSalidaI</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Salidas a participar</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+    <ion-card class="fondo" *ngFor="let sali of salida" (click)=" ver(sali.idSalidaI);">
 
+        <ion-item class="tituloEvento">
+            <h2><i class="fas fa-cube margenSup"></i> {{sali.nombre}} </h2>
+            <div item-end>
+                <ion-icon name="calendar"></ion-icon> {{ sali.fecha}}</div>
+        </ion-item>
+
+        <ion-card-content class="contenidoEvento">
+            <ion-item class="fondoNone">
+                <h1> <small> <ion-icon name="arrow-dropright"></ion-icon> Deporte : {{sali.deporte}}</small> </h1>
+                <h2>
+                    <ion-icon name="time"></ion-icon> Hora de encuentro: {{sali.hora}}</h2>
+
+                <h2>
+                    <ion-icon name="time"></ion-icon> Hora de finalizacion: {{sali.horaFin}}</h2>
+
+            </ion-item>
+
+        </ion-card-content>
+
+    </ion-card>
 </ion-content>

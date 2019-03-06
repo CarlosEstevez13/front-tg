@@ -1,3 +1,5 @@
+import { VerSalidaIPage } from './../ver-salida-i/ver-salida-i';
+import { SalidaIProvider } from '../../providers/salida-i/salida-i';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -14,12 +16,35 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'inscrito-salida-i.html',
 })
 export class InscritoSalidaIPage {
+  id:any;
+  salida:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+               public navParams: NavParams,
+               public _salidaIProvider : SalidaIProvider) {
+            this.id = sessionStorage.getItem('idUsuario')
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad InscritoSalidaIPage');
+  ionViewWillEnter() {
+    console.log('ionViewDidLoaaad InscritoSalidaIPage');
+    this._salidaIProvider.getSalidasIAJugar(this.id).subscribe(
+      res=>{
+          
+          this.salida=res.result;
+          console.log(this.salida);
+      },
+      e=>{
+          console.log(e);
+      }
+    );
+  }
+
+  ver(id:any){
+    sessionStorage.setItem("idSalidaI", id);
+    sessionStorage.setItem("unir", '1');
+    
+    this.navCtrl.push(VerSalidaIPage);
+
   }
 
 }
