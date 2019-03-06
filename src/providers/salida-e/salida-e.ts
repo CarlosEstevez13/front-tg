@@ -22,7 +22,7 @@ export class SalidaEProvider {
 
   constructor(public _http: Http) {
     console.log('Hello SalidaEProvider Provider');
-    this.url = 'http://192.168.1.6:3002/api/';
+    this.url = 'http://10.14.19.100:3002/api/';
   }
 
   //Este metodo es para diferenciar de salidasE y salidasE a jugar
@@ -70,6 +70,11 @@ export class SalidaEProvider {
   getSalidasEInscribirse(){
     this.headers = new Headers({'Content-Type': 'application/json'});
     return this._http.get(this.url + `salidaEInscribirse/${this.idDeporte}/${this.idEquipo}` ).map((res:any) => res.json());
+  }
+
+  getSalidasEInscribirseD(data){
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `salidaEInscribirseD/${data.idDeporte}/${data.idEquipo}` ).map((res:any) => res.json());
   }
 
   getSalidaE(){

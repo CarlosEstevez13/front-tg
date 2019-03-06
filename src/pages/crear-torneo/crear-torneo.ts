@@ -1,15 +1,9 @@
+import { UbicacionPage } from './../ubicacion/ubicacion';
 import { HttpClient } from '@angular/common/http';
 import { TorneosProvider } from './../../providers/torneos/torneos';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
-
-/**
- * Generated class for the CrearTorneoPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -19,6 +13,8 @@ import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 export class CrearTorneoPage {
 
   form: FormGroup;
+
+  deporte:any;
   
   idUsuario = sessionStorage.getItem('idUsuario');
   idRol = sessionStorage.getItem('idRol');
@@ -26,6 +22,7 @@ export class CrearTorneoPage {
 
   deportes:any;
   selectedFile: File = null;
+  arbitros:any =[];
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -44,13 +41,31 @@ export class CrearTorneoPage {
                   fechaInicio: new FormControl(),
                   longitud: new FormControl(1),
                   latitud: new FormControl(1),
+                  jurado: new FormControl(),
+                  genero: new FormControl(),
+                  individual: new FormControl()
                   
                 });
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CrearTorneoPage');
+    sessionStorage.setItem('tempLat','1');
+    sessionStorage.setItem('tempLng','1');
     this.getDeportes();
+    this.getArbitros();
+  }
+
+  getArbitros(){
+    this.torneoService.getJuez()
+      .subscribe(
+        res=>{
+          this.arbitros = res.result;
+        },
+        e=>{
+          console.log(e);
+        }
+      );
   }
 
   onFileSelected(event) {
@@ -64,7 +79,7 @@ export class CrearTorneoPage {
     console.log(aleatorio);
     const fd  = new FormData();
     fd.append('pdf', this.selectedFile, `${aleatorio}-${this.idUsuario}`);
-    this.http.post('http://192.168.1.6:3002/api/uploadPdf', fd)
+    this.http.post('http://10.14.19.100:3002/api/uploadPdf', fd)
       .subscribe(
         res=>{
           console.log(res)
@@ -77,8 +92,11 @@ export class CrearTorneoPage {
                   maxEquipos: this.form.value.maxEquipos ,
                   nombre: this.form.value.nombre,
                   fechaInicio: this.form.value.fechaInicio ,
-                  longitud: this.form.value.longitud,
-                  latitud: this.form.value.latitud
+                  longitud: sessionStorage.getItem('tempLng'),
+                  latitud: sessionStorage.getItem('tempLat'),
+                  jurado: this.form.value.jurado,
+                  genero: this.form.value.genero,
+                  individual: this.form.value.individual
           })
           
         },
@@ -100,6 +118,15 @@ export class CrearTorneoPage {
         }
       )
   }
+  agregarUbicacion(){
+    this.navCtrl.push(UbicacionPage);
+  }
+
+  ionViewWillLeave(){
+    sessionStorage.removeItem('tempLat');
+    sessionStorage.removeItem('tempLng');
+  }
+
 
   showAlert() {
     const alert = this.alertCtrl.create({
@@ -117,16 +144,44 @@ export class CrearTorneoPage {
   }
 
   crear(){
+    this.form.value.latitud = sessionStorage.getItem('tempLat');
+    this.form.value.longitud = sessionStorage.getItem('tempLng');
+    let correcto = 0;
     this.torneoService.addTorneo(this.form.value)
       .subscribe(
         res=>{
           console.log(res);
-          this.showAlert();
+          for (let i in this.form.value.jurado){
+            let data = {
+              idTorneo : (res.result.idTorneo - 1),
+              idUsuario : this.form.value.jurado[i],
+              idRol : 3
+            }
+            this.torneoService.addTor_Usuario_Rol(data)
+              .subscribe(
+                res=>{
+                  console.log(res);
+                  correcto = 1;
+                },
+                e=>{
+                  correcto = 1;
+                  console.log(e);
+                }
+              )
+          }
         },
         e=>{
           console.log(e);
         }
-      );
+        );
+        
+        setTimeout(() => {
+          if(correcto ==1){
+            
+            this.showAlert();
+        }
+        
+      }, 1000);
       
   }
 

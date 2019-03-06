@@ -1,39 +1,47 @@
+import { TorneosProvider } from './../../providers/torneos/torneos';
 import { PerfilPage } from './../perfil/perfil';
+import { EquipoProvider } from './../../providers/equipo/equipo';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { EquipoProvider } from '../../providers/equipo/equipo';
+
+/**
+ * Generated class for the JuradoPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
 
 @IonicPage()
 @Component({
-  selector: 'page-integrantes',
-  templateUrl: 'integrantes.html',
+  selector: 'page-jurado',
+  templateUrl: 'jurado.html',
 })
-export class IntegrantesPage {
+export class JuradoPage {
 
-  integrantes: any;
-  idEquipo:any;
+  arbitros:any =[];
+
 
   constructor(public navCtrl: NavController, 
               private equipoProvider: EquipoProvider,
+              private torneoService: TorneosProvider,
               public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad IntegrantesPage');
+    console.log('ionViewDidLoad JuradoPage');
   }
 
   ionViewWillLoad() {
-    this.idEquipo = sessionStorage.getItem('idEquipo');
-    this.equipoProvider.getIntegrantes(this.idEquipo)
+    this.torneoService.getTorne_Juez()
       .subscribe(
         res=>{
-          this.integrantes = res.result;
-          console.log(this.integrantes);
+          this.arbitros = res.result;
+          console.log(this.arbitros);
         },
         e=>{
           console.log(e);
         }
-      )
+      );
   }
 
   verUsuario(idUsuario){

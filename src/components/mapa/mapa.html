@@ -1,0 +1,15 @@
+
+<form [formGroup]="form" *ngIf="ver ==0">
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Direccion</ion-label>
+        <ion-input formControlName="texto" type="text" value=""></ion-input>
+      </ion-item>
+      <button ion-button full (click)='buscar()'>Buscar</button>
+
+    </ion-list>
+  </form>
+
+<div #map id="map"></div>
+
+<button ion-button full *ngIf="yabusco ==1 && ver == 0" (click)='agregar()'>Agregar esta ubicacion</button>

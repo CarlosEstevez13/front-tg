@@ -23,6 +23,17 @@
             <ion-option *ngFor="let deporte of deportes" value="{{deporte.idDeporte}}">{{deporte.nombre}}</ion-option>
           </ion-select>
         </ion-item>
+
+        <ion-item>
+          <ion-label>Genero</ion-label>
+          <ion-select formControlName="genero" >
+            <ion-option value="3">Todos</ion-option>
+            <ion-option value="0">Masculino</ion-option>
+            <ion-option value="1">Femenino</ion-option>
+            <ion-option value="2">Mixto</ion-option>
+            
+          </ion-select>
+        </ion-item>
   
         <button (click)="buscar()" ion-button>Buscar</button>
   

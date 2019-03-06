@@ -27,6 +27,10 @@ export class TorneosPage {
   form: FormGroup;
   data:any;
 
+  buscoDeporte=0;
+  buscoGenero=0;
+  buscoTipo=0;
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private fb: FormBuilder,
@@ -35,7 +39,9 @@ export class TorneosPage {
     this.idEquipo = sessionStorage.getItem('idEquipo');
 
     this.form = this.fb.group({
-      idDeporte: new FormControl(0)
+      idDeporte: new FormControl(0),
+      genero: new FormControl(3),
+      tipo: new FormControl(2)
     });
     //this.getTorneosDeEquipo();
   }
@@ -59,15 +65,50 @@ export class TorneosPage {
 
   buscar(){
     this.aviso = 0;
-    if(this.form.value.idDeporte!=0){
-      this.getNroEquiposD();
-      this.getTorneosD();
-    }else{
-      this.getNroEquipos();
+    this.getNroEquipos();
       this.getTorneos();
-    }
+      if(this.torneos.length == 0){
+        this.aviso = 1;
+      }
+
   }
 
+  buscarFiltro(){
+    if(this.form.value.idDeporte != 0){
+      let torneoBusqueda = [];
+      this.buscoDeporte =1;
+      for(let i in this.torneos){
+        if(this.torneos[i].idDeporte==this.form.value.idDeporte){
+          torneoBusqueda.push(this.torneos[i]);
+          console.log('entro deporte');
+        }
+      }
+      this.torneos = torneoBusqueda;
+    }
+    if(this.form.value.genero != 3){
+      let torneoBusqueda = [];
+      for(let i in this.torneos){
+        
+        if(this.torneos[i].idGenero==this.form.value.genero){
+          torneoBusqueda.push(this.torneos[i]);
+          console.log('entro genero');
+        }
+      }
+      this.torneos = torneoBusqueda;
+    }
+    if(this.form.value.tipo != 2){
+      let torneoBusqueda = [];
+      this.buscoTipo =1;
+      for(let i in this.torneos){
+        if(this.torneos[i].individual==this.form.value.tipo){
+          torneoBusqueda.push(this.torneos[i]);
+          console.log('entro tipo');
+        }
+      }
+      this.torneos = torneoBusqueda;
+    }
+  }
+  
   getTorneosD() {
     console.log('entro a la funcion')
     this.torneoProvider.getTorneosDeporte(this.form.value.idDeporte)
@@ -166,7 +207,11 @@ export class TorneosPage {
             }else{
               this.torneosInscritos = [];
             }
-            
+            this.buscarFiltro();
+            if(this.torneos.length == 0){
+              this.aviso = 1;
+            }
+
             console.log(this.torneosInscritos);
             },
             e=>{
@@ -188,6 +233,10 @@ export class TorneosPage {
                      }
                   }
                 }
+              }
+              this.buscarFiltro();
+              if(this.torneos.length == 0){
+                this.aviso = 1;
               }
             }
       )

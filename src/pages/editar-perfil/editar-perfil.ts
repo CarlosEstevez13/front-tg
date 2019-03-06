@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { UsuarioProvider } from '../../providers/usuario/usuario';
 import { HttpClient } from '@angular/common/http';
-import { Http } from '@angular/http';
 
 /**
  * Generated class for the EditarPerfilPage page.
@@ -120,7 +119,7 @@ export class EditarPerfilPage {
   agregarFoto(){
     const fd  = new FormData();
     fd.append('image', this.selectedFile, `${this.idUsuario}`);
-    this.http.post('http://192.168.1.6:3002/api/upload', fd)
+    this.http.post('http://10.14.19.100:3002/api/upload', fd)
       .subscribe(
         res=>{
           console.log(res)

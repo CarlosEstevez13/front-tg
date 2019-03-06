@@ -28,7 +28,8 @@ export class MisSalidasEPage {
               public alertCtrl: AlertController) {
 
                 this.form = this.fb.group({
-                  idDeporte: new FormControl()
+                  idDeporte: new FormControl(),
+                  genero: new FormControl(3)
                 });
                 
   }
@@ -81,9 +82,43 @@ export class MisSalidasEPage {
     );
   }
 
+  buscarFiltro(){
+    if(this.form.value.idDeporte != 0){
+      let salidaBusqueda = [];
+      for(let i in this.salidas){
+        if(this.salidas[i].idDeporte==this.form.value.idDeporte){
+          salidaBusqueda.push(this.salidas[i]);
+          console.log('entro');
+        }
+      }
+      this.salidas = salidaBusqueda;
+    }
+    if(this.form.value.genero != 3){
+      let salidaBusqueda = [];
+      for(let i in this.salidas){
+        if(this.salidas[i].genero==this.form.value.genero){
+          salidaBusqueda.push(this.salidas[i]);
+          console.log('entro');
+        }
+      }
+      this.salidas = salidaBusqueda;
+    }
+    if(this.form.value.tipo != 2){
+      let salidaBusqueda = [];
+      for(let i in this.salidas){
+        if(this.salidas[i].individual==this.form.value.tipo){
+          salidaBusqueda.push(this.salidas[i]);
+          console.log('entro');
+        }
+      }
+      this.salidas = salidaBusqueda;
+    }
+  }
+
   buscar(){
     this.aviso = 0;
-    this.data = {
+    this.misSalidas();
+    /* this.data = {
       idDeporte : this.form.value.idDeporte,
       idEquipo : sessionStorage.getItem('idEquipo')
     };
@@ -105,8 +140,7 @@ export class MisSalidasEPage {
           }
         );
     }else{
-      this.misSalidas();
-    }
+    } */
   }
 
   marcador(idSalida){
@@ -120,11 +154,18 @@ export class MisSalidasEPage {
         res=>{
           this.salidas = this.salidas.concat(res.result);
           console.log(this.salidas);
+          this.buscarFiltro();
+          if(this.salidas.length == 0){
+            this.aviso =1;
+          }
         },
         e=>{
           if(this.error == 1){
 
-            this.aviso = 1;
+            this.buscarFiltro();
+          if(this.salidas.length == 0){
+            this.aviso =1;
+          }
           }
         }
       )

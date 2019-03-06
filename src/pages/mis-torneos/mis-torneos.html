@@ -23,6 +23,27 @@
               <ion-option *ngFor="let deporte of deportes" value="{{deporte.idDeporte}}">{{deporte.nombre}}</ion-option>
             </ion-select>
           </ion-item>
+
+          <ion-item>
+            <ion-label>Genero</ion-label>
+            <ion-select formControlName="genero" >
+              <ion-option value="3">Todos</ion-option>
+              <ion-option value="0">Masculino</ion-option>
+              <ion-option value="1">Femenino</ion-option>
+              <ion-option value="2">Mixto</ion-option>
+              
+            </ion-select>
+          </ion-item>
+  
+          <ion-item>
+              <ion-label>Tipo</ion-label>
+              <ion-select formControlName="tipo" >
+                <ion-option value="2">Todos</ion-option>
+                <ion-option value="0">Individual</ion-option>
+                <ion-option value="1">PorEquipos</ion-option>
+                
+              </ion-select>
+            </ion-item>
     
           <button (click)="buscar()" ion-button>Buscar</button>
     
@@ -42,8 +63,9 @@
             <h2><i class="fas fa-passport"></i> Deporte: {{torneo.deporte}}</h2>
           </ion-item>
 
-          <ion-item class="fondoNone" (click)="participantes(torneo.idTorneo)">
-              <h2><i class="fas fa-users"></i>Max Participantes: {{torneo.maxEquipos}}</h2>
+          <ion-item class="fondoNone">
+              <h2><i class="fas fa-users"></i>Max Participantes: {{torneo.maxEquipos}} <button (click)='verInscritos(torneo.idTorneo)'  ion-button>ver</button></h2>
+              
             </ion-item>
           
           <ion-item class="fondoNone">

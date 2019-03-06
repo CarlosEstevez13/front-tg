@@ -24,15 +24,36 @@
             <ion-option *ngFor="let deporte of deportes" value="{{deporte.idDeporte}}">{{deporte.nombre}}</ion-option>
           </ion-select>
         </ion-item>
+
+        <ion-item>
+          <ion-label>Genero</ion-label>
+          <ion-select formControlName="genero" >
+            <ion-option value="3">Todos</ion-option>
+            <ion-option value="0">Masculino</ion-option>
+            <ion-option value="1">Femenino</ion-option>
+            <ion-option value="2">Mixto</ion-option>
+            
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Tipo</ion-label>
+            <ion-select formControlName="tipo" >
+              <ion-option value="2">Todos</ion-option>
+              <ion-option value="0">Individual</ion-option>
+              <ion-option value="1">PorEquipos</ion-option>
+              
+            </ion-select>
+          </ion-item>
   
         <button (click)="buscar()" ion-button>Buscar</button>
   
       </form>
 
+
       <h2 *ngIf="aviso == 1" class="centrado">No hay torneos</h2>
 
   <ion-card class="fondo" *ngFor="let torneo of torneos; index as i" (click)='unirse(torneo.nroEquipos, torneo.maxEquipos, torneo.idTorneo)'>
-
     <ion-item class="tituloEvento">
       <h2><i class="fas fa-cube margenSup"></i> {{torneo.deporte + ' : '+ torneo.nombre}}</h2>
       <div item-end><ion-icon name="calendar"></ion-icon> {{ torneo.fechaInicio}}</div>

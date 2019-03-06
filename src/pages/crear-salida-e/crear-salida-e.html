@@ -30,6 +30,10 @@
           <ion-textarea rows="3" formControlName="descripcion" type="text"></ion-textarea>
         </ion-item>
 
+        <ion-item class="item1">
+          Ubicacion :  <button (click)='agregarUbicacion()'  ion-button>agregar</button>
+        </ion-item>
+
         <ion-item>
           <ion-label fixed>Fecha</ion-label>
           <ion-input formControlName="fecha" type="date"></ion-input>
@@ -44,9 +48,13 @@
           <ion-label fixed>Hora Fin</ion-label>
           <ion-input formControlName="horaFin" type="time"></ion-input>
         </ion-item>
-      
-      </ion-list>
 
+        
+        
+      </ion-list>
+      
+      
+      
       <button ion-button (click)="crear()" round full>Guardar</button>
       <br>
     </form>

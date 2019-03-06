@@ -1,3 +1,4 @@
+import { UbicacionPage } from './../ubicacion/ubicacion';
 import { SalidaEProvider } from './../../providers/salida-e/salida-e';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { Component } from '@angular/core';
@@ -37,8 +38,8 @@ export class EditarSalidaEPage {
                   fecha: new FormControl(),
                   hora: new FormControl(),
                   horaFin: new FormControl(),
-                  latitud: new FormControl(1),
-                  longitud: new FormControl(1)
+                  latitud: new FormControl(),
+                  longitud: new FormControl()
                 });
   }
 
@@ -58,7 +59,12 @@ export class EditarSalidaEPage {
             horaFin: this.salida.horaFin,
             latitud: this.salida.latitud,
             longitud: this.salida.longitud
-          })
+          });
+          if(sessionStorage.getItem('tempLat')){
+            this.form.value.latitud = sessionStorage.getItem('tempLat');
+            this.form.value.longitud = sessionStorage.getItem('tempLng');
+          }
+
         },
         e=>{
           console.log(e);
@@ -66,11 +72,23 @@ export class EditarSalidaEPage {
       );
   }
 
+  editarUbicacion(){
+    sessionStorage.setItem('tempLat','null');
+    sessionStorage.setItem('tempLng','null');
+    this.navCtrl.push(UbicacionPage);
+  }
+  ionViewWillLeave(){
+    sessionStorage.removeItem('tempLat');
+    sessionStorage.removeItem('tempLng');
+  }
+
   editar(){
     this.salidaProvider.putSalida(this.form.value)
       .subscribe(
         res=>{
           console.log(res);
+          sessionStorage.removeItem('tempLat');
+          sessionStorage.removeItem('tempLng');
           this.navCtrl.pop();
         },
         e=>{

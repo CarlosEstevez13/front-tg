@@ -4,7 +4,7 @@ import { CrearSalidaEPage } from './crear-salida-e';
 
 @NgModule({
   declarations: [
-    CrearSalidaEPage,
+    CrearSalidaEPage
   ],
   imports: [
     IonicPageModule.forChild(CrearSalidaEPage),

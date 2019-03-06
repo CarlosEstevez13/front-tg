@@ -29,7 +29,8 @@ export class SalidasEPage {
               private fb: FormBuilder,
               private salidasProvider: SalidaEProvider) {
                 this.form = this.fb.group({
-                  idDeporte: new FormControl()
+                  idDeporte: new FormControl(0),
+                  genero: new FormControl(3)
                 });
   }
 
@@ -51,16 +52,40 @@ export class SalidasEPage {
     
   }
 
+  buscarFiltro(){
+    if(this.form.value.idDeporte != 0){
+      let salidaBusqueda = [];
+      for(let i in this.salidas){
+        if(this.salidas[i].idDeporte==this.form.value.idDeporte){
+          salidaBusqueda.push(this.salidas[i]);
+          console.log('entro');
+        }
+      }
+      this.salidas = salidaBusqueda;
+    }
+    if(this.form.value.genero != 3){
+      let salidaBusqueda = [];
+      for(let i in this.salidas){
+        if(this.salidas[i].genero==this.form.value.genero){
+          salidaBusqueda.push(this.salidas[i]);
+          console.log('entro');
+        }
+      }
+      this.salidas = salidaBusqueda;
+    }
+  }
+
   buscar(){
     this.aviso = 0;
-    this.data = {
+    this.getSalidas();
+    /* this.data = {
       idDeporte : this.form.value.idDeporte,
       idEquipo : sessionStorage.getItem('idEquipo')
     };
     console.log(this.data);
     if (this.form.value.idDeporte !=0){
 
-      this.salidasProvider.getSalidasJugarD(this.data)
+      this.salidasProvider.getSalidasEInscribirseD(this.data)
         .subscribe(
           res=>{
             this.salidas = res.result;
@@ -74,7 +99,7 @@ export class SalidasEPage {
         );
     }else{
       this.getSalidas();
-    }
+    } */
   }
 
   getSalidas(){
@@ -85,6 +110,10 @@ export class SalidasEPage {
                   res=>{
                     console.log(res);
                     this.salidas = res.result;
+                    this.buscarFiltro();
+                    if(this.salidas.length == 0){
+                      this.aviso =1;
+                    }
                   },
                   e=>{
                     console.log(e);

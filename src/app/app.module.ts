@@ -1,3 +1,6 @@
+import { UbicacionPageModule } from './../pages/ubicacion/ubicacion.module';
+import { GoogleMapComponent } from './../components/google-map/google-map';
+import { JuradoPageModule } from './../pages/jurado/jurado.module';
 import { ParticipantesTorneoPageModule } from './../pages/participantes-torneo/participantes-torneo.module';
 import { CrearEquipoPageModule } from './../pages/crear-equipo/crear-equipo.module';
 import { CrearEquipoPage } from './../pages/crear-equipo/crear-equipo';
@@ -90,6 +93,9 @@ import { EditarPerfilPageModule } from '../pages/editar-perfil/editar-perfil.mod
 import { IntegrantesPage } from '../pages/integrantes/integrantes';
 import { ParticipantesTorneoPage } from '../pages/participantes-torneo/participantes-torneo';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { JuradoPage } from '../pages/jurado/jurado';
+import { MapaProvider } from '../providers/mapa/mapa';
+import { UbicacionPage } from '../pages/ubicacion/ubicacion';
 
 @NgModule({
   declarations: [
@@ -97,7 +103,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    GoogleMapComponent
     /* EventosPage,
     CrearEventoPage,
     TorneosPage,
@@ -162,6 +169,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     IntegrantesPageModule,
     CrearEquipoPageModule,
     ParticipantesTorneoPageModule,
+    JuradoPageModule,
+    UbicacionPageModule,
     /* IonicModule.forRoot(MyApp), */
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages:false
@@ -208,7 +217,10 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     EditarPerfilPage,
     IntegrantesPage,
     CrearEquipoPage,
-    ParticipantesTorneoPage
+    ParticipantesTorneoPage,
+    JuradoPage,
+    UbicacionPage
+
   ],
   providers: [
     StatusBar,
@@ -220,7 +232,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     LoginProvider,
     HistorialProvider,
     SalidaEProvider,
-    InAppBrowser
+    InAppBrowser,
+    MapaProvider
   ]
 })
 export class AppModule {}
