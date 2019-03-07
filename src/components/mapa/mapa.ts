@@ -38,7 +38,8 @@ export class MapaComponent {
 
   ngOnInit(){
     this.ver = 0;
-    if(sessionStorage.getItem('tempLat') != 'null' || sessionStorage.getItem('tempLat') != '1'){
+    console.log(sessionStorage.getItem('tempLat'));
+    if(sessionStorage.getItem('tempLat') != 'null' && sessionStorage.getItem('tempLat') != '1'){
       this.ver =1;
       console.log('entro');
       this.coords = new google.maps.LatLng(
@@ -60,7 +61,6 @@ export class MapaComponent {
 
     this.map = new google.maps.Map(this.mapElement.nativeElement,
       mapOptions)
-
       if(this.ver ==1){
         this.map.setCenter(this.coords);
         let marker: google.maps.Marker = new google.maps.Marker({
@@ -68,8 +68,8 @@ export class MapaComponent {
           position : this.coords
         })
         console.log(marker);
-        sessionStorage.removeItem('tempLat');
-        sessionStorage.removeItem('tempLng');
+       /*  sessionStorage.removeItem('tempLat');
+        sessionStorage.removeItem('tempLng'); */
       }
   }
 

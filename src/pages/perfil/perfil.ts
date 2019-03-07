@@ -1,3 +1,5 @@
+import { LoginPage } from './../login/login';
+import { TabsPage } from './../tabs/tabs';
 import { EquipoProvider } from './../../providers/equipo/equipo';
 import { HttpClient } from '@angular/common/http';
 import { MyApp } from './../../app/app.component';
@@ -90,11 +92,11 @@ export class PerfilPage {
           console.log(this.usuario);
           this.edad = this.calcularEdad(this.usuario.fechaNacimiento);
           if(this.usuario.imagen != null){
-            this.rutaImagen = `http://10.14.19.100:3002/profile/${this.usuario.imagen}.png`;
-            //this.rutaImagen = `http://10.14.19.100:3002/profile/defecto.png`;
+            this.rutaImagen = `http://192.168.1.6:3002/profile/${this.usuario.imagen}.png`;
+            //this.rutaImagen = `http://192.168.1.6:3002/profile/defecto.png`;
             console.log(this.rutaImagen);
           } else{
-            this.rutaImagen = 'http://10.14.19.100:3002/profile/defecto.png';
+            this.rutaImagen = 'http://192.168.1.6:3002/profile/defecto.png';
           }
 
       },
@@ -115,7 +117,7 @@ export class PerfilPage {
     console.log(aleatorio);
     const fd  = new FormData();
     fd.append('image', this.selectedFile, `${aleatorio}-${this.id}`);
-    this.http.post('http://10.14.19.100:3002/api/upload', fd)
+    this.http.post('http://192.168.1.6:3002/api/upload', fd)
       .subscribe(
         res=>{
           console.log(res)
@@ -126,7 +128,7 @@ export class PerfilPage {
             .subscribe(
               res=>{
                 console.log(res);
-                this.rutaImagen = `http://10.14.19.100:3002/profile/${aleatorio}-${this.id}.png`;
+                this.rutaImagen = `http://192.168.1.6:3002/profile/${aleatorio}-${this.id}.png`;
               },
               e=>{
                 console.log(e);
@@ -148,7 +150,7 @@ logout(){
   sessionStorage.removeItem('idEquipo');
   sessionStorage.removeItem('idRol');
   sessionStorage.removeItem('idUsuario');
-  this.navCtrl.setRoot(MyApp);
+  this.navCtrl.setRoot(LoginPage);
 }
 
 }

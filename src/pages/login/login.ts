@@ -1,3 +1,4 @@
+import { AdminPage } from './../admin/admin';
 import { RegistroPage } from './../registro/registro';
 import { LoginProvider } from './../../providers/login/login';
 import { Component } from '@angular/core';
@@ -25,13 +26,15 @@ export class LoginPage {
     password: null
   };
 
+  tabs:any;
   constructor(public navCtrl: NavController,
               private fb: FormBuilder,
               public navParams: NavParams,
               private _loginService: LoginProvider) {
 
                 this._loginService.logout();
-
+                
+                this.tabs = document.getElementsByClassName('show-tabbar').item(0);
 
                 this.form = this.fb.group({
                   usuario: new FormControl(this.campos.usuario),
@@ -39,9 +42,19 @@ export class LoginPage {
                 });
   }
 
-  ionViewDidLoad() {
+  ionViewWillLoad() {
     console.log('ionViewDidLoad LoginPage');
+    console.log(this.tabs);
+   /*  tabs.style.display = 'none'; */
+    
   
+  }
+
+  ionViewDidEnter(){
+    if(this.tabs!=null){
+
+      this.tabs.style.opacity = 0;
+    }
   }
 
   login(){
@@ -49,7 +62,18 @@ export class LoginPage {
     .subscribe(
       res=>{
         console.log(res);
-        this.navCtrl.setRoot(TabsPage);
+        if(this.tabs!=null){
+
+          this.tabs.style.opacity = 1;
+        }
+        console.log(this.form.value.usuario);
+        if(this.form.value.usuario == 'admin'){
+          this.navCtrl.setRoot(AdminPage);
+        }
+        if(this.form.value.usuario != 'admin'){
+
+          this.navCtrl.setRoot(TabsPage);
+        }
       },
       e=>{
         console.log(e);

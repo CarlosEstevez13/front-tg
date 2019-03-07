@@ -1,11 +1,12 @@
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { VerTorneoPage } from './../ver-torneo/ver-torneo';
+import { EditarTorneoPage } from './../editar-torneo/editar-torneo';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { TorneosProvider } from '../../providers/torneos/torneos';
 
 /**
- * Generated class for the InscritoTorneoPage page.
+ * Generated class for the GestionarTorneosPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -13,33 +14,33 @@ import { TorneosProvider } from '../../providers/torneos/torneos';
 
 @IonicPage()
 @Component({
-  selector: 'page-inscrito-torneo',
-  templateUrl: 'inscrito-torneo.html',
+  selector: 'page-gestionar-torneos',
+  templateUrl: 'gestionar-torneos.html',
 })
-export class InscritoTorneoPage {
+export class GestionarTorneosPage {
 
-  idEquipo = sessionStorage.getItem('idEquipo');
-  torneos:any = [];
   deportes:any = [];
   aviso = 0;
   form: FormGroup;
-  data:any;
+  torneos:any = [];
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private fb: FormBuilder,
-              public torneoService: TorneosProvider,
+              public torneoProvider: TorneosProvider,
               public alertCtrl: AlertController) {
                 this.form = this.fb.group({
-                  idDeporte: new FormControl(),
+                  idDeporte: new FormControl(0),
                   genero: new FormControl(3),
                   tipo: new FormControl(2)
                 });
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad InscritoTorneoPage');
-    this.torneoService.getDeportes()
+    console.log('ionViewDidLoad GestionarTorneosPage');
+  }
+  ionViewWillEnter(){
+    this.torneoProvider.getDeportes()
       .subscribe(
         res=>{
           this.deportes = res.result;
@@ -52,23 +53,36 @@ export class InscritoTorneoPage {
     this.getTorneos();
   }
 
+  ver(idTorneo){
+    this.torneoProvider.setIdTorneo(idTorneo);
+    this.torneoProvider.setIdVer(1);
+    this.navCtrl.push(VerTorneoPage);
+  }
+
+  buscar(){
+    this.aviso = 0;
+      this.getTorneos();
+      if(this.torneos.length == 0){
+        this.aviso = 1;
+      }
+
+  }
+
   getTorneos(){
-    this.aviso =0;
-    this.torneoService.getTorneosDeEquipo(this.idEquipo)
+    this.torneoProvider.getTorneos()
       .subscribe(
         res=>{
           this.torneos = res.result;
-          console.log(this.torneos);
           this.buscarFiltro();
-          if(this.torneos.length == 0){
-            this.aviso = 1;
-          }
+            if(this.torneos.length == 0){
+              this.aviso = 1;
+            }
         },
         e=>{
+          this.aviso =1;
           console.log(e);
-          this.aviso =1
         }
-      )
+      );
   }
 
   buscarFiltro(){
@@ -77,7 +91,7 @@ export class InscritoTorneoPage {
       for(let i in this.torneos){
         if(this.torneos[i].idDeporte==this.form.value.idDeporte){
           torneoBusqueda.push(this.torneos[i]);
-          console.log('entro');
+          console.log('entro deporte');
         }
       }
       this.torneos = torneoBusqueda;
@@ -85,9 +99,10 @@ export class InscritoTorneoPage {
     if(this.form.value.genero != 3){
       let torneoBusqueda = [];
       for(let i in this.torneos){
+        
         if(this.torneos[i].idGenero==this.form.value.genero){
           torneoBusqueda.push(this.torneos[i]);
-          console.log('entro');
+          console.log('entro genero');
         }
       }
       this.torneos = torneoBusqueda;
@@ -97,19 +112,12 @@ export class InscritoTorneoPage {
       for(let i in this.torneos){
         if(this.torneos[i].individual==this.form.value.tipo){
           torneoBusqueda.push(this.torneos[i]);
-          console.log('entro');
+          console.log('entro tipo');
         }
       }
       this.torneos = torneoBusqueda;
     }
   }
-
-  buscar(){
-    this.getTorneos();
-    this.aviso = 0;
-    
-  }
-
   showAlert(idTorneo:any, i:any) {
     const alert = this.alertCtrl.create({
       title: 'Eliminar!',
@@ -133,27 +141,25 @@ export class InscritoTorneoPage {
     alert.present();
   }
 
-
   eliminar(idTorneo:any,i:any){
     console.log('entro');
-
-    this.torneoService.deleteTorneoEquipo(idTorneo,this.idEquipo)
+    
+    this.torneoProvider.deleteTorneo(idTorneo)
       .subscribe(
         res=>{
+          console.log(res);
           this.torneos.splice(i,1);
         },
         e=>{
           console.log(e);
         }
-      )
-
-    
+      );    
   }
 
-  ver(idTorneo){
-    this.torneoService.setIdTorneo(idTorneo);
-    this.torneoService.setIdVer(1);
-    this.navCtrl.push(VerTorneoPage);
+  editar(idTorneo){
+    this.torneoProvider.setIdTorneo(idTorneo);
+    this.navCtrl.push(EditarTorneoPage);
   }
+  
 
 }

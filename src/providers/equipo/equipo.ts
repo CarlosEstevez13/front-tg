@@ -16,12 +16,17 @@ export class EquipoProvider {
 
   constructor(public _http: Http) {
     console.log('Hello EquipoProvider Provider');
-    this.url = 'http://10.14.19.100:3002/api/';
+    this.url = 'http://192.168.1.6:3002/api/';
   }
 
   getEquipos(idDeporte:any) {
     this.headers = new Headers({'Content-Type': 'application/json'});
     return this._http.get(this.url + `equiposDeporte/${idDeporte}` ).map((res:any) => res.json());
+  }
+
+  getEquipos1() {
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `equipos/` ).map((res:any) => res.json());
   }
 
   getNroIntEquipos(idDeporte:any) {
@@ -145,6 +150,10 @@ export class EquipoProvider {
 
   deleteSolEquipo( idSolicitud:any){
     return this._http.delete(this.url + `solicitud/${idSolicitud}` , { headers: this.headers } ).map(res => res.json());
+  }
+
+  deleteEquipo( idEquipo:any){
+    return this._http.delete(this.url + `equipo/${idEquipo}` , { headers: this.headers } ).map(res => res.json());
   }
 
 }

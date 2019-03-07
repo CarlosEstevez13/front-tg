@@ -1,3 +1,6 @@
+import { GestionarTorneosPageModule } from './../pages/gestionar-torneos/gestionar-torneos.module';
+import { GestionarUsuarioPage } from './../pages/gestionar-usuario/gestionar-usuario';
+import { AdminPageModule } from './../pages/admin/admin.module';
 import { UbicacionPageModule } from './../pages/ubicacion/ubicacion.module';
 import { GoogleMapComponent } from './../components/google-map/google-map';
 import { JuradoPageModule } from './../pages/jurado/jurado.module';
@@ -104,6 +107,15 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { JuradoPage } from '../pages/jurado/jurado';
 import { MapaProvider } from '../providers/mapa/mapa';
 import { UbicacionPage } from '../pages/ubicacion/ubicacion';
+import { AdminPage } from '../pages/admin/admin';
+import { GestionarEquipoPageModule } from '../pages/gestionar-equipo/gestionar-equipo.module';
+import { GestionarUsuarioPageModule } from '../pages/gestionar-usuario/gestionar-usuario.module';
+import { GestionarEquipoPage } from '../pages/gestionar-equipo/gestionar-equipo';
+import { GestionarSalidasIPageModule } from '../pages/gestionar-salidas-i/gestionar-salidas-i.module';
+import { GestionarSalidasEPageModule } from '../pages/gestionar-salidas-e/gestionar-salidas-e.module';
+import { GestionarSalidasEPage } from '../pages/gestionar-salidas-e/gestionar-salidas-e';
+import { GestionarSalidasIPage } from '../pages/gestionar-salidas-i/gestionar-salidas-i';
+import { GestionarTorneosPage } from '../pages/gestionar-torneos/gestionar-torneos';
 
 @NgModule({
   declarations: [
@@ -182,6 +194,12 @@ import { UbicacionPage } from '../pages/ubicacion/ubicacion';
     ParticipantesTorneoPageModule,
     JuradoPageModule,
     UbicacionPageModule,
+    AdminPageModule,
+    GestionarUsuarioPageModule,
+    GestionarEquipoPageModule,
+    GestionarSalidasIPageModule,
+    GestionarSalidasEPageModule,
+    GestionarTorneosPageModule,
     /* IonicModule.forRoot(MyApp), */
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages:false
@@ -233,8 +251,13 @@ import { UbicacionPage } from '../pages/ubicacion/ubicacion';
     CrearEquipoPage,
     ParticipantesTorneoPage,
     JuradoPage,
-    UbicacionPage
-
+    UbicacionPage,
+    AdminPage,
+    GestionarUsuarioPage,
+    GestionarEquipoPage,
+    GestionarSalidasEPage,
+    GestionarSalidasIPage,
+    GestionarTorneosPage
   ],
   providers: [
     StatusBar,

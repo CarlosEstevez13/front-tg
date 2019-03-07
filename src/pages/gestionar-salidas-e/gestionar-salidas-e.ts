@@ -1,22 +1,18 @@
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { EditarSalidaEPage } from './../editar-salida-e/editar-salida-e';
 import { VerSalidaEPage } from './../ver-salida-e/ver-salida-e';
-import { SalidaEProvider } from './../../providers/salida-e/salida-e';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { SalidaEProvider } from '../../providers/salida-e/salida-e';
 
-/**
- * Generated class for the SalidasEPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({
-  selector: 'page-salidas-e',
-  templateUrl: 'salidas-e.html',
+  selector: 'page-gestionar-salidas-e',
+  templateUrl: 'gestionar-salidas-e.html',
 })
-export class SalidasEPage {
+export class GestionarSalidasEPage {
 
   salidas:any = [];
   deportes:any = [];
@@ -25,6 +21,7 @@ export class SalidasEPage {
   data:any;
 
   constructor(public navCtrl: NavController,
+              public alertCtrl: AlertController,
               public navParams: NavParams,
               private fb: FormBuilder,
               private salidasProvider: SalidaEProvider) {
@@ -34,6 +31,7 @@ export class SalidasEPage {
                 });
   }
 
+  
   ionViewWillEnter(){
 
     this.salidasProvider.getDeportes()
@@ -84,7 +82,7 @@ export class SalidasEPage {
   getSalidas(){
     this.aviso = 0;
     this.salidas = [];
-    this.salidasProvider.getSalidasEInscribirse()
+    this.salidasProvider.getSalidas()
                 .subscribe(
                   res=>{
                     console.log(res);
@@ -108,8 +106,71 @@ export class SalidasEPage {
 
   ver(idSalidaE){
     this.salidasProvider.setSalidaE(idSalidaE);
-    this.salidasProvider.setIdVer(0);
+    this.salidasProvider.setIdVer(1);
     this.navCtrl.push(VerSalidaEPage);
+  }
+
+  editar(idSalida){
+    console.log(idSalida);
+    this.salidasProvider.setSalidaE(idSalida);
+    this.navCtrl.push(EditarSalidaEPage);
+  }
+  
+  eliminar(idSalida:any,i:any){
+    console.log('entro');
+
+    this.salidasProvider.deleteSalidaEquipos(idSalida)
+      .subscribe(
+        res=>{
+          this.salidasProvider.deleteSalida(idSalida)
+            .subscribe(
+              res=>{
+                console.log(res);
+                this.salidas.splice(i,1);
+              },
+              e=>{
+                console.log(e);
+              }
+            );
+        },
+        e=>{
+          this.salidasProvider.deleteSalida(idSalida)
+            .subscribe(
+              res=>{
+                console.log(res);
+                this.salidas.splice(i,1);
+              },
+              e=>{
+                console.log(e);
+              }
+            );
+        }
+      )
+
+    
+  }
+
+  showAlert(idSalida:any, i:any) {
+    const alert = this.alertCtrl.create({
+      title: 'Eliminar!',
+      subTitle: 'Estas seguro de borrar esta Salida?',
+      buttons: [{
+        text: 'Si',
+        handler: () => {
+          this.eliminar(idSalida,i)
+          //this.navCtrl.pop();
+        }
+      },
+        {
+          text: 'No',
+          handler: () => {
+            //this.navCtrl.pop();
+          } 
+          }
+    ]
+      
+    });
+    alert.present();
   }
 
 }

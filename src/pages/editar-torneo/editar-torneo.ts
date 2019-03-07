@@ -77,6 +77,7 @@ export class EditarTorneoPage {
   }
 
   editarUbicacion(){
+    console.log('entro');
     sessionStorage.setItem('tempLat','null');
     sessionStorage.setItem('tempLng','null');
     this.navCtrl.push(UbicacionPage);
