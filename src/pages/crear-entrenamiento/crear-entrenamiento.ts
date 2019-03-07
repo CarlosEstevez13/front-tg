@@ -1,11 +1,10 @@
-
 import { SalidaIProvider } from '../../providers/salida-i/salida-i';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 
 /**
- * Generated class for the CrearSalidaIPage page.
+ * Generated class for the CrearEntrenamientoPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -13,55 +12,47 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 
 @IonicPage()
 @Component({
-  selector: 'page-crear-salida-i',
-  templateUrl: 'crear-salida-i.html',
+  selector: 'page-crear-entrenamiento',
+  templateUrl: 'crear-entrenamiento.html',
 })
-export class CrearSalidaIPage {
+export class CrearEntrenamientoPage {
 
   form: FormGroup;
   id:any;
   idUsuario:any;
-  idDeporte:0;
+  idDeporte:any;
   idRol:any;
   deportes:any = [];
 
   constructor(public navCtrl: NavController,
-             public navParams: NavParams,
-             public _salidaIProvider : SalidaIProvider,
-             public alertCtrl: AlertController,
-             private fb: FormBuilder) {
-             this.idUsuario = sessionStorage.getItem('idUsuario');
-             this.idRol = sessionStorage.getItem('idRol');
-             
-              
-              this.form = this.fb.group({
-                descripcion: new FormControl(),
-                finalizado: new FormControl(0),
-                idUsuario: new FormControl(this.idUsuario),
-                idDeporte: new FormControl(this.idDeporte),
-                idRol: new FormControl(this.idRol),
-                fecha: new FormControl(),
-                hora: new FormControl(),
-                nroParticipantes: new FormControl(),
-                entrenamiento: new FormControl(0),
-                horaFin: new FormControl(),
-                latitud: new FormControl(1),
-                longitud: new FormControl(1),
-                nombre: new FormControl(),
-              });
+              public navParams: NavParams,
+              public _salidaIProvider : SalidaIProvider,
+              public alertCtrl: AlertController,
+              private fb: FormBuilder) {
+
+                this.idUsuario = sessionStorage.getItem('idUsuario');
+                this.idRol = sessionStorage.getItem('idRol');
+                this.idDeporte = sessionStorage.getItem('idDeporte');
+
+                this.form = this.fb.group({
+                  descripcion: new FormControl(),
+                  finalizado: new FormControl(0),
+                  idUsuario: new FormControl(this.idUsuario),
+                  idDeporte: new FormControl(this.idDeporte),
+                  idRol: new FormControl(this.idRol),
+                  fecha: new FormControl(),
+                  hora: new FormControl(),
+                  nroParticipantes: new FormControl(),
+                  entrenamiento: new FormControl(1),
+                  horaFin: new FormControl(),
+                  latitud: new FormControl(1),
+                  longitud: new FormControl(1),
+                  nombre: new FormControl(),
+                });
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CrearSalidaIPage');
-    this._salidaIProvider.getDeporte().subscribe(
-      res=>{
-        this.deportes=res.result;
-        console.log(res.result);
-    },e=>{
-      
-      console.log(e);
-
-    });
+    console.log('ionViewDidLoad CrearEntrenamientoPage');
   }
 
   crear(){
@@ -107,5 +98,6 @@ export class CrearSalidaIPage {
     });
     alert.present();
   }
+
 
 }

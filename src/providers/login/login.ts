@@ -11,7 +11,7 @@ export class LoginProvider {
 
   constructor(public _http: Http) {
     console.log('Hello LoginProvider');
-    this.url = 'http://10.14.21.84:3002/api/';
+    this.url = 'http://192.168.1.6:3002/api/';
   }
 
   login(usuario: string, password: string) {

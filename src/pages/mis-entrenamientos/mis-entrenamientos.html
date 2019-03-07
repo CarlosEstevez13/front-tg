@@ -1,5 +1,5 @@
 <!--
-  Generated template for the MisSalidasIPage page.
+  Generated template for the MisEntrenamientosPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -7,22 +7,13 @@
 <ion-header>
 
     <ion-navbar>
-        <ion-title>mis-salidas</ion-title>
+        <ion-title>mis-entrenamientos</ion-title>
     </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-    <ion-item>
-        <ion-label>Deporte</ion-label>
-        <ion-select [(ngModel)]="idDeporte">
-            <ion-option value='0'>Todos</ion-option>
-            <ion-option *ngFor="let deporte of deportes" value='{{deporte.idDeporte}}'>{{deporte.nombre}}</ion-option>
-        </ion-select>
-    </ion-item>
-
-    <button (click)="buscar();" ion-button outline>Buscar</button>
     <ion-card class="fondo" *ngFor="let sali of salida">
 
         <ion-item class="tituloEvento">
@@ -54,15 +45,9 @@
                 <button ion-button *ngIf="sali.finalizado==0" (click)=" editar(sali.idSalidaI, sali.entrenamiento);">Editar</button>
                 <button ion-button color="danger" *ngIf="sali.finalizado==0" (click)="showAlert(sali.idSalidaI);">Eliminar</button>
 
-
-
-
             </ion-item>
 
         </ion-card-content>
 
     </ion-card>
-    <h2 *ngIf="salida==0">
-        No existen salidas de este deporte disponibles
-    </h2>
 </ion-content>

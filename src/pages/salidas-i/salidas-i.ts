@@ -19,6 +19,7 @@ export class SalidasIPage {
 
   id:any;
   disponibles: any =[];
+  todas : any = [];
   idDeporte:any;
   deportes:any = [];
   
@@ -59,6 +60,7 @@ export class SalidasIPage {
           
           this.disponibles=res.result;
           console.log(this.disponibles);
+          this.todas = this.disponibles;
       },
       e=>{
           console.log(e);
@@ -72,16 +74,15 @@ export class SalidasIPage {
     this.salidasDisponibles();
     }
     else{
-      this._salidaIProvider.getSalidasDisponiblesDeport(this.id,this.idDeporte).subscribe(
-        res=>{
-            
-            this.disponibles=res.result;
-            console.log(this.disponibles);
-        },
-        e=>{
-            console.log(e);
+      this.disponibles= this.todas;
+      let disponiblesFiltrada =[];
+      for(let i in this.disponibles){
+        if(this.disponibles[i].idDeporte == this.idDeporte){
+          disponiblesFiltrada.push(this.disponibles[i]);
         }
-      );
+      }
+      this.disponibles= disponiblesFiltrada;
+      console.log(this.disponibles);
     }
     
   }

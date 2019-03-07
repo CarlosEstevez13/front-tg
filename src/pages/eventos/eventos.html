@@ -6,28 +6,31 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title class="title">Eventos</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title class="title">Eventos</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content class="card-background-page" padding>
 
-        <ion-card class="opcion" (click)='getTorneos()'>
-          <img src="assets/imgs/torneo.jpg"/>
-          <div class="card-title">Torneos</div>
-        </ion-card>
-      
-        <ion-card class="opcion" (click)='getSalidasI()'>
-          <img src="assets/imgs/pista.jpg"/>
-          <div class="card-title">Salidas Individuales</div>
-        </ion-card>
-      
-        <ion-card class="opcion" (click)='getSalidasE()' *ngIf="idEquipo != 'null'">
-          <img src="assets/imgs/encuentro.jpg"/>
-          <div class="card-title">Salidas por Equipos</div>
-        </ion-card>
+    <ion-card class="opcion" (click)='getTorneos()'>
+        <img src="assets/imgs/torneo.jpg" />
+        <div class="card-title">Torneos</div>
+    </ion-card>
 
+    <ion-card class="opcion" (click)='getSalidasI()'>
+        <img src="assets/imgs/pista.jpg" />
+        <div class="card-title">Salidas Individuales</div>
+    </ion-card>
+
+    <ion-card class="opcion" (click)='getSalidasE()' *ngIf="idEquipo != 'null'">
+        <img src="assets/imgs/encuentro.jpg" />
+        <div class="card-title">Salidas por Equipos</div>
+    </ion-card>
+    <ion-card class="opcion">
+        <img src="assets/imgs/entrenar.jpg" (click)='getEntrenamiento()' />
+        <div class="card-title">Entrenamientos</div>
+    </ion-card>
 </ion-content>

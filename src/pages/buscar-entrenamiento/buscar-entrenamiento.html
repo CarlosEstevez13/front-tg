@@ -1,5 +1,5 @@
 <!--
-  Generated template for the SalidasIPage page.
+  Generated template for the BuscarEntrenamientoPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -7,22 +7,13 @@
 <ion-header>
 
     <ion-navbar>
-        <ion-title>salidasI</ion-title>
+        <ion-title>buscar-entrenamiento</ion-title>
     </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-    <ion-item>
-        <ion-label>Deporte</ion-label>
-        <ion-select [(ngModel)]="idDeporte">
-            <ion-option value='0'>Todos</ion-option>
-            <ion-option *ngFor="let deporte of deportes" value='{{deporte.idDeporte}}'>{{deporte.nombre}}</ion-option>
-        </ion-select>
-    </ion-item>
-
-    <button (click)="buscar();" ion-button outline>Buscar</button>
     <ion-card class="fondo" *ngFor="let salida of disponibles" (click)="ver(salida.idSalidaI);">
 
         <ion-item class="tituloEvento">
@@ -47,7 +38,7 @@
         </ion-card-content>
 
     </ion-card>
-    <h2 *ngIf="disponibles.length==0">
+    <h2 *ngIf="disponibles==null">
         No existen salidas de este deporte disponibles
     </h2>
 </ion-content>

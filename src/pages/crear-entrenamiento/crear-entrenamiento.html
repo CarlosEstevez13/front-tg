@@ -1,5 +1,5 @@
 <!--
-  Generated template for the CrearSalidaIPage page.
+  Generated template for the CrearEntrenamientoPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -7,7 +7,7 @@
 <ion-header>
 
     <ion-navbar>
-        <ion-title>crearSalidaI</ion-title>
+        <ion-title>crear-entrenamiento</ion-title>
     </ion-navbar>
 
 </ion-header>
@@ -28,13 +28,7 @@
                 <ion-label fixed>Descripcion</ion-label>
                 <ion-textarea rows="3" formControlName="descripcion" type="text"></ion-textarea>
             </ion-item>
-            <ion-item>
-                <ion-label>Deporte</ion-label>
-                <ion-select [(ngModel)]="idDeporte" formControlName="idDeporte">
-                    <ion-option value='0'>Todos</ion-option>
-                    <ion-option *ngFor="let deporte of deportes" value='{{deporte.idDeporte}}'>{{deporte.nombre}}</ion-option>
-                </ion-select>
-            </ion-item>
+
             <ion-item>
                 <ion-label fixed>Participantes</ion-label>
                 <ion-textarea formControlName="nroParticipantes" type="number"></ion-textarea>

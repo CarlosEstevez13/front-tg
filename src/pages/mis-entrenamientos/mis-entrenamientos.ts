@@ -1,11 +1,10 @@
-
+import { EditarSalidasIPage } from './../editar-salidas-i/editar-salidas-i';
 import { SalidaIProvider } from '../../providers/salida-i/salida-i';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { EditarSalidasIPage } from '../editar-salidas-i/editar-salidas-i';
 
 /**
- * Generated class for the MisSalidasIPage page.
+ * Generated class for the MisEntrenamientosPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -13,71 +12,35 @@ import { EditarSalidasIPage } from '../editar-salidas-i/editar-salidas-i';
 
 @IonicPage()
 @Component({
-  selector: 'page-mis-salidas-i',
-  templateUrl: 'mis-salidas-i.html',
+  selector: 'page-mis-entrenamientos',
+  templateUrl: 'mis-entrenamientos.html',
 })
-export class MisSalidasIPage {
+export class MisEntrenamientosPage {
+
   id:any;
   salida:any;
-  todas : any =[];
-  idDeporte:any;
-  deportes:any = [];
-  
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public alertCtrl: AlertController,
               public _salidaIProvider : SalidaIProvider) {
+
               this.id = sessionStorage.getItem('idUsuario')
   }
 
   ionViewWillEnter() {
-    console.log('ionViewDidLoad MisSalidasIPage');
-    this._salidaIProvider.getDeporte().subscribe(
-      res=>{
-        this.deportes=res.result;
-        console.log(res.result);
-    },e=>{
-      
-      console.log(e);
-
-    });
-    this.getSalidasDisponibles();
-  }
-
-  getSalidasDisponibles(){
-    this._salidaIProvider.getMisSalidas(this.id).subscribe(
+    console.log('ionViewDidLoad MisEntrenamientosPage');
+    this._salidaIProvider.getMisEntrenamientos(this.id).subscribe(
       res=>{
           
           this.salida=res.result;
           console.log(this.salida);
-          this.todas = this.salida;
       },
       e=>{
           console.log(e);
       }
     );
   }
-
-  buscar(){
-    console.log(this.idDeporte);
-    if(this.idDeporte==0){
-    this.getSalidasDisponibles();
-    }
-    else{
-      this.salida= this.todas;
-      let disponiblesFiltrada =[];
-      for(let i in this.salida){
-        if(this.salida[i].idDeporte == this.idDeporte){
-          disponiblesFiltrada.push(this.salida[i]);
-        }
-      }
-      this.salida= disponiblesFiltrada;
-      console.log(this.salida);
-    }
-    
-  }
-
-
 
   editar(idSalida:any, entrenamiento:any){
     sessionStorage.setItem('idSalidaI',idSalida);
@@ -132,5 +95,4 @@ export class MisSalidasIPage {
     });
     alert.present();
   }
-
 }

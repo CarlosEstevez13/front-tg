@@ -18,15 +18,40 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class InscritoSalidaIPage {
   id:any;
   salida:any;
+  todas:any;
+  idDeporte:any;
+  deportes:any = [];
 
   constructor(public navCtrl: NavController,
                public navParams: NavParams,
                public _salidaIProvider : SalidaIProvider) {
+                 
             this.id = sessionStorage.getItem('idUsuario')
   }
 
   ionViewWillEnter() {
     console.log('ionViewDidLoaaad InscritoSalidaIPage');
+    this._salidaIProvider.getDeporte().subscribe(
+      res=>{
+        this.deportes=res.result;
+        console.log(res.result);
+    },e=>{
+      
+      console.log(e);
+
+    });
+    this.salidadInscritas();
+  }
+
+  ver(id:any){
+    sessionStorage.setItem("idSalidaI", id);
+    sessionStorage.setItem("unir", '1');
+    
+    this.navCtrl.push(VerSalidaIPage);
+
+  }
+
+  salidadInscritas(){
     this._salidaIProvider.getSalidasIAJugar(this.id).subscribe(
       res=>{
           
@@ -38,13 +63,26 @@ export class InscritoSalidaIPage {
       }
     );
   }
+  
 
-  ver(id:any){
-    sessionStorage.setItem("idSalidaI", id);
-    sessionStorage.setItem("unir", '1');
+  buscar(){
+    console.log(this.idDeporte);
+    if(this.idDeporte==0){
+    this.salidadInscritas();
+    }
+    else{
+      this.salida= this.todas;
+      let disponiblesFiltrada =[];
+      for(let i in this.salida){
+        if(this.salida[i].idDeporte == this.idDeporte){
+          disponiblesFiltrada.push(this.salida[i]);
+        }
+      }
+      this.salida= disponiblesFiltrada;
+      console.log(this.salida);
+    }
     
-    this.navCtrl.push(VerSalidaIPage);
-
   }
+  
 
 }
