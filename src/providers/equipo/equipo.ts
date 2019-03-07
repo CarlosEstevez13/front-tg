@@ -24,6 +24,11 @@ export class EquipoProvider {
     return this._http.get(this.url + `equiposDeporte/${idDeporte}` ).map((res:any) => res.json());
   }
 
+  getEquipos1() {
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `equipos/` ).map((res:any) => res.json());
+  }
+
   getNroIntEquipos(idDeporte:any) {
     this.headers = new Headers({'Content-Type': 'application/json'});
     return this._http.get(this.url + `nroIntEquiposDeporte/${idDeporte}` ).map((res:any) => res.json());
@@ -145,6 +150,10 @@ export class EquipoProvider {
 
   deleteSolEquipo( idSolicitud:any){
     return this._http.delete(this.url + `solicitud/${idSolicitud}` , { headers: this.headers } ).map(res => res.json());
+  }
+
+  deleteEquipo( idEquipo:any){
+    return this._http.delete(this.url + `equipo/${idEquipo}` , { headers: this.headers } ).map(res => res.json());
   }
 
 }

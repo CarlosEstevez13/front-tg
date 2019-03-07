@@ -1,3 +1,4 @@
+import { UbicacionPage } from './../ubicacion/ubicacion';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { SalidaEProvider } from './../../providers/salida-e/salida-e';
 import { Component } from '@angular/core';
@@ -28,8 +29,8 @@ export class CrearSalidaEPage {
                   fecha: new FormControl(),
                   hora: new FormControl(),
                   horaFin: new FormControl(),
-                  latitud: new FormControl(1),
-                  longitud: new FormControl(1),
+                  latitud: new FormControl(null),
+                  longitud: new FormControl(null),
                   idDeporte: new FormControl()
                 });
   }
@@ -47,9 +48,22 @@ export class CrearSalidaEPage {
         }
       )
   }
+  
+  ionViewDidLoad(){
+    sessionStorage.setItem('tempLat','null');
+    sessionStorage.setItem('tempLng','null');
+  }
+
+  agregarUbicacion(){
+    this.navCtrl.push(UbicacionPage);
+  }
 
   crear(){
     console.log(this.form.value);
+    this.form.value.latitud = sessionStorage.getItem('tempLat');
+    this.form.value.longitud = sessionStorage.getItem('tempLng');
+    console.log(this.form.value);
+
     this.salidaService.addSalida(this.form.value)
       .subscribe(
         res=>{
@@ -62,6 +76,8 @@ export class CrearSalidaEPage {
             .subscribe(
               res=>{
                 console.log(res);
+                sessionStorage.removeItem('tempLat');
+                sessionStorage.removeItem('tempLng');
                 this.showAlert();
               },
               e=>{
@@ -75,6 +91,10 @@ export class CrearSalidaEPage {
       )
   }
 
+  ionViewWillLeave(){
+    sessionStorage.removeItem('tempLat');
+    sessionStorage.removeItem('tempLng');
+  }
 
   showAlert() {
     const alert = this.alertCtrl.create({

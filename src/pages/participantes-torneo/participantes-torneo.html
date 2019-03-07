@@ -9,6 +9,7 @@
 
 
 <ion-content padding>
+  <h2 class="centrado" *ngIf="tiene==0">No hay equipos inscritos</h2>
   <ion-card class="fondo" *ngFor="let equipo of participantes; index as i">
     <div (click)='verEquipo(equipo.idEquipo)'>
     <ion-item class="tituloEvento">

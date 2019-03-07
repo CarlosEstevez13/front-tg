@@ -28,9 +28,17 @@
       Descripcion : {{salida.descripcion}} 
     </button> 
 
+    <button ion-item >
+      Genero : {{salida.nombreGenero}}
+    </button> 
+
     <button (click)='verEquipo(salida.idEquipo)' ion-item >
         Versus : {{salida.rival}} <button ion-button> Ver</button>
       </button> 
+
+      <ion-item *ngIf="salida.latitud != 'null'">
+        Ubicacion :  <button (click)='ubicacion(salida.latitud, salida.longitud)'  ion-button>ver</button>
+      </ion-item>
 
     <button ion-item >
       Fecha : {{salida.fecha}} 

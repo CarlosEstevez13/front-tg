@@ -21,6 +21,7 @@ export class VerEquipoPage {
     nroIntegrantes: '',
     idDeporte: 0,
   }
+  vaIntegrante:any = 0;
   aviso =0;
 
   historial:any = [];
@@ -36,11 +37,15 @@ export class VerEquipoPage {
   }
 
   integrantes(){
+    this.vaIntegrante =1;
+    console.log(this.vaIntegrante);
     this.navCtrl.push(IntegrantesPage);
+
   }
 
   ionViewWillLeave(){
-    if(sessionStorage.getItem('temp') == '1'){
+    console.log(this.vaIntegrante);
+    if(sessionStorage.getItem('temp') == '1' && this.vaIntegrante!=1){
       console.log('entro')
       sessionStorage.setItem('idEquipo',this.equipoService.getIdEquipo());
       sessionStorage.removeItem('temp');
@@ -49,6 +54,7 @@ export class VerEquipoPage {
   }
 
   ionViewWillEnter(){
+    this.vaIntegrante = 0;
     this.idEquipo = sessionStorage.getItem('idEquipo');
     this.idDeporte = sessionStorage.getItem('idDeporte');
 

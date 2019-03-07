@@ -19,13 +19,26 @@
     <button ion-item>
             Descripcion: {{torneo.descripcion}}
       </button> 
+
+      <button ion-item>
+        Genero: {{torneo.nombreGenero}}
+  </button> 
+
     <ion-item *ngIf="reglamento == 1">
       Reglamento: <button (click)='verPdf(torneo.reglamento)' ion-button>ver</button>
     </ion-item>
 
+    <ion-item *ngIf="torneo.latitud != 'null'">
+        Ubicacion :  <button (click)='ubicacion(torneo.latitud, torneo.longitud)'  ion-button>ver</button>
+      </ion-item>
+
     <ion-item  >
       Equipos inscritos: <button (click)='verInscritos()'  ion-button>ver</button>
     </ion-item>  
+
+    <ion-item  >
+       Arbitos: <button (click)='verJurado(torneo.idTorneo)'  ion-button>ver</button>
+      </ion-item>  
 
     <button ion-item>
       Fecha de Inicio: {{torneo.fechaInicio}}

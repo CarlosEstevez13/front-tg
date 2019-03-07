@@ -1,3 +1,9 @@
+import { GestionarTorneosPageModule } from './../pages/gestionar-torneos/gestionar-torneos.module';
+import { GestionarUsuarioPage } from './../pages/gestionar-usuario/gestionar-usuario';
+import { AdminPageModule } from './../pages/admin/admin.module';
+import { UbicacionPageModule } from './../pages/ubicacion/ubicacion.module';
+import { GoogleMapComponent } from './../components/google-map/google-map';
+import { JuradoPageModule } from './../pages/jurado/jurado.module';
 
 import { MisEntrenamientosPageModule } from '../pages/mis-entrenamientos/mis-entrenamientos.module';
 import { CrearEntrenamientoPageModule } from '../pages/crear-entrenamiento/crear-entrenamiento.module';
@@ -108,6 +114,18 @@ import { VerEntrenamientoPage } from '../pages/ver-entrenamiento/ver-entrenamien
 import { CrearEntrenamientoPage } from '../pages/crear-entrenamiento/crear-entrenamiento';
 import { MisEntrenamientosPage } from '../pages/mis-entrenamientos/mis-entrenamientos';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { JuradoPage } from '../pages/jurado/jurado';
+import { MapaProvider } from '../providers/mapa/mapa';
+import { UbicacionPage } from '../pages/ubicacion/ubicacion';
+import { AdminPage } from '../pages/admin/admin';
+import { GestionarEquipoPageModule } from '../pages/gestionar-equipo/gestionar-equipo.module';
+import { GestionarUsuarioPageModule } from '../pages/gestionar-usuario/gestionar-usuario.module';
+import { GestionarEquipoPage } from '../pages/gestionar-equipo/gestionar-equipo';
+import { GestionarSalidasIPageModule } from '../pages/gestionar-salidas-i/gestionar-salidas-i.module';
+import { GestionarSalidasEPageModule } from '../pages/gestionar-salidas-e/gestionar-salidas-e.module';
+import { GestionarSalidasEPage } from '../pages/gestionar-salidas-e/gestionar-salidas-e';
+import { GestionarSalidasIPage } from '../pages/gestionar-salidas-i/gestionar-salidas-i';
+import { GestionarTorneosPage } from '../pages/gestionar-torneos/gestionar-torneos';
 
 
 @NgModule({
@@ -116,7 +134,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    GoogleMapComponent
     /* EventosPage,
     CrearEventoPage,
     TorneosPage,
@@ -189,6 +208,14 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     VerEntrenamientoPageModule,
     CrearEntrenamientoPageModule,
     MisEntrenamientosPageModule,
+    JuradoPageModule,
+    UbicacionPageModule,
+    AdminPageModule,
+    GestionarUsuarioPageModule,
+    GestionarEquipoPageModule,
+    GestionarSalidasIPageModule,
+    GestionarSalidasEPageModule,
+    GestionarTorneosPageModule,
     /* IonicModule.forRoot(MyApp), */
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages:false
@@ -243,7 +270,15 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     BuscarEntrenamientoPage,
     VerEntrenamientoPage,
     CrearEntrenamientoPage,
-    MisEntrenamientosPage
+    MisEntrenamientosPage,
+    JuradoPage,
+    UbicacionPage,
+    AdminPage,
+    GestionarUsuarioPage,
+    GestionarEquipoPage,
+    GestionarSalidasEPage,
+    GestionarSalidasIPage,
+    GestionarTorneosPage
   ],
   providers: [
     StatusBar,
@@ -255,8 +290,9 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     LoginProvider,
     HistorialProvider,
     SalidaEProvider,
-    SalidaIProvider,
-    InAppBrowser
+    InAppBrowser,
+    MapaProvider,
+    SalidaIProvider
   ]
 })
 export class AppModule {}

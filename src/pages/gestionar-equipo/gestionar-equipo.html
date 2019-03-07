@@ -1,0 +1,41 @@
+<!--
+  Generated template for the GestionarEquipoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Gestionar Equipo</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card class="fondo" *ngFor="let equipo of equipos; index as i">
+    <div (click)='verEquipo(equipo.idEquipo)'>
+    <ion-item class="tituloEvento">
+      <h2><i class="fas fa-star-half-alt margenSup"></i> {{ equipo.nombre | uppercase}}</h2>
+      <div item-end>
+        <b> <i class="fas fa-users"></i>
+          id {{equipo.idEquipo}}
+        </b>
+      </div>
+    </ion-item>
+    
+  </div>
+    <ion-card-content class="">
+      
+      <ion-item class="fondoNone">
+        <h2><i class="fas fa-align-justify margenSup"></i> {{equipo.descripcion}}</h2>
+      </ion-item>
+      <button (click)="editar(equipo.idEquipo)" ion-button>Editar</button>
+        <button (click)="showAlert(equipo.idEquipo, i)" ion-button color="danger">Eliminar</button>
+    </ion-card-content>
+
+
+  </ion-card>
+
+</ion-content>

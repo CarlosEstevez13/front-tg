@@ -31,7 +31,9 @@ export class InscritoTorneoPage {
               public torneoService: TorneosProvider,
               public alertCtrl: AlertController) {
                 this.form = this.fb.group({
-                  idDeporte: new FormControl()
+                  idDeporte: new FormControl(),
+                  genero: new FormControl(3),
+                  tipo: new FormControl(2)
                 });
   }
 
@@ -57,6 +59,10 @@ export class InscritoTorneoPage {
         res=>{
           this.torneos = res.result;
           console.log(this.torneos);
+          this.buscarFiltro();
+          if(this.torneos.length == 0){
+            this.aviso = 1;
+          }
         },
         e=>{
           console.log(e);
@@ -65,30 +71,43 @@ export class InscritoTorneoPage {
       )
   }
 
-  buscar(){
-    this.aviso = 0;
-    this.data = {
-      idDeporte : this.form.value.idDeporte,
-      idEquipo : sessionStorage.getItem('idEquipo')
-    };
-    console.log(this.data);
-    if (this.form.value.idDeporte !=0){
-
-      this.torneoService.getTorneosDeEquipoD(this.data)
-        .subscribe(
-          res=>{
-            this.torneos = res.result;
-            console.log(this.torneos);
-          },
-          e=>{
-            console.log(e);
-            this.aviso = 1;
-            this.torneos = [];
-          }
-        );
-    }else{
-      this.getTorneos();
+  buscarFiltro(){
+    if(this.form.value.idDeporte != 0){
+      let torneoBusqueda = [];
+      for(let i in this.torneos){
+        if(this.torneos[i].idDeporte==this.form.value.idDeporte){
+          torneoBusqueda.push(this.torneos[i]);
+          console.log('entro');
+        }
+      }
+      this.torneos = torneoBusqueda;
     }
+    if(this.form.value.genero != 3){
+      let torneoBusqueda = [];
+      for(let i in this.torneos){
+        if(this.torneos[i].idGenero==this.form.value.genero){
+          torneoBusqueda.push(this.torneos[i]);
+          console.log('entro');
+        }
+      }
+      this.torneos = torneoBusqueda;
+    }
+    if(this.form.value.tipo != 2){
+      let torneoBusqueda = [];
+      for(let i in this.torneos){
+        if(this.torneos[i].individual==this.form.value.tipo){
+          torneoBusqueda.push(this.torneos[i]);
+          console.log('entro');
+        }
+      }
+      this.torneos = torneoBusqueda;
+    }
+  }
+
+  buscar(){
+    this.getTorneos();
+    this.aviso = 0;
+    
   }
 
   showAlert(idTorneo:any, i:any) {

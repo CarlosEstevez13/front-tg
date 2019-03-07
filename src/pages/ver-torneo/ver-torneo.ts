@@ -1,15 +1,11 @@
+import { UbicacionPage } from './../ubicacion/ubicacion';
+import { JuradoPage } from './../jurado/jurado';
 import { ParticipantesTorneoPage } from './../participantes-torneo/participantes-torneo';
 import { TorneosProvider } from './../../providers/torneos/torneos';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
-/**
- * Generated class for the VerTorneoPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -59,6 +55,17 @@ export class VerTorneoPage {
     this.idVer = this.torneoProvider.getIdVer();
   }
 
+  verJurado(idTorneo){
+    this.torneoProvider.setIdTorneo(idTorneo);
+    this.navCtrl.push(JuradoPage);
+  }
+
+  ubicacion(lat,lng){
+    sessionStorage.setItem('tempLat',`${lat}`);
+    sessionStorage.setItem('tempLng',`${lng}`);
+    this.navCtrl.push(UbicacionPage);
+  }
+
   verInscritos(){
     console.log('hola');
     this.navCtrl.push(ParticipantesTorneoPage);
@@ -71,6 +78,7 @@ export class VerTorneoPage {
   verPdf(nombre){
     console.log('entro');
     const browser = this.iab.create( `http://192.168.1.6:3002/pdf/${nombre}.pdf`, '_system');
+    console.log(browser);
 
   }
 

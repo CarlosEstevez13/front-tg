@@ -14,12 +14,16 @@
     <!-- <img src="assets/imgs/parchemos.png"/> -->
 
     <ion-list>
-
-        <ion-item>
-          <ion-label floating>Nombre</ion-label>
-          <ion-input formControlName="nombre" type="text"></ion-input>
-        </ion-item>
-
+      
+      <ion-item>
+        <ion-label floating>Nombre</ion-label>
+        <ion-input formControlName="nombre" type="text"></ion-input>
+      </ion-item>
+      
+      <ion-item class="item1">
+        Ubicacion :  <button (click)='editarUbicacion()'  ion-button>agregar</button>
+      </ion-item>
+      
         <ion-item>
           <ion-label fixed>Descripcion</ion-label>
           <ion-textarea rows="3" formControlName="descripcion" type="text"></ion-textarea>
@@ -34,6 +38,7 @@
           <ion-label fixed>Hora Inicio</ion-label>
           <ion-input formControlName="hora" type="time"></ion-input>
         </ion-item>
+
 
         <ion-item>
           <ion-label fixed>Hora Fin</ion-label>

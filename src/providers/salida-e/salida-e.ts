@@ -46,6 +46,11 @@ export class SalidaEProvider {
     return this._http.get(this.url + `salidaEDeporte/${idDeporte}` ).map((res:any) => res.json());
   }
 
+  getSalidas() {
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `salidasE` ).map((res:any) => res.json());
+  }
+
   addSalida(salida){
     const json = JSON.stringify(salida);
     const params = json;
@@ -70,6 +75,11 @@ export class SalidaEProvider {
   getSalidasEInscribirse(){
     this.headers = new Headers({'Content-Type': 'application/json'});
     return this._http.get(this.url + `salidaEInscribirse/${this.idDeporte}/${this.idEquipo}` ).map((res:any) => res.json());
+  }
+
+  getSalidasEInscribirseD(data){
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `salidaEInscribirseD/${data.idDeporte}/${data.idEquipo}` ).map((res:any) => res.json());
   }
 
   getSalidaE(){

@@ -163,7 +163,10 @@ export class EquipoPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EquipoPage');
+    this.getNroInt();
     this.getEquipos();
+    this.getSolUsuario();
+    
   }
 
   ionViewWillEnter(){

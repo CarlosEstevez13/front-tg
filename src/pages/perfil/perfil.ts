@@ -1,11 +1,11 @@
+import { LoginPage } from './../login/login';
+import { TabsPage } from './../tabs/tabs';
 import { EquipoProvider } from './../../providers/equipo/equipo';
 import { HttpClient } from '@angular/common/http';
 import { MyApp } from './../../app/app.component';
-import { LoginPage } from './../login/login';
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { UsuarioProvider } from '../../providers/usuario/usuario';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { EditarPerfilPage } from '../editar-perfil/editar-perfil';
 
 /**
@@ -150,7 +150,7 @@ logout(){
   sessionStorage.removeItem('idEquipo');
   sessionStorage.removeItem('idRol');
   sessionStorage.removeItem('idUsuario');
-  this.navCtrl.setRoot(MyApp);
+  this.navCtrl.setRoot(LoginPage);
 }
 
 }

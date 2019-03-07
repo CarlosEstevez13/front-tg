@@ -30,6 +30,30 @@
               <ion-option *ngFor="let deporte of deportes" value="{{deporte.idDeporte}}">{{deporte.nombre}}</ion-option>
             </ion-select>
           </ion-item>
+         
+          <ion-item *ngIf="form.value.idDeporte =='1'">
+              <ion-label>Tipo</ion-label>
+              <ion-select formControlName="individual" >
+                <ion-option value="1">Por Equipos</ion-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item *ngIf="form.value.idDeporte =='2'">
+                <ion-label>Tipo</ion-label>
+                <ion-select formControlName="individual" >
+                  <ion-option value="1">Por Equipos</ion-option>
+                </ion-select>
+              </ion-item>
+
+              <ion-item *ngIf="form.value.idDeporte =='3'">
+                  <ion-label>Tipo</ion-label>
+                  <ion-select formControlName="individual" >
+                    <ion-option value="1">Por Equipos</ion-option>
+                    <ion-option value="0">Individual</ion-option>
+                  </ion-select>
+                </ion-item>
+            
+          
 
         <ion-item>
           <ion-label fixed>Descripcion</ion-label>
@@ -47,6 +71,21 @@
         </div>
 
         <ion-item>
+          <ion-label>Genero</ion-label>
+          <ion-select formControlName="genero" >
+            <ion-option value="0">Masculino</ion-option>
+            <ion-option value="1">Femenino</ion-option>
+            <ion-option value="2">Mixto</ion-option>
+          </ion-select>
+        </ion-item>
+
+
+
+        <ion-item class="item1">
+            Ubicacion :  <button (click)='agregarUbicacion()'  ion-button>agregar</button>
+          </ion-item>
+
+        <ion-item>
           <ion-label floating>Numero Equipos</ion-label>
           <ion-input formControlName="maxEquipos" type="number"></ion-input>
         </ion-item>
@@ -56,7 +95,12 @@
           <ion-input formControlName="fechaInicio" type="date"></ion-input>
         </ion-item>
 
-
+        <ion-item>
+          <ion-label>Jurado o arbitros</ion-label>
+          <ion-select formControlName="jurado" multiple="true" cancelText="Cancelar" okText="Listo!">
+            <ion-option *ngFor="let arbitro of arbitros" value="{{arbitro.idUsuario}}">{{arbitro.nombre}}</ion-option>
+          </ion-select>
+        </ion-item>
       
       </ion-list>
 

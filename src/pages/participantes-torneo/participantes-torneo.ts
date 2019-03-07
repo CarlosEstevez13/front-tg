@@ -13,6 +13,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class ParticipantesTorneoPage {
 
   participantes:any =[];
+  tiene:any = 1;
 
   constructor(public navCtrl: NavController, 
               private torneoService: TorneosProvider,
@@ -41,6 +42,7 @@ export class ParticipantesTorneoPage {
         },
         e=>{
           console.log(e);
+          this.tiene = 0;
         }
       )
   }

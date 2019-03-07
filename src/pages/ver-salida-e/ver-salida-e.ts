@@ -1,3 +1,4 @@
+import { UbicacionPage } from './../ubicacion/ubicacion';
 import { VerEquipoPage } from './../ver-equipo/ver-equipo';
 import { SalidaEProvider } from './../../providers/salida-e/salida-e';
 import { Component } from '@angular/core';
@@ -56,6 +57,13 @@ export class VerSalidaEPage {
 
   volver(){
     this.navCtrl.pop()
+  }
+
+
+  ubicacion(lat,lng){
+    sessionStorage.setItem('tempLat',`${lat}`);
+    sessionStorage.setItem('tempLng',`${lng}`);
+    this.navCtrl.push(UbicacionPage);
   }
 
   verEquipo(idEquipo:any){

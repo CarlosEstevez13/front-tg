@@ -1,5 +1,4 @@
 import { PerfilPage } from './../perfil/perfil';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { EquipoProvider } from '../../providers/equipo/equipo';

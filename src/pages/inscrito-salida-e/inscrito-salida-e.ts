@@ -28,7 +28,8 @@ export class InscritoSalidaEPage {
               public alertCtrl: AlertController) {
 
                 this.form = this.fb.group({
-                  idDeporte: new FormControl(0)
+                  idDeporte: new FormControl(0),
+                  genero: new FormControl(3)
                 });
   }
 
@@ -62,6 +63,10 @@ export class InscritoSalidaEPage {
         res=>{
           this.salidas = res.result;
           console.log(this.salidas);
+          this.buscarFiltro();
+          if(this.salidas.length == 0){
+            this.aviso =1;
+          }
         },
         e=>{
           console.log(e);
@@ -70,8 +75,35 @@ export class InscritoSalidaEPage {
       );
   }
 
+  buscarFiltro(){
+    if(this.form.value.idDeporte != 0){
+      let salidaBusqueda = [];
+      for(let i in this.salidas){
+        if(this.salidas[i].idDeporte==this.form.value.idDeporte){
+          salidaBusqueda.push(this.salidas[i]);
+          console.log('entro');
+        }
+      }
+      this.salidas = salidaBusqueda;
+    }
+    if(this.form.value.genero != 3){
+      let salidaBusqueda = [];
+      for(let i in this.salidas){
+        if(this.salidas[i].genero==this.form.value.genero){
+          salidaBusqueda.push(this.salidas[i]);
+          console.log('entro');
+        }
+      }
+      this.salidas = salidaBusqueda;
+    }
+  }
+
   buscar(){
+
     this.aviso = 0;
+    this.getSalidas();
+
+    /* this.aviso = 0;
     this.data = {
       idDeporte : this.form.value.idDeporte,
       idEquipo : sessionStorage.getItem('idEquipo')
@@ -93,7 +125,7 @@ export class InscritoSalidaEPage {
         );
     }else{
       this.getSalidas();
-    }
+    } */
   }
 
   ver(idSalida){

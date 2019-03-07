@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { UsuarioProvider } from '../../providers/usuario/usuario';
 import { HttpClient } from '@angular/common/http';
-import { Http } from '@angular/http';
 
 /**
  * Generated class for the EditarPerfilPage page.

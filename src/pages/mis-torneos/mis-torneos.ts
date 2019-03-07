@@ -1,3 +1,4 @@
+import { ParticipantesTorneoPage } from './../participantes-torneo/participantes-torneo';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { EditarTorneoPage } from './../editar-torneo/editar-torneo';
 import { TorneosProvider } from './../../providers/torneos/torneos';
@@ -31,7 +32,9 @@ export class MisTorneosPage {
               private torneoService: TorneosProvider,
               public alertCtrl: AlertController) {
                 this.form = this.fb.group({
-                  idDeporte: new FormControl()
+                  idDeporte: new FormControl(0),
+                  genero: new FormControl(3),
+                  tipo: new FormControl(2)
                 });
 
   }
@@ -57,6 +60,10 @@ export class MisTorneosPage {
         res=>{
           console.log(res);
           this.torneos = res.result;
+          this.buscarFiltro();
+          if(this.torneos.length == 0){
+            this.aviso = 1;
+          }
         },
         e=>{
           console.log(e);
@@ -64,8 +71,44 @@ export class MisTorneosPage {
       )
   }
 
+  buscarFiltro(){
+    if(this.form.value.idDeporte != 0){
+      let torneoBusqueda = [];
+      for(let i in this.torneos){
+        if(this.torneos[i].idDeporte==this.form.value.idDeporte){
+          torneoBusqueda.push(this.torneos[i]);
+          console.log('entro');
+        }
+      }
+      this.torneos = torneoBusqueda;
+    }
+    if(this.form.value.genero != 3){
+      let torneoBusqueda = [];
+      for(let i in this.torneos){
+        if(this.torneos[i].idGenero==this.form.value.genero){
+          torneoBusqueda.push(this.torneos[i]);
+          console.log('entro');
+        }
+      }
+      this.torneos = torneoBusqueda;
+    }
+    if(this.form.value.tipo != 2){
+      let torneoBusqueda = [];
+      for(let i in this.torneos){
+        if(this.torneos[i].individual==this.form.value.tipo){
+          torneoBusqueda.push(this.torneos[i]);
+          console.log('entro');
+        }
+      }
+      this.torneos = torneoBusqueda;
+    }
+  }
+
   buscar(){
     this.aviso = 0;
+    this.getTorneos();
+    
+    /* this.aviso = 0;
     this.data = {
       idDeporte : this.form.value.idDeporte,
       idUsuario : sessionStorage.getItem('idUsuario')
@@ -87,7 +130,7 @@ export class MisTorneosPage {
         );
     }else{
       this.getTorneos();
-    }
+    } */
   }
 
   showAlert(idTorneo:any, i:any) {
@@ -128,38 +171,25 @@ export class MisTorneosPage {
     this.getTorneos();
   }
 
+
+  verInscritos(idTorneo){
+    this.torneoService.setIdTorneo(idTorneo);
+    this.navCtrl.push(ParticipantesTorneoPage);
+  }
+
   eliminar(idTorneo:any,i:any){
     console.log('entro');
-
-    this.torneoService.deleteTorneoEquipos(idTorneo)
+    
+    this.torneoService.deleteTorneo(idTorneo)
       .subscribe(
         res=>{
-          this.torneoService.deleteTorneo(idTorneo)
-            .subscribe(
-              res=>{
-                console.log(res);
-                this.torneos.splice(i,1);
-              },
-              e=>{
-                console.log(e);
-              }
-            );
+          console.log(res);
+          this.torneos.splice(i,1);
         },
         e=>{
-          this.torneoService.deleteTorneo(idTorneo)
-            .subscribe(
-              res=>{
-                console.log(res);
-                this.torneos.splice(i,1);
-              },
-              e=>{
-                console.log(e);
-              }
-            );
+          console.log(e);
         }
-      )
-
-    
+      );    
   }
 
 }
