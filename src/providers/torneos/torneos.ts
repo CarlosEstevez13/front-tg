@@ -16,7 +16,7 @@ export class TorneosProvider {
 
   constructor(public _http: Http) {
     console.log('Hello TorneosProvider Provider');
-    this.url = 'http://192.168.1.6:3002/api/';
+    this.url = 'http://192.68.1.6:3002/api/';
   }
 
   getTorneos() {

@@ -15,12 +15,27 @@ export class UsuarioProvider {
 
   constructor(public _http: Http ) {
     console.log('Hello UsuarioProvider Provider');
-    this.url = 'http://192.168.1.6:3002/api/';
+    this.url = 'http://192.68.1.6:3002/api/';
   }
 
   getUsuario(index:number){
     this.headers = new Headers({'Content-Type': 'application/json'});
     return this._http.get(this.url + `usuario/${index}` ).map((res:any) => res.json());
+  }
+
+  getRoles(){
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `roles/` ).map((res:any) => res.json());
+  }
+
+  getUsuarios(){
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `urolesadmin/` ).map((res:any) => res.json());
+  }
+
+  getUsuariosR(idRol:any){
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `urolesadminr/${idRol}` ).map((res:any) => res.json());
   }
 
   putUsuario(index:number, formulario:any){
@@ -42,4 +57,10 @@ export class UsuarioProvider {
     return this._http.put(this.url + `/usuarioFoto/${index}`, params, {headers:this.headers})
             .map(res => res.json());
   }
+
+  deleteUsuario(idUsuario) {
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.delete(this.url + `usuario/${idUsuario}` ).map((res:any) => res.json());
+  }
+
 }
