@@ -17,11 +17,11 @@ export class MyApp {
   rootPage:any;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
-    if (sessionStorage.getItem('idUsuario') ){
-      if(sessionStorage.getItem('idUsuario') != '18'){
+    if (sessionStorage.getItem('idRol') ){
+      if(sessionStorage.getItem('idRol') != '6'){
         this.rootPage = TabsPage;
       }
-      if(sessionStorage.getItem('idUsuario') == '18'){
+      if(sessionStorage.getItem('idRol') == '6'){
 
         this.rootPage = AdminPage;
       }

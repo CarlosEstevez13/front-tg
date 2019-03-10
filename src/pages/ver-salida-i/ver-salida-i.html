@@ -22,6 +22,10 @@
           Descripcion : {{salida.descripcion}} 
         </button>
 
+        <ion-item *ngIf="salida.latitud != 'null'">
+            Ubicacion :  <button (click)='ubicacion(salida.latitud, salida.longitud)'  ion-button>ver</button>
+          </ion-item>
+          
     <button ion-item>
           Fecha : {{salida.fecha}} 
         </button>

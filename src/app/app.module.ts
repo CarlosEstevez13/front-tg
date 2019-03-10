@@ -1,3 +1,4 @@
+import { GestionarEntrenamientoPageModule } from './../pages/gestionar-entrenamiento/gestionar-entrenamiento.module';
 import { GestionarTorneosPageModule } from './../pages/gestionar-torneos/gestionar-torneos.module';
 import { GestionarUsuarioPage } from './../pages/gestionar-usuario/gestionar-usuario';
 import { AdminPageModule } from './../pages/admin/admin.module';
@@ -5,6 +6,11 @@ import { UbicacionPageModule } from './../pages/ubicacion/ubicacion.module';
 import { GoogleMapComponent } from './../components/google-map/google-map';
 import { JuradoPageModule } from './../pages/jurado/jurado.module';
 
+import { MisEntrenamientosPageModule } from '../pages/mis-entrenamientos/mis-entrenamientos.module';
+import { CrearEntrenamientoPageModule } from '../pages/crear-entrenamiento/crear-entrenamiento.module';
+import { VerEntrenamientoPageModule } from '../pages/ver-entrenamiento/ver-entrenamiento.module';
+import { BuscarEntrenamientoPageModule } from '../pages/buscar-entrenamiento/buscar-entrenamiento.module';
+import { EntrenamientoMenuPageModule } from '../pages/entrenamiento-menu/entrenamiento-menu.module';
 import { EditarSalidasIPageModule } from '../pages/editar-salidas-i/editar-salidas-i.module';
 import { MisSalidasIPageModule } from '../pages/mis-salidas-i/mis-salidas-i.module';
 import { VerSalidaIPageModule } from '../pages/ver-salida-i/ver-salida-i.module';
@@ -103,6 +109,11 @@ import { HistorialEquipoPageModule } from '../pages/historial-equipo/historial-e
 import { EditarPerfilPageModule } from '../pages/editar-perfil/editar-perfil.module';
 import { IntegrantesPage } from '../pages/integrantes/integrantes';
 import { ParticipantesTorneoPage } from '../pages/participantes-torneo/participantes-torneo';
+import { EntrenamientoMenuPage } from '../pages/entrenamiento-menu/entrenamiento-menu';
+import { BuscarEntrenamientoPage } from '../pages/buscar-entrenamiento/buscar-entrenamiento';
+import { VerEntrenamientoPage } from '../pages/ver-entrenamiento/ver-entrenamiento';
+import { CrearEntrenamientoPage } from '../pages/crear-entrenamiento/crear-entrenamiento';
+import { MisEntrenamientosPage } from '../pages/mis-entrenamientos/mis-entrenamientos';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { JuradoPage } from '../pages/jurado/jurado';
 import { MapaProvider } from '../providers/mapa/mapa';
@@ -116,6 +127,8 @@ import { GestionarSalidasEPageModule } from '../pages/gestionar-salidas-e/gestio
 import { GestionarSalidasEPage } from '../pages/gestionar-salidas-e/gestionar-salidas-e';
 import { GestionarSalidasIPage } from '../pages/gestionar-salidas-i/gestionar-salidas-i';
 import { GestionarTorneosPage } from '../pages/gestionar-torneos/gestionar-torneos';
+import { GestionarEntrenamientoPage } from '../pages/gestionar-entrenamiento/gestionar-entrenamiento';
+
 
 @NgModule({
   declarations: [
@@ -192,6 +205,11 @@ import { GestionarTorneosPage } from '../pages/gestionar-torneos/gestionar-torne
     IntegrantesPageModule,
     CrearEquipoPageModule,
     ParticipantesTorneoPageModule,
+    EntrenamientoMenuPageModule,
+    BuscarEntrenamientoPageModule,
+    VerEntrenamientoPageModule,
+    CrearEntrenamientoPageModule,
+    MisEntrenamientosPageModule,
     JuradoPageModule,
     UbicacionPageModule,
     AdminPageModule,
@@ -200,6 +218,7 @@ import { GestionarTorneosPage } from '../pages/gestionar-torneos/gestionar-torne
     GestionarSalidasIPageModule,
     GestionarSalidasEPageModule,
     GestionarTorneosPageModule,
+    GestionarEntrenamientoPageModule,
     /* IonicModule.forRoot(MyApp), */
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages:false
@@ -250,6 +269,11 @@ import { GestionarTorneosPage } from '../pages/gestionar-torneos/gestionar-torne
     IntegrantesPage,
     CrearEquipoPage,
     ParticipantesTorneoPage,
+    EntrenamientoMenuPage,
+    BuscarEntrenamientoPage,
+    VerEntrenamientoPage,
+    CrearEntrenamientoPage,
+    MisEntrenamientosPage,
     JuradoPage,
     UbicacionPage,
     AdminPage,
@@ -257,7 +281,8 @@ import { GestionarTorneosPage } from '../pages/gestionar-torneos/gestionar-torne
     GestionarEquipoPage,
     GestionarSalidasEPage,
     GestionarSalidasIPage,
-    GestionarTorneosPage
+    GestionarTorneosPage,
+    GestionarEntrenamientoPage
   ],
   providers: [
     StatusBar,

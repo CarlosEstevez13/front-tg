@@ -51,7 +51,7 @@ export class MapaComponent {
     this.initMap();
   }
 
-  initMap(){
+   initMap(){
     let coords = new google.maps.LatLng(7.1193,-73.1227)
     let mapOptions : google.maps.MapOptions = {
       center : coords,

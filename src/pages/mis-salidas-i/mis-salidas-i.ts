@@ -19,7 +19,10 @@ import { EditarSalidasIPage } from '../editar-salidas-i/editar-salidas-i';
 export class MisSalidasIPage {
   id:any;
   salida:any;
-
+  todas : any =[];
+  idDeporte:any;
+  deportes:any = [];
+  
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public alertCtrl: AlertController,
@@ -29,11 +32,25 @@ export class MisSalidasIPage {
 
   ionViewWillEnter() {
     console.log('ionViewDidLoad MisSalidasIPage');
+    this._salidaIProvider.getDeporte().subscribe(
+      res=>{
+        this.deportes=res.result;
+        console.log(res.result);
+    },e=>{
+      
+      console.log(e);
+
+    });
+    this.getSalidasDisponibles();
+  }
+
+  getSalidasDisponibles(){
     this._salidaIProvider.getMisSalidas(this.id).subscribe(
       res=>{
           
           this.salida=res.result;
           console.log(this.salida);
+          this.todas = this.salida;
       },
       e=>{
           console.log(e);
@@ -41,12 +58,34 @@ export class MisSalidasIPage {
     );
   }
 
-  editar(idSalida:any){
+  buscar(){
+    console.log(this.idDeporte);
+    if(this.idDeporte==0){
+    this.getSalidasDisponibles();
+    }
+    else{
+      this.salida= this.todas;
+      let disponiblesFiltrada =[];
+      for(let i in this.salida){
+        if(this.salida[i].idDeporte == this.idDeporte){
+          disponiblesFiltrada.push(this.salida[i]);
+        }
+      }
+      this.salida= disponiblesFiltrada;
+      console.log(this.salida);
+    }
+    
+  }
+
+
+
+  editar(idSalida:any, entrenamiento:any){
     sessionStorage.setItem('idSalidaI',idSalida);
+    sessionStorage.setItem('entrenamiento',entrenamiento)
     this.navCtrl.push(EditarSalidasIPage);
   }
 
-  eliminar(idSalida:any){
+  eliminar(idSalida:any,i){
     console.log('entro');
 
     this._salidaIProvider.deleteSalidaIUsuario(idSalida)
@@ -57,6 +96,7 @@ export class MisSalidasIPage {
             .subscribe(
               res=>{
                 console.log(res);
+                this.salida.splice(i,1);
               },
               e=>{
                 console.log(e);
@@ -65,21 +105,30 @@ export class MisSalidasIPage {
         },
         e=>{
           console.log(e);
+          this._salidaIProvider.deleteSalidaI(idSalida)
+            .subscribe(
+              res=>{
+                console.log(res);
+                this.salida.splice(i,1);
+              },
+              e=>{
+                console.log(e);
+              }
+            );
         }
       )
 
     
   }
 
-  showAlert(idSalida:any) {
+  showAlert(idSalida:any, i:any) {
     const alert = this.alertCtrl.create({
       title: 'Eliminar!',
       subTitle: 'Estas seguro de borrar esta Salida?',
       buttons: [{
         text: 'Si',
         handler: () => {
-          this.eliminar(idSalida)
-          this.navCtrl.pop();
+          this.eliminar(idSalida,i)
         }
       },
         {

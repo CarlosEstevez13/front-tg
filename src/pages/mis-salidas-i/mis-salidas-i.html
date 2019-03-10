@@ -7,14 +7,23 @@
 <ion-header>
 
     <ion-navbar>
-        <ion-title>mis-salidas</ion-title>
+        <ion-title>Mis Salidas I</ion-title>
     </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-    <ion-card class="fondo" *ngFor="let sali of salida">
+    <ion-item>
+        <ion-label>Deporte</ion-label>
+        <ion-select [(ngModel)]="idDeporte">
+            <ion-option value='0'>Todos</ion-option>
+            <ion-option *ngFor="let deporte of deportes" value='{{deporte.idDeporte}}'>{{deporte.nombre}}</ion-option>
+        </ion-select>
+    </ion-item>
+
+    <button (click)="buscar();" ion-button outline>Buscar</button>
+    <ion-card class="fondo" *ngFor="let sali of salida; index as i">
 
         <ion-item class="tituloEvento">
             <h2><i class="fas fa-cube margenSup"></i> {{sali.nombre}} </h2>
@@ -42,8 +51,8 @@
                     En curso
                 </h3>
                 <br>
-                <button ion-button *ngIf="sali.finalizado==0" (click)=" editar(sali.idSalidaI);">Editar</button>
-                <button ion-button color="danger" *ngIf="sali.finalizado==0" (click)="showAlert(sali.idSalidaI);">Eliminar</button>
+                <button ion-button *ngIf="sali.finalizado==0" (click)=" editar(sali.idSalidaI, sali.entrenamiento);">Editar</button>
+                <button ion-button color="danger" *ngIf="sali.finalizado==0" (click)="showAlert(sali.idSalidaI,i);">Eliminar</button>
 
 
 
@@ -53,4 +62,7 @@
         </ion-card-content>
 
     </ion-card>
+    <h2 *ngIf="salida==0">
+        No existen salidas de este deporte disponibles
+    </h2>
 </ion-content>

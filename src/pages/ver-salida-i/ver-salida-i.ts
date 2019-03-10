@@ -1,3 +1,4 @@
+import { UbicacionPage } from './../ubicacion/ubicacion';
 import { SalidaIProvider } from '../../providers/salida-i/salida-i';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
@@ -20,15 +21,17 @@ export class VerSalidaIPage {
   idUsuario:any
   salida:any={};
   unir:any;
+  idVer:any;
 
   constructor(public navCtrl: NavController,
             public navParams: NavParams,
             public _salidaIProvider : SalidaIProvider,
               public alertCtrl: AlertController) {
+            this.unir = sessionStorage.getItem('unir');
             this.id = sessionStorage.getItem('idSalidaI');
             this.idUsuario = sessionStorage.getItem('idUsuario');
-            this.unir = sessionStorage.getItem('unir');
-  }
+          }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad VerSalidaIPage');
@@ -42,6 +45,18 @@ export class VerSalidaIPage {
           console.log(e);
       }
     );
+  }
+
+  ionViewWillEnter(){
+    /* this.idVer = this.salidaService.getIdVer(); */
+    
+    console.log(this.unir);
+  }
+
+  ubicacion(lat,lng){
+    sessionStorage.setItem('tempLat',`${lat}`);
+    sessionStorage.setItem('tempLng',`${lng}`);
+    this.navCtrl.push(UbicacionPage);
   }
 
   volver(){

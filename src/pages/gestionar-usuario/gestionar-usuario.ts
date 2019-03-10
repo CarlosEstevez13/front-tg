@@ -1,3 +1,4 @@
+import { EditarPerfilPage } from './../editar-perfil/editar-perfil';
 import { PerfilPage } from './../perfil/perfil';
 import { EquipoProvider } from './../../providers/equipo/equipo';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
@@ -40,16 +41,68 @@ export class GestionarUsuarioPage {
           console.log(e);
         }
       )
+    this.getUsuarios();
+  }
+  editar(idUsuario){
+    this.navCtrl.push(EditarPerfilPage);
+    this.equipoProvider.setIdUsuario(sessionStorage.getItem('idUsuario'));
+    sessionStorage.setItem('idUsuario',idUsuario);
+  }
+
+  getUsuarios(){
     this.usuarioProvider.getUsuarios()
       .subscribe(
         res=>{
           this.usuarios = res.result;
+          if(this.usuarios.length == 0){
+            this.aviso =1;
+          }
         },
         e=>{
           this.aviso =1;
           console.log(e);
         }
       )
+  }
+
+  /* buscarFiltro(){
+    if(this.form.value.idRol != 0){
+      let usuarioBusqueda = [];
+      for(let i in this.usuarios){
+        if(this.usuarios[i].idRol==this.form.value.idRol){
+          usuarioBusqueda.push(this.usuarios[i]);
+          console.log('entro');
+        }
+      }
+      this.usuarios = usuarioBusqueda;
+    }
+  } */
+
+  buscar(){
+    this.aviso = 0;
+    this.getUsuariosRoles();
+   
+  }
+
+  getUsuariosRoles(){
+    if(this.form.value.idRol != 0 ){
+      console.log(this.form.value.idRol);
+      this.usuarioProvider.getUsuariosR(this.form.value.idRol)
+        .subscribe(
+          res=>{
+            this.usuarios = res.result;
+            if(this.usuarios.length == 0){
+              this.aviso =1;
+            }
+          },
+          e=>{
+            this.aviso =1;
+            console.log(e);
+          }
+        )
+    }else{
+      this.getUsuarios();
+    }
   }
 
   ionViewDidLoad() {

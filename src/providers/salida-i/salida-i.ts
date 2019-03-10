@@ -16,7 +16,22 @@ export class SalidaIProvider {
 
   constructor(public _http: Http) {
     console.log('Hello SalidaIProvider Provider');
-    this.url = 'http://10.14.21.84:3002/api/';
+    this.url = 'http://192.168.1.10:3002/api/';
+  }
+
+  getSalidas() {
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `salidasI` ).map((res:any) => res.json());
+  }
+
+  getEntrenamientos() {
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `entrenamientos` ).map((res:any) => res.json());
+  }
+
+  getDeportes(){
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `deportes` ).map((res:any) => res.json());
   }
 
   getSalidasDisponibles(index:number){
@@ -24,9 +39,9 @@ export class SalidaIProvider {
     return this._http.get(this.url + `salidasIQueNoEsta/${index}` ).map((res:any) => res.json());
   }
 
-  getSalidasDisponiblesDeport(index:number,idDeporte:number){
+  getSalidasDisponiblesEntre(index:number){
     this.headers = new Headers({'Content-Type': 'application/json'});
-    return this._http.get(this.url + `SalidasIQueNoEstaDeport/${index}/${idDeporte}` ).map((res:any) => res.json());
+    return this._http.get(this.url + `SalidasIQueNoEstaEntre/${index}` ).map((res:any) => res.json());
   }
 
   getDeporte(){
@@ -59,11 +74,21 @@ export class SalidaIProvider {
     return this._http.get(this.url + `salidasIAJugar/${index}` ).map((res:any) => res.json());
   }
 
+  getSalidasIAJugarEntre(index:number){
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `salidasIAJugarEntre/${index}` ).map((res:any) => res.json());
+  }
+  
   getMisSalidas(index:number){
     this.headers = new Headers({'Content-Type': 'application/json'});
     return this._http.get(this.url + `salidaIU/${index}` ).map((res:any) => res.json());
   }
 
+  getMisEntrenamientos(index:number){
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `salidaIUEntre/${index}` ).map((res:any) => res.json());
+  }
+  
   putSalida(salida:any,index:number){
     console.log(salida);
     const json = JSON.stringify(salida);

@@ -8,6 +8,14 @@
 
 
 <ion-content padding>
+    <ion-item>
+        <ion-label>Deporte</ion-label>
+        <ion-select [(ngModel)]="idDeporte">
+            <ion-option value='0'>Todos</ion-option>
+            <ion-option *ngFor="let deporte of deportes" value='{{deporte.idDeporte}}'>{{deporte.nombre}}</ion-option>
+        </ion-select>
+    </ion-item>
+    <button ion-button outline (click)="buscar();">Buscar</button>
     <ion-card class="fondo" *ngFor="let sali of salida" (click)=" ver(sali.idSalidaI);">
 
         <ion-item class="tituloEvento">
@@ -30,4 +38,8 @@
         </ion-card-content>
 
     </ion-card>
+
+    <h2 *ngIf="salida==0">
+        No existen salidas de este deporte disponibles
+    </h2>
 </ion-content>

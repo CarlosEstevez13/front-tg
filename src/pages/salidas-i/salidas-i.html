@@ -7,7 +7,7 @@
 <ion-header>
 
     <ion-navbar>
-        <ion-title>salidasI</ion-title>
+        <ion-title>Salidas I</ion-title>
     </ion-navbar>
 
 </ion-header>
@@ -47,4 +47,7 @@
         </ion-card-content>
 
     </ion-card>
+    <h2 *ngIf="disponibles.length==0">
+        No existen salidas de este deporte disponibles
+    </h2>
 </ion-content>

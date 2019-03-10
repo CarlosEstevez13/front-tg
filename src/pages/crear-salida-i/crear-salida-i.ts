@@ -1,3 +1,4 @@
+import { UbicacionPage } from './../ubicacion/ubicacion';
 
 import { SalidaIProvider } from '../../providers/salida-i/salida-i';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
@@ -21,8 +22,9 @@ export class CrearSalidaIPage {
   form: FormGroup;
   id:any;
   idUsuario:any;
-  idDeporte:any;
+  idDeporte:0;
   idRol:any;
+  deportes:any = [];
 
   constructor(public navCtrl: NavController,
              public navParams: NavParams,
@@ -31,7 +33,7 @@ export class CrearSalidaIPage {
              private fb: FormBuilder) {
              this.idUsuario = sessionStorage.getItem('idUsuario');
              this.idRol = sessionStorage.getItem('idRol');
-             this.idDeporte = sessionStorage.getItem('idDeporte');
+             
               
               this.form = this.fb.group({
                 descripcion: new FormControl(),
@@ -44,17 +46,46 @@ export class CrearSalidaIPage {
                 nroParticipantes: new FormControl(),
                 entrenamiento: new FormControl(0),
                 horaFin: new FormControl(),
-                latitud: new FormControl(1),
-                longitud: new FormControl(1),
+                latitud: new FormControl(null),
+                longitud: new FormControl(null),
                 nombre: new FormControl(),
               });
   }
 
   ionViewDidLoad() {
+    sessionStorage.setItem('tempLat','null');
+    sessionStorage.setItem('tempLng','null');
     console.log('ionViewDidLoad CrearSalidaIPage');
+    
+  }
+
+  ionViewWillEnter() {
+    console.log('ionViewDidLoad CrearSalidaEPage');
+    this._salidaIProvider.getDeporte().subscribe(
+      res=>{
+        this.deportes=res.result;
+        console.log(res.result);
+    },e=>{
+      
+      console.log(e);
+
+    });
+  }
+
+
+  agregarUbicacion(){
+    this.navCtrl.push(UbicacionPage);
+  }
+
+
+  ionViewWillLeave(){
+    sessionStorage.removeItem('tempLat');
+    sessionStorage.removeItem('tempLng');
   }
 
   crear(){
+    this.form.value.latitud = sessionStorage.getItem('tempLat');
+    this.form.value.longitud = sessionStorage.getItem('tempLng');
     console.log(this.form.value);
     this._salidaIProvider.addSalida(this.form.value)
       .subscribe(
@@ -65,7 +96,10 @@ export class CrearSalidaIPage {
             idUsuario: this.idUsuario,
             idDeporte: this.idDeporte,
             idRol: this.idRol
+            
           };
+          sessionStorage.removeItem('tempLat');
+          sessionStorage.removeItem('tempLng');
           this._salidaIProvider.addSalidaIUsuario(data)
           .subscribe(
             res=>{

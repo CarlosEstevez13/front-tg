@@ -1,0 +1,61 @@
+<!--
+  Generated template for the CrearEntrenamientoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>crear-entrenamiento</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <form [formGroup]="form">
+        <!-- <img src="assets/imgs/parchemos.png"/> -->
+
+        <ion-list>
+
+            <ion-item>
+                <ion-label floating>Nombre</ion-label>
+                <ion-input formControlName="nombre" type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label fixed>Descripcion</ion-label>
+                <ion-textarea rows="3" formControlName="descripcion" type="text"></ion-textarea>
+            </ion-item>
+
+            <ion-item class="item1">
+                    Ubicacion :  <button (click)='agregarUbicacion()'  ion-button>agregar</button>
+                  </ion-item>
+
+            <ion-item>
+                <ion-label fixed>Participantes</ion-label>
+                <ion-textarea formControlName="nroParticipantes" type="number"></ion-textarea>
+            </ion-item>
+
+            <ion-item>
+                <ion-label fixed>Fecha</ion-label>
+                <ion-input formControlName="fecha" type="date"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label fixed>Hora Inicio</ion-label>
+                <ion-input formControlName="hora" type="time"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label fixed>Hora Fin</ion-label>
+                <ion-input formControlName="horaFin" type="time"></ion-input>
+            </ion-item>
+
+        </ion-list>
+
+        <button ion-button (click)="crear()" round full>Guardar</button>
+        <br>
+    </form>
+</ion-content>

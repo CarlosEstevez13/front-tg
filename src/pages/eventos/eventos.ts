@@ -1,3 +1,4 @@
+import { EntrenamientoMenuPage } from './../entrenamiento-menu/entrenamiento-menu';
 import { SalidasEMenuPage } from './../salidas-e-menu/salidas-e-menu';
 import { SalidasIMenuPage } from './../salidas-i-menu/salidas-i-menu';
 import { TorneosMenuPage } from './../torneos-menu/torneos-menu';
@@ -33,6 +34,10 @@ export class EventosPage {
 
   getSalidasE(){
     this.navCtrl.push(SalidasEMenuPage);
+  }
+
+  getEntrenamiento(){
+    this.navCtrl.push(EntrenamientoMenuPage);
   }
 
   ionViewDidLoad() {

@@ -58,6 +58,7 @@ export class LoginPage {
   }
 
   login(){
+    console.log('hola');
     this._loginService.login(this.form.value.usuario, this.form.value.password)
     .subscribe(
       res=>{

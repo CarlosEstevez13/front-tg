@@ -28,7 +28,16 @@
                 <ion-label fixed>Descripcion</ion-label>
                 <ion-textarea rows="3" formControlName="descripcion" type="text"></ion-textarea>
             </ion-item>
-
+            <ion-item>
+                <ion-label>Deporte</ion-label>
+                <ion-select [(ngModel)]="idDeporte" formControlName="idDeporte">
+                    <ion-option value='0'>Todos</ion-option>
+                    <ion-option *ngFor="let deporte of deportes" value='{{deporte.idDeporte}}'>{{deporte.nombre}}</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item class="item1">
+                    Ubicacion :  <button (click)='agregarUbicacion()'  ion-button>agregar</button>
+                  </ion-item>
             <ion-item>
                 <ion-label fixed>Participantes</ion-label>
                 <ion-textarea formControlName="nroParticipantes" type="number"></ion-textarea>

@@ -30,7 +30,7 @@ export class EditarSalidasIPage {
     fecha: '',
     hora: '',
     nroParticipantes: 0,
-    entrenamiento: 0,
+    entrenamiento: '',
     horaFin: 'dfs',
     latitud: 0,
     longitud: 0,
@@ -43,6 +43,7 @@ export class EditarSalidasIPage {
                private fb: FormBuilder) {
                  
             this.id = sessionStorage.getItem('idSalidaI');
+            this.salida.entrenamiento = sessionStorage.getItem('entrenamiento');
 
                 this.form = this.fb.group({
                   descripcion: new FormControl(),

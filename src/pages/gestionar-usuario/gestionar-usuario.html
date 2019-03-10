@@ -15,7 +15,8 @@
           <ion-item>
             <ion-label>Rol</ion-label>
             <ion-select formControlName="idRol" >
-              <ion-option *ngFor="let rol of roles" value="{{rol.idRol}}">{{rol.descripcion}}</ion-option>
+              <ion-option value="0">Todos</ion-option>
+              <ion-option *ngFor="let rol of roles" value="{{rol.idRol}}">{{rol.tipo}}</ion-option>
             </ion-select>
           </ion-item>
     
@@ -29,12 +30,13 @@
         <ion-item *ngFor="let usuario of usuarios; index as i">
         
           <ion-avatar (click)='verUsuario(usuario.idUsuario)' item-start>
-        <img src="http://192.68.1.6:3002/profile/{{usuario.imagen}}.png">
+        <img src="http://192.168.1.10:3002/profile/{{usuario.imagen}}.png">
       </ion-avatar>
       <h2 (click)='verUsuario(usuario.idUsuario)'>{{usuario.nombre}}</h2>
       <p (click)='verUsuario(usuario.idUsuario)'>{{usuario.descripcion}}</p>
-      <button (click)="editar(usuario.idUsuario)" ion-button>Editar</button>
+      <!-- <button (click)="editar(usuario.idUsuario)" ion-button>Editar</button> -->
       <button (click)="showAlert(usuario.idUsuario, i)" ion-button color="danger">Eliminar</button>
+      <hr>
         </ion-item>
     </ion-list>
 

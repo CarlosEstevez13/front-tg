@@ -11,10 +11,11 @@ export class LoginProvider {
 
   constructor(public _http: Http) {
     console.log('Hello LoginProvider');
-    this.url = 'http://192.68.1.6:3002/api/';
+    this.url = 'http://192.168.1.10:3002/api/';
   }
 
   login(usuario: string, password: string) {
+    console.log('hola1');
     this.headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
     return this._http.post(this.url + 'login', { usuario, password }).map(res => this.getDatos(res));
   }

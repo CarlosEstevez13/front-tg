@@ -1,3 +1,4 @@
+import { EquipoProvider } from './../../providers/equipo/equipo';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -33,6 +34,7 @@ export class EditarPerfilPage {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public _usuarioProvider: UsuarioProvider,
+              private equipoService: EquipoProvider,
               private http: HttpClient,
               private fb: FormBuilder) {
 
@@ -43,6 +45,9 @@ export class EditarPerfilPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EditarPerfilPage');
+  }
+  ionViewWillLeave(){
+    sessionStorage.setItem('idUsuario',this.equipoService.getIdUsuario());
   }
 
   ionViewWillEnter(){
@@ -119,7 +124,7 @@ export class EditarPerfilPage {
   agregarFoto(){
     const fd  = new FormData();
     fd.append('image', this.selectedFile, `${this.idUsuario}`);
-    this.http.post('http://192.68.1.6:3002/api/upload', fd)
+    this.http.post('http://192.168.1.10:3002/api/upload', fd)
       .subscribe(
         res=>{
           console.log(res)
