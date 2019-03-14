@@ -19,6 +19,21 @@ export class SalidaIProvider {
     this.url = 'http://10.14.41.222:3002/api/';
   }
 
+  getSalidas() {
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `salidasI` ).map((res:any) => res.json());
+  }
+
+  getEntrenamientos() {
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `entrenamientos` ).map((res:any) => res.json());
+  }
+
+  getDeportes(){
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `deportes` ).map((res:any) => res.json());
+  }
+
   getSalidasDisponibles(index:number){
     this.headers = new Headers({'Content-Type': 'application/json'});
     return this._http.get(this.url + `salidasIQueNoEsta/${index}` ).map((res:any) => res.json());

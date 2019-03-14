@@ -85,7 +85,7 @@ export class MisSalidasIPage {
     this.navCtrl.push(EditarSalidasIPage);
   }
 
-  eliminar(idSalida:any){
+  eliminar(idSalida:any,i){
     console.log('entro');
 
     this._salidaIProvider.deleteSalidaIUsuario(idSalida)
@@ -96,6 +96,7 @@ export class MisSalidasIPage {
             .subscribe(
               res=>{
                 console.log(res);
+                this.salida.splice(i,1);
               },
               e=>{
                 console.log(e);
@@ -104,21 +105,30 @@ export class MisSalidasIPage {
         },
         e=>{
           console.log(e);
+          this._salidaIProvider.deleteSalidaI(idSalida)
+            .subscribe(
+              res=>{
+                console.log(res);
+                this.salida.splice(i,1);
+              },
+              e=>{
+                console.log(e);
+              }
+            );
         }
       )
 
     
   }
 
-  showAlert(idSalida:any) {
+  showAlert(idSalida:any, i:any) {
     const alert = this.alertCtrl.create({
       title: 'Eliminar!',
       subTitle: 'Estas seguro de borrar esta Salida?',
       buttons: [{
         text: 'Si',
         handler: () => {
-          this.eliminar(idSalida)
-          this.navCtrl.pop();
+          this.eliminar(idSalida,i)
         }
       },
         {

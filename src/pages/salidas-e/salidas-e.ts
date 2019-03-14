@@ -73,6 +73,9 @@ export class SalidasEPage {
       }
       this.salidas = salidaBusqueda;
     }
+    if(this.salidas.length > 0){
+      this.aviso = 0;
+    }
   }
 
   buscar(){

@@ -1,6 +1,12 @@
 import { VideosEntretenimientoPageModule } from './../pages/videos-entretenimiento/videos-entretenimiento.module';
 
 import { EntretenimientoPageModule } from '../pages/entretenimiento/entretenimiento.module';
+import { HistorialRendimientoPageModule } from './../pages/historial-rendimiento/historial-rendimiento.module';
+import { HistorialRendimientoPage } from './../pages/historial-rendimiento/historial-rendimiento';
+import { RendimientoMenuPageModule } from './../pages/rendimiento-menu/rendimiento-menu.module';
+import { RendimientoPageModule } from './../pages/rendimiento/rendimiento.module';
+import { ParticipantesTorneosIPageModule } from './../pages/participantes-torneos-i/participantes-torneos-i.module';
+import { GestionarEntrenamientoPageModule } from './../pages/gestionar-entrenamiento/gestionar-entrenamiento.module';
 import { GestionarTorneosPageModule } from './../pages/gestionar-torneos/gestionar-torneos.module';
 import { GestionarUsuarioPage } from './../pages/gestionar-usuario/gestionar-usuario';
 import { AdminPageModule } from './../pages/admin/admin.module';
@@ -132,6 +138,12 @@ import { GestionarTorneosPage } from '../pages/gestionar-torneos/gestionar-torne
 import { EntretenimientoPage } from '../pages/entretenimiento/entretenimiento';
 import { VideosEntretenimientoPage } from './../pages/videos-entretenimiento/videos-entretenimiento';
 
+import { GestionarEntrenamientoPage } from '../pages/gestionar-entrenamiento/gestionar-entrenamiento';
+import { ParticipantesTorneosIPage } from '../pages/participantes-torneos-i/participantes-torneos-i';
+import { RendimientoPage } from '../pages/rendimiento/rendimiento';
+import { RendimientoMenuPage } from '../pages/rendimiento-menu/rendimiento-menu';
+import { InstruccionesPage } from '../pages/instrucciones/instrucciones';
+import { InstruccionesPageModule } from '../pages/instrucciones/instrucciones.module';
 
 
 @NgModule({
@@ -224,6 +236,12 @@ import { VideosEntretenimientoPage } from './../pages/videos-entretenimiento/vid
     GestionarTorneosPageModule,
     EntretenimientoPageModule,
     VideosEntretenimientoPageModule,
+    GestionarEntrenamientoPageModule,
+    ParticipantesTorneosIPageModule,
+    RendimientoPageModule,
+    RendimientoMenuPageModule,
+    HistorialRendimientoPageModule,
+    InstruccionesPageModule,
     /* IonicModule.forRoot(MyApp), */
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages:false
@@ -288,7 +306,13 @@ import { VideosEntretenimientoPage } from './../pages/videos-entretenimiento/vid
     GestionarSalidasIPage,
     GestionarTorneosPage,
     EntretenimientoPage,
-    VideosEntretenimientoPage
+    VideosEntretenimientoPage,
+    GestionarEntrenamientoPage,
+    ParticipantesTorneosIPage,
+    RendimientoPage,
+    RendimientoMenuPage,
+    HistorialRendimientoPage,
+    InstruccionesPage
   ],
   providers: [
     StatusBar,

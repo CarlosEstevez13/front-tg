@@ -32,9 +32,13 @@
         Ubicacion :  <button (click)='ubicacion(torneo.latitud, torneo.longitud)'  ion-button>ver</button>
       </ion-item>
 
-    <ion-item  >
+    <ion-item *ngIf="torneo.individual ==1" >
       Equipos inscritos: <button (click)='verInscritos()'  ion-button>ver</button>
     </ion-item>  
+
+    <ion-item  *ngIf="torneo.individual ==0">
+        Participantes inscritos: <button (click)='verInscritos1()'  ion-button>ver</button>
+      </ion-item>  
 
     <ion-item  >
        Arbitos: <button (click)='verJurado(torneo.idTorneo)'  ion-button>ver</button>

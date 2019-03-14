@@ -23,6 +23,7 @@ export class GestionarTorneosPage {
   aviso = 0;
   form: FormGroup;
   torneos:any = [];
+  tempTorneos:any = [];
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -69,7 +70,7 @@ export class GestionarTorneosPage {
   }
 
   getTorneos(){
-    this.torneoProvider.getTorneos()
+    this.torneoProvider.getTorneosAdmin()
       .subscribe(
         res=>{
           this.torneos = res.result;
@@ -84,6 +85,26 @@ export class GestionarTorneosPage {
         }
       );
   }
+
+
+ /*  getItems(ev: any) {
+    // set val to the value of the searchbar
+    const val = ev.target.value;
+    this.tempTorneos = this.torneos;
+    // if the value is an empty string don't filter the items
+    setTimeout(
+      ()=>{
+        if (val && val.trim() != '') {
+          this.torneos = this.torneos.filter((item) => {
+            return (item.nombre.toLowerCase().indexOf(val.toLowerCase()) > -1);
+          })
+        }else{
+          this.torneos = this.tempTorneos;
+        }
+      },150
+    );
+    
+  } */
 
   buscarFiltro(){
     if(this.form.value.idDeporte != 0){

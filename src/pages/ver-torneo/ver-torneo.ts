@@ -1,3 +1,4 @@
+import { ParticipantesTorneosIPage } from './../participantes-torneos-i/participantes-torneos-i';
 import { UbicacionPage } from './../ubicacion/ubicacion';
 import { JuradoPage } from './../jurado/jurado';
 import { ParticipantesTorneoPage } from './../participantes-torneo/participantes-torneo';
@@ -69,6 +70,11 @@ export class VerTorneoPage {
   verInscritos(){
     console.log('hola');
     this.navCtrl.push(ParticipantesTorneoPage);
+  }
+
+  verInscritos1(){
+    console.log('hola');
+    this.navCtrl.push(ParticipantesTorneosIPage);
   }
 
   salir(){

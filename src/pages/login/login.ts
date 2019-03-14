@@ -3,7 +3,7 @@ import { RegistroPage } from './../registro/registro';
 import { LoginProvider } from './../../providers/login/login';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { TabsPage } from '../tabs/tabs';
 
 /**
@@ -25,6 +25,7 @@ export class LoginPage {
     usuario:null,
     password: null
   };
+  error:any =0;
 
   tabs:any;
   constructor(public navCtrl: NavController,
@@ -37,8 +38,8 @@ export class LoginPage {
                 this.tabs = document.getElementsByClassName('show-tabbar').item(0);
 
                 this.form = this.fb.group({
-                  usuario: new FormControl(this.campos.usuario),
-                  password: new FormControl(this.campos.password)
+                  usuario: new FormControl(this.campos.usuario , Validators.required),
+                  password: new FormControl(this.campos.password, Validators.required)
                 });
   }
 
@@ -58,6 +59,7 @@ export class LoginPage {
   }
 
   login(){
+    console.log('hola');
     this._loginService.login(this.form.value.usuario, this.form.value.password)
     .subscribe(
       res=>{
@@ -77,6 +79,7 @@ export class LoginPage {
       },
       e=>{
         console.log(e);
+        this.error =1;
       }
     )
   }

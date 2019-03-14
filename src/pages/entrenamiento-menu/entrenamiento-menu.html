@@ -7,30 +7,30 @@
 <ion-header>
 
     <ion-navbar>
-        <ion-title>entrenamiento-menu</ion-title>
+        <ion-title>Entrenamientos</ion-title>
     </ion-navbar>
 
 </ion-header>
 
 
 <ion-content class="card-background-page" padding>
-    <ion-card class="opcion" (click)='buscarEntrenamiento()'>
+    <ion-card class="opcion" (click)='buscarEntrenamiento()' >
         <img src="assets/imgs/buscar.jpg" />
         <div class="card-title">Buscar</div>
     </ion-card>
 
-    <ion-card class="opcion">
-        <img src="assets/imgs/inscritos.jpg" (click)='inscritos()' />
+    <ion-card class="opcion" (click)='inscritos()'>
+        <img src="assets/imgs/inscritos.jpg"  />
         <div class="card-title">inscritos</div>
     </ion-card>
 
-    <ion-card class="opcion">
-        <img src="assets/imgs/crear.jpg" (click)='crearEntrenamiento()' />
+    <ion-card class="opcion" (click)='crearEntrenamiento()'>
+        <img src="assets/imgs/crear.jpg"  />
         <div class="card-title">Crear </div>
     </ion-card>
 
-    <ion-card class="opcion">
-        <img src="assets/imgs/crear.jpg" (click)='misEntrenamiento()' />
+    <ion-card class="opcion"  (click)='misEntrenamiento()'>
+        <img src="assets/imgs/crear.jpg" />
         <div class="card-title">Mis Entrenamientos</div>
     </ion-card>
 

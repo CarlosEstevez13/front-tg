@@ -15,6 +15,7 @@ export class LoginProvider {
   }
 
   login(usuario: string, password: string) {
+    console.log('hola1');
     this.headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
     return this._http.post(this.url + 'login', { usuario, password }).map(res => this.getDatos(res));
   }

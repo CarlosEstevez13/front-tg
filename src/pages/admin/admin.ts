@@ -1,3 +1,5 @@
+import { GestionarEntrenamientoPage } from './../gestionar-entrenamiento/gestionar-entrenamiento';
+import { LoginPage } from './../login/login';
 import { GestionarTorneosPage } from './../gestionar-torneos/gestionar-torneos';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -35,6 +37,17 @@ export class AdminPage {
   }
   torneos(){
     this.navCtrl.push(GestionarTorneosPage);
+  }
+  entrenamientos(){
+    this.navCtrl.push(GestionarEntrenamientoPage);
+  }
+
+  logout(){
+    sessionStorage.removeItem('idDeporte');
+    sessionStorage.removeItem('idEquipo');
+    sessionStorage.removeItem('idRol');
+    sessionStorage.removeItem('idUsuario');
+    this.navCtrl.setRoot(LoginPage);
   }
 
 }

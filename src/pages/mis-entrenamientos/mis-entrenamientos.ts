@@ -76,7 +76,7 @@ export class MisEntrenamientosPage {
   showAlert(idSalida:any) {
     const alert = this.alertCtrl.create({
       title: 'Eliminar!',
-      subTitle: 'Estas seguro de borrar esta Salida?',
+      subTitle: 'Estas seguro de borrar este entrenamiento?',
       buttons: [{
         text: 'Si',
         handler: () => {

@@ -2,7 +2,8 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Administracion</ion-title>
+    <ion-title>Administracion <span (click)="logout()"><i class="fas fa-sign-out-alt"></i></span></ion-title>
+    
   </ion-navbar>
 
 </ion-header>
@@ -34,5 +35,10 @@
     <img src="assets/imgs/crear.jpg"/>
     <div class="card-title">Gestionar Torneos</div>
   </ion-card>
+
+  <ion-card class="opcion" (click)='entrenamientos()'>
+    <img src="assets/imgs/entrenar.jpg"  />
+    <div class="card-title">Entrenamientos</div>
+</ion-card>
 
 </ion-content>

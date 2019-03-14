@@ -1,3 +1,4 @@
+import { UbicacionPage } from './../ubicacion/ubicacion';
 import { SalidaIProvider } from '../../providers/salida-i/salida-i';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { Component } from '@angular/core';
@@ -45,17 +46,32 @@ export class CrearEntrenamientoPage {
                   nroParticipantes: new FormControl(),
                   entrenamiento: new FormControl(1),
                   horaFin: new FormControl(),
-                  latitud: new FormControl(1),
-                  longitud: new FormControl(1),
+                  latitud: new FormControl(null),
+                  longitud: new FormControl(null),
                   nombre: new FormControl(),
                 });
   }
 
   ionViewDidLoad() {
+    sessionStorage.setItem('tempLat','null');
+    sessionStorage.setItem('tempLng','null');
     console.log('ionViewDidLoad CrearEntrenamientoPage');
   }
 
+
+  agregarUbicacion(){
+    this.navCtrl.push(UbicacionPage);
+  }
+
+
+  ionViewWillLeave(){
+    sessionStorage.removeItem('tempLat');
+    sessionStorage.removeItem('tempLng');
+  }
+
   crear(){
+    this.form.value.latitud = sessionStorage.getItem('tempLat');
+    this.form.value.longitud = sessionStorage.getItem('tempLng');
     console.log(this.form.value);
     this._salidaIProvider.addSalida(this.form.value)
       .subscribe(
@@ -67,6 +83,8 @@ export class CrearEntrenamientoPage {
             idDeporte: this.idDeporte,
             idRol: this.idRol
           };
+          sessionStorage.removeItem('tempLat');
+          sessionStorage.removeItem('tempLng');
           this._salidaIProvider.addSalidaIUsuario(data)
           .subscribe(
             res=>{
