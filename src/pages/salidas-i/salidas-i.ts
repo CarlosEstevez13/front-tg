@@ -22,7 +22,8 @@ export class SalidasIPage {
   todas : any = [];
   idDeporte:any;
   deportes:any = [];
-  
+  idGenero:any;
+  busqueda:any=0;
   
 
   constructor(public navCtrl: NavController,
@@ -87,4 +88,17 @@ export class SalidasIPage {
     
   }
 
+  bucagenero(){
+    console.log(this.idGenero);
+
+      this.disponibles= this.todas;
+      let disponiblesFiltrada =[];
+      for(let i in this.disponibles){
+        if(this.disponibles[i].genero == this.idGenero){
+          disponiblesFiltrada.push(this.disponibles[i]);
+        }
+      }
+      this.disponibles= disponiblesFiltrada;
+      console.log(this.disponibles);
+  }
 }

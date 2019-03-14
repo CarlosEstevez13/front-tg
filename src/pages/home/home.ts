@@ -1,3 +1,4 @@
+import { EntretenimientoPage } from './../entretenimiento/entretenimiento';
 import { HistorialPage } from './../historial/historial';
 import { PerfilPage } from './../perfil/perfil';
 import { Component } from '@angular/core';
@@ -33,4 +34,7 @@ export class HomePage {
     this.navCtrl.push(HistorialPage);
   }
 
+  entretenimiento(){
+    this.navCtrl.push(EntretenimientoPage);
+  }
 }

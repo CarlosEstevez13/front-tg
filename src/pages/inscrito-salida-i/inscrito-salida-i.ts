@@ -21,6 +21,8 @@ export class InscritoSalidaIPage {
   todas:any;
   idDeporte:any;
   deportes:any = [];
+  idGenero:any;
+  busqueda:any=0;
 
   constructor(public navCtrl: NavController,
                public navParams: NavParams,
@@ -56,6 +58,7 @@ export class InscritoSalidaIPage {
       res=>{
           
           this.salida=res.result;
+          this.todas= this.salida;
           console.log(this.salida);
       },
       e=>{
@@ -84,5 +87,17 @@ export class InscritoSalidaIPage {
     
   }
   
+  bucagenero(){
+    this.salida= this.todas;
+      let disponiblesFiltrada =[];
+      console.log(this.salida);
+      for(let i in this.salida){
+        if(this.salida[i].genero == this.idGenero){
+          disponiblesFiltrada.push(this.salida[i]);
+        }
+      }
+      this.salida= disponiblesFiltrada;
+      console.log(this.salida);
+  }
 
 }

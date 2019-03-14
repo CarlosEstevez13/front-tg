@@ -1,3 +1,6 @@
+import { VideosEntretenimientoPageModule } from './../pages/videos-entretenimiento/videos-entretenimiento.module';
+
+import { EntretenimientoPageModule } from '../pages/entretenimiento/entretenimiento.module';
 import { GestionarTorneosPageModule } from './../pages/gestionar-torneos/gestionar-torneos.module';
 import { GestionarUsuarioPage } from './../pages/gestionar-usuario/gestionar-usuario';
 import { AdminPageModule } from './../pages/admin/admin.module';
@@ -126,6 +129,9 @@ import { GestionarSalidasEPageModule } from '../pages/gestionar-salidas-e/gestio
 import { GestionarSalidasEPage } from '../pages/gestionar-salidas-e/gestionar-salidas-e';
 import { GestionarSalidasIPage } from '../pages/gestionar-salidas-i/gestionar-salidas-i';
 import { GestionarTorneosPage } from '../pages/gestionar-torneos/gestionar-torneos';
+import { EntretenimientoPage } from '../pages/entretenimiento/entretenimiento';
+import { VideosEntretenimientoPage } from './../pages/videos-entretenimiento/videos-entretenimiento';
+
 
 
 @NgModule({
@@ -216,6 +222,8 @@ import { GestionarTorneosPage } from '../pages/gestionar-torneos/gestionar-torne
     GestionarSalidasIPageModule,
     GestionarSalidasEPageModule,
     GestionarTorneosPageModule,
+    EntretenimientoPageModule,
+    VideosEntretenimientoPageModule,
     /* IonicModule.forRoot(MyApp), */
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages:false
@@ -278,7 +286,9 @@ import { GestionarTorneosPage } from '../pages/gestionar-torneos/gestionar-torne
     GestionarEquipoPage,
     GestionarSalidasEPage,
     GestionarSalidasIPage,
-    GestionarTorneosPage
+    GestionarTorneosPage,
+    EntretenimientoPage,
+    VideosEntretenimientoPage
   ],
   providers: [
     StatusBar,

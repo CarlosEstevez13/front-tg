@@ -22,7 +22,7 @@ export class SalidaEProvider {
 
   constructor(public _http: Http) {
     console.log('Hello SalidaEProvider Provider');
-    this.url = 'http://192.168.1.6:3002/api/';
+    this.url = 'http://10.14.41.222:3002/api/';
   }
 
   //Este metodo es para diferenciar de salidasE y salidasE a jugar

@@ -8,14 +8,30 @@
 
 
 <ion-content padding>
-    <ion-item>
+
+    <h2 style="color: grey;"><small>Filtrar por:</small>
+        <button (click)="busqueda=2;" ion-button outline>Genero</button>
+        <button (click)="busqueda=1;" ion-button outline>Deporte</button></h2>
+    <ion-item *ngIf="busqueda==1">
         <ion-label>Deporte</ion-label>
         <ion-select [(ngModel)]="idDeporte">
             <ion-option value='0'>Todos</ion-option>
             <ion-option *ngFor="let deporte of deportes" value='{{deporte.idDeporte}}'>{{deporte.nombre}}</ion-option>
         </ion-select>
     </ion-item>
-    <button ion-button outline (click)="buscar();">Buscar</button>
+
+    <button (click)="buscar();" ion-button outline *ngIf="busqueda==1">Buscar</button>
+
+    <ion-item *ngIf="busqueda==2">
+        <ion-label>Generooo</ion-label>
+        <ion-select [(ngModel)]="idGenero">
+            <ion-option value='0'>Masculino</ion-option>
+            <ion-option value='1'>Femenino</ion-option>
+            <ion-option value='2'>Mixto</ion-option>
+        </ion-select>
+    </ion-item>
+    <button (click)="bucagenero();" ion-button outline *ngIf="busqueda==2">Buscar</button>
+
     <ion-card class="fondo" *ngFor="let sali of salida" (click)=" ver(sali.idSalidaI);">
 
         <ion-item class="tituloEvento">
