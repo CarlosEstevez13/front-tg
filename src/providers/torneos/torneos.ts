@@ -16,12 +16,17 @@ export class TorneosProvider {
 
   constructor(public _http: Http) {
     console.log('Hello TorneosProvider Provider');
-    this.url = 'http://192.168.1.10:3002/api/';
+    this.url = 'http://10.14.41.222:3002/api/';
   }
 
-  getTorneos() {
+  getTorneos(idU,idE) {
     this.headers = new Headers({'Content-Type': 'application/json'});
-    return this._http.get(this.url + 'torneos' ).map((res:any) => res.json());
+    return this._http.get(this.url + `turoles/${idU}/${idE}` ).map((res:any) => res.json());
+  }
+
+  getTorneosAdmin() {
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `torneos/` ).map((res:any) => res.json());
   }
 
   getTorneosDeporte(idDeporte) {
@@ -84,7 +89,7 @@ export class TorneosProvider {
     this.headers = new Headers({'Content-Type': 'application/json'});
     console.log('agregando torneo usuario rol');
     console.log(params);
-    return this._http.post(this.url + 'turol', params, {headers:this.headers})
+    return this._http.post(this.url + 'juez', params, {headers:this.headers})
             .map(res => res.json());
   }
 
@@ -101,6 +106,11 @@ export class TorneosProvider {
   }
 
   getTorne_Juez() {
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `juez/${this.idTorneo}` ).map((res:any) => res.json());
+  }
+
+  getTorneoI_Participantes() {
     this.headers = new Headers({'Content-Type': 'application/json'});
     return this._http.get(this.url + `turol/${this.idTorneo}` ).map((res:any) => res.json());
   }
@@ -124,6 +134,12 @@ export class TorneosProvider {
 
     this.headers = new Headers({'Content-Type': 'application/json'});
     return this._http.get(this.url + `equiposDeTorneo/${this.idTorneo}` ).map((res:any) => res.json());
+  }
+
+  getUsuariosEnTorneo() {
+
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `turol/${this.idTorneo}` ).map((res:any) => res.json());
   }
 
   deleteTorneoEquipos(idTorneo) {

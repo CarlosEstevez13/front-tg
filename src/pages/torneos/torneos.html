@@ -39,9 +39,9 @@
         <ion-item>
             <ion-label>Tipo</ion-label>
             <ion-select formControlName="tipo" >
-              <ion-option value="2">Todos</ion-option>
+              <ion-option value="2"  *ngIf="idEquipo != null">Todos</ion-option>
               <ion-option value="0">Individual</ion-option>
-              <ion-option value="1">PorEquipos</ion-option>
+              <ion-option value="1" *ngIf="idEquipo != null">PorEquipos</ion-option>
               
             </ion-select>
           </ion-item>
@@ -61,7 +61,8 @@
 
     <ion-card-content class="contenidoEvento">
       <ion-item class="fondoNone">
-        <h2><i class="fas fa-users margenSup"></i> Numero de equipos</h2>
+        <h2 *ngIf="torneo.individual ==1"><i class="fas fa-users margenSup"></i> Equipos</h2>
+        <h2 *ngIf="torneo.individual ==0"><i class="fas fa-users margenSup"></i> Participantes</h2>
         <div item-end>
           <b>
             {{torneo.nroEquipos}}

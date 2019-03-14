@@ -70,7 +70,7 @@ export class GestionarTorneosPage {
   }
 
   getTorneos(){
-    this.torneoProvider.getTorneos()
+    this.torneoProvider.getTorneosAdmin()
       .subscribe(
         res=>{
           this.torneos = res.result;

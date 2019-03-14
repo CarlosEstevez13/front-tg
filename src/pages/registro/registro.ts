@@ -135,7 +135,7 @@ export class RegistroPage {
           this.navCtrl.setRoot(TabsPage);
         }
 
-      },2000
+      },500
     
     );
     

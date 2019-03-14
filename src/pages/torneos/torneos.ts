@@ -20,6 +20,7 @@ export class TorneosPage {
 
   idDeporte= sessionStorage.getItem('idDeporte');
   idEquipo:any;
+  idUsuario:any;
   equipo:any;
   torneosInscritos:any;
   deportes:any = [];
@@ -36,17 +37,23 @@ export class TorneosPage {
               private fb: FormBuilder,
               public torneoProvider: TorneosProvider,
               public alertCtrl: AlertController) {
-    this.idEquipo = sessionStorage.getItem('idEquipo');
 
+    
     this.form = this.fb.group({
       idDeporte: new FormControl(0),
       genero: new FormControl(3),
       tipo: new FormControl(2)
     });
+
+    if(this.idEquipo == null){
+      this.form.value.tipo = 1;
+    }
     //this.getTorneosDeEquipo();
   }
   
   ionViewWillEnter() {
+    this.idEquipo = sessionStorage.getItem('idEquipo');
+    this.idUsuario = sessionStorage.getItem('idUsuario');
     console.log('ionViewDidLoad TorneosPage');
     this.torneoProvider.getDeportes()
       .subscribe(
@@ -59,14 +66,14 @@ export class TorneosPage {
         }
       );
 
-    this.getNroEquipos();
+    //this.getNroEquipos();
     this.getTorneos();
   }
 
   buscar(){
     this.aviso = 0;
     this.getNroEquipos();
-      this.getTorneos();
+    this.getTorneos();
       if(this.torneos.length == 0){
         this.aviso = 1;
       }
@@ -107,6 +114,9 @@ export class TorneosPage {
       }
       this.torneos = torneoBusqueda;
     }
+    if(this.torneos.length > 0){
+      this.aviso = 0;
+    }
   }
   
   getTorneosD() {
@@ -126,11 +136,15 @@ export class TorneosPage {
 
   getTorneos(){
     this.aviso =0;
-    this.torneoProvider.getTorneos()
+    this.torneoProvider.getTorneos(this.idUsuario,this.idEquipo)
         .subscribe(res=> {
-          //this.torneos = res.result;
+          this.torneos = res.result;
           console.log(res.result);
-          this.getTorneosDeEquipo(res.result);
+          //this.getTorneosDeEquipo(res.result);
+          this.buscarFiltro();
+                    if(this.torneos.length == 0){
+                      this.aviso =1;
+                    }
           
         },
         e=>{

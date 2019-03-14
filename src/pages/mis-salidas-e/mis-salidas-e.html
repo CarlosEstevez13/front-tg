@@ -53,7 +53,8 @@
         </ion-item>
 
         <ion-item *ngIf="salida.rival !=0" class="fondoNone" (click)="verEquipo(salida.idEquipo)">
-            <h2><i class="fas fa-users"></i>Versus: {{salida.rival}}</h2>
+            <h2><i class="fas fa-users"></i>Versus: {{salida.rival}} <button ion-button small> Ver</button></h2>
+            
           </ion-item>
 
           <ion-item *ngIf="salida.rival ==0" class="fondoNone">

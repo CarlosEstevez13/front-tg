@@ -15,10 +15,10 @@ export class UsuarioProvider {
 
   constructor(public _http: Http ) {
     console.log('Hello UsuarioProvider Provider');
-    this.url = 'http://192.168.1.10:3002/api/';
+    this.url = 'http://10.14.41.222:3002/api/';
   }
 
-  getUsuario(index:number){
+  getUsuario(index){
     this.headers = new Headers({'Content-Type': 'application/json'});
     return this._http.get(this.url + `usuario/${index}` ).map((res:any) => res.json());
   }

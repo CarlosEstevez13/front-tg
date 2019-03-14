@@ -22,10 +22,10 @@ export class EntrenamientoMenuPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  /* buscarEntrenamiento(){
+  buscarEntrenamiento(){
     this.navCtrl.push(BuscarEntrenamientoPage);
   }
- */
+
   inscritos(){
     this.navCtrl.push(VerEntrenamientoPage);
   }

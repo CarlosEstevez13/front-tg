@@ -1,3 +1,8 @@
+import { HistorialRendimientoPageModule } from './../pages/historial-rendimiento/historial-rendimiento.module';
+import { HistorialRendimientoPage } from './../pages/historial-rendimiento/historial-rendimiento';
+import { RendimientoMenuPageModule } from './../pages/rendimiento-menu/rendimiento-menu.module';
+import { RendimientoPageModule } from './../pages/rendimiento/rendimiento.module';
+import { ParticipantesTorneosIPageModule } from './../pages/participantes-torneos-i/participantes-torneos-i.module';
 import { GestionarEntrenamientoPageModule } from './../pages/gestionar-entrenamiento/gestionar-entrenamiento.module';
 import { GestionarTorneosPageModule } from './../pages/gestionar-torneos/gestionar-torneos.module';
 import { GestionarUsuarioPage } from './../pages/gestionar-usuario/gestionar-usuario';
@@ -128,6 +133,11 @@ import { GestionarSalidasEPage } from '../pages/gestionar-salidas-e/gestionar-sa
 import { GestionarSalidasIPage } from '../pages/gestionar-salidas-i/gestionar-salidas-i';
 import { GestionarTorneosPage } from '../pages/gestionar-torneos/gestionar-torneos';
 import { GestionarEntrenamientoPage } from '../pages/gestionar-entrenamiento/gestionar-entrenamiento';
+import { ParticipantesTorneosIPage } from '../pages/participantes-torneos-i/participantes-torneos-i';
+import { RendimientoPage } from '../pages/rendimiento/rendimiento';
+import { RendimientoMenuPage } from '../pages/rendimiento-menu/rendimiento-menu';
+import { InstruccionesPage } from '../pages/instrucciones/instrucciones';
+import { InstruccionesPageModule } from '../pages/instrucciones/instrucciones.module';
 
 
 @NgModule({
@@ -219,6 +229,11 @@ import { GestionarEntrenamientoPage } from '../pages/gestionar-entrenamiento/ges
     GestionarSalidasEPageModule,
     GestionarTorneosPageModule,
     GestionarEntrenamientoPageModule,
+    ParticipantesTorneosIPageModule,
+    RendimientoPageModule,
+    RendimientoMenuPageModule,
+    HistorialRendimientoPageModule,
+    InstruccionesPageModule,
     /* IonicModule.forRoot(MyApp), */
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages:false
@@ -282,7 +297,12 @@ import { GestionarEntrenamientoPage } from '../pages/gestionar-entrenamiento/ges
     GestionarSalidasEPage,
     GestionarSalidasIPage,
     GestionarTorneosPage,
-    GestionarEntrenamientoPage
+    GestionarEntrenamientoPage,
+    ParticipantesTorneosIPage,
+    RendimientoPage,
+    RendimientoMenuPage,
+    HistorialRendimientoPage,
+    InstruccionesPage
   ],
   providers: [
     StatusBar,

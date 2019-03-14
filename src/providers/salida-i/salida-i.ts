@@ -16,7 +16,7 @@ export class SalidaIProvider {
 
   constructor(public _http: Http) {
     console.log('Hello SalidaIProvider Provider');
-    this.url = 'http://192.168.1.10:3002/api/';
+    this.url = 'http://10.14.41.222:3002/api/';
   }
 
   getSalidas() {
