@@ -32,4 +32,67 @@
     
         </form>
     <h2 *ngIf="aviso == 1" class="centrado">Por favor edita en tu perfil los campos peso y estatura</h2>
+
+    <ion-item class="centrado" *ngIf="resultado==1">
+      rendimiento : <b>{{rendimiento |number}}</b>
+    </ion-item>
+
+    <ion-grid class="centrado" *ngIf="resultado==1">
+        <ion-row>
+
+            <ion-col col-9 push-3 >
+                <div><b>Clasificacion de aptitud fisica</b></div>
+              </ion-col>
+              <ion-col col-3 pull-9>
+                <div><b>rendimiento</b></div>
+              </ion-col>
+          </ion-row>
+        <ion-row [ngClass]="{negrita: rendimiento <= 23}">
+          <ion-col col-9 push-3>
+            <div>Considerablemente menor que el promedio</div>
+          </ion-col>
+          <ion-col col-3 pull-9>
+            <div>&#60; 23</div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row [ngClass]="{negrita: rendimiento > 24 && rendimiento <=29}">
+
+          <ion-col col-9 push-3 >
+              <div>Un poco abajo del promedio</div>
+            </ion-col>
+            <ion-col col-3 pull-9>
+              <div>24 - 29</div>
+            </ion-col>
+        </ion-row>
+        <ion-row [ngClass]="{negrita: rendimiento > 30 && rendimiento <=36}" >
+
+            <ion-col col-9 push-3 >
+                <div>Promedio</div>
+              </ion-col>
+              <ion-col col-3 pull-9>
+                <div>30 - 36</div>
+              </ion-col>
+          </ion-row>
+        <ion-row [ngClass]="{negrita: rendimiento > 37 && rendimiento <=37}">
+
+            <ion-col col-9 push-3 >
+                <div>Un poco arriba del promedio</div>
+              </ion-col>
+              <ion-col col-3 pull-9>
+                <div>37 - 44</div>
+              </ion-col>
+          </ion-row>
+        <ion-row [ngClass]="{negrita: rendimiento > 44}">
+
+            <ion-col col-9 push-3 >
+                <div >Considerablemente arriba del promedio</div>
+              </ion-col>
+              <ion-col col-3 pull-9>
+                <div>>44</div>
+              </ion-col>
+          </ion-row>
+    </ion-grid>
+
+    <button *ngIf="resultado==1" (click)="guardar()" ion-button full>Guardar</button>
 </ion-content>

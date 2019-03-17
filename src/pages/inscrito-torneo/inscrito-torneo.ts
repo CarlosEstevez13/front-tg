@@ -31,7 +31,7 @@ export class InscritoTorneoPage {
               public torneoService: TorneosProvider,
               public alertCtrl: AlertController) {
                 this.form = this.fb.group({
-                  idDeporte: new FormControl(),
+                  idDeporte: new FormControl(0),
                   genero: new FormControl(3),
                   tipo: new FormControl(2)
                 });

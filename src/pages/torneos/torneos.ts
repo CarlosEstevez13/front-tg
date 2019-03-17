@@ -52,6 +52,7 @@ export class TorneosPage {
   }
   
   ionViewWillEnter() {
+    this.torneos = [];
     this.idEquipo = sessionStorage.getItem('idEquipo');
     this.idUsuario = sessionStorage.getItem('idUsuario');
     console.log('ionViewDidLoad TorneosPage');
@@ -138,13 +139,24 @@ export class TorneosPage {
     this.aviso =0;
     this.torneoProvider.getTorneos(this.idUsuario,this.idEquipo)
         .subscribe(res=> {
-          this.torneos = res.result;
-          console.log(res.result);
-          //this.getTorneosDeEquipo(res.result);
+          
+          let hoy = new Date();
+          console.log(res);
+          let temp:any = [];
+          for(let i in res.result){
+            let vectorFecha = res.result[i].fecha.split('-');
+            let fecha = new Date(vectorFecha[0], (vectorFecha[1]-1), vectorFecha[2]);
+            if(fecha> hoy)
+              {
+                temp.push(res.result[i]);
+              }
+          }
+          this.torneos = temp;
+
           this.buscarFiltro();
-                    if(this.torneos.length == 0){
-                      this.aviso =1;
-                    }
+          if(this.torneos.length == 0){
+            this.aviso =1;
+          }
           
         },
         e=>{

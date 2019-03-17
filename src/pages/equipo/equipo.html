@@ -68,7 +68,9 @@
               
               <i class="fas fa-user-plus left5"
               (click)='agregarIntegrante()'></i>
-              <div *ngIf="solicitudesEquipo.length!=0" class="badgeSolicitud"> <ion-badge class="badge" >{{solicitudesEquipo.length}}</ion-badge></div>
+              <div *ngIf="solicitudesEquipo.length!=0" class="badgeSolicitud"> 
+                <ion-badge class="badge" >{{solicitudesEquipo.length}}</ion-badge>
+              </div>
              
               <i
                 *ngIf="capitan==0" 

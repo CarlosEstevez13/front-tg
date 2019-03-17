@@ -1,12 +1,7 @@
+import { UsuarioProvider } from './../../providers/usuario/usuario';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-/**
- * Generated class for the HistorialRendimientoPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -15,11 +10,32 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class HistorialRendimientoPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  rendimientos:any;
+
+  data: any;
+
+  constructor(public navCtrl: NavController, 
+              public usuarioService: UsuarioProvider,
+              public navParams: NavParams) {
+              
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HistorialRendimientoPage');
+  }
+
+
+  ionViewWillEnter(){
+    this.usuarioService.getRendimientos(sessionStorage.getItem('idUsuario'))
+      .subscribe(
+        res=>{
+          console.log(res);
+          this.rendimientos = res.result;
+        },
+        e=>{
+          console.log(e);
+        }
+      );
   }
 
 }

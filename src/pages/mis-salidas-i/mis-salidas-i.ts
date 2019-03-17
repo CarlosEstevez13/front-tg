@@ -87,36 +87,17 @@ export class MisSalidasIPage {
 
   eliminar(idSalida:any,i){
     console.log('entro');
-
-    this._salidaIProvider.deleteSalidaIUsuario(idSalida)
-      .subscribe(
-        res=>{
-          console.log(res);
-          this._salidaIProvider.deleteSalidaI(idSalida)
-            .subscribe(
-              res=>{
-                console.log(res);
-                this.salida.splice(i,1);
-              },
-              e=>{
-                console.log(e);
-              }
-            );
-        },
-        e=>{
-          console.log(e);
-          this._salidaIProvider.deleteSalidaI(idSalida)
-            .subscribe(
-              res=>{
-                console.log(res);
-                this.salida.splice(i,1);
-              },
-              e=>{
-                console.log(e);
-              }
-            );
-        }
-      )
+    
+    this._salidaIProvider.deleteSalidaI(idSalida)
+    .subscribe(
+      res=>{
+        console.log(res);
+        this.salida.splice(i,1);
+      },
+      e=>{
+        console.log(e);
+      }
+    );
 
     
   }

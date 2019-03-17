@@ -31,8 +31,18 @@ export class BuscarEntrenamientoPage {
     console.log('ionViewDidLoad BuscarEntrenamientoPage');
     this._salidaIProvider.getSalidasDisponiblesEntre(this.id).subscribe(
       res=>{
-          this.disponibles=res.result;
-          console.log(this.disponibles);
+        let hoy = new Date();
+        console.log(res);
+        let temp:any = [];
+        for(let i in res.result){
+          let vectorFecha = res.result[i].fecha.split('-');
+          let fecha = new Date(vectorFecha[0], (vectorFecha[1]-1), vectorFecha[2]);
+          if(fecha> hoy)
+            {
+              temp.push(res.result[i]);
+            }
+        }
+        this.disponibles = temp;
       },
       e=>{
           console.log(e);

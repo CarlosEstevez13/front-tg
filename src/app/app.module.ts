@@ -1,3 +1,4 @@
+import { NotificacionesPageModule } from './../pages/notificaciones/notificaciones.module';
 import { VideosEntretenimientoPageModule } from './../pages/videos-entretenimiento/videos-entretenimiento.module';
 
 import { EntretenimientoPageModule } from '../pages/entretenimiento/entretenimiento.module';
@@ -144,6 +145,9 @@ import { RendimientoPage } from '../pages/rendimiento/rendimiento';
 import { RendimientoMenuPage } from '../pages/rendimiento-menu/rendimiento-menu';
 import { InstruccionesPage } from '../pages/instrucciones/instrucciones';
 import { InstruccionesPageModule } from '../pages/instrucciones/instrucciones.module';
+import { NotificacionesPage } from '../pages/notificaciones/notificaciones';
+
+
 
 
 @NgModule({
@@ -242,6 +246,7 @@ import { InstruccionesPageModule } from '../pages/instrucciones/instrucciones.mo
     RendimientoMenuPageModule,
     HistorialRendimientoPageModule,
     InstruccionesPageModule,
+    NotificacionesPageModule,
     /* IonicModule.forRoot(MyApp), */
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages:false
@@ -312,7 +317,8 @@ import { InstruccionesPageModule } from '../pages/instrucciones/instrucciones.mo
     RendimientoPage,
     RendimientoMenuPage,
     HistorialRendimientoPage,
-    InstruccionesPage
+    InstruccionesPage,
+    NotificacionesPage
   ],
   providers: [
     StatusBar,

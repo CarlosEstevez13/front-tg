@@ -32,6 +32,7 @@ export class InscritoSalidaIPage {
   }
 
   ionViewWillEnter() {
+    this.salida = [];
     console.log('ionViewDidLoaaad InscritoSalidaIPage');
     this._salidaIProvider.getDeporte().subscribe(
       res=>{

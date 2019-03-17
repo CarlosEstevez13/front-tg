@@ -90,8 +90,18 @@ export class SalidasEPage {
     this.salidasProvider.getSalidasEInscribirse()
                 .subscribe(
                   res=>{
+                    let hoy = new Date();
                     console.log(res);
-                    this.salidas = res.result;
+                    let temp:any = [];
+                    for(let i in res.result){
+                      let vectorFecha = res.result[i].fecha.split('-');
+                      let fecha = new Date(vectorFecha[0], (vectorFecha[1]-1), vectorFecha[2]);
+                      if(fecha> hoy)
+                        {
+                          temp.push(res.result[i]);
+                        }
+                    }
+                    this.salidas = temp;
                     this.buscarFiltro();
                     if(this.salidas.length == 0){
                       this.aviso =1;

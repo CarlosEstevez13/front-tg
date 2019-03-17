@@ -11,7 +11,7 @@
     <ion-list>
         <button ion-item *ngFor="let arbitro of arbitros" (click)='verUsuario(arbitro.idUsuario)'>
         <ion-avatar item-start>
-          <img src="http://10.14.41.222:3002/profile/{{arbitro.imagen}}.png">
+          <img src="http://192.168.1.10:3002/profile/{{arbitro.imagen}}.png">
         </ion-avatar>
         <h2>{{arbitro.usuario}}</h2>
         <p>{{arbitro.descripcion}}</p>

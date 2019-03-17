@@ -15,12 +15,48 @@ export class UsuarioProvider {
 
   constructor(public _http: Http ) {
     console.log('Hello UsuarioProvider Provider');
-    this.url = 'http://10.14.41.222:3002/api/';
+    this.url = 'http://192.168.1.10:3002/api/';
   }
 
   getUsuario(index){
     this.headers = new Headers({'Content-Type': 'application/json'});
     return this._http.get(this.url + `usuario/${index}` ).map((res:any) => res.json());
+  }
+
+  getRendimientos(idU){
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `rendimientos/${idU}` ).map((res:any) => res.json());
+  }
+
+  getNotificacionesU(index){
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `notificacionesU/${index}` ).map((res:any) => res.json());
+  }
+
+  addRendimiento(rendimiento){
+    const json = JSON.stringify(rendimiento);
+    const params = json;
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    console.log('agregando rendimiento');
+    console.log(params);
+    return this._http.post(this.url + 'rendimiento', params, {headers:this.headers})
+            .map(res => res.json());
+  }
+
+  addNotificacion(notificacion){
+    const json = JSON.stringify(notificacion);
+    const params = json;
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    console.log('agregando notificacion');
+    console.log(params);
+    return this._http.post(this.url + 'notificacion', params, {headers:this.headers})
+            .map(res => res.json());
+  }
+
+
+  putNotificacion(index:number){
+    return this._http.put(this.url + `/notificacion/${index}`, {headers:this.headers})
+            .map(res => res.json());
   }
 
   getRoles(){

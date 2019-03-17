@@ -55,7 +55,7 @@
 
         <ion-item class="tituloEvento">
           <h2><i class="fas fa-cube margenSup"></i> {{ torneo.nombre}}</h2>
-          <div item-end><ion-icon name="calendar"></ion-icon> {{ torneo.fechaInicio}}</div>
+          <div item-end><ion-icon name="calendar"></ion-icon> {{ torneo.fechaInicio  |date}}</div>
         </ion-item>
     
         <ion-card-content class="contenidoEvento">
@@ -74,7 +74,7 @@
           </ion-item>
 
           <button (click)="editar(torneo.idTorneo)" ion-button>Editar</button>
-          <button (click)="showAlert(torneo.idTorneo, i)" ion-button color="danger" outline>Eliminar</button>
+          <button (click)="showAlert(torneo.idTorneo, i, torneo.nombre, torneo.individual)" ion-button color="danger" outline>Eliminar</button>
         </ion-card-content>
     
       </ion-card>

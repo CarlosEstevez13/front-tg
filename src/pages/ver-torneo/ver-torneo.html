@@ -45,7 +45,7 @@
       </ion-item>  
 
     <button ion-item>
-      Fecha de Inicio: {{torneo.fechaInicio}}
+      Fecha de Inicio: {{torneo.fechaInicio  |date}}
     </button>  
 
     <button *ngIf="idVer == 0" (click)="unirse()" ion-button>Unirse</button>

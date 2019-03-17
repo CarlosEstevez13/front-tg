@@ -23,6 +23,7 @@ export class CrearTorneoPage {
   deportes:any;
   selectedFile: File = null;
   arbitros:any =[];
+  hoy:any;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -30,6 +31,25 @@ export class CrearTorneoPage {
               private fb: FormBuilder,
               private torneoService: TorneosProvider,
               public alertCtrl: AlertController) {
+                let h = new Date();
+                let tomorrow = new Date();
+                tomorrow.setDate(h.getDate()+1);
+                let fecha = tomorrow;
+                console.log(this.hoy);
+               if(fecha.getMonth()+1 <10){
+                 if(fecha.getDate()<10){
+                  this.hoy = `${fecha.getFullYear()}-0${fecha.getMonth()+1}-0${fecha.getDate()}`
+                 }else{
+                  this.hoy = `${fecha.getFullYear()}-0${fecha.getMonth()+1}-${fecha.getDate()}`
+                 }
+               }else{
+                if(fecha.getDate()<10){
+                  this.hoy = `${fecha.getFullYear()}-${fecha.getMonth()+1}-0${fecha.getDate()}`
+                 }else{
+                  this.hoy = `${fecha.getFullYear()}-${fecha.getMonth()+1}-${fecha.getDate()}`
+                 }
+               }
+                console.log(this.hoy);
                 this.form = this.fb.group({
                   idUsuario: new FormControl(this.idUsuario),
                   idRol: new FormControl(this.idRol),
@@ -79,7 +99,7 @@ export class CrearTorneoPage {
     console.log(aleatorio);
     const fd  = new FormData();
     fd.append('pdf', this.selectedFile, `${aleatorio}-${this.idUsuario}`);
-    this.http.post('http://10.14.41.222:3002/api/uploadPdf', fd)
+    this.http.post('http://192.168.1.10:3002/api/uploadPdf', fd)
       .subscribe(
         res=>{
           console.log(res)

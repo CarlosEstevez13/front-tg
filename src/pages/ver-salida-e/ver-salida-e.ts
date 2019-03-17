@@ -30,7 +30,7 @@ export class VerSalidaEPage {
 
   idEquipo = sessionStorage.getItem('idEquipo');
   idVer:any;
-
+  vectorFecha:any;
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private salidaService: SalidaEProvider) {

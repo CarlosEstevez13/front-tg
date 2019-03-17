@@ -25,6 +25,25 @@
             </ion-select>
           </ion-item>
 
+          <ion-item>
+            <ion-label>Genero</ion-label>
+            <ion-select formControlName="genero" >
+              <ion-option value="0">Masculino</ion-option>
+              <ion-option value="1">Femenino</ion-option>
+              <ion-option value="2">Mixto</ion-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Invitar Equipo</ion-label>
+            <ion-select formControlName="rival">
+                <ion-option value="0">Ninguno</ion-option>
+              <ion-option *ngFor="let equipo of equipos" value="{{equipo.idEquipo}}">
+                  ID: {{equipo.idEquipo}} {{equipo.nombre}}
+                </ion-option>
+            </ion-select>
+          </ion-item>
+
         <ion-item>
           <ion-label fixed>Descripcion</ion-label>
           <ion-textarea rows="3" formControlName="descripcion" type="text"></ion-textarea>
@@ -36,7 +55,7 @@
 
         <ion-item>
           <ion-label fixed>Fecha</ion-label>
-          <ion-input formControlName="fecha" type="date"></ion-input>
+          <ion-input formControlName="fecha" type="date" min="{{hoy}}"></ion-input>
         </ion-item>
 
         <ion-item>
