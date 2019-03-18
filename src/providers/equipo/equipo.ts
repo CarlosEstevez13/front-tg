@@ -148,6 +148,10 @@ export class EquipoProvider {
     return this._http.put(this.url + `equipo/${idEquipo}`, params , { headers: this.headers } ).map(res => res.json());
   }
 
+  putSalirEquipo(idUsuario){
+    return this._http.put(this.url + `salirEquipo/${idUsuario}` , { headers: this.headers } ).map(res => res.json());
+  }
+
   deleteSolEquipo( idSolicitud:any){
     return this._http.delete(this.url + `solicitud/${idSolicitud}` , { headers: this.headers } ).map(res => res.json());
   }

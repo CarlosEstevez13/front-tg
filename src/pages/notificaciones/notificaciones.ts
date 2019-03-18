@@ -1,3 +1,6 @@
+import { VerTorneoPage } from './../ver-torneo/ver-torneo';
+import { TorneosProvider } from './../../providers/torneos/torneos';
+import { VerEquipoPage } from './../ver-equipo/ver-equipo';
 import { UsuarioProvider } from './../../providers/usuario/usuario';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -18,8 +21,11 @@ export class NotificacionesPage {
 
   notificaciones:any = [];
 
+  torneo:any;
+
   constructor(public navCtrl: NavController, 
               private usuarioProvider: UsuarioProvider,
+              private torneoProvider: TorneosProvider,
               public navParams: NavParams) {
   }
 
@@ -37,7 +43,20 @@ export class NotificacionesPage {
         }
       );
   }
-  borrar(idNotificacion, i){
+  verEquipo(idEquipo:any){
+    sessionStorage.setItem('idEquipo',idEquipo);
+    sessionStorage.setItem('temp','1');
+    this.navCtrl.push(VerEquipoPage);
+  }
+
+  verTorneo(idTorneo,idNotificacion){
+      sessionStorage.setItem('temp',`${idNotificacion}`);
+      this.torneoProvider.setIdTorneo(idTorneo);
+      this.torneoProvider.setIdVer(2);
+      this.navCtrl.push(VerTorneoPage);
+  }
+
+  borrar(idNotificacion, i, tipo, idSalida){
     this.usuarioProvider.putNotificacion(idNotificacion)
       .subscribe(
         res=>{
@@ -48,6 +67,39 @@ export class NotificacionesPage {
           console.log(e);
         }
       );
+    if(tipo ==8){
+      this.torneoProvider.setIdTorneo(idSalida);
+      this.torneoProvider.getTorneo()
+        .subscribe(
+          res=>{
+            console.log(res);
+            this.torneo = res.result[0];
+
+            let data = {
+              tipo: 9,
+              descripcion: `El juez ${sessionStorage.getItem('nombreArbitro')} ha rechazado arbitrar el torneo: ${this.torneo.nombre}`,
+              idEquipo: 0,
+              idSalida: 0,
+              idUsuario: this.torneo.idUsuario
+            }
+            this.usuarioProvider.addNotificacion(data)
+              .subscribe(
+                res=>{
+                  console.log(res);
+                  this.navCtrl.pop();
+                },
+                e=>{
+                  console.log(e);
+                }
+              );
+            
+          },
+          e=>{
+            console.log(e);
+          }
+        );
+
+    }
   }
 
 }

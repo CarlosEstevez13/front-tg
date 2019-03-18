@@ -25,6 +25,9 @@
           <ion-icon name="people"></ion-icon>
         </button>
     </button> 
+    <button ion-button color='danger' *ngIf="integranteEquipo ==1" full (click)='showAlert()'>
+       Salir del Equipo
+      </button> 
 
     <ion-item >
       <b>Historial:</b>

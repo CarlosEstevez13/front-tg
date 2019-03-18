@@ -14,6 +14,7 @@ import { NotificacionesPage } from '../notificaciones/notificaciones';
 export class HomePage {
 
   notificaciones:any = [];
+  idRol:any;
 
   constructor(public navCtrl: NavController,
               private usuarioProvider: UsuarioProvider,
@@ -22,6 +23,21 @@ export class HomePage {
     sessionStorage.setItem('idRol','1');
     sessionStorage.setItem('idEquipo','1');
     sessionStorage.setItem('idDeporte','1'); */
+    this.idRol = sessionStorage.getItem('idRol');
+
+    this.usuarioProvider.getUsuario(sessionStorage.getItem('idUsuario'))
+      .subscribe(
+        res=>{
+          console.log(res);
+          if(this.idRol = 3){
+            sessionStorage.setItem('nombreArbitro',`${res.result[0].nombre}`)
+          }
+        },
+        e=>{
+          console.log(e);
+        }
+      )
+    
   }
   ionViewWillEnter(){
     this.notificaciones = [];

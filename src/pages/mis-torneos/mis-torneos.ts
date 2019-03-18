@@ -201,7 +201,7 @@ export class MisTorneosPage {
                 for(let i in integrantes){
                   let data = {
                     tipo: 1,
-                    descripcion: `Se elimino el torneo por equipos: '${nombre}'`,
+                    descripcion: `Se elimino el torneo por equipos: ${nombre}`,
                     idEquipo: 0,
                     idSalida: 0,
                     idUsuario: integrantes[i].idUsuario
@@ -237,7 +237,7 @@ export class MisTorneosPage {
           for(let i in integrantes){
             let data = {
               tipo: 1,
-              descripcion: `Se elimino el torneo individual: '${nombre}'`,
+              descripcion: `Se elimino el torneo individual: ${nombre}`,
               idEquipo: 0,
               idSalida: 0,
               idUsuario: integrantes[i].idUsuario

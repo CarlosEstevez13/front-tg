@@ -337,10 +337,12 @@ export class EquipoPage {
 
   salirDelEquipo(){
     console.log('salir del equipo');
+
   }
 
   descripcion(){
     this.navCtrl.push(VerEquipoPage);
+    sessionStorage.setItem('integranteEquipo','1');
   }
   
 }

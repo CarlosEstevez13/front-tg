@@ -134,7 +134,7 @@ export class CrearSalidaEPage {
                               for(let i in integrantes){
                                 let data = {
                                   tipo: 5,
-                                  descripcion: `Te ha invitado a jugar la salida por equipos ${this.form.value.nombre}`,
+                                  descripcion: `Te han invitado a jugar la salida por equipos: '${this.form.value.nombre}'`,
                                   idEquipo: 0,
                                   idSalida: 0,
                                   idUsuario: integrantes[i].idUsuario

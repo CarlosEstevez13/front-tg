@@ -113,7 +113,7 @@ export class InscritoTorneoPage {
   showAlert(idTorneo:any, i:any) {
     const alert = this.alertCtrl.create({
       title: 'Eliminar!',
-      subTitle: 'Estas seguro de borrar este torneo!',
+      subTitle: 'Estas seguro de salir de este torneo!',
       buttons: [{
         text: 'Si',
         handler: () => {

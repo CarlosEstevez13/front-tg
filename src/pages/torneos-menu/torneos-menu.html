@@ -30,4 +30,9 @@
     <div class="card-title">Mis Torneos</div>
   </ion-card>
 
+  <ion-card class="opcion" (click)='getTorneosArbitrar()' *ngIf="idRol == 3">
+    <img src="assets/imgs/crear.jpg"/>
+    <div class="card-title">Torneos a arbitrar</div>
+  </ion-card>
+
 </ion-content>

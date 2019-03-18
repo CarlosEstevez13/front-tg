@@ -114,6 +114,7 @@ export class RegistroPage {
                         
                       },
                       e=>{
+                        this.temp =1;
                         console.log(e);
                       }
                     );

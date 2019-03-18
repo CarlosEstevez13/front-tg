@@ -1,3 +1,4 @@
+import { UsuarioProvider } from './../../providers/usuario/usuario';
 import { UbicacionPage } from './../ubicacion/ubicacion';
 import { HttpClient } from '@angular/common/http';
 import { TorneosProvider } from './../../providers/torneos/torneos';
@@ -30,6 +31,7 @@ export class CrearTorneoPage {
               private http: HttpClient,
               private fb: FormBuilder,
               private torneoService: TorneosProvider,
+              private usuarioProvider: UsuarioProvider,
               public alertCtrl: AlertController) {
                 let h = new Date();
                 let tomorrow = new Date();
@@ -172,12 +174,33 @@ export class CrearTorneoPage {
         res=>{
           console.log(res);
           for (let i in this.form.value.jurado){
+
             let data = {
+              tipo: 8,
+              descripcion: `Te han invitado a arbitrar el torneo: ${this.form.value.nombre}`,
+              idEquipo: 0,
+              idSalida: (res.result.idTorneo - 1),
+              idUsuario: this.form.value.jurado[i]
+            }
+            this.usuarioProvider.addNotificacion(data)
+              .subscribe(
+                res=>{
+                  console.log(res);
+                  correcto=1;
+                },
+                e=>{
+                  console.log(e);
+                  correcto=1;
+                }
+              )
+
+            /* let data = {
               idTorneo : (res.result.idTorneo - 1),
               idUsuario : this.form.value.jurado[i],
               idRol : 3
             }
-            this.torneoService.addTor_Usuario_Rol(data)
+            
+            this.torneoService.addJuez(data)
               .subscribe(
                 res=>{
                   console.log(res);
@@ -187,7 +210,7 @@ export class CrearTorneoPage {
                   correcto = 1;
                   console.log(e);
                 }
-              )
+              ) */
           }
         },
         e=>{

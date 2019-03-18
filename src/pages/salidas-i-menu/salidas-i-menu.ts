@@ -19,7 +19,10 @@ import { CrearSalidaIPage } from '../crear-salida-i/crear-salida-i';
 })
 export class SalidasIMenuPage {
 
+  idRol:any
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.idRol = sessionStorage.getItem('idRol');
   }
 
   ionViewDidLoad() {

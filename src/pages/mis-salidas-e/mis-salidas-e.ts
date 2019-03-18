@@ -215,7 +215,7 @@ export class MisSalidasEPage {
           for(let i in integrantes){
             let data = {
               tipo: 2,
-              descripcion: `Se elimino salida por equipos: '${nombre}'`,
+              descripcion: `Se elimino salida por equipos: ${nombre}`,
               idEquipo: 0,
               idSalida: 0,
               idUsuario: integrantes[i].idUsuario

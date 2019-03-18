@@ -24,12 +24,12 @@
         <div class="card-title">Entramientos a Jugar</div>
     </ion-card>
 
-    <ion-card class="opcion" (click)='crearEntrenamiento()'>
+    <ion-card class="opcion" (click)='crearEntrenamiento()' *ngIf="idRol==5">
         <img src="assets/imgs/crear.jpg"  />
         <div class="card-title">Crear Entrenamiento</div>
     </ion-card>
 
-    <ion-card class="opcion"  (click)='misEntrenamiento()'>
+    <ion-card class="opcion"  (click)='misEntrenamiento()' *ngIf="idRol==5">
         <img src="assets/imgs/crear.jpg" />
         <div class="card-title">Mis Entrenamientos</div>
     </ion-card>

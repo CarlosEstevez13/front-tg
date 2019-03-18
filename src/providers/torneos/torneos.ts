@@ -24,6 +24,11 @@ export class TorneosProvider {
     return this._http.get(this.url + `turoles/${idU}/${idE}` ).map((res:any) => res.json());
   }
 
+  getTorneosArbitrar(idU) {
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `torneosArbitrar/${idU}` ).map((res:any) => res.json());
+  }
+
   getTorneosAdmin() {
     this.headers = new Headers({'Content-Type': 'application/json'});
     return this._http.get(this.url + `torneos/` ).map((res:any) => res.json());
@@ -83,7 +88,7 @@ export class TorneosProvider {
     this.idVer = id;
   }
 
-  addTor_Usuario_Rol(data){
+  addJuez(data){
     const json = JSON.stringify(data);
     const params = json;
     this.headers = new Headers({'Content-Type': 'application/json'});

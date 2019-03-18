@@ -24,9 +24,13 @@
                         <button *ngIf="notificacion.idEquipo!=0" (click)='verEquipo(notificacion.idEquipo)' ion-button>
                           ver
                         </button>
+                        <button *ngIf="notificacion.tipo==8" (click)='verTorneo(notificacion.idSalida, notificacion.idNotificacion)' ion-button>
+                          ver
+                        </button>
                       </p>
                       <span class="borrarNot">
-                        <button ion-button color="danger" outline small (click)="borrar(notificacion.idNotificacion,i)">
+                        <button ion-button color="danger" outline small 
+                            (click)="borrar(notificacion.idNotificacion,i, notificacion.tipo, notificacion.idSalida)">
                           Borrar
                         </button>
                       </span>
