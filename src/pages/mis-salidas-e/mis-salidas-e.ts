@@ -218,7 +218,8 @@ export class MisSalidasEPage {
               descripcion: `Se elimino salida por equipos: ${nombre}`,
               idEquipo: 0,
               idSalida: 0,
-              idUsuario: integrantes[i].idUsuario
+              idUsuario: integrantes[i].idUsuario,
+              idRemitente: sessionStorage.getItem('idUsuario')
             }
             this.usuarioProvider.addNotificacion(data)
               .subscribe(

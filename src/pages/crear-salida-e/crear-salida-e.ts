@@ -58,7 +58,8 @@ export class CrearSalidaEPage {
                   latitud: new FormControl(null),
                   longitud: new FormControl(null),
                   idDeporte: new FormControl(),
-                  rival: new FormControl(0)
+                  rival: new FormControl(0),
+                  direccion: new FormControl()
                 });
   }
 
@@ -88,6 +89,7 @@ export class CrearSalidaEPage {
   ionViewDidLoad(){
     sessionStorage.setItem('tempLat','null');
     sessionStorage.setItem('tempLng','null');
+    sessionStorage.setItem('direccion','null');
   }
 
   agregarUbicacion(){
@@ -98,6 +100,7 @@ export class CrearSalidaEPage {
     console.log(this.form.value);
     this.form.value.latitud = sessionStorage.getItem('tempLat');
     this.form.value.longitud = sessionStorage.getItem('tempLng');
+    this.form.value.direccion = sessionStorage.getItem('direccion');
     console.log(this.form.value);
 
     let id:any;
@@ -137,7 +140,8 @@ export class CrearSalidaEPage {
                                   descripcion: `Te han invitado a jugar la salida por equipos: '${this.form.value.nombre}'`,
                                   idEquipo: 0,
                                   idSalida: 0,
-                                  idUsuario: integrantes[i].idUsuario
+                                  idUsuario: integrantes[i].idUsuario,
+                                  idRemitente: sessionStorage.getItem('idUsuario')
                                 }
                                 this.usuarioProvider.addNotificacion(data)
                                   .subscribe(
@@ -176,6 +180,7 @@ export class CrearSalidaEPage {
   ionViewWillLeave(){
     sessionStorage.removeItem('tempLat');
     sessionStorage.removeItem('tempLng');
+    sessionStorage.removeItem('direccion');
   }
 
   showAlert() {

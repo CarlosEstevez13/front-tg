@@ -1,16 +1,22 @@
 import { VerTorneoPage } from './../ver-torneo/ver-torneo';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
-import { TorneosProvider } from './../../providers/torneos/torneos';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { TorneosProvider } from '../../providers/torneos/torneos';
 
+/**
+ * Generated class for the TorneosPatrocinarPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
 
 @IonicPage()
 @Component({
-  selector: 'page-torneos-arbitrar',
-  templateUrl: 'torneos-arbitrar.html',
+  selector: 'page-torneos-patrocinar',
+  templateUrl: 'torneos-patrocinar.html',
 })
-export class TorneosArbitrarPage {
+export class TorneosPatrocinarPage {
 
   torneos:any =[];
   deportes:any = [];
@@ -50,7 +56,8 @@ export class TorneosArbitrarPage {
   }
 
   getTorneos(){
-    this.torneosProvider.getTorneosArbitrar(this.idUsuario)
+    /* arreglar */
+    this.torneosProvider.getTorneosPatrocinar(this.idUsuario)
       .subscribe(
         res=>{
           console.log(res);
@@ -119,7 +126,7 @@ export class TorneosArbitrarPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad TorneosArbitrarPage');
+    console.log('ionViewDidLoad TorneosPatrocinarPage');
   }
 
 }

@@ -60,9 +60,10 @@ export class VerSalidaEPage {
   }
 
 
-  ubicacion(lat,lng){
+  ubicacion(lat,lng, direccion){
     sessionStorage.setItem('tempLat',`${lat}`);
     sessionStorage.setItem('tempLng',`${lng}`);
+    sessionStorage.setItem('direccion',`${direccion}`);
     this.navCtrl.push(UbicacionPage);
   }
 

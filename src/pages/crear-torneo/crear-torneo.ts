@@ -65,7 +65,8 @@ export class CrearTorneoPage {
                   latitud: new FormControl(1),
                   jurado: new FormControl(),
                   genero: new FormControl(),
-                  individual: new FormControl()
+                  individual: new FormControl(),
+                  direccion: new FormControl()
                   
                 });
   }
@@ -74,6 +75,7 @@ export class CrearTorneoPage {
     console.log('ionViewDidLoad CrearTorneoPage');
     sessionStorage.setItem('tempLat','1');
     sessionStorage.setItem('tempLng','1');
+    sessionStorage.setItem('direccion','null');
     this.getDeportes();
     this.getArbitros();
   }
@@ -101,7 +103,7 @@ export class CrearTorneoPage {
     console.log(aleatorio);
     const fd  = new FormData();
     fd.append('pdf', this.selectedFile, `${aleatorio}-${this.idUsuario}`);
-    this.http.post('http://192.168.1.10:3002/api/uploadPdf', fd)
+    this.http.post('http://10.8.80.47:3002/api/uploadPdf', fd)
       .subscribe(
         res=>{
           console.log(res)
@@ -118,7 +120,8 @@ export class CrearTorneoPage {
                   latitud: sessionStorage.getItem('tempLat'),
                   jurado: this.form.value.jurado,
                   genero: this.form.value.genero,
-                  individual: this.form.value.individual
+                  individual: this.form.value.individual,
+                  direccion: this.form.value.direccion
           })
           
         },
@@ -168,11 +171,15 @@ export class CrearTorneoPage {
   crear(){
     this.form.value.latitud = sessionStorage.getItem('tempLat');
     this.form.value.longitud = sessionStorage.getItem('tempLng');
+    this.form.value.direccion = sessionStorage.getItem('direccion');
     let correcto = 0;
     this.torneoService.addTorneo(this.form.value)
       .subscribe(
         res=>{
           console.log(res);
+          if(this.form.value.jurado.lenght == 0){
+            correcto =1;
+          }
           for (let i in this.form.value.jurado){
 
             let data = {
@@ -180,7 +187,8 @@ export class CrearTorneoPage {
               descripcion: `Te han invitado a arbitrar el torneo: ${this.form.value.nombre}`,
               idEquipo: 0,
               idSalida: (res.result.idTorneo - 1),
-              idUsuario: this.form.value.jurado[i]
+              idUsuario: this.form.value.jurado[i],
+              idRemitente: sessionStorage.getItem('idUsuario')
             }
             this.usuarioProvider.addNotificacion(data)
               .subscribe(

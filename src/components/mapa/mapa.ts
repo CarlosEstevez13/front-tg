@@ -17,6 +17,8 @@ export class MapaComponent {
 
   coords:any;
 
+  direccion:any;
+
   @ViewChild("map") mapElement;
 
   map: any;
@@ -38,6 +40,7 @@ export class MapaComponent {
 
   ngOnInit(){
     this.ver = 0;
+    this.direccion = sessionStorage.getItem('direccion');
     console.log(sessionStorage.getItem('tempLat'));
     if(sessionStorage.getItem('tempLat') != 'null' && sessionStorage.getItem('tempLat') != '1'){
       this.ver =1;
@@ -114,6 +117,7 @@ export class MapaComponent {
   agregar(){
     sessionStorage.setItem('tempLat',`${this.resultado.lat}`);
     sessionStorage.setItem('tempLng',`${this.resultado.lng}`);
+    sessionStorage.setItem('direccion',`${this.form.value.texto}`);
     this.navCtrl.pop();
   }
 

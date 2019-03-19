@@ -1,3 +1,4 @@
+import { TorneosPatrocinarPageModule } from './../pages/torneos-patrocinar/torneos-patrocinar.module';
 import { TorneosArbitrarPageModule } from './../pages/torneos-arbitrar/torneos-arbitrar.module';
 import { TorneosArbitrarPage } from './../pages/torneos-arbitrar/torneos-arbitrar';
 import { NotificacionesPageModule } from './../pages/notificaciones/notificaciones.module';
@@ -148,6 +149,7 @@ import { RendimientoMenuPage } from '../pages/rendimiento-menu/rendimiento-menu'
 import { InstruccionesPage } from '../pages/instrucciones/instrucciones';
 import { InstruccionesPageModule } from '../pages/instrucciones/instrucciones.module';
 import { NotificacionesPage } from '../pages/notificaciones/notificaciones';
+import { TorneosPatrocinarPage } from '../pages/torneos-patrocinar/torneos-patrocinar';
 
 
 
@@ -250,6 +252,7 @@ import { NotificacionesPage } from '../pages/notificaciones/notificaciones';
     InstruccionesPageModule,
     NotificacionesPageModule,
     TorneosArbitrarPageModule,
+    TorneosPatrocinarPageModule,
     /* IonicModule.forRoot(MyApp), */
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages:false
@@ -322,7 +325,8 @@ import { NotificacionesPage } from '../pages/notificaciones/notificaciones';
     HistorialRendimientoPage,
     InstruccionesPage,
     NotificacionesPage,
-    TorneosArbitrarPage
+    TorneosArbitrarPage,
+    TorneosPatrocinarPage
   ],
   providers: [
     StatusBar,

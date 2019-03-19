@@ -48,7 +48,7 @@
       </ion-item>  
 
     <ion-item  >
-       Arbitos: <button (click)='verJurado(torneo.idTorneo)'  ion-button>ver</button>
+       Arbitros: <button (click)='verJurado(torneo.idTorneo)'  ion-button>ver</button>
       </ion-item>  
 
     <button ion-item>
@@ -56,6 +56,8 @@
     </button>  
 
     <button *ngIf="idVer == 2" (click)="arbitrar()" ion-button>Arbitrar</button>
+    <button *ngIf="idVer == 3 && solicitudEnviada ==0" (click)="patrocinar()" ion-button>Patrocinar</button>
+    <button *ngIf="idVer == 3 && solicitudEnviada ==1" disabled ion-button>Solicitud Enviada</button>
     <button *ngIf="idVer == 0" (click)="unirse()" ion-button>Unirse</button>
     <button (click)="salir()" ion-button color="danger">Atras</button>
 

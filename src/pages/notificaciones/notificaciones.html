@@ -21,17 +21,35 @@
                     <ion-item>
                       <p class="descripcion">
                         <b >{{notificacion.descripcion}}</b>
-                        <button *ngIf="notificacion.idEquipo!=0" (click)='verEquipo(notificacion.idEquipo)' ion-button>
+                        <button *ngIf="notificacion.idEquipo!=0 && notificacion.tipo!=6" (click)='verEquipo(notificacion.idEquipo)' ion-button>
                           ver
                         </button>
                         <button *ngIf="notificacion.tipo==8" (click)='verTorneo(notificacion.idSalida, notificacion.idNotificacion)' ion-button>
                           ver
                         </button>
+                        <br *ngIf="notificacion.tipo ==6">
+                        <button *ngIf="notificacion.tipo==6" (click)='verUsuario(notificacion.idEquipo, notificacion.idNotificacion)' ion-button>
+                          ver Patrocinador
+                        </button>
+                        <button *ngIf="notificacion.tipo==6" (click)='verTorneo(notificacion.idSalida, notificacion.idNotificacion)' ion-button>
+                          ver Torneo
+                        </button>
                       </p>
-                      <span class="borrarNot">
+                      <button *ngIf="notificacion.tipo==6 " 
+                      (click)='aceptarPatrocinio(notificacion.idNotificacion, notificacion.idSalida, notificacion.idRemitente)' 
+                      ion-button clear>Aceptar Patrocinio</button>
+                      <span *ngIf="notificacion.tipo!=6" [class.borrarNot]='notificacion.tipo !=6'
+                            [class.borrarNotSeis]='notificacion.tipo ==6' >
                         <button ion-button color="danger" outline small 
                             (click)="borrar(notificacion.idNotificacion,i, notificacion.tipo, notificacion.idSalida)">
                           Borrar
+                        </button>
+                      </span>
+                      <span *ngIf="notificacion.tipo ==6" [class.borrarNot]='notificacion.tipo !=6'
+                            [class.borrarNotSeis]='notificacion.tipo ==6' >
+                        <button ion-button color="danger" outline small 
+                            (click)="rechazarPatrocinio(notificacion.idNotificacion, notificacion.idSalida, notificacion.idRemitente,i)">
+                          Rechazar
                         </button>
                       </span>
                     </ion-item>

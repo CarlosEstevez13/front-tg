@@ -2,7 +2,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Torneos a Arbitrar</ion-title>
+    <ion-title>Torneos a Patrocinar</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -44,7 +44,7 @@
   
       </form>
 
-      <h2 *ngIf="aviso == 1" class="centrado">No hay torneos</h2>
+      <h2 *ngIf="aviso == 1" class="centrado">No estas pratrocinando ningun torneo</h2>
 
   <ion-card class="fondo" *ngFor="let torneo of torneos; index as i">
 
@@ -65,4 +65,3 @@
 
   </ion-card>
 </ion-content>
-

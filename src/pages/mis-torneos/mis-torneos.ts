@@ -204,7 +204,8 @@ export class MisTorneosPage {
                     descripcion: `Se elimino el torneo por equipos: ${nombre}`,
                     idEquipo: 0,
                     idSalida: 0,
-                    idUsuario: integrantes[i].idUsuario
+                    idUsuario: integrantes[i].idUsuario,
+                    idRemitente: sessionStorage.getItem('idUsuario')
                   }
                   this.usuarioProvider.addNotificacion(data)
                     .subscribe(
@@ -240,7 +241,8 @@ export class MisTorneosPage {
               descripcion: `Se elimino el torneo individual: ${nombre}`,
               idEquipo: 0,
               idSalida: 0,
-              idUsuario: integrantes[i].idUsuario
+              idUsuario: integrantes[i].idUsuario,
+              idRemitente: sessionStorage.getItem('idUsuario')
             }
             this.usuarioProvider.addNotificacion(data)
               .subscribe(

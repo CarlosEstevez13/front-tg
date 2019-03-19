@@ -15,7 +15,7 @@ export class UsuarioProvider {
 
   constructor(public _http: Http ) {
     console.log('Hello UsuarioProvider Provider');
-    this.url = 'http://192.168.1.10:3002/api/';
+    this.url = 'http://10.8.80.47:3002/api/';
   }
 
   getUsuario(index){
