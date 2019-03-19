@@ -103,7 +103,7 @@ export class VerTorneoPage {
   
   verPdf(nombre){
     console.log('entro');
-    const browser = this.iab.create( `http://10.8.80.47:3002/pdf/${nombre}.pdf`, '_system');
+    const browser = this.iab.create( `http://10.14.38.89:3002/pdf/${nombre}.pdf`, '_system');
     console.log(browser);
 
   }

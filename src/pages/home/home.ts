@@ -24,6 +24,7 @@ export class HomePage {
     sessionStorage.setItem('idEquipo','1');
     sessionStorage.setItem('idDeporte','1'); */
     this.idRol = sessionStorage.getItem('idRol');
+    console.log(this.idRol);
 
     this.usuarioProvider.getUsuario(sessionStorage.getItem('idUsuario'))
       .subscribe(
