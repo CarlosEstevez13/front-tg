@@ -1,3 +1,4 @@
+import { IntegrantesSalidaIPage } from './../integrantes-salida-i/integrantes-salida-i';
 import { UbicacionPage } from './../ubicacion/ubicacion';
 import { SalidaIProvider } from '../../providers/salida-i/salida-i';
 import { Component } from '@angular/core';
@@ -74,7 +75,7 @@ export class VerSalidaIPage {
       .subscribe(
         res=>{
           console.log(res);
-          this.navCtrl.pop();
+          this.showAlert2();
         },
         e=>{
           console.log(e);
@@ -107,6 +108,7 @@ export class VerSalidaIPage {
           console.log('entro');
           this.eliminar();
           this.navCtrl.pop();
+          this.navCtrl.pop();
         }
       },
         {
@@ -121,5 +123,25 @@ export class VerSalidaIPage {
     });
     alert.present();
   }
+  showAlert2() {
+    const alert = this.alertCtrl.create({
+      title: '¡Felicidades!',
+      subTitle: 'Te has unido con exito',
+      buttons: [{
+        text: 'ok',
+        handler: () => {
+          console.log('entro');
+          this.navCtrl.pop();
+          this.navCtrl.pop();
+        }
+      }
+    ]
+      
+    });
+    alert.present();
+  }
 
+  participantes(){
+    this.navCtrl.push(IntegrantesSalidaIPage);
+  }
 }

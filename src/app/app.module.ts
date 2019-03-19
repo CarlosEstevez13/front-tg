@@ -1,3 +1,4 @@
+import { IntegrantesSalidaIPageModule } from './../pages/integrantes-salida-i/integrantes-salida-i.module';
 import { VideosEntretenimientoPageModule } from './../pages/videos-entretenimiento/videos-entretenimiento.module';
 
 import { EntretenimientoPageModule } from '../pages/entretenimiento/entretenimiento.module';
@@ -138,6 +139,8 @@ import { GestionarTorneosPage } from '../pages/gestionar-torneos/gestionar-torne
 import { EntretenimientoPage } from '../pages/entretenimiento/entretenimiento';
 import { VideosEntretenimientoPage } from './../pages/videos-entretenimiento/videos-entretenimiento';
 
+import { IntegrantesSalidaIPage } from './../pages/integrantes-salida-i/integrantes-salida-i';
+
 import { GestionarEntrenamientoPage } from '../pages/gestionar-entrenamiento/gestionar-entrenamiento';
 import { ParticipantesTorneosIPage } from '../pages/participantes-torneos-i/participantes-torneos-i';
 import { RendimientoPage } from '../pages/rendimiento/rendimiento';
@@ -242,6 +245,7 @@ import { InstruccionesPageModule } from '../pages/instrucciones/instrucciones.mo
     RendimientoMenuPageModule,
     HistorialRendimientoPageModule,
     InstruccionesPageModule,
+    IntegrantesSalidaIPageModule,
     /* IonicModule.forRoot(MyApp), */
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages:false
@@ -312,7 +316,8 @@ import { InstruccionesPageModule } from '../pages/instrucciones/instrucciones.mo
     RendimientoPage,
     RendimientoMenuPage,
     HistorialRendimientoPage,
-    InstruccionesPage
+    InstruccionesPage,
+    IntegrantesSalidaIPage
   ],
   providers: [
     StatusBar,

@@ -24,6 +24,7 @@ export class CrearSalidaIPage {
   idUsuario:any;
   idDeporte:0;
   idRol:any;
+  genero:0;
   deportes:any = [];
 
   constructor(public navCtrl: NavController,
@@ -49,6 +50,7 @@ export class CrearSalidaIPage {
                 latitud: new FormControl(null),
                 longitud: new FormControl(null),
                 nombre: new FormControl(),
+                genero: new FormControl(this.genero)
               });
   }
 

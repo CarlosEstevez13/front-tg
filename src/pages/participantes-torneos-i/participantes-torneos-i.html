@@ -1,21 +1,20 @@
-
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Participantes</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Participantes</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <ion-list>
-    <button ion-item *ngFor="let usuario of usuarios" (click)='verUsuario(usuario.idUsuario)'>
+    <ion-list>
+        <button ion-item *ngFor="let usuario of usuarios" (click)='verUsuario(usuario.idUsuario)'>
       <ion-avatar item-start>
-        <img src="http://10.14.41.222:3002/profile/{{usuario.imagen}}.png">
+        <img src="http://10.8.80.47:3002/profile/{{usuario.imagen}}.png">
       </ion-avatar>
       <h2>{{usuario.usuario}}</h2>
       <p>{{usuario.descripcion}}</p>
     </button>
-  </ion-list>
+    </ion-list>
 </ion-content>

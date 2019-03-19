@@ -37,6 +37,7 @@ export class VerEntrenamientoPage {
       },
       e=>{
           console.log(e);
+          this.salida=null;
       }
     );
   }

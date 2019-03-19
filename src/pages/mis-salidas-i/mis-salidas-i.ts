@@ -79,9 +79,10 @@ export class MisSalidasIPage {
 
 
 
-  editar(idSalida:any, entrenamiento:any){
+  editar(idSalida:any, entrenamiento:any, deporte:any){
     sessionStorage.setItem('idSalidaI',idSalida);
-    sessionStorage.setItem('entrenamiento',entrenamiento)
+    sessionStorage.setItem('entrenamiento',entrenamiento);
+    sessionStorage.setItem('deporte', deporte);
     this.navCtrl.push(EditarSalidasIPage);
   }
 

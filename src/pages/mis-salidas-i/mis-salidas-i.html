@@ -51,7 +51,7 @@
                     En curso
                 </h3>
                 <br>
-                <button ion-button *ngIf="sali.finalizado==0" (click)=" editar(sali.idSalidaI, sali.entrenamiento);">Editar</button>
+                <button ion-button *ngIf="sali.finalizado==0" (click)=" editar(sali.idSalidaI, sali.entrenamiento, sali.deporte);">Editar</button>
                 <button ion-button color="danger" *ngIf="sali.finalizado==0" (click)="showAlert(sali.idSalidaI,i);">Eliminar</button>
 
 

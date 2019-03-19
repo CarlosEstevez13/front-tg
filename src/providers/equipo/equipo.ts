@@ -16,7 +16,7 @@ export class EquipoProvider {
 
   constructor(public _http: Http) {
     console.log('Hello EquipoProvider Provider');
-    this.url = 'http://10.14.41.222:3002/api/';
+    this.url = 'http://10.8.80.47:3002/api/';
   }
 
   getEquipos(idDeporte:any) {
