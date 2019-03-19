@@ -1,3 +1,4 @@
+import { EquipoProvider } from './../../providers/equipo/equipo';
 import { ParticipantesTorneoPage } from './../participantes-torneo/participantes-torneo';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { EditarTorneoPage } from './../editar-torneo/editar-torneo';
@@ -5,6 +6,7 @@ import { TorneosProvider } from './../../providers/torneos/torneos';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { EquiposInscritosPage } from '../equipos-inscritos/equipos-inscritos';
+import { UsuarioProvider } from '../../providers/usuario/usuario';
 
 /**
  * Generated class for the MisTorneosPage page.
@@ -30,6 +32,8 @@ export class MisTorneosPage {
               public navParams: NavParams,
               private fb: FormBuilder,
               private torneoService: TorneosProvider,
+              private usuarioProvider: UsuarioProvider,
+              private equipoProvider: EquipoProvider,
               public alertCtrl: AlertController) {
                 this.form = this.fb.group({
                   idDeporte: new FormControl(0),
@@ -133,14 +137,14 @@ export class MisTorneosPage {
     } */
   }
 
-  showAlert(idTorneo:any, i:any) {
+  showAlert(idTorneo:any, i:any, nombre:any, individual:any) {
     const alert = this.alertCtrl.create({
       title: 'Eliminar!',
       subTitle: 'Estas seguro de borrar este torneo!',
       buttons: [{
         text: 'Si',
         handler: () => {
-          this.eliminar(idTorneo,i)
+          this.eliminar(idTorneo,i, nombre, individual)
           //this.navCtrl.pop();
         }
       },
@@ -177,9 +181,87 @@ export class MisTorneosPage {
     this.navCtrl.push(ParticipantesTorneoPage);
   }
 
-  eliminar(idTorneo:any,i:any){
+  eliminar(idTorneo:any,i:any, nombre:any, individual:any){
     console.log('entro');
     
+    if(individual == 1){
+      this.torneoService.setIdTorneo(idTorneo);
+      this.torneoService.getEquiposEnTorneo()
+      .subscribe(
+        res=>{
+          let participantes = res.result;
+          console.log(this.participantes);
+          for(let i in participantes){
+            this.equipoProvider.getIntegrantes(participantes[i].idEquipo)
+           .subscribe(
+            res=>{
+                let integrantes = res.result;
+                console.log(integrantes);
+
+                for(let i in integrantes){
+                  let data = {
+                    tipo: 1,
+                    descripcion: `Se elimino el torneo por equipos: ${nombre}`,
+                    idEquipo: 0,
+                    idSalida: 0,
+                    idUsuario: integrantes[i].idUsuario,
+                    idRemitente: sessionStorage.getItem('idUsuario')
+                  }
+                  this.usuarioProvider.addNotificacion(data)
+                    .subscribe(
+                      res=>{
+                        console.log(res);
+                      },
+                      e=>{
+                        console.log(e);
+                      }
+                    )
+                }
+              
+            },
+            e=>{
+              console.log(e);
+            });
+
+          }
+        },
+          e=>{
+            console.log(e);
+          }
+      )
+    }else{
+      this.torneoService.getTorneoI_Participantes()
+      .subscribe(
+        res=>{
+          let integrantes = res.result;
+          console.log(integrantes);
+          for(let i in integrantes){
+            let data = {
+              tipo: 1,
+              descripcion: `Se elimino el torneo individual: ${nombre}`,
+              idEquipo: 0,
+              idSalida: 0,
+              idUsuario: integrantes[i].idUsuario,
+              idRemitente: sessionStorage.getItem('idUsuario')
+            }
+            this.usuarioProvider.addNotificacion(data)
+              .subscribe(
+                res=>{
+                  console.log(res);
+                },
+                e=>{
+                  console.log(e);
+                }
+              )
+          }
+        },
+        e=>{
+          console.log(e);
+        }
+      )
+    }
+
+
     this.torneoService.deleteTorneo(idTorneo)
       .subscribe(
         res=>{

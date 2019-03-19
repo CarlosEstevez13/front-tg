@@ -15,6 +15,9 @@
       <br>
       <p class="descripcion">{{equipo.descripcion}}</p>
     </ion-item> 
+    <ion-item >
+      <b>Nro identificacion: </b> {{equipo.idEquipo}}
+    </ion-item> 
 
     <button ion-item  (click)='integrantes()'>
       <b>Numero de Integrantes:</b> {{equipo.integrantes}} de {{equipo.nroIntegrantes}} 
@@ -22,6 +25,9 @@
           <ion-icon name="people"></ion-icon>
         </button>
     </button> 
+    <button ion-button color='danger' *ngIf="integranteEquipo ==1" full (click)='showAlert()'>
+       Salir del Equipo
+      </button> 
 
     <ion-item >
       <b>Historial:</b>
@@ -33,7 +39,7 @@
               <ion-item class="tituloEvento">
                   <h2><i class="fas fa-cube margenSup"></i> {{registro.nombre}} </h2>
                   <div item-end>
-                      <ion-icon name="calendar"></ion-icon> {{registro.fecha}} </div>
+                      <ion-icon name="calendar"></ion-icon> {{registro.fecha  |date}} </div>
               </ion-item>
       
               <ion-card-content class="contenidoEvento">

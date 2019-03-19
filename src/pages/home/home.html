@@ -1,14 +1,24 @@
 <ion-header>
-    <ion-navbar>
-        <ion-title> <img src="../../assets/imgs/parchemosSinFondo.png" alt="..." style="width: 60%;"> </ion-title>
+    <ion-navbar class="navHome">
+        <ion-title> 
+            <img src="../../assets/imgs/parchemosSinFondo.png" alt="..." style="width: 60%;"> 
+            <span (click)="notificacion()" class="notificacion">
+                    <ion-icon class="notificacion-icono" name="notifications-outline"></ion-icon>
+            </span>
+            <div *ngIf="notificaciones.length!=0" class="badgeNotificacion"> 
+                    <ion-badge class="badge" >{{notificaciones.length}}</ion-badge>
+                  </div>
+        </ion-title>
+
     </ion-navbar>
+    
 </ion-header>
 
-<ion-content padding style=" text-align: center;position: relative; background-image:url('../../assets/imgs/circularconfondo.png');background-size: cover;background-position: center;">
+<ion-content padding class='homeCol1'>
     <ion-grid>
-        <ion-row>
-            <ion-col col-3>
-                <button ion-button clear round (click)="historial();">
+        <ion-row class="homeRow1">
+            <ion-col col-3 >
+                <button ion-button clear round (click)="historial();" *ngIf="idRol == 1">
                 <ion-chip #chip2 style="font-size: 15px; background-color: #fffafac9">
                   <ion-icon name="star-half" style="color:white;" color="primary"></ion-icon>
                   <ion-label >Historial</ion-label>
@@ -24,7 +34,8 @@
                     </button>
             </ion-col>
         </ion-row>
-        <ion-row style="margin-top: 90%;">
+        
+        <ion-row style="margin-top: 80%;">
             <ion-col>
                 <button ion-button clear round (click)="entretenimiento();">
                             <ion-chip #chip2 style="font-size: 15px; background-color: #fffafac9" >

@@ -1,6 +1,6 @@
 import { SalidaEProvider } from './../../providers/salida-e/salida-e';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { EquipoProvider } from '../../providers/equipo/equipo';
 import { IntegrantesPage } from '../integrantes/integrantes';
 
@@ -21,6 +21,7 @@ export class VerEquipoPage {
     nroIntegrantes: '',
     idDeporte: 0,
   }
+  integranteEquipo:any;
   vaIntegrante:any = 0;
   aviso =0;
 
@@ -29,6 +30,7 @@ export class VerEquipoPage {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private equipoService: EquipoProvider,
+              public alertCtrl: AlertController,
               private salidaService: SalidaEProvider) {
   }
 
@@ -51,10 +53,50 @@ export class VerEquipoPage {
       sessionStorage.removeItem('temp');
     }
     console.log('salio!')
+    sessionStorage.removeItem('integranteEquipo');
+  }
+
+  salir(){
+    this.equipoService.setIdEquipo(0);
+    sessionStorage.setItem('idEquipo','0');
+    this.equipoService.putSalirEquipo(sessionStorage.getItem('idUsuario'))
+      .subscribe(
+        res=>{
+          console.log(res);
+          this.navCtrl.pop();
+        },
+        e=>{
+          console.log(e);
+        }
+      );
+  }
+
+  showAlert() {
+    const alert = this.alertCtrl.create({
+      title: 'Salir!',
+      subTitle: 'Estas seguro de salir del Equipo',
+      buttons: [{
+        text: 'Si',
+        handler: () => {
+          this.salir()
+          //this.navCtrl.pop();
+        }
+      },
+        {
+          text: 'No',
+          handler: () => {
+            //this.navCtrl.pop();
+          } 
+          }
+    ]
+      
+    });
+    alert.present();
   }
 
   ionViewWillEnter(){
     this.vaIntegrante = 0;
+    this.integranteEquipo = sessionStorage.getItem('integranteEquipo');
     this.idEquipo = sessionStorage.getItem('idEquipo');
     this.idDeporte = sessionStorage.getItem('idDeporte');
 

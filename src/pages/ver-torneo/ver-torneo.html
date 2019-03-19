@@ -22,7 +22,14 @@
 
       <button ion-item>
         Genero: {{torneo.nombreGenero}}
-  </button> 
+       </button> 
+
+       <button *ngIf="torneo.individual==0" ion-item>
+        Tipo: Individual
+       </button> 
+       <button *ngIf="torneo.individual==1" ion-item>
+        Tipo: Por Equipos
+       </button> 
 
     <ion-item *ngIf="reglamento == 1">
       Reglamento: <button (click)='verPdf(torneo.reglamento)' ion-button>ver</button>
@@ -41,13 +48,16 @@
       </ion-item>  
 
     <ion-item  >
-       Arbitos: <button (click)='verJurado(torneo.idTorneo)'  ion-button>ver</button>
+       Arbitros: <button (click)='verJurado(torneo.idTorneo)'  ion-button>ver</button>
       </ion-item>  
 
     <button ion-item>
-      Fecha de Inicio: {{torneo.fechaInicio}}
+      Fecha de Inicio: {{torneo.fechaInicio  |date}}
     </button>  
 
+    <button *ngIf="idVer == 2" (click)="arbitrar()" ion-button>Arbitrar</button>
+    <button *ngIf="idVer == 3 && solicitudEnviada ==0" (click)="patrocinar()" ion-button>Patrocinar</button>
+    <button *ngIf="idVer == 3 && solicitudEnviada ==1" disabled ion-button>Solicitud Enviada</button>
     <button *ngIf="idVer == 0" (click)="unirse()" ion-button>Unirse</button>
     <button (click)="salir()" ion-button color="danger">Atras</button>
 

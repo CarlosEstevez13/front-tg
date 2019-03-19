@@ -1,3 +1,4 @@
+import { UsuarioProvider } from './../../providers/usuario/usuario';
 import { ParticipantesTorneosIPage } from './../participantes-torneos-i/participantes-torneos-i';
 import { UbicacionPage } from './../ubicacion/ubicacion';
 import { JuradoPage } from './../jurado/jurado';
@@ -26,12 +27,27 @@ export class VerTorneoPage {
 
   idVer:any;
 
+  solicitudEnviada:any =0;
+
   reglamento:any = 0;
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private iab : InAppBrowser,
+              private usuarioProvider: UsuarioProvider,
               private torneoProvider: TorneosProvider) {
                 this.idEquipo = sessionStorage.getItem('idEquipo');
+                let idUsuario = sessionStorage.getItem('idUsuario');
+                this.torneoProvider.getSolicitudEnviada(idUsuario)
+                  .subscribe(
+                    res=>{
+                      if(res.result){
+                        this.solicitudEnviada =1;
+                      }
+                    },
+                    e=>{
+                      console.log(e);
+                    }
+                  );
                 this.torneoProvider.getTorneo()
                   .subscribe(
                     res=>{
@@ -54,6 +70,10 @@ export class VerTorneoPage {
 
   ionViewWillEnter(){
     this.idVer = this.torneoProvider.getIdVer();
+  }
+
+  ionViewWillLeave(){
+    sessionStorage.removeItem('temp');
   }
 
   verJurado(idTorneo){
@@ -83,9 +103,75 @@ export class VerTorneoPage {
   
   verPdf(nombre){
     console.log('entro');
-    const browser = this.iab.create( `http://10.8.80.47:3002/pdf/${nombre}.pdf`, '_system');
+    const browser = this.iab.create( `http://10.14.38.89:3002/pdf/${nombre}.pdf`, '_system');
     console.log(browser);
 
+  }
+  arbitrar(){
+    let data = {
+      idTorneo : this.torneoProvider.getIdTorneo(),
+      idUsuario : sessionStorage.getItem('idUsuario'),
+      idRol : 3
+    }
+            
+    this.torneoProvider.addJuez(data)
+      .subscribe(
+        res=>{
+          console.log(res);
+          this.usuarioProvider.putNotificacion(parseInt(sessionStorage.getItem('temp')))
+          .subscribe(
+            res=>{
+              console.log(res);
+                let data = {
+                  tipo: 9,
+                  descripcion: `El juez ${sessionStorage.getItem('nombreArbitro')} ha aceptado arbitrar el torneo ${this.torneo.nombre}`,
+                  idEquipo: 0,
+                  idSalida: 0,
+                  idUsuario: this.torneo.idUsuario,
+                  idRemitente: sessionStorage.getItem('idUsuario')
+                }
+                this.usuarioProvider.addNotificacion(data)
+                  .subscribe(
+                    res=>{
+                      console.log(res);
+                      this.navCtrl.pop();
+                    },
+                    e=>{
+                      console.log(e);
+                    }
+                  )
+              
+            },
+            e=>{
+              console.log(e);
+            }
+          );
+        },
+        e=>{
+          console.log(e);
+        }
+      )
+  }
+
+  patrocinar(){
+    let data = {
+      tipo: 6,
+      descripcion: `A el patrocinador ${sessionStorage.getItem('nombreArbitro')} le gustaria patrocinar el torneo: ${this.torneo.nombre}`,
+      idEquipo: sessionStorage.getItem('idUsuario'),
+      idSalida: this.torneo.idTorneo,
+      idUsuario: this.torneo.idUsuario,
+      idRemitente: sessionStorage.getItem('idUsuario')
+    }
+    this.usuarioProvider.addNotificacion(data)
+      .subscribe(
+        res=>{
+          console.log(res);
+          this.navCtrl.pop();
+        },
+        e=>{
+          console.log(e);
+        }
+      )
   }
 
   unirse(){

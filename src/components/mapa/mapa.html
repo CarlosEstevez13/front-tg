@@ -12,4 +12,10 @@
 
 <div #map id="map"></div>
 
+<ion-list *ngIf="ver !=0">
+  <ion-item>
+    Direccion: {{direccion}}
+  </ion-item>
+</ion-list>
+
 <button ion-button full *ngIf="yabusco ==1 && ver == 0" (click)='agregar()'>Agregar esta ubicacion</button>

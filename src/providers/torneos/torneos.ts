@@ -16,12 +16,27 @@ export class TorneosProvider {
 
   constructor(public _http: Http) {
     console.log('Hello TorneosProvider Provider');
-    this.url = 'http://10.8.80.47:3002/api/';
+    this.url = 'http://10.14.38.89:3002/api/';
   }
 
   getTorneos(idU,idE) {
     this.headers = new Headers({'Content-Type': 'application/json'});
     return this._http.get(this.url + `turoles/${idU}/${idE}` ).map((res:any) => res.json());
+  }
+
+  getTorneosIndividuales(idU) {
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `torneosIndividuales/${idU}` ).map((res:any) => res.json());
+  }
+
+  getTorneosArbitrar(idU) {
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `torneosArbitrar/${idU}` ).map((res:any) => res.json());
+  }
+
+  getTorneosPatrocinar(idU) {
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `torneosPatrocinar/${idU}` ).map((res:any) => res.json());
   }
 
   getTorneosAdmin() {
@@ -83,13 +98,23 @@ export class TorneosProvider {
     this.idVer = id;
   }
 
-  addTor_Usuario_Rol(data){
+  addJuez(data){
     const json = JSON.stringify(data);
     const params = json;
     this.headers = new Headers({'Content-Type': 'application/json'});
-    console.log('agregando torneo usuario rol');
+    console.log('agregando juez');
     console.log(params);
     return this._http.post(this.url + 'juez', params, {headers:this.headers})
+            .map(res => res.json());
+  }
+
+  addPatrocinador(data){
+    const json = JSON.stringify(data);
+    const params = json;
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    console.log('agregando patrocinador');
+    console.log(params);
+    return this._http.post(this.url + 'patrocinador', params, {headers:this.headers})
             .map(res => res.json());
   }
 
@@ -98,6 +123,11 @@ export class TorneosProvider {
     const json = JSON.stringify(torneo);
     const params = json;
     return this._http.put(this.url + `torneo/${this.idTorneo}`, params , { headers: this.headers } ).map(res => res.json());
+  }
+
+  getSolicitudEnviada(idUsuario) {
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `solicitudEnviada/${idUsuario}/${this.idTorneo}` ).map((res:any) => res.json());
   }
   
   getTorneo() {
@@ -154,7 +184,8 @@ export class TorneosProvider {
 
   deleteTorneo(idTorneo) {
     this.headers = new Headers({'Content-Type': 'application/json'});
-    return this._http.delete(this.url + `torneo/${idTorneo}` ).map((res:any) => res.json());
+    //return this._http.delete(this.url + `torneo/${idTorneo}` ).map((res:any) => res.json());
+    return this._http.put(this.url + `TorneoActivo/${idTorneo}` , { headers: this.headers } ).map(res => res.json());
   }
 
   getTorneosDueno(id) {

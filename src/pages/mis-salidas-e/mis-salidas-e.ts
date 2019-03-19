@@ -1,3 +1,5 @@
+import { UsuarioProvider } from './../../providers/usuario/usuario';
+import { EquipoProvider } from './../../providers/equipo/equipo';
 import { VerEquipoPage } from './../ver-equipo/ver-equipo';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { MarcadorSalidaEPage } from './../marcador-salida-e/marcador-salida-e';
@@ -25,6 +27,8 @@ export class MisSalidasEPage {
               public navParams: NavParams,
               private fb: FormBuilder,
               private salidaProvider: SalidaEProvider,
+              private equipoProvider: EquipoProvider,
+              private usuarioProvider: UsuarioProvider,
               public alertCtrl: AlertController) {
 
                 this.form = this.fb.group({
@@ -199,25 +203,43 @@ export class MisSalidasEPage {
     this.navCtrl.push(EditarSalidaEPage);
   }
   
-  eliminar(idSalida:any,i:any){
+  eliminar(idSalida:any,i:any, rival:any, nombre:any){
     console.log('entro');
-
-    this.salidaProvider.deleteSalidaEquipos(idSalida)
+    if(rival !=0){
+      this.equipoProvider.getIntegrantes(rival)
       .subscribe(
         res=>{
-          this.salidaProvider.deleteSalida(idSalida)
-            .subscribe(
-              res=>{
-                console.log(res);
-                this.salidas.splice(i,1);
-              },
-              e=>{
-                console.log(e);
-              }
-            );
+          let integrantes = res.result;
+          console.log(integrantes);
+
+          for(let i in integrantes){
+            let data = {
+              tipo: 2,
+              descripcion: `Se elimino salida por equipos: ${nombre}`,
+              idEquipo: 0,
+              idSalida: 0,
+              idUsuario: integrantes[i].idUsuario,
+              idRemitente: sessionStorage.getItem('idUsuario')
+            }
+            this.usuarioProvider.addNotificacion(data)
+              .subscribe(
+                res=>{
+                  console.log(res);
+                },
+                e=>{
+                  console.log(e);
+                }
+              )
+          }
         },
         e=>{
-          this.salidaProvider.deleteSalida(idSalida)
+          console.log(e);
+        }
+      );
+      
+    }
+
+    this.salidaProvider.deleteSalida(idSalida)
             .subscribe(
               res=>{
                 console.log(res);
@@ -227,20 +249,19 @@ export class MisSalidasEPage {
                 console.log(e);
               }
             );
-        }
-      )
+
 
     
   }
 
-  showAlert(idSalida:any, i:any) {
+  showAlert(idSalida:any, i:any, rival:any, nombre) {
     const alert = this.alertCtrl.create({
       title: 'Eliminar!',
       subTitle: 'Estas seguro de borrar esta Salida?',
       buttons: [{
         text: 'Si',
         handler: () => {
-          this.eliminar(idSalida,i)
+          this.eliminar(idSalida,i,rival,nombre)
           //this.navCtrl.pop();
         }
       },

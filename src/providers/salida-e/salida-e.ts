@@ -22,7 +22,7 @@ export class SalidaEProvider {
 
   constructor(public _http: Http) {
     console.log('Hello SalidaEProvider Provider');
-    this.url = 'http://10.8.80.47:3002/api/';
+    this.url = 'http://10.14.38.89:3002/api/';
   }
 
   //Este metodo es para diferenciar de salidasE y salidasE a jugar
@@ -35,6 +35,10 @@ export class SalidaEProvider {
   getDeportes(){
     this.headers = new Headers({'Content-Type': 'application/json'});
     return this._http.get(this.url + `deportes` ).map((res:any) => res.json());
+  }
+  getEquipos(idEquipo){
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `equiposInvitar/${idEquipo}` ).map((res:any) => res.json());
   }
 
   setIdVer(id){
@@ -142,6 +146,7 @@ export class SalidaEProvider {
     return this._http.delete(this.url + `SalidaE_Equipo/${idSalida}` ).map((res:any) => res.json());
   }
 
+
   deleteSalidaEquipo(idSalida,idEquipo) {
     this.headers = new Headers({'Content-Type': 'application/json'});
     return this._http.delete(this.url + `SalidaE_Equipo_1/${idSalida}/${idEquipo}` ).map((res:any) => res.json());
@@ -149,7 +154,7 @@ export class SalidaEProvider {
 
   deleteSalida(idSalida) {
     this.headers = new Headers({'Content-Type': 'application/json'});
-    return this._http.delete(this.url + `SalidaE/${idSalida}` ).map((res:any) => res.json());
+    return this._http.put(this.url + `salidaEActivo/${idSalida}` , { headers: this.headers } ).map(res => res.json());
   }
 
   putSalida(salida){

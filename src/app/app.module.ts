@@ -1,4 +1,8 @@
 import { IntegrantesSalidaIPageModule } from './../pages/integrantes-salida-i/integrantes-salida-i.module';
+import { TorneosPatrocinarPageModule } from './../pages/torneos-patrocinar/torneos-patrocinar.module';
+import { TorneosArbitrarPageModule } from './../pages/torneos-arbitrar/torneos-arbitrar.module';
+import { TorneosArbitrarPage } from './../pages/torneos-arbitrar/torneos-arbitrar';
+import { NotificacionesPageModule } from './../pages/notificaciones/notificaciones.module';
 import { VideosEntretenimientoPageModule } from './../pages/videos-entretenimiento/videos-entretenimiento.module';
 
 import { EntretenimientoPageModule } from '../pages/entretenimiento/entretenimiento.module';
@@ -147,6 +151,10 @@ import { RendimientoPage } from '../pages/rendimiento/rendimiento';
 import { RendimientoMenuPage } from '../pages/rendimiento-menu/rendimiento-menu';
 import { InstruccionesPage } from '../pages/instrucciones/instrucciones';
 import { InstruccionesPageModule } from '../pages/instrucciones/instrucciones.module';
+import { NotificacionesPage } from '../pages/notificaciones/notificaciones';
+import { TorneosPatrocinarPage } from '../pages/torneos-patrocinar/torneos-patrocinar';
+
+
 
 
 @NgModule({
@@ -246,6 +254,9 @@ import { InstruccionesPageModule } from '../pages/instrucciones/instrucciones.mo
     HistorialRendimientoPageModule,
     InstruccionesPageModule,
     IntegrantesSalidaIPageModule,
+    NotificacionesPageModule,
+    TorneosArbitrarPageModule,
+    TorneosPatrocinarPageModule,
     /* IonicModule.forRoot(MyApp), */
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages:false
@@ -317,7 +328,10 @@ import { InstruccionesPageModule } from '../pages/instrucciones/instrucciones.mo
     RendimientoMenuPage,
     HistorialRendimientoPage,
     InstruccionesPage,
-    IntegrantesSalidaIPage
+    IntegrantesSalidaIPage,
+    NotificacionesPage,
+    TorneosArbitrarPage,
+    TorneosPatrocinarPage
   ],
   providers: [
     StatusBar,

@@ -52,11 +52,31 @@ export class EditarTorneoPage {
   form: FormGroup;
   nombreTipo:any;
 
-
+  hoy:any;
+  
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private fb: FormBuilder,
               private torneoService: TorneosProvider) {
+
+                let h = new Date();
+                let tomorrow = new Date();
+                tomorrow.setDate(h.getDate()+1);
+                let fecha = tomorrow;
+                console.log(this.hoy);
+               if(fecha.getMonth()+1 <10){
+                 if(fecha.getDate()<10){
+                  this.hoy = `${fecha.getFullYear()}-0${fecha.getMonth()+1}-0${fecha.getDate()}`
+                 }else{
+                  this.hoy = `${fecha.getFullYear()}-0${fecha.getMonth()+1}-${fecha.getDate()}`
+                 }
+               }else{
+                if(fecha.getDate()<10){
+                  this.hoy = `${fecha.getFullYear()}-${fecha.getMonth()+1}-0${fecha.getDate()}`
+                 }else{
+                  this.hoy = `${fecha.getFullYear()}-${fecha.getMonth()+1}-${fecha.getDate()}`
+                 }
+               }
                 
                 this.form = this.fb.group({
                   idUsuario: new FormControl(this.torneo.idUsuario),
@@ -94,11 +114,11 @@ export class EditarTorneoPage {
         res=>{
           this.torneo = res.result[0];
           console.log(this.torneo.individual);
-          if(this.torneo.individual == 0){
+          if(this.torneo.individual == 1){
             this.form.value.tipo = 'Por equipos';
             console.log('entro equipo');
           }
-          if(this.torneo.individual == 1){
+          if(this.torneo.individual == 0){
             this.form.value.tipo = 'Individual';
             console.log('entro individual');
           }

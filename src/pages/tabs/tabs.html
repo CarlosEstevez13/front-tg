@@ -1,6 +1,6 @@
 <ion-tabs class="ocultar">
   <ion-tab [root]="tab1Root" tabTitle="Inicio" tabIcon="home"></ion-tab>
-  <ion-tab [root]="tab2Root" tabTitle="Equipo" tabIcon="ios-people"></ion-tab>
+  <ion-tab [root]="tab2Root" *ngIf="idRol!=2 && idRol!=4 && idRol!=3" tabTitle="Equipo" tabIcon="ios-people"></ion-tab>
   <ion-tab [root]="tab3Root" tabTitle="Eventos" tabIcon="trophy"></ion-tab>
-  <ion-tab [root]="tab4Root" tabTitle="Rendimiento" tabIcon="analytics"></ion-tab>
+  <ion-tab [root]="tab4Root" *ngIf="idRol!=2 && idRol!=4 && idRol!=3" tabTitle="Rendimiento" tabIcon="analytics"></ion-tab>
 </ion-tabs>

@@ -21,6 +21,7 @@ export class TorneosPage {
   idDeporte= sessionStorage.getItem('idDeporte');
   idEquipo:any;
   idUsuario:any;
+  idRol:any;
   equipo:any;
   torneosInscritos:any;
   deportes:any = [];
@@ -52,8 +53,10 @@ export class TorneosPage {
   }
   
   ionViewWillEnter() {
+    this.torneos = [];
     this.idEquipo = sessionStorage.getItem('idEquipo');
     this.idUsuario = sessionStorage.getItem('idUsuario');
+    this.idRol = sessionStorage.getItem('idRol');
     console.log('ionViewDidLoad TorneosPage');
     this.torneoProvider.getDeportes()
       .subscribe(
@@ -114,6 +117,19 @@ export class TorneosPage {
       }
       this.torneos = torneoBusqueda;
     }
+
+    if(this.idEquipo == '0' && this.idRol!= '4'){
+      let torneoBusqueda = [];
+      this.buscoTipo =1;
+      for(let i in this.torneos){
+        if(this.torneos[i].individual==0){
+          torneoBusqueda.push(this.torneos[i]);
+          console.log('entro tipo');
+        }
+      }
+      this.torneos = torneoBusqueda;
+    }
+
     if(this.torneos.length > 0){
       this.aviso = 0;
     }
@@ -138,13 +154,24 @@ export class TorneosPage {
     this.aviso =0;
     this.torneoProvider.getTorneos(this.idUsuario,this.idEquipo)
         .subscribe(res=> {
-          this.torneos = res.result;
-          console.log(res.result);
-          //this.getTorneosDeEquipo(res.result);
+          
+          let hoy = new Date();
+          console.log(res);
+          let temp:any = [];
+          for(let i in res.result){
+            let vectorFecha = res.result[i].fechaInicio.split('-');
+            let fecha = new Date(vectorFecha[0], (vectorFecha[1]-1), vectorFecha[2]);
+            if(fecha> hoy)
+              {
+                temp.push(res.result[i]);
+              }
+          }
+          this.torneos = temp;
+
           this.buscarFiltro();
-                    if(this.torneos.length == 0){
-                      this.aviso =1;
-                    }
+          if(this.torneos.length == 0){
+            this.aviso =1;
+          }
           
         },
         e=>{
@@ -279,20 +306,26 @@ export class TorneosPage {
   unirse( nroEquipos:any, maxEquipos:any, idTor:any) {
 
     var confirm;
-
-    if( nroEquipos < maxEquipos  ){
+    if(this.idRol == '4'){
       this.torneoProvider.setIdTorneo(idTor);
-      this.torneoProvider.setIdVer(0);
+      this.torneoProvider.setIdVer(3);
       this.navCtrl.push(VerTorneoPage);
     }else{
 
-        confirm = this.alertCtrl.create({
-          title: 'Torneo Lleno!',
-          subTitle: 'Lo sentimos el torneo se encuentra lleno',
-          buttons: ['Aceptar']
-        });
-        
-        confirm.present();
+      if( nroEquipos < maxEquipos  ){
+        this.torneoProvider.setIdTorneo(idTor);
+        this.torneoProvider.setIdVer(0);
+        this.navCtrl.push(VerTorneoPage);
+      }else{
+  
+          confirm = this.alertCtrl.create({
+            title: 'Torneo Lleno!',
+            subTitle: 'Lo sentimos el torneo se encuentra lleno',
+            buttons: ['Aceptar']
+          });
+          
+          confirm.present();
+      }
     }
   }
 

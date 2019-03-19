@@ -7,7 +7,7 @@
 <ion-header>
 
     <ion-navbar>
-        <ion-title>ver-entrenamiento</ion-title>
+        <ion-title>Entrenamientos a Jugar</ion-title>
     </ion-navbar>
 
 </ion-header>
@@ -19,7 +19,7 @@
         <ion-item class="tituloEvento">
             <h2><i class="fas fa-cube margenSup"></i> {{sali.nombre}} </h2>
             <div item-end>
-                <ion-icon name="calendar"></ion-icon> {{ sali.fecha}}</div>
+                <ion-icon name="calendar"></ion-icon> {{ sali.fecha |date}}</div>
         </ion-item>
 
         <ion-card-content class="contenidoEvento">
@@ -37,5 +37,7 @@
         </ion-card-content>
 
     </ion-card>
-    <h2 *ngIf="salida==null"> No tienes entrenamientos disponibles </h2>
+    <h2 *ngIf="salida.length==0">
+        No existen entranimientos disponibles
+    </h2>
 </ion-content>

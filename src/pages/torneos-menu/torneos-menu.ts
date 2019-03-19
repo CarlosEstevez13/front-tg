@@ -1,3 +1,5 @@
+import { TorneosPatrocinarPage } from './../torneos-patrocinar/torneos-patrocinar';
+import { TorneosArbitrarPage } from './../torneos-arbitrar/torneos-arbitrar';
 import { MisTorneosPage } from './../mis-torneos/mis-torneos';
 import { CrearTorneoPage } from './../crear-torneo/crear-torneo';
 import { InscritoTorneoPage } from './../inscrito-torneo/inscrito-torneo';
@@ -42,6 +44,13 @@ export class TorneosMenuPage {
 
   getMisTorneos(){
     this.navCtrl.push(MisTorneosPage);
+  }
+
+  getTorneosArbitrar(){
+    this.navCtrl.push(TorneosArbitrarPage);
+  }
+  getTorneosPatrocinar(){
+    this.navCtrl.push(TorneosPatrocinarPage);
   }
 
 }

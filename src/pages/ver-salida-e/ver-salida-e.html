@@ -37,11 +37,11 @@
       </button> 
 
       <ion-item *ngIf="salida.latitud != 'null'">
-        Ubicacion :  <button (click)='ubicacion(salida.latitud, salida.longitud)'  ion-button>ver</button>
+        Ubicacion :  <button (click)='ubicacion(salida.latitud, salida.longitud, salida.direccion)'  ion-button>ver</button>
       </ion-item>
 
     <button ion-item >
-      Fecha : {{salida.fecha}} 
+      Fecha : {{salida.fecha  |date}} 
     </button> 
 
     <button ion-item >

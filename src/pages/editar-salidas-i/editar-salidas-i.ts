@@ -40,6 +40,8 @@ export class EditarSalidasIPage {
     genero:0
   }
 
+  hoy:any;
+
   constructor(public navCtrl: NavController,
                public navParams: NavParams,
                public _salidaIProvider : SalidaIProvider,
@@ -49,6 +51,25 @@ export class EditarSalidasIPage {
             this.salida.entrenamiento = sessionStorage.getItem('entrenamiento');
             this.entrena= this.salida.entrenamiento;
             this.deporte= sessionStorage.getItem('deporte');
+
+            let h = new Date();
+            let tomorrow = new Date();
+            tomorrow.setDate(h.getDate()+1);
+            let fecha = tomorrow;
+            console.log(this.hoy);
+            if(fecha.getMonth()+1 <10){
+              if(fecha.getDate()<10){
+                this.hoy = `${fecha.getFullYear()}-0${fecha.getMonth()+1}-0${fecha.getDate()}`
+              }else{
+                this.hoy = `${fecha.getFullYear()}-0${fecha.getMonth()+1}-${fecha.getDate()}`
+              }
+            }else{
+              if(fecha.getDate()<10){
+                this.hoy = `${fecha.getFullYear()}-${fecha.getMonth()+1}-0${fecha.getDate()}`
+              }else{
+                this.hoy = `${fecha.getFullYear()}-${fecha.getMonth()+1}-${fecha.getDate()}`
+              }
+            }
 
                 this.form = this.fb.group({
                   descripcion: new FormControl(),

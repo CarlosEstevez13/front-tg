@@ -31,7 +31,7 @@ export class InscritoTorneoPage {
               public torneoService: TorneosProvider,
               public alertCtrl: AlertController) {
                 this.form = this.fb.group({
-                  idDeporte: new FormControl(),
+                  idDeporte: new FormControl(0),
                   genero: new FormControl(3),
                   tipo: new FormControl(2)
                 });
@@ -113,7 +113,7 @@ export class InscritoTorneoPage {
   showAlert(idTorneo:any, i:any) {
     const alert = this.alertCtrl.create({
       title: 'Eliminar!',
-      subTitle: 'Estas seguro de borrar este torneo!',
+      subTitle: 'Estas seguro de salir de este torneo!',
       buttons: [{
         text: 'Si',
         handler: () => {

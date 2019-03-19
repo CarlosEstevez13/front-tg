@@ -18,7 +18,7 @@ import { SalidaIProvider } from '../../providers/salida-i/salida-i';
 export class VerEntrenamientoPage {
 
   id:any;
-  salida:any;
+  salida:any = [];
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -37,7 +37,6 @@ export class VerEntrenamientoPage {
       },
       e=>{
           console.log(e);
-          this.salida=null;
       }
     );
   }

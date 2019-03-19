@@ -3,14 +3,7 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { UsuarioProvider } from '../../providers/usuario/usuario';
-import { HttpClient } from '@angular/common/http';
 
-/**
- * Generated class for the EditarPerfilPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -30,12 +23,12 @@ export class EditarPerfilPage {
   public usuario: any = {
     
     };
+  error:any;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public _usuarioProvider: UsuarioProvider,
               private equipoService: EquipoProvider,
-              private http: HttpClient,
               private fb: FormBuilder) {
 
                 this.crearFormu();
@@ -51,6 +44,7 @@ export class EditarPerfilPage {
   }
 
   ionViewWillEnter(){
+    this.error =0;
     console.log('entro');
     this._usuarioProvider.getUsuario(this.id).subscribe(res=> {
         
@@ -85,7 +79,6 @@ export class EditarPerfilPage {
     if(!this.contra){
       this.form.controls['pass2'].setValue(this.form.controls['pass'].value);
       }
-    this.agregarFoto();
     this._usuarioProvider.putUsuario(this.id,this.form.value).subscribe(
       res=>{
         console.log('respuesta');
@@ -93,6 +86,7 @@ export class EditarPerfilPage {
       },
       e=>{
         console.log(e);
+        this.error=1;
       }
     );
   }
@@ -116,7 +110,7 @@ export class EditarPerfilPage {
 
   }
 
-  onFileSelected(event) {
+  /* onFileSelected(event) {
     console.log(event);
     this.selectedFile = event.target.files[0];
   }
@@ -124,7 +118,7 @@ export class EditarPerfilPage {
   agregarFoto(){
     const fd  = new FormData();
     fd.append('image', this.selectedFile, `${this.idUsuario}`);
-    this.http.post('http://10.8.80.47:3002/api/upload', fd)
+    this.http.post('http://10.14.38.89:3002/api/upload', fd)
       .subscribe(
         res=>{
           console.log(res)
@@ -133,6 +127,6 @@ export class EditarPerfilPage {
           console.log(e)
         }
       )
-  }
+  } */
 
 }

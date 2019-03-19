@@ -2,7 +2,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Mis Salidas</ion-title>
+    <ion-title>Mis Salidas por Equipos</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -43,7 +43,7 @@
 
       <ion-item class="tituloEvento">
         <h2><i class="fas fa-cube margenSup"></i> {{salida.deporte + ' : ' + salida.nombre}}</h2>
-        <div item-end> <ion-icon name="calendar"></ion-icon> {{ salida.fecha}}</div>
+        <div item-end> <ion-icon name="calendar"></ion-icon> {{ salida.fecha |date}}</div>
       </ion-item>
   
       <ion-card-content class="contenidoEvento">
@@ -68,7 +68,7 @@
 
         <button (click)="editar(salida.idSalidaE)" ion-button>Editar</button>
         <button *ngIf="salida.rival !=0" (click)="marcador(salida.idSalidaE)" ion-button color="dark" outline>Marcador</button>
-        <button (click)="showAlert(salida.idSalidaE, i)" ion-button color="danger">Eliminar</button>
+        <button (click)="showAlert(salida.idSalidaE, i, salida.idEquipo, salida.nombre)" ion-button color="danger">Eliminar</button>
       </ion-card-content>
   
     </ion-card>

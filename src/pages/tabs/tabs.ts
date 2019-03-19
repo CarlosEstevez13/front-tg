@@ -14,9 +14,9 @@ export class TabsPage {
   tab2Root = EquipoPage;
   tab3Root = EventosPage;
   tab4Root = RendimientoMenuPage;
-
+  idRol:any;
   constructor() {
-
+    this.idRol = sessionStorage.getItem('idRol');
   }
 
   ionViewWillEnter(){

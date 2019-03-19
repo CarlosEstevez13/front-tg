@@ -16,7 +16,7 @@ export class EquipoProvider {
 
   constructor(public _http: Http) {
     console.log('Hello EquipoProvider Provider');
-    this.url = 'http://10.8.80.47:3002/api/';
+    this.url = 'http://10.14.38.89:3002/api/';
   }
 
   getEquipos(idDeporte:any) {
@@ -146,6 +146,10 @@ export class EquipoProvider {
     const json = JSON.stringify(equipo);
     const params = json;
     return this._http.put(this.url + `equipo/${idEquipo}`, params , { headers: this.headers } ).map(res => res.json());
+  }
+
+  putSalirEquipo(idUsuario){
+    return this._http.put(this.url + `salirEquipo/${idUsuario}` , { headers: this.headers } ).map(res => res.json());
   }
 
   deleteSolEquipo( idSolicitud:any){
