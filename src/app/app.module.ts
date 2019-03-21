@@ -1,3 +1,4 @@
+import { PatrocinadoresPageModule } from './../pages/patrocinadores/patrocinadores.module';
 import { IntegrantesSalidaIPageModule } from './../pages/integrantes-salida-i/integrantes-salida-i.module';
 import { TorneosPatrocinarPageModule } from './../pages/torneos-patrocinar/torneos-patrocinar.module';
 import { TorneosArbitrarPageModule } from './../pages/torneos-arbitrar/torneos-arbitrar.module';
@@ -154,6 +155,7 @@ import { InstruccionesPageModule } from '../pages/instrucciones/instrucciones.mo
 import { NotificacionesPage } from '../pages/notificaciones/notificaciones';
 import { TorneosPatrocinarPage } from '../pages/torneos-patrocinar/torneos-patrocinar';
 import { ChartsModule } from 'ng2-charts-x';
+import { PatrocinadoresPage } from '../pages/patrocinadores/patrocinadores';
 
 
 
@@ -259,6 +261,7 @@ import { ChartsModule } from 'ng2-charts-x';
     TorneosArbitrarPageModule,
     TorneosPatrocinarPageModule,
     ChartsModule,
+    PatrocinadoresPageModule,
     /* IonicModule.forRoot(MyApp), */
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages:false
@@ -333,7 +336,8 @@ import { ChartsModule } from 'ng2-charts-x';
     IntegrantesSalidaIPage,
     NotificacionesPage,
     TorneosArbitrarPage,
-    TorneosPatrocinarPage
+    TorneosPatrocinarPage,
+    PatrocinadoresPage
   ],
   providers: [
     StatusBar,

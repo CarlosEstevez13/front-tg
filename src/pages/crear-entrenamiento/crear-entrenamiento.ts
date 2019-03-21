@@ -70,6 +70,7 @@ export class CrearEntrenamientoPage {
                   latitud: new FormControl(null),
                   longitud: new FormControl(null),
                   nombre: new FormControl(),
+                  genero: new FormControl(2)
                 });
   }
 

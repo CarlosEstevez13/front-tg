@@ -3,6 +3,7 @@ import { SalidaIProvider } from '../../providers/salida-i/salida-i';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { EditarSalidasIPage } from '../editar-salidas-i/editar-salidas-i';
+import { UsuarioProvider } from '../../providers/usuario/usuario';
 
 /**
  * Generated class for the MisSalidasIPage page.
@@ -25,6 +26,7 @@ export class MisSalidasIPage {
   
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
+              private usuarioProvider: UsuarioProvider,
               public alertCtrl: AlertController,
               public _salidaIProvider : SalidaIProvider) {
               this.id = sessionStorage.getItem('idUsuario')
@@ -86,13 +88,43 @@ export class MisSalidasIPage {
     this.navCtrl.push(EditarSalidasIPage);
   }
 
-  eliminar(idSalida:any,i){
+  eliminar(idSalida:any,i,nombre){
     console.log('entro');
+
+    this._salidaIProvider.getPaticipantes(idSalida)
+    .subscribe(
+      res=>{
+        let integrantes = res.result;
+        for(let i in integrantes){
+          let data = {
+            tipo: 1,
+            descripcion: `Se elimino la salida individual: ${nombre}`,
+            idEquipo: 0,
+            idSalida: 0,
+            idUsuario: integrantes[i].idUsuario,
+            idRemitente: sessionStorage.getItem('idUsuario')
+          }
+          this.usuarioProvider.addNotificacion(data)
+            .subscribe(
+              res=>{
+                console.log(res);
+              },
+              e=>{
+                console.log(e);
+              }
+            )
+        }
+      },
+      e=>{
+        console.log(e);
+      }
+)
     
     this._salidaIProvider.deleteSalidaI(idSalida)
     .subscribe(
       res=>{
         console.log(res);
+       
         this.salida.splice(i,1);
       },
       e=>{
@@ -100,17 +132,18 @@ export class MisSalidasIPage {
       }
     );
 
+
     
   }
 
-  showAlert(idSalida:any, i:any) {
+  showAlert(idSalida:any, i:any,nombre) {
     const alert = this.alertCtrl.create({
       title: 'Eliminar!',
       subTitle: 'Estas seguro de borrar esta Salida?',
       buttons: [{
         text: 'Si',
         handler: () => {
-          this.eliminar(idSalida,i)
+          this.eliminar(idSalida,i,nombre)
         }
       },
         {

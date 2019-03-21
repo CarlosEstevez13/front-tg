@@ -1,3 +1,4 @@
+import { PatrocinadoresPage } from './../patrocinadores/patrocinadores';
 import { UsuarioProvider } from './../../providers/usuario/usuario';
 import { ParticipantesTorneosIPage } from './../participantes-torneos-i/participantes-torneos-i';
 import { UbicacionPage } from './../ubicacion/ubicacion';
@@ -53,6 +54,7 @@ export class VerTorneoPage {
                     res=>{
                       console.log(res);
                       this.torneo = res.result[0];
+                      sessionStorage.setItem('direccion',this.torneo.direccion);
                       if(this.torneo.reglamento != 'null'){
                         this.reglamento = 1;
                       }
@@ -79,6 +81,11 @@ export class VerTorneoPage {
   verJurado(idTorneo){
     this.torneoProvider.setIdTorneo(idTorneo);
     this.navCtrl.push(JuradoPage);
+  }
+
+  verPatrocinadores(idTorneo){
+    this.torneoProvider.setIdTorneo(idTorneo);
+    this.navCtrl.push(PatrocinadoresPage);
   }
 
   ubicacion(lat,lng){

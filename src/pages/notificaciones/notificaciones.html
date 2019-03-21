@@ -38,6 +38,7 @@
                       <button *ngIf="notificacion.tipo==6 " 
                       (click)='aceptarPatrocinio(notificacion.idNotificacion, notificacion.idSalida, notificacion.idRemitente)' 
                       ion-button clear>Aceptar Patrocinio</button>
+                      <hr>
                       <span *ngIf="notificacion.tipo!=6" [class.borrarNot]='notificacion.tipo !=6'
                             [class.borrarNotSeis]='notificacion.tipo ==6' >
                         <button ion-button color="danger" outline small 

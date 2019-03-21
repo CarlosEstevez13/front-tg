@@ -260,7 +260,66 @@ export class MisTorneosPage {
         }
       )
     }
+    this.torneoService.setIdTorneo(idTorneo);
+    this.torneoService.getTorne_Juez()
+      .subscribe(
+        res=>{
+          let integrantes = res.result;
+          console.log(integrantes);
+          for(let i in integrantes){
+            let data = {
+              tipo: 1,
+              descripcion: `Se elimino el torneo: ${nombre}`,
+              idEquipo: 0,
+              idSalida: 0,
+              idUsuario: integrantes[i].idUsuario,
+              idRemitente: sessionStorage.getItem('idUsuario')
+            }
+            this.usuarioProvider.addNotificacion(data)
+              .subscribe(
+                res=>{
+                  console.log(res);
+                },
+                e=>{
+                  console.log(e);
+                }
+              )
+          }
+        },
+        e=>{
+          console.log(e);
+        }
+      );
 
+      this.torneoService.getTorneo_Patrocinador()
+      .subscribe(
+        res=>{
+          let integrantes = res.result;
+          console.log(integrantes);
+          for(let i in integrantes){
+            let data = {
+              tipo: 1,
+              descripcion: `Se elimino el torneo: ${nombre}`,
+              idEquipo: 0,
+              idSalida: 0,
+              idUsuario: integrantes[i].idUsuario,
+              idRemitente: sessionStorage.getItem('idUsuario')
+            }
+            this.usuarioProvider.addNotificacion(data)
+              .subscribe(
+                res=>{
+                  console.log(res);
+                },
+                e=>{
+                  console.log(e);
+                }
+              )
+          }
+        },
+        e=>{
+          console.log(e);
+        }
+      );
 
     this.torneoService.deleteTorneo(idTorneo)
       .subscribe(
