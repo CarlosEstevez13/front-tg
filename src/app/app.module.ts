@@ -153,6 +153,7 @@ import { InstruccionesPage } from '../pages/instrucciones/instrucciones';
 import { InstruccionesPageModule } from '../pages/instrucciones/instrucciones.module';
 import { NotificacionesPage } from '../pages/notificaciones/notificaciones';
 import { TorneosPatrocinarPage } from '../pages/torneos-patrocinar/torneos-patrocinar';
+import { ChartsModule } from 'ng2-charts-x';
 
 
 
@@ -257,6 +258,7 @@ import { TorneosPatrocinarPage } from '../pages/torneos-patrocinar/torneos-patro
     NotificacionesPageModule,
     TorneosArbitrarPageModule,
     TorneosPatrocinarPageModule,
+    ChartsModule,
     /* IonicModule.forRoot(MyApp), */
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages:false

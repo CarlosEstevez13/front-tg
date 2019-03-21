@@ -29,7 +29,7 @@
         <ion-item *ngFor="let usuario of usuarios; index as i">
 
             <ion-avatar (click)='verUsuario(usuario.idUsuario)' item-start>
-                <img src="http://10.14.38.89:3002/profile/{{usuario.imagen}}.png">
+                <img src="http://10.8.80.47:3002/profile/{{usuario.imagen}}.png">
             </ion-avatar>
             <h2 (click)='verUsuario(usuario.idUsuario)'>{{usuario.nombre}}</h2>
             <p (click)='verUsuario(usuario.idUsuario)'>{{usuario.descripcion}}</p>
