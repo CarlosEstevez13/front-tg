@@ -1,3 +1,4 @@
+import { PatrocinadoresPage } from './../patrocinadores/patrocinadores';
 import { UsuarioProvider } from './../../providers/usuario/usuario';
 import { ParticipantesTorneosIPage } from './../participantes-torneos-i/participantes-torneos-i';
 import { UbicacionPage } from './../ubicacion/ubicacion';
@@ -53,6 +54,7 @@ export class VerTorneoPage {
                     res=>{
                       console.log(res);
                       this.torneo = res.result[0];
+                      sessionStorage.setItem('direccion',this.torneo.direccion);
                       if(this.torneo.reglamento != 'null'){
                         this.reglamento = 1;
                       }
@@ -81,6 +83,11 @@ export class VerTorneoPage {
     this.navCtrl.push(JuradoPage);
   }
 
+  verPatrocinadores(idTorneo){
+    this.torneoProvider.setIdTorneo(idTorneo);
+    this.navCtrl.push(PatrocinadoresPage);
+  }
+
   ubicacion(lat,lng){
     sessionStorage.setItem('tempLat',`${lat}`);
     sessionStorage.setItem('tempLng',`${lng}`);
@@ -103,7 +110,7 @@ export class VerTorneoPage {
   
   verPdf(nombre){
     console.log('entro');
-    const browser = this.iab.create( `http://10.14.38.89:3002/pdf/${nombre}.pdf`, '_system');
+    const browser = this.iab.create( `http://10.8.80.47:3002/pdf/${nombre}.pdf`, '_system');
     console.log(browser);
 
   }

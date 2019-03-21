@@ -1,9 +1,8 @@
-
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Gestionar Usuarios</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Gestionar Usuarios</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
@@ -11,26 +10,26 @@
 <ion-content padding>
 
     <form [formGroup]="form">
-  
-          <ion-item>
+
+        <ion-item>
             <ion-label>Rol</ion-label>
-            <ion-select formControlName="idRol" >
-              <ion-option value="0">Todos</ion-option>
-              <ion-option *ngFor="let rol of roles" value="{{rol.idRol}}">{{rol.tipo}}</ion-option>
+            <ion-select formControlName="idRol">
+                <ion-option value="0">Todos</ion-option>
+                <ion-option *ngFor="let rol of roles" value="{{rol.idRol}}">{{rol.tipo}}</ion-option>
             </ion-select>
-          </ion-item>
-    
-          <button (click)="buscar()" ion-button>Buscar</button>
-    
-        </form>
-  
-        <h2 *ngIf="aviso == 1" class="centrado">No hay usuarios</h2>
+        </ion-item>
+
+        <button (click)="buscar()" ion-button>Buscar</button>
+
+    </form>
+
+    <h2 *ngIf="aviso == 1" class="centrado">No hay usuarios</h2>
 
     <ion-list>
         <ion-item *ngFor="let usuario of usuarios; index as i">
         
           <ion-avatar (click)='verUsuario(usuario.idUsuario)' item-start>
-        <img src="http://10.14.38.89:3002/profile/{{usuario.imagen}}.png">
+        <img src="http://10.8.80.47:3002/profile/{{usuario.imagen}}.png">
       </ion-avatar>
       <h2 (click)='verUsuario(usuario.idUsuario)'>{{usuario.nombre}}</h2>
       <p (click)='verUsuario(usuario.idUsuario)'>{{usuario.descripcion}}</p>

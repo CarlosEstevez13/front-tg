@@ -19,13 +19,17 @@
         </button>
 
     <button ion-item>
-          Descripcion : {{salida.descripcion}} 
+          Descripcion :
+          <p>{{salida.descripcion}} </p> 
         </button>
 
-        <ion-item *ngIf="salida.latitud != 'null'">
-            Ubicacion :  <button (click)='ubicacion(salida.latitud, salida.longitud)'  ion-button>ver</button>
-          </ion-item>
-          
+    <ion-item *ngIf="salida.latitud != 'null'">
+        Ubicacion : <button (click)='ubicacion(salida.latitud, salida.longitud)' ion-button>ver</button>
+    </ion-item>
+
+    <ion-item>
+        Integrantes : <button (click)='participantes()' ion-button> ver </button>
+    </ion-item>
     <button ion-item>
           Fecha : {{salida.fecha  |date}} 
         </button>

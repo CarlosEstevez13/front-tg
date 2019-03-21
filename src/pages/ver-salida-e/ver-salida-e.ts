@@ -39,6 +39,7 @@ export class VerSalidaEPage {
                     res=>{  
                       this.salida = res.result[0];
                       console.log(this.salida);
+                      sessionStorage.setItem('direccion',this.salida.direccion);
                     },
                     e=>{
                       console.log(e);

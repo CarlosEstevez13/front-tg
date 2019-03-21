@@ -11,10 +11,12 @@
     <ion-list>
         <button ion-item *ngFor="let arbitro of arbitros" (click)='verUsuario(arbitro.idUsuario)'>
         <ion-avatar item-start>
-          <img src="http://10.14.38.89:3002/profile/{{arbitro.imagen}}.png">
+          <img src="http://10.8.80.47:3002/profile/{{arbitro.imagen}}.png">
         </ion-avatar>
         <h2>{{arbitro.usuario}}</h2>
         <p>{{arbitro.descripcion}}</p>
       </button>
     </ion-list>
+
+    <h2 *ngIf="aviso == 1" class="centrado">No hay arbitros</h2>
 </ion-content>

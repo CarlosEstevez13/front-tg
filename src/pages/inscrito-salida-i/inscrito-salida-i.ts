@@ -64,6 +64,7 @@ export class InscritoSalidaIPage {
       },
       e=>{
           console.log(e);
+      this.salida=0;
       }
     );
   }

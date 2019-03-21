@@ -1,11 +1,11 @@
-import { TorneosProvider } from './../../providers/torneos/torneos';
-import { PerfilPage } from './../perfil/perfil';
 import { EquipoProvider } from './../../providers/equipo/equipo';
+import { PerfilPage } from './../perfil/perfil';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { TorneosProvider } from '../../providers/torneos/torneos';
 
 /**
- * Generated class for the JuradoPage page.
+ * Generated class for the PatrocinadoresPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -13,13 +13,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-jurado',
-  templateUrl: 'jurado.html',
+  selector: 'page-patrocinadores',
+  templateUrl: 'patrocinadores.html',
 })
-export class JuradoPage {
+export class PatrocinadoresPage {
 
-  arbitros:any =[];
-  aviso:any;
+  patrocinadores:any =[];
+  aviso:any =0;
 
   constructor(public navCtrl: NavController, 
               private equipoProvider: EquipoProvider,
@@ -35,8 +35,8 @@ export class JuradoPage {
     this.torneoService.getTorne_Juez()
       .subscribe(
         res=>{
-          this.arbitros = res.result;
-          console.log(this.arbitros);
+          this.patrocinadores = res.result;
+          console.log(this.patrocinadores);
         },
         e=>{
           console.log(e);
@@ -51,5 +51,6 @@ export class JuradoPage {
     sessionStorage.setItem('temp0','1');
     this.navCtrl.push(PerfilPage);
   }
+
 
 }

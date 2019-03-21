@@ -1,3 +1,5 @@
+import { PatrocinadoresPageModule } from './../pages/patrocinadores/patrocinadores.module';
+import { IntegrantesSalidaIPageModule } from './../pages/integrantes-salida-i/integrantes-salida-i.module';
 import { TorneosPatrocinarPageModule } from './../pages/torneos-patrocinar/torneos-patrocinar.module';
 import { TorneosArbitrarPageModule } from './../pages/torneos-arbitrar/torneos-arbitrar.module';
 import { TorneosArbitrarPage } from './../pages/torneos-arbitrar/torneos-arbitrar';
@@ -142,6 +144,8 @@ import { GestionarTorneosPage } from '../pages/gestionar-torneos/gestionar-torne
 import { EntretenimientoPage } from '../pages/entretenimiento/entretenimiento';
 import { VideosEntretenimientoPage } from './../pages/videos-entretenimiento/videos-entretenimiento';
 
+import { IntegrantesSalidaIPage } from './../pages/integrantes-salida-i/integrantes-salida-i';
+
 import { GestionarEntrenamientoPage } from '../pages/gestionar-entrenamiento/gestionar-entrenamiento';
 import { ParticipantesTorneosIPage } from '../pages/participantes-torneos-i/participantes-torneos-i';
 import { RendimientoPage } from '../pages/rendimiento/rendimiento';
@@ -150,6 +154,7 @@ import { InstruccionesPage } from '../pages/instrucciones/instrucciones';
 import { InstruccionesPageModule } from '../pages/instrucciones/instrucciones.module';
 import { NotificacionesPage } from '../pages/notificaciones/notificaciones';
 import { TorneosPatrocinarPage } from '../pages/torneos-patrocinar/torneos-patrocinar';
+import { PatrocinadoresPage } from '../pages/patrocinadores/patrocinadores';
 
 
 
@@ -250,9 +255,11 @@ import { TorneosPatrocinarPage } from '../pages/torneos-patrocinar/torneos-patro
     RendimientoMenuPageModule,
     HistorialRendimientoPageModule,
     InstruccionesPageModule,
+    IntegrantesSalidaIPageModule,
     NotificacionesPageModule,
     TorneosArbitrarPageModule,
     TorneosPatrocinarPageModule,
+    PatrocinadoresPageModule,
     /* IonicModule.forRoot(MyApp), */
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages:false
@@ -324,9 +331,11 @@ import { TorneosPatrocinarPage } from '../pages/torneos-patrocinar/torneos-patro
     RendimientoMenuPage,
     HistorialRendimientoPage,
     InstruccionesPage,
+    IntegrantesSalidaIPage,
     NotificacionesPage,
     TorneosArbitrarPage,
-    TorneosPatrocinarPage
+    TorneosPatrocinarPage,
+    PatrocinadoresPage
   ],
   providers: [
     StatusBar,

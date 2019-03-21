@@ -20,6 +20,8 @@ export class EditarSalidasIPage {
 
   form: FormGroup;
   id:any;
+  deporte:any;
+  entrena:any;
 
   salida ={
     descripcion:'',
@@ -34,7 +36,8 @@ export class EditarSalidasIPage {
     horaFin: 'dfs',
     latitud: 0,
     longitud: 0,
-    nombre: ''
+    nombre: '',
+    genero:0
   }
 
   hoy:any;
@@ -46,6 +49,8 @@ export class EditarSalidasIPage {
                  
             this.id = sessionStorage.getItem('idSalidaI');
             this.salida.entrenamiento = sessionStorage.getItem('entrenamiento');
+            this.entrena= this.salida.entrenamiento;
+            this.deporte= sessionStorage.getItem('deporte');
 
             let h = new Date();
             let tomorrow = new Date();
@@ -80,6 +85,7 @@ export class EditarSalidasIPage {
                   latitud: new FormControl(1),
                   longitud: new FormControl(1),
                   nombre: new FormControl(),
+                  genero: new FormControl(),
                 });
   }
 
@@ -104,6 +110,7 @@ export class EditarSalidasIPage {
             latitud: this.salida.latitud,
             longitud: this.salida.longitud,
             nombre: this.salida.nombre,
+            genero: this.salida.genero
           });
         },
         e=>{
@@ -113,6 +120,19 @@ export class EditarSalidasIPage {
   }
 
   editar(){
+    this._salidaIProvider.putSalida(this.form.value, this.id)
+      .subscribe(
+        res=>{
+          console.log(res);
+          this.navCtrl.pop();
+        },
+        e=>{
+          console.log(e);
+        }
+      );
+  }
+  finalizar(){
+    this.form.value.finalizado = 1;
     this._salidaIProvider.putSalida(this.form.value, this.id)
       .subscribe(
         res=>{

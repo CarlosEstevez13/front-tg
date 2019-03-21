@@ -37,25 +37,27 @@
     </ion-item>
     <button (click)="bucagenero();" ion-button outline *ngIf="busqueda==2">Buscar</button>
 
-    <ion-card class="fondo" *ngFor="let salida of disponibles" (click)="ver(salida.idSalidaI);">
+    <ion-card class="fondo" *ngFor="let salida of disponibles">
 
         <ion-item class="tituloEvento">
-            <h2><i class="fas fa-cube margenSup"></i> {{salida.nombre}} </h2>
+            <h2> {{salida.nombre}} </h2>
             <div item-end>
                 <ion-icon name="calendar"></ion-icon> {{ salida.fecha |date}}</div>
         </ion-item>
 
         <ion-card-content class="contenidoEvento">
             <ion-item class="fondoNone">
+                <br>
                 <h2>
-                    <ion-icon name="time"></ion-icon> Hora: {{salida.hora}}</h2>
+                    <ion-icon name="time"></ion-icon> Hora de inicio: {{salida.hora}}</h2>
                 <h2>
-                    <ion-icon name="contacts"> Participantes : {{salida.participantes}} </ion-icon>
-
+                    <ion-icon name="time"></ion-icon> Hora de finalizacion: {{salida.horaFin}}</h2>
+                <hr>
+                <h2>
+                    <ion-icon name="contact"> Cupos disponibles : {{salida.nroParticipantes - salida.participantes}} / {{salida.nroParticipantes}} </ion-icon>
                 </h2>
-                <h2>
-                    <ion-icon name="contact"> Cupos disponibles : {{salida.nroParticipantes - salida.participantes}} </ion-icon>
-                </h2>
+                <hr>
+                <button ion-button round full (click)="ver(salida.idSalidaI);"> Ver informacion </button>
             </ion-item>
 
         </ion-card-content>

@@ -28,7 +28,9 @@
                 <ion-label fixed>Descripcion</ion-label>
                 <ion-textarea rows="3" formControlName="descripcion" type="text"></ion-textarea>
             </ion-item>
-
+            <ion-item *ngIf="entrena==0">
+                <ion-label>Deporte : {{deporte}} </ion-label>
+            </ion-item>
             <ion-item>
                 <ion-label fixed>participantes</ion-label>
                 <ion-textarea formControlName="nroParticipantes" type="number"></ion-textarea>
@@ -52,6 +54,7 @@
         </ion-list>
 
         <button ion-button round full (click)="editar();">Guardar</button>
+        <button ion-button round full (click)="finalizar();" color="danger">Finalizar</button>
         <br>
     </form>
 </ion-content>

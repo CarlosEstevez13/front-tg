@@ -24,6 +24,7 @@ export class CrearSalidaIPage {
   idUsuario:any;
   idDeporte:0;
   idRol:any;
+  genero:0;
   deportes:any = [];
   hoy:any;
 
@@ -68,12 +69,15 @@ export class CrearSalidaIPage {
                 latitud: new FormControl(null),
                 longitud: new FormControl(null),
                 nombre: new FormControl(),
+                genero: new FormControl(this.genero),
+                direccion: new FormControl()
               });
   }
 
   ionViewDidLoad() {
     sessionStorage.setItem('tempLat','null');
     sessionStorage.setItem('tempLng','null');
+    sessionStorage.setItem('direccion','null');
     console.log('ionViewDidLoad CrearSalidaIPage');
     
   }
@@ -105,6 +109,7 @@ export class CrearSalidaIPage {
   crear(){
     this.form.value.latitud = sessionStorage.getItem('tempLat');
     this.form.value.longitud = sessionStorage.getItem('tempLng');
+    this.form.value.direccion = sessionStorage.getItem('direccion');
     console.log(this.form.value);
     this._salidaIProvider.addSalida(this.form.value)
       .subscribe(

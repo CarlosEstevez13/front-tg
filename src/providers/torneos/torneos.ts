@@ -16,7 +16,7 @@ export class TorneosProvider {
 
   constructor(public _http: Http) {
     console.log('Hello TorneosProvider Provider');
-    this.url = 'http://10.14.38.89:3002/api/';
+    this.url = 'http://10.8.80.47:3002/api/';
   }
 
   getTorneos(idU,idE) {
@@ -138,6 +138,11 @@ export class TorneosProvider {
   getTorne_Juez() {
     this.headers = new Headers({'Content-Type': 'application/json'});
     return this._http.get(this.url + `juez/${this.idTorneo}` ).map((res:any) => res.json());
+  }
+
+  getTorneo_Patrocinador() {
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `patrocinadores/${this.idTorneo}` ).map((res:any) => res.json());
   }
 
   getTorneoI_Participantes() {
