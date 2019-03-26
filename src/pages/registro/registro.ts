@@ -35,10 +35,38 @@ export class RegistroPage {
 
   temp:any = 0;
 
+  fechaMin:any;
+  fechaMax:any;
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private fb: FormBuilder,
               private _loginService: LoginProvider) {
+
+                let minTemp = new Date();
+                if(minTemp.getMonth()+1 <10){
+                  if(minTemp.getDate()<10){
+                   this.fechaMin = `${minTemp.getFullYear()-10}-0${minTemp.getMonth()+1}-0${minTemp.getDate()}`;
+                   this.fechaMax = `${minTemp.getFullYear()-100}-0${minTemp.getMonth()+1}-0${minTemp.getDate()}`;
+                  }else{
+                   this.fechaMin= `${minTemp.getFullYear()-10}-0${minTemp.getMonth()+1}-${minTemp.getDate()}`;
+                   this.fechaMax = `${minTemp.getFullYear()-100}-0${minTemp.getMonth()+1}-0${minTemp.getDate()}`;
+                  }
+                }else{
+                 if(minTemp.getDate()<10){
+                   this.fechaMin = `${minTemp.getFullYear()-10}-${minTemp.getMonth()+1}-0${minTemp.getDate()}`;
+                   this.fechaMax = `${minTemp.getFullYear()-100}-0${minTemp.getMonth()+1}-0${minTemp.getDate()}`;
+                  }else{
+                   this.fechaMin = `${minTemp.getFullYear()-10}-${minTemp.getMonth()+1}-${minTemp.getDate()}`;
+                   this.fechaMax = `${minTemp.getFullYear()-100}-0${minTemp.getMonth()+1}-0${minTemp.getDate()}`;
+                  }
+                }                
+
+
+                console.log(this.fechaMin);
+                console.log(this.fechaMax);
+
+
                 this.form = this.fb.group({
                   estatura: new FormControl(this.campos.estatura),
                   peso: new FormControl(this.campos.peso),

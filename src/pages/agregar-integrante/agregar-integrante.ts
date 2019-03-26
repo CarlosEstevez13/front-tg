@@ -51,7 +51,7 @@ export class AgregarIntegrantePage {
         );
     let integrante = {
       idUsuario:solicitud.idUsuario,
-      idRol: 1, //deportista,
+      idRol: solicitud.idRol, //deportista,
       idEquipo: sessionStorage.getItem('idEquipo')
     };
     this._equipoService.addIntegrante(integrante, solicitud.idUsuario)

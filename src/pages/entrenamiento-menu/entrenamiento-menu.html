@@ -14,12 +14,12 @@
 
 
 <ion-content class="card-background-page" padding>
-    <ion-card class="opcion" (click)='buscarEntrenamiento()' >
+    <ion-card class="opcion" (click)='buscarEntrenamiento()' *ngIf="idRol ==1 " >
         <img src="assets/imgs/buscar.jpg" />
         <div class="card-title">Buscar Entrenamiento</div>
     </ion-card>
 
-    <ion-card class="opcion" (click)='inscritos()'>
+    <ion-card class="opcion" (click)='inscritos()' *ngIf="idRol ==1">
         <img src="assets/imgs/inscritos.jpg"  />
         <div class="card-title">Entramientos a Jugar</div>
     </ion-card>

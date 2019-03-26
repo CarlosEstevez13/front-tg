@@ -42,7 +42,7 @@ export class MapaComponent {
     this.ver = 0;
     this.direccion = sessionStorage.getItem('direccion');
     console.log(sessionStorage.getItem('tempLat'));
-    if(sessionStorage.getItem('tempLat') != 'null' && sessionStorage.getItem('tempLat') != '1'){
+    if(sessionStorage.getItem('ver') != '0'){
       this.ver =1;
       console.log('entro');
       this.coords = new google.maps.LatLng(
@@ -74,10 +74,6 @@ export class MapaComponent {
        /*  sessionStorage.removeItem('tempLat');
         sessionStorage.removeItem('tempLng'); */
       }
-  }
-
-  ionViewWillLeave(){
-  
   }
 
   createMarker(place) {
@@ -118,6 +114,7 @@ export class MapaComponent {
     sessionStorage.setItem('tempLat',`${this.resultado.lat}`);
     sessionStorage.setItem('tempLng',`${this.resultado.lng}`);
     sessionStorage.setItem('direccion',`${this.form.value.texto}`);
+    sessionStorage.setItem('agrego','1');
     this.navCtrl.pop();
   }
 

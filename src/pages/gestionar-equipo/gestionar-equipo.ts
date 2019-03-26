@@ -72,7 +72,7 @@ export class GestionarEquipoPage {
   showAlert(idSalida:any, i:any) {
     const alert = this.alertCtrl.create({
       title: 'Eliminar!',
-      subTitle: 'Estas seguro de borrar esta Salida?',
+      subTitle: 'Estas seguro de borrar este equipo?',
       buttons: [{
         text: 'Si',
         handler: () => {

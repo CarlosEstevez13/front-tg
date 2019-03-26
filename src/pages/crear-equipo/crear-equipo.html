@@ -26,6 +26,7 @@
         <ion-input formControlName="nroIntegrantes" type="number"></ion-input>
       </ion-item>
     </ion-list>
-    <button ion-button type='button' (click)="agregarEquipo()">Guardar</button>
+    <button ion-button type='button' (click)="agregarEquipo()" *ngIf="form.valid" >Guardar</button>
+    <button ion-button type='button' (click)="agregarEquipo()" *ngIf="form.invalid" disabled>Guardar</button>
   </form>
 </ion-content>

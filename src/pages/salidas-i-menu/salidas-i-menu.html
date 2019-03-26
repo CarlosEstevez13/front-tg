@@ -10,12 +10,12 @@
 
 <ion-content class="card-background-page" padding>
 
-    <ion-card class="opcion" (click)='getBuscarSalidaI()' *ngIf="idRol !=2">
+    <ion-card class="opcion" (click)='getBuscarSalidaI()' *ngIf="idRol !=2 && idRol!=5">
         <img src="assets/imgs/buscar.jpg" />
         <div class="card-title">Buscar Salida</div>
     </ion-card>
 
-    <ion-card class="opcion" (click)='getSalidaIRegistradas()' *ngIf="idRol !=2">
+    <ion-card class="opcion" (click)='getSalidaIRegistradas()' *ngIf="idRol !=2 && idRol!=5">
         <img src="assets/imgs/inscritos.jpg" />
         <div class="card-title">Salidas a jugar</div>
     </ion-card>

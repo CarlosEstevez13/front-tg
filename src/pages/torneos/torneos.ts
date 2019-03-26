@@ -152,32 +152,72 @@ export class TorneosPage {
 
   getTorneos(){
     this.aviso =0;
-    this.torneoProvider.getTorneos(this.idUsuario,this.idEquipo)
-        .subscribe(res=> {
-          
-          let hoy = new Date();
-          console.log(res);
-          let temp:any = [];
-          for(let i in res.result){
-            let vectorFecha = res.result[i].fechaInicio.split('-');
-            let fecha = new Date(vectorFecha[0], (vectorFecha[1]-1), vectorFecha[2]);
-            if(fecha> hoy)
-              {
-                temp.push(res.result[i]);
-              }
-          }
-          this.torneos = temp;
+    if(this.idRol!=4){
 
-          this.buscarFiltro();
-          if(this.torneos.length == 0){
+      this.torneoProvider.getTorneos(this.idUsuario,this.idEquipo)
+          .subscribe(
+            res=> {
+            
+            let hoy = new Date();
+            console.log(res);
+            let temp:any = [];
+            for(let i in res.result){
+              let vectorFecha = res.result[i].fechaInicio.split('-');
+              let fecha = new Date(vectorFecha[0], (vectorFecha[1]-1), vectorFecha[2]);
+              if(fecha> hoy)
+                {
+                  temp.push(res.result[i]);
+                }
+            }
+            this.torneos = temp;
+  
+            this.buscarFiltro();
+            if(this.torneos.length == 0){
+              this.aviso =1;
+            }
+            if(this.idRol ==5){
+              this.form.setValue({
+                idDeporte: this.form.value.idDeporte,
+                genero: this.form.value.genero,
+                tipo: 1
+              });
+              this.buscarFiltro();
+            }
+            
+          },
+          e=>{
             this.aviso =1;
-          }
-          
-        },
-        e=>{
-          this.aviso =1;
-          console.log('ocurrio un error');
-        });
+            console.log('ocurrio un error');
+          });
+    }else{
+      this.torneoProvider.getTorneosAPatrocinar(this.idUsuario)
+          .subscribe(
+            res=> {
+            
+            let hoy = new Date();
+            console.log(res);
+            let temp:any = [];
+            for(let i in res.result){
+              let vectorFecha = res.result[i].fechaInicio.split('-');
+              let fecha = new Date(vectorFecha[0], (vectorFecha[1]-1), vectorFecha[2]);
+              if(fecha> hoy)
+                {
+                  temp.push(res.result[i]);
+                }
+            }
+            this.torneos = temp;
+  
+            this.buscarFiltro();
+            if(this.torneos.length == 0){
+              this.aviso =1;
+            }
+            
+          },
+          e=>{
+            this.aviso =1;
+            console.log('ocurrio un error');
+          });
+    }
   }
   
  

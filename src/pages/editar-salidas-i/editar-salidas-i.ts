@@ -21,6 +21,7 @@ export class EditarSalidasIPage {
   form: FormGroup;
   id:any;
   deporte:any;
+  genero:any;
   entrena:any;
 
   salida ={
@@ -50,7 +51,6 @@ export class EditarSalidasIPage {
             this.id = sessionStorage.getItem('idSalidaI');
             this.salida.entrenamiento = sessionStorage.getItem('entrenamiento');
             this.entrena= this.salida.entrenamiento;
-            this.deporte= sessionStorage.getItem('deporte');
 
             let h = new Date();
             let tomorrow = new Date();
@@ -96,6 +96,8 @@ export class EditarSalidasIPage {
         res=>{
           this.salida = res.result[0];
           console.log(this.salida);
+          this.deporte = res.result[0].deporte;
+          this.genero = res.result[0].ngenero;
           this.form.setValue({
             descripcion: this.salida.descripcion,
             finalizado: this.salida.finalizado,

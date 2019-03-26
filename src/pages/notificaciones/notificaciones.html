@@ -24,7 +24,7 @@
                         <button *ngIf="notificacion.idEquipo!=0 && notificacion.tipo!=6" (click)='verEquipo(notificacion.idEquipo)' ion-button>
                           ver
                         </button>
-                        <button *ngIf="notificacion.tipo==8" (click)='verTorneo(notificacion.idSalida, notificacion.idNotificacion)' ion-button>
+                        <button *ngIf="notificacion.tipo==8" (click)='verTorneoArbitrar(notificacion.idSalida, notificacion.idNotificacion)' ion-button>
                           ver
                         </button>
                         <br *ngIf="notificacion.tipo ==6">
@@ -36,7 +36,7 @@
                         </button>
                       </p>
                       <button *ngIf="notificacion.tipo==6 " 
-                      (click)='aceptarPatrocinio(notificacion.idNotificacion, notificacion.idSalida, notificacion.idRemitente)' 
+                      (click)='aceptarPatrocinio(notificacion.idNotificacion, notificacion.idSalida, notificacion.idRemitente, i)' 
                       ion-button clear>Aceptar Patrocinio</button>
                       <hr>
                       <span *ngIf="notificacion.tipo!=6" [class.borrarNot]='notificacion.tipo !=6'
@@ -46,8 +46,8 @@
                           Borrar
                         </button>
                       </span>
-                      <span *ngIf="notificacion.tipo ==6" [class.borrarNot]='notificacion.tipo !=6'
-                            [class.borrarNotSeis]='notificacion.tipo ==6' >
+                      <span *ngIf="notificacion.tipo ==6" 
+                            [class.rechazarSeis]='notificacion.tipo ==6' >
                         <button ion-button color="danger" outline small 
                             (click)="rechazarPatrocinio(notificacion.idNotificacion, notificacion.idSalida, notificacion.idRemitente,i)">
                           Rechazar

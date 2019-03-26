@@ -42,8 +42,9 @@ export class HomePage {
   }
   ionViewWillEnter(){
     this.notificaciones = [];
+    this.idRol = sessionStorage.getItem('idRol');
     let idUsuario = sessionStorage.getItem('idUsuario');
-    console.log(idUsuario);
+    console.log(this.idRol);
     this.equipoService.setIdEquipo(sessionStorage.getItem('idEquipo'));
     this.equipoService.setIdUsuario(idUsuario);
     this.usuarioProvider.getNotificacionesU(idUsuario)

@@ -18,10 +18,16 @@
           <b>Nombre : </b>{{salida.nombre}} 
         </button>
 
-    <button ion-item>
+    <button ion-item *ngIf="salida.entrenamiento==0">
           Descripcion :
           <p>{{salida.descripcion}} </p> 
         </button>
+    <button ion-item *ngIf="salida.entrenamiento==0">
+            Deporte : {{salida.deporte}} 
+          </button>
+    <button ion-item>
+            Genero : {{salida.ngenero}} 
+          </button>
 
     <ion-item *ngIf="salida.latitud != 'null'">
         Ubicacion : <button (click)='ubicacion(salida.latitud, salida.longitud)' ion-button>ver</button>

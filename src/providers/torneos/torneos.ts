@@ -24,6 +24,10 @@ export class TorneosProvider {
     return this._http.get(this.url + `turoles/${idU}/${idE}` ).map((res:any) => res.json());
   }
 
+  getTorneosAPatrocinar(idU){
+    return this._http.get(this.url + `torneosAPatrocinar/${idU}` ).map((res:any) => res.json());
+  }
+
   getTorneosIndividuales(idU) {
     this.headers = new Headers({'Content-Type': 'application/json'});
     return this._http.get(this.url + `torneosIndividuales/${idU}` ).map((res:any) => res.json());

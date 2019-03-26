@@ -31,11 +31,13 @@ export class EquipoPage {
   solicitud:{
     'idEquipo':any,
     'idUsuario':any,
+    'idRol':any,
     'descripcion':any,
     'estado':any
   } = {
     'idEquipo':'',
     'idUsuario':'',
+    'idRol':'',
     'descripcion':'',
     'estado': 2
   };
@@ -244,6 +246,7 @@ export class EquipoPage {
 
   enviarSolicitud(idEquipo, descripcion){
     this.solicitud.idUsuario = this.idUsuario;
+    this.solicitud.idRol = sessionStorage.getItem('idRol');
     this.solicitud.idEquipo = idEquipo;
     this.solicitud.descripcion = descripcion;
 

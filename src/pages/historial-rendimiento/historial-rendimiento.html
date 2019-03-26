@@ -1,9 +1,8 @@
-
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Historial Rendimiento</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Historial Rendimiento</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
@@ -11,9 +10,17 @@
 <ion-content padding>
 
 
-  <ion-list>
-    <button ion-item *ngFor="let rendimiento of rendimientos; index as i" >
+    <ion-list>
+        <button ion-item *ngFor="let rendimiento of rendimientos; index as i">
       ID <b>{{i}} </b> Indice <b>{{rendimiento.valor}}</b> <p>Fecha <b>{{ rendimiento.fecha |date }} </b></p>
-    </button>  
-  </ion-list>
+    </button>
+    </ion-list>
+    <button (click)="visible=1; datos();" *ngIf="visible==0" ion-button>ver tendencia</button>
+    <div class="row" *ngIf="visible==1">
+        <div class="col-md-6">
+            <div style="display: block;">
+                <canvas baseChart width="300" height="400" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+            </div>
+        </div>
+    </div>
 </ion-content>
