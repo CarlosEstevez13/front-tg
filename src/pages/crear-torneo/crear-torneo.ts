@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { TorneosProvider } from './../../providers/torneos/torneos';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
 @IonicPage()
 @Component({
@@ -56,14 +56,14 @@ export class CrearTorneoPage {
                   idUsuario: new FormControl(this.idUsuario),
                   idRol: new FormControl(this.idRol),
                   idDeporte: new FormControl(),
-                  descripcion: new FormControl(),
+                  descripcion: new FormControl('', Validators.required),
                   reglamento: new FormControl(),
-                  maxEquipos: new FormControl(),
-                  nombre: new FormControl(),
-                  fechaInicio: new FormControl(),
-                  longitud: new FormControl(1),
-                  latitud: new FormControl(1),
-                  jurado: new FormControl(),
+                  maxEquipos: new FormControl(null, Validators.required),
+                  nombre: new FormControl('', Validators.required),
+                  fechaInicio: new FormControl('', Validators.required),
+                  longitud: new FormControl(null),
+                  latitud: new FormControl(null),
+                  jurado: new FormControl([], Validators.required),
                   genero: new FormControl(),
                   individual: new FormControl(),
                   direccion: new FormControl()
@@ -71,10 +71,39 @@ export class CrearTorneoPage {
                 });
   }
 
+  ionViewWillEnter(){
+    console.log(sessionStorage.getItem('tempLng'));
+    if(sessionStorage.getItem('agrego') == '1'){
+      console.log('entro');
+      console.log(sessionStorage.getItem('tempLng'));
+      this.form.setValue({
+        idUsuario: this.form.value.idUsuario,
+                    idRol: this.form.value.idRol ,
+                    idDeporte: this.form.value.idDeporte ,
+                    descripcion: this.form.value.descripcion ,
+                    reglamento: this.form.value.reglamento,
+                    maxEquipos: this.form.value.maxEquipos ,
+                    nombre: this.form.value.nombre,
+                    fechaInicio: this.form.value.fechaInicio ,
+                    longitud: sessionStorage.getItem('tempLng'),
+                    latitud: sessionStorage.getItem('tempLat'),
+                    jurado: this.form.value.jurado,
+                    genero: this.form.value.genero,
+                    individual: this.form.value.individual,
+                    direccion: sessionStorage.getItem('direccion')
+      })
+    }
+/*     this.form.value.latitud = sessionStorage.getItem('tempLat');
+    this.form.value.longitud = sessionStorage.getItem('tempLng');
+    this.form.value.direccion = sessionStorage.getItem('direccion'); */
+    console.log(this.form.value);
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad CrearTorneoPage');
-    sessionStorage.setItem('tempLat','1');
-    sessionStorage.setItem('tempLng','1');
+    sessionStorage.setItem('tempLat','');
+    sessionStorage.setItem('tempLng','');
+    sessionStorage.setItem('ver','0');
     sessionStorage.setItem('direccion','null');
     this.getDeportes();
     this.getArbitros();
@@ -177,7 +206,7 @@ export class CrearTorneoPage {
       .subscribe(
         res=>{
           console.log(res);
-          if(this.form.value.jurado.lenght == 0){
+          if(this.form.value.jurado.length == 0){
             correcto =1;
           }
           for (let i in this.form.value.jurado){

@@ -85,6 +85,15 @@
             Ubicacion :  <button (click)='agregarUbicacion()'  ion-button>agregar</button>
           </ion-item>
 
+          <!-- <ion-item>
+            <ion-label floating>Latitud</ion-label>
+            <ion-input formControlName="latitud" type="number" disabled></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>Longitud</ion-label>
+            <ion-input formControlName="longitud" type="number" disabled></ion-input>
+          </ion-item> -->
+
         <ion-item>
           <ion-label floating>Numero Equipos</ion-label>
           <ion-input formControlName="maxEquipos" type="number"></ion-input>
@@ -103,8 +112,9 @@
         </ion-item>
       
       </ion-list>
-
-      <button ion-button (click)="crear()"  full>Guardar</button>
+      {{form.value.latitud}}
+      <button ion-button (click)="crear()" *ngIf="form.value.latitud!=null && form.valid " round full>Guardar</button>
+      <button ion-button (click)="crear()" *ngIf="form.value.latitud==null || form.invalid" round full disabled>Guardar</button>
       <br>
     </form>
 

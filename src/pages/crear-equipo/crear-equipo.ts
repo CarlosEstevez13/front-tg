@@ -1,4 +1,4 @@
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { EquipoProvider } from '../../providers/equipo/equipo';
@@ -20,9 +20,9 @@ export class CrearEquipoPage {
               public navParams: NavParams) {
         this.form = this.fb.group({
           idEquipo: new FormControl(),
-          nombre: new FormControl(),
-          descripcion: new FormControl(),
-          nroIntegrantes: new FormControl()
+          nombre: new FormControl('', Validators.required),
+          descripcion: new FormControl('', Validators.required),
+          nroIntegrantes: new FormControl(20, Validators.required)
         });
   }
 

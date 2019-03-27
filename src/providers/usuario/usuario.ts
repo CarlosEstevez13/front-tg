@@ -96,7 +96,8 @@ export class UsuarioProvider {
 
   deleteUsuario(idUsuario) {
     this.headers = new Headers({'Content-Type': 'application/json'});
-    return this._http.delete(this.url + `usuario/${idUsuario}` ).map((res:any) => res.json());
+    //return this._http.delete(this.url + `usuario/${idUsuario}` ).map((res:any) => res.json());
+    return this._http.put(this.url + `usuarioActivo/${idUsuario}` , { headers: this.headers } ).map(res => res.json());
   }
 
   recuperar(email:any){

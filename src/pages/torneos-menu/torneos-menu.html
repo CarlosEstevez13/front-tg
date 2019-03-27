@@ -10,12 +10,12 @@
 
 <ion-content class="card-background-page" padding>
 
-  <ion-card class="opcion" (click)='getBuscarTorneo()' *ngIf="idRol ==1 || idRol==4">
+  <ion-card class="opcion" (click)='getBuscarTorneo()' *ngIf="idRol ==1 || idRol==4 || idRol==5">
     <img src="assets/imgs/buscar.jpg"/>
     <div class="card-title">Buscar Torneo</div>
   </ion-card>
 
-  <ion-card class="opcion" (click)='getTorneosInscritos()' *ngIf="idRol==1">
+  <ion-card class="opcion" (click)='getTorneosInscritos()' *ngIf="idRol==1 || idRol==5">
     <img src="assets/imgs/inscritos.jpg"/>
     <div class="card-title">Torneos a jugar</div>
   </ion-card>

@@ -1,6 +1,6 @@
 import { UbicacionPage } from './../ubicacion/ubicacion';
 import { SalidaIProvider } from '../../providers/salida-i/salida-i';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 
@@ -57,26 +57,53 @@ export class CrearEntrenamientoPage {
                 console.log(this.hoy);
 
                 this.form = this.fb.group({
-                  descripcion: new FormControl(),
+                  descripcion: new FormControl('', Validators.required),
                   finalizado: new FormControl(0),
                   idUsuario: new FormControl(this.idUsuario),
                   idDeporte: new FormControl(this.idDeporte),
                   idRol: new FormControl(this.idRol),
-                  fecha: new FormControl(),
-                  hora: new FormControl(),
-                  nroParticipantes: new FormControl(),
+                  fecha: new FormControl('', Validators.required),
+                  hora: new FormControl('', Validators.required),
+                  nroParticipantes: new FormControl(0, Validators.required),
                   entrenamiento: new FormControl(1),
-                  horaFin: new FormControl(),
+                  horaFin: new FormControl('', Validators.required),
                   latitud: new FormControl(null),
                   longitud: new FormControl(null),
-                  nombre: new FormControl(),
-                  genero: new FormControl(2)
+                  nombre: new FormControl('', Validators.required),
+                  genero: new FormControl(2),
+                  direccion: new FormControl()
                 });
+  }
+
+  ionViewWillEnter(){
+    if(sessionStorage.getItem('agrego') == '1'){
+      console.log('entro');
+      this.form.setValue({
+        descripcion: this.form.value.descripcion,
+        finalizado: this.form.value.finalizado,
+        idUsuario: this.form.value.idUsuario,
+        idDeporte: this.form.value.idDeporte,
+        idRol: this.form.value.idRol,
+        fecha: this.form.value.fecha,
+        hora: this.form.value.hora,
+        nroParticipantes: this.form.value.nroParticipantes,
+        entrenamiento: this.form.value.entrenamiento,
+        horaFin: this.form.value.horaFin,
+        latitud: sessionStorage.getItem('tempLat'),
+        longitud: sessionStorage.getItem('tempLng'),
+        nombre: this.form.value.nombre,
+        genero: this.form.value.genero,
+        direccion: sessionStorage.getItem('direccion')
+      });
+      console.log(this.form.value);
+    }
+    console.log(this.form.value);
   }
 
   ionViewDidLoad() {
     sessionStorage.setItem('tempLat','null');
     sessionStorage.setItem('tempLng','null');
+    sessionStorage.setItem('ver','0');
     console.log('ionViewDidLoad CrearEntrenamientoPage');
   }
 

@@ -15,7 +15,7 @@ export class HistorialRendimientoPage {
   data: any;
 
   public lineChartData: Array<any> = [
-    {data: [], label: 'Series A'}
+    {data: [], label: 'Rendimiento'}
   ];
   
   public lineChartLabels: Array<any> = [];

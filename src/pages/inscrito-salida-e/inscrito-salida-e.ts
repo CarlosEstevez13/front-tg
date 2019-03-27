@@ -154,7 +154,7 @@ export class InscritoSalidaEPage {
   showAlert(idSalida:any, i:any) {
     const alert = this.alertCtrl.create({
       title: 'Eliminar!',
-      subTitle: 'Estas seguro de salir este Evento?',
+      subTitle: 'Estas seguro de dejar de jugar esta salida por equipos?',
       buttons: [{
         text: 'Si',
         handler: () => {

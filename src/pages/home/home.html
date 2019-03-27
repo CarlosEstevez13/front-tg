@@ -17,8 +17,8 @@
 <ion-content padding class='homeCol1'>
     <ion-grid>
         <ion-row class="homeRow1">
-            <ion-col col-3 >
-                <button ion-button clear round (click)="historial();" *ngIf="idRol == 1">
+            <ion-col col-3 *ngIf="idRol==1 || idRol==5" >
+                <button ion-button clear round (click)="historial();">
                 <ion-chip #chip2 style="font-size: 15px; background-color: #fffafac9">
                   <ion-icon name="star-half" style="color:white;" color="primary"></ion-icon>
                   <ion-label >Historial</ion-label>

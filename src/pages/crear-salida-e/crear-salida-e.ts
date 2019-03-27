@@ -1,6 +1,6 @@
 import { UsuarioProvider } from './../../providers/usuario/usuario';
 import { UbicacionPage } from './../ubicacion/ubicacion';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { SalidaEProvider } from './../../providers/salida-e/salida-e';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
@@ -49,12 +49,12 @@ export class CrearSalidaEPage {
                 console.log(this.hoy);
                 this.form = this.fb.group({
                   idEquipo: new FormControl(this.idEquipo),
-                  nombre: new FormControl(),
-                  genero: new FormControl(),
-                  descripcion: new FormControl(),
-                  fecha: new FormControl(),
-                  hora: new FormControl(),
-                  horaFin: new FormControl(),
+                  nombre: new FormControl('', Validators.required),
+                  genero: new FormControl(0, Validators.required),
+                  descripcion: new FormControl('', Validators.required),
+                  fecha: new FormControl('', Validators.required),
+                  hora: new FormControl('', Validators.required),
+                  horaFin: new FormControl('', Validators.required),
                   latitud: new FormControl(null),
                   longitud: new FormControl(null),
                   idDeporte: new FormControl(),
@@ -64,7 +64,27 @@ export class CrearSalidaEPage {
   }
 
   ionViewWillEnter() {
+    if(sessionStorage.getItem('agrego') == '1'){
+      console.log('entro');
+      this.form.setValue({
+                  idEquipo: this.form.value.idEquipo,
+                  nombre: this.form.value.nombre,
+                  genero: this.form.value.genero,
+                  descripcion: this.form.value.descripcion,
+                  fecha: this.form.value.fecha,
+                  hora: this.form.value.hora,
+                  horaFin: this.form.value.horaFin,
+                  latitud: sessionStorage.getItem('tempLat'),
+                  longitud: sessionStorage.getItem('tempLng'),
+                  idDeporte: this.form.value.idDeporte,
+                  rival: this.form.value.rival,
+                  direccion: sessionStorage.getItem('direccion')
+      });
+      console.log(this.form.value);
+    }
     console.log('ionViewDidLoad CrearSalidaEPage');
+
+    console.log(this.form.value);
     this.salidaService.getDeportes()
       .subscribe(
         res=>{
@@ -87,9 +107,10 @@ export class CrearSalidaEPage {
   }
   
   ionViewDidLoad(){
-    sessionStorage.setItem('tempLat','null');
-    sessionStorage.setItem('tempLng','null');
+    sessionStorage.setItem('tempLat','');
+    sessionStorage.setItem('tempLng','');
     sessionStorage.setItem('direccion','null');
+    sessionStorage.setItem('ver','0');
   }
 
   agregarUbicacion(){

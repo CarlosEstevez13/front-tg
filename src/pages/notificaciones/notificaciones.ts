@@ -58,6 +58,12 @@ export class NotificacionesPage {
       this.torneoProvider.setIdVer(1);
       this.navCtrl.push(VerTorneoPage);
   }
+  verTorneoArbitrar(idTorneo,idNotificacion){
+    sessionStorage.setItem('temp',`${idNotificacion}`);
+    this.torneoProvider.setIdTorneo(idTorneo);
+    this.torneoProvider.setIdVer(2);
+    this.navCtrl.push(VerTorneoPage);
+}
 
   verUsuario(idUsuario){
     this.equipoProvider.setIdUsuario(sessionStorage.getItem('idUsuario'));
@@ -66,10 +72,10 @@ export class NotificacionesPage {
     this.navCtrl.push(PerfilPage);
   }
 
-  aceptarPatrocinio(idNotificacion, idTorneo, idRemitente){
+  aceptarPatrocinio(idNotificacion, idTorneo, idRemitente,i){
       let data = {
         idTorneo : idTorneo,
-        idUsuario : sessionStorage.getItem('idUsuario'),
+        idUsuario : idRemitente,
         idRol : 4
       }
               
@@ -80,11 +86,11 @@ export class NotificacionesPage {
             this.usuarioProvider.putNotificacion(idNotificacion)
             .subscribe(
               res=>{
-                this.torneo = res.result[0];
                 this.torneoProvider.setIdTorneo(idTorneo);
                 this.torneoProvider.getTorneo()
-                  .subscribe(
-                    res=>{
+                .subscribe(
+                  res=>{
+                      this.torneo = res.result[0];
                       let data = {
                         tipo: 7,
                         descripcion: `Ha aceptado tu solicitud para patrocinar el torneo: ${this.torneo.nombre}`,
@@ -97,6 +103,7 @@ export class NotificacionesPage {
                         .subscribe(
                           res=>{
                             console.log(res);
+                            this.notificaciones.splice(i,1);
                           },
                           e=>{
                             console.log(e);

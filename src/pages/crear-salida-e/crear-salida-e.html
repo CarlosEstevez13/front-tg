@@ -73,8 +73,8 @@
       </ion-list>
       
       
-      
-      <button ion-button (click)="crear()" round full>Guardar</button>
+      <button ion-button (click)="crear()" *ngIf="form.value.latitud!= null && form.valid " round full>Guardar</button>
+      <button ion-button (click)="crear()" *ngIf="form.value.latitud==null || form.invalid" round full disabled>Guardar</button>
       <br>
     </form>
 </ion-content>
