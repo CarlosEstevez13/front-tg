@@ -99,4 +99,30 @@ export class UsuarioProvider {
     return this._http.delete(this.url + `usuario/${idUsuario}` ).map((res:any) => res.json());
   }
 
+  recuperar(email:any){
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.get(this.url + `recuperar/${email}` ).map((res:any) => res.json());
+  }
+
+  validar(formulario:any){
+    const json = JSON.stringify(formulario);
+    const params = json;
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    console.log('validando');
+    console.log(params);
+    return this._http.post(this.url + 'validarUsu', params, {headers:this.headers})
+            .map(res => res.json());
+  }
+
+  cambiarPass(formulario:any){
+    const json = JSON.stringify(formulario);
+    const params = json;
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    console.log('validando');
+    console.log(params);
+    return this._http.post(this.url + 'cambiarPass', params, {headers:this.headers})
+            .map(res => res.json());
+  }
+
+
 }

@@ -1,3 +1,5 @@
+import { RecuperarContraPageModule } from './../pages/recuperar-contra/recuperar-contra.module';
+import { RecuperarContraPage } from './../pages/recuperar-contra/recuperar-contra';
 import { PatrocinadoresPageModule } from './../pages/patrocinadores/patrocinadores.module';
 import { IntegrantesSalidaIPageModule } from './../pages/integrantes-salida-i/integrantes-salida-i.module';
 import { TorneosPatrocinarPageModule } from './../pages/torneos-patrocinar/torneos-patrocinar.module';
@@ -261,6 +263,7 @@ import { PatrocinadoresPage } from '../pages/patrocinadores/patrocinadores';
     TorneosArbitrarPageModule,
     TorneosPatrocinarPageModule,
     ChartsModule,
+    RecuperarContraPageModule,
     PatrocinadoresPageModule,
     /* IonicModule.forRoot(MyApp), */
     IonicModule.forRoot(MyApp, {
@@ -337,7 +340,8 @@ import { PatrocinadoresPage } from '../pages/patrocinadores/patrocinadores';
     NotificacionesPage,
     TorneosArbitrarPage,
     TorneosPatrocinarPage,
-    PatrocinadoresPage
+    PatrocinadoresPage,
+    RecuperarContraPage
   ],
   providers: [
     StatusBar,

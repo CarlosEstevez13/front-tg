@@ -6,23 +6,23 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>patrocinadores</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>patrocinadores</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <ion-list>
-      <button ion-item *ngFor="let patrocinador of patrocinadores" (click)='verUsuario(patrocinador.idUsuario)'>
+    <ion-list>
+        <button ion-item *ngFor="let patrocinador of patrocinadores" (click)='verUsuario(patrocinador.idUsuario)'>
       <ion-avatar item-start>
         <img src="http://10.8.80.47:3002/profile/{{patrocinador.imagen}}.png">
       </ion-avatar>
       <h2>{{patrocinador.usuario}}</h2>
       <p>{{patrocinador.descripcion}}</p>
     </button>
-  </ion-list>
+    </ion-list>
 
-  <h2 *ngIf="aviso == 1" class="centrado">No hay patrocinadores</h2>
+    <h2 *ngIf="aviso == 1" class="centrado">No hay patrocinadores</h2>
 </ion-content>

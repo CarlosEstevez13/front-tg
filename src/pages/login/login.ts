@@ -1,3 +1,4 @@
+import { RecuperarContraPage } from './../recuperar-contra/recuperar-contra';
 import { AdminPage } from './../admin/admin';
 import { RegistroPage } from './../registro/registro';
 import { LoginProvider } from './../../providers/login/login';
@@ -87,6 +88,9 @@ export class LoginPage {
   registrarse(){
     this.navCtrl.push(RegistroPage);
   }
-
+  
+  recuperar(){
+    this.navCtrl.push(RecuperarContraPage);
+  }
 
 }

@@ -6,43 +6,40 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Login</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Login</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
     <form [formGroup]="form">
-    <img src="assets/imgs/parchemos.png"/>
+        <img src="assets/imgs/parchemos.png" />
+        <ion-list>
+            <ion-item>
+                <ion-label floating>Correo</ion-label>
+                <ion-input formControlName="usuario" type="text"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Contraseña</ion-label>
+                <ion-input formControlName="password" type="password"></ion-input>
+            </ion-item>
+            <ion-item>
+                <h3 style="color: red; text-align: center" *ngIf="error==1">
+                    Credenciales incorrectas.
+                </h3>
+            </ion-item>
+        </ion-list>
 
-    <ion-list>
-      
-
-        <ion-item>
-          <ion-label floating>Correo</ion-label>
-          <ion-input formControlName="usuario" type="text"></ion-input>
-        </ion-item>
-      
-        <ion-item>
-          <ion-label floating>Contraseña</ion-label>
-          <ion-input formControlName="password" type="password"></ion-input>
-        </ion-item>
-        <ion-item>
-          <h3 style="color: red; text-align: center" *ngIf="error==1">
-            Credenciales incorrectas.
-          </h3>
-          
-      </ion-item>
-      </ion-list>
-
-      <button ion-button (click)="login()" *ngIf="form.valid" round full>Ingresar</button>
-      <button ion-button (click)="login()" *ngIf="form.invalid" round full disabled>Ingresar</button>
-      <br>
-      <button ion-button (click)="registrarse()" color="light" round full >Registrarse</button>
+        <button ion-button (click)="login()" *ngIf="form.valid" round full>Ingresar</button>
+        <button ion-button (click)="login()" *ngIf="form.invalid" round full disabled>Ingresar</button>
+        <br>
+        <button ion-button (click)="registrarse()" color="light" round full>Registrarse</button>
+        <br>
+        <button ion-button (click)="recuperar()" round full>Olvide mi contraseña</button>
     </form>
 
-      
+
 
 </ion-content>
