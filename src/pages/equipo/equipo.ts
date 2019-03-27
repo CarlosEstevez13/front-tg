@@ -88,7 +88,7 @@ export class EquipoPage {
     this.mensaje.frase = this.enviarInput;
     this.mensaje.fecha = '2018-09-01';
     this.mensaje.idEquipo = this.idEquipo;
-    this.mensaje.remitente = this.nombre;
+    this.mensaje.remitente = sessionStorage.getItem('nombreArbitro');
   }
 
   getSolicitudes(){
