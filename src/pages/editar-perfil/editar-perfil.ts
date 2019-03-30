@@ -118,7 +118,7 @@ export class EditarPerfilPage {
   agregarFoto(){
     const fd  = new FormData();
     fd.append('image', this.selectedFile, `${this.idUsuario}`);
-    this.http.post('http://10.8.80.47 :3002/api/upload', fd)
+    this.http.post('http://10.8.80.47:3002/api/upload', fd)
       .subscribe(
         res=>{
           console.log(res)
