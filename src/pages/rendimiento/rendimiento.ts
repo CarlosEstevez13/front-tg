@@ -1,4 +1,4 @@
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { UsuarioProvider } from './../../providers/usuario/usuario';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -28,9 +28,9 @@ export class RendimientoPage {
               private fb: FormBuilder,
               public navParams: NavParams) {
                 this.form = this.fb.group({
-                  minutos: new FormControl(),
-                  segundos: new FormControl(),
-                  ritmo: new FormControl()
+                  minutos: new FormControl(null, Validators.required),
+                  segundos: new FormControl(null, Validators.required),
+                  ritmo: new FormControl(null, Validators.required)
                 });
   }
 

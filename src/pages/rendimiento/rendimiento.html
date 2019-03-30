@@ -15,8 +15,15 @@
 
 <ion-content padding>
     <form [formGroup]="form">
+      <ion-item>
+        <ion-label class="descripcion">
+          <b>
+            Los siguentes parametros son justo despues de terminar el test
+        </b>
+      </ion-label>
+      </ion-item>
         <ion-item>
-            <ion-label floating>Tiempo (min)</ion-label>
+            <ion-label floating>Tiempo (min) </ion-label>
             <ion-input formControlName="minutos" type="number"></ion-input>
           </ion-item>
           <ion-item>
@@ -24,17 +31,18 @@
               <ion-input formControlName="segundos" type="number"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-label floating>Ritmo Cardiaco (lat/min)</ion-label>
+                <ion-label floating>Ritmo Cardiaco (lat/min) </ion-label>
                 <ion-input formControlName="ritmo" type="number"></ion-input>
               </ion-item>
     
-          <button (click)="calcular()" ion-button full>Calcular</button>
+          <button (click)="calcular()" *ngIf="form.valid" ion-button full>Calcular</button>
+          <button (click)="calcular()" *ngIf="form.invalid" ion-button full disabled>Calcular</button>
     
         </form>
     <h2 *ngIf="aviso == 1" class="centrado">Por favor edita en tu perfil los campos peso y estatura</h2>
 
     <ion-item class="centrado" *ngIf="resultado==1">
-      rendimiento : <b>{{rendimiento |number}}</b>
+      Rendimiento : <b>{{rendimiento |number}}</b>
     </ion-item>
 
     <ion-grid class="centrado" *ngIf="resultado==1">
