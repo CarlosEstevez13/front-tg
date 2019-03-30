@@ -58,6 +58,7 @@ export class VerSalidaIPage {
   ubicacion(lat,lng){
     sessionStorage.setItem('tempLat',`${lat}`);
     sessionStorage.setItem('tempLng',`${lng}`);
+    sessionStorage.setItem('ver',`1`);
     this.navCtrl.push(UbicacionPage);
   }
 

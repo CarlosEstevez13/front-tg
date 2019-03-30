@@ -70,6 +70,7 @@ export class VerTorneoPage {
     console.log('ionViewDidLoad VerTorneoPage');
   }
 
+
   ionViewWillEnter(){
     this.idVer = this.torneoProvider.getIdVer();
   }
@@ -91,6 +92,7 @@ export class VerTorneoPage {
   ubicacion(lat,lng){
     sessionStorage.setItem('tempLat',`${lat}`);
     sessionStorage.setItem('tempLng',`${lng}`);
+    sessionStorage.setItem('ver',`1`);
     this.navCtrl.push(UbicacionPage);
   }
 

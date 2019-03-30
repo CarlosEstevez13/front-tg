@@ -20,6 +20,10 @@
             <ion-label floating>Correo</ion-label>
             <ion-input [(ngModel)]="email" type="text"></ion-input>
         </ion-item>
+        <ion-item *ngIf="err==1">
+            <br>
+            <h2 style="color: red">Este correo no esta registrado </h2>
+        </ion-item>
     </ion-list>
     <form [formGroup]="form" *ngIf="paso1==1">
         <ion-list>
@@ -34,7 +38,6 @@
             <ion-item *ngIf="error==1">
                 <br>
                 <h2 style="color: red">El codigo es incorrecto</h2>
-                <hr>
             </ion-item>
             <ion-item *ngIf="paso1==1">
                 <br>
