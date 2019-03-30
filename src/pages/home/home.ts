@@ -30,9 +30,10 @@ export class HomePage {
       .subscribe(
         res=>{
           console.log(res);
-          if(this.idRol = 3){
+          sessionStorage.setItem('nombreArbitro',`${res.result[0].nombre}`)
+          /* if(this.idRol == 3){
             sessionStorage.setItem('nombreArbitro',`${res.result[0].nombre}`)
-          }
+          } */
         },
         e=>{
           console.log(e);
@@ -40,6 +41,10 @@ export class HomePage {
       )
     
   }
+  ionViewDidLoad(){
+    this.idRol = sessionStorage.getItem('idRol');
+  }
+
   ionViewWillEnter(){
     this.notificaciones = [];
     this.idRol = sessionStorage.getItem('idRol');

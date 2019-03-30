@@ -111,17 +111,21 @@ export class EquipoPage {
     this._equipoService.getEquipos(this.idDeporte)
         .subscribe(res=> {
           this.equipos = res.result;
-
+          let filtrarEquipos = [];
           for (let i in this.equipos){
             for (let j in this.nroInt){
                if (this.equipos[i].idEquipo == this.nroInt[j].idEquipo){
                  this.equipos[i].nroInt = this.nroInt[j].nroIntegrantes;
+                 filtrarEquipos.push(this.equipos[i]);
                  break;
                }else{
                  this.equipos[i].nroInt = 0;
+                 
                }
+
             }
           } 
+          this.equipos = filtrarEquipos;
 
           console.log(this.equipos);
         },
@@ -183,13 +187,14 @@ export class EquipoPage {
           sessionStorage.setItem('idEquipo',this.idEquipo);
           this._equipoService.setIdEquipo(sessionStorage.getItem('idEquipo'));
           this.tiene = sessionStorage.getItem('idEquipo')
+          this.getInfoEquipo();
         },
         e=>{
           console.log(e);
         }
       );
     
-    if(this.tiene == 'null'){
+    if(this.tiene == 'null' || this.tiene== '0'){
       console.log(this.tiene);  
       this.getNroInt();
       this.getEquipos();

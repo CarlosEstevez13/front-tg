@@ -73,7 +73,7 @@ export class RegistroPage {
                   nombre: new FormControl(this.campos.nombre),
                   pass: new FormControl(this.campos.pass),
                   pass2: new FormControl(this.campos.pass2),
-                  fechaNacimiento: new FormControl(this.campos.fechaNacimiento),
+                  fechaNacimiento: new FormControl(),
                   telefono: new FormControl(this.campos.telefono),
                   email: new FormControl(this.campos.email),
                   descripcion: new FormControl(this.campos.descripcion),
