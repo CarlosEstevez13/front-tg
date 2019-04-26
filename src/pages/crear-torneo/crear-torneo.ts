@@ -132,7 +132,7 @@ export class CrearTorneoPage {
     console.log(aleatorio);
     const fd  = new FormData();
     fd.append('pdf', this.selectedFile, `${aleatorio}-${this.idUsuario}`);
-    this.http.post('http://10.14.14.219:3002/api/uploadPdf', fd)
+    this.http.post('http://18.191.54.7/api/uploadPdf', fd)
       .subscribe(
         res=>{
           console.log(res)
